@@ -619,7 +619,16 @@ progress.exo-gray::-moz-progress-bar {
   background-color: var(--exo-gray);
 }
 
-/* Simple layout based on CSS grid */
+/* Offer a simple layout based on CSS grid */
+
+/* First customise the skeleton container - allow wider displays */
+
+.container {
+    max-width: 1280px;
+}
+
+/* each "exo-row" is a grid onto which cells are automatically flowed */
+/* each cell is 128 pixels wide and at least 100 pixels deep */
 
 .exo-row {
   display: grid;
@@ -627,6 +636,8 @@ progress.exo-gray::-moz-progress-bar {
   gap: 0px;
   grid-auto-rows: minmax(100px, auto);
 }
+
+/* a cell takes up 1 row and a variable number of columns */
 
 .exo-1-cell {
     margin: 5px;
