@@ -7,13 +7,14 @@
 */
 
 /*
- Exo background colours
+ Define variables for the exo colours
 */
 
 :root {
 
-  --exo-focus: #33C3F0;
+  --exo-focus: #33C3F0; /* same as blue */
 
+    /* background colours */
   --exo-red: #FF0000;
   --exo-orange: #FFA500;
   --exo-blue: #33C3F0;
@@ -22,6 +23,7 @@
   --exo-brown:  #993300;
   --exo-gray:  #404040;
 
+    /* light versions of colours */
   --exo-light-red: #EC7063;
   --exo-light-orange: #F6DDCC;
   --exo-light-blue: #D6EAF8;
@@ -30,6 +32,115 @@
   --exo-light-brown: #EB984E;
   --exo-light-gray: #D0D0D0;
 }
+
+/* help popup */
+
+.exo-help-tooltip:focus {
+    outline: 0px solid black;
+}
+
+.exo-help-tooltip > .exo-help-content {
+    display: none;
+    position: relative;
+}
+
+.exo-help-content:focus {
+    border-color: transparent;
+}
+
+.exo-help-tooltip:hover > .exo-help-content {
+    display: inline-block;
+}
+
+.exo-help-tooltip:focus > .exo-help-content {
+    display: inline-block;
+}
+
+.exo-help-content {
+    width: 200px;
+    border-radius: 8px;
+    padding: 4px;
+    margin:  4px;
+    top: -4px;
+    left: 40px;
+    border: 2px solid #CCC;
+    background-color: white;
+}
+
+.exo-help-content:before {
+    content: "";
+    position: absolute;
+    right:100%;
+    top: 2px;
+    width:0;
+    height:0;
+    border-top: 8px solid transparent;
+    border-right: 16px solid #CCC;
+    border-bottom: 8px solid transparent;
+}
+
+.exo-help-content:before {
+    border-right-width: 16px;
+    border-right-style: solid;
+}
+
+.exo-help-content.exo-red:before {
+    border-right-color: var(--exo-red);
+}
+
+.exo-help-content.exo-orange:before {
+    border-right-color: var(--exo-orange);
+}
+
+.exo-help-content.exo-blue:before {
+    border-right-color: var(--exo-blue);
+}
+
+.exo-help-content.exo-green:before {
+    border-right-color: var(--exo-green);
+}
+
+.exo-help-content.exo-purple:before {
+    border-right-color: var(--exo-purple);
+}
+
+.exo-help-content.exo-brown:before {
+    border-right-color: var(--exo-brown);
+}
+
+.exo-help-content.exo-gray:before {
+    border-right-color: var(--exo-gray);
+}
+
+.exo-help-content.exo-light-red:before {
+    border-right-color: var(--exo-light-red);
+}
+
+.exo-help-content.exo-light-orange:before {
+    border-right-color: var(--exo-light-orange);
+}
+
+.exo-help-content.exo-light-blue:before {
+    border-right-color: var(--exo-light-blue);
+}
+
+.exo-help-content.exo-light-green:before {
+    border-right-color: var(--exo-light-green);
+}
+
+.exo-help-content.exo-light-purple:before {
+    border-right-color: var(--exo-light-purple);
+}
+
+.exo-help-content.exo-light-brown:before {
+    border-right-color: var(--exo-light-brown);
+}
+
+.exo-help-content.exo-light-gray:before {
+    border-right-color: var(--exo-light-gray);
+}
+
+/* main colour style definitions */
 
 .exo-red {
     color: #FFF;
@@ -402,6 +513,7 @@ details {
    transition: all 0.5s;
 }
 
+
 .exo-modal-window > .exo-modal-window-content {
     max-width: 60%;
     max-height: 60%;
@@ -415,6 +527,8 @@ details {
     border-color: #333;
     border-radius: 4px;
 }
+
+
 
 button.exo-modal-close {
     position:absolute;
@@ -437,6 +551,7 @@ button.exo-modal-close.exo-purple, button.exo-modal-close.exo-brown, button.exo-
 button.exo-modal-close:focus {
     border: 2px solid var(--exo-focus)
 }
+
 
 /* icons */
 

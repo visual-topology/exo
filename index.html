@@ -121,7 +121,7 @@
         }
 
         function boot() {
-            var nr_models = 16;
+            var nr_models = 17;
             for(var i=0; i<nr_models; i++) {
                 var model = document.getElementById("model"+i);
                 var view = document.getElementById("view"+i);
@@ -155,6 +155,7 @@
                 <li><a href="#input_controls">Input controls</a></li>
                 <li><a href="#summary_details">Summary-Details</a></li>
                 <li><a href="#modal_windows">Modal Windows</a></li>
+                <li><a href="#tooltips">Tooltips</a></li>
                 <li><a href="#progress">Progress</a></li>
             </ul>
         </div>
@@ -459,6 +460,23 @@
                     <button class="exo-modal-close exo-gray" onclick="history.back()"/>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <h2 id="tooltips">Tooltips</h2>
+    <div class="exo-row">
+        <div class="exo-4-cell">
+            <pre><code id="view16">
+            </code></pre>
+        </div>
+        <div id="model16" class="exo-4-cell">
+            <div class="exo-icon exo-icon-help exo-help-tooltip" tabindex="0">
+                <div class="exo-help-content exo-light-brown">
+                    Hovering over (or focusing on) the help button reveals some helpful text
+                    explaining more...
+                </div>
+            </div>
+            <div>Some text</div>
         </div>
     </div>
 
