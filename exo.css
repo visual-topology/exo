@@ -1,9 +1,11 @@
 /*
-* Exo V0.0.1
-* Copyright, Visual Topology Developers, 2020-2021
+* Exo V0.0.2
+* Copyright Niall McCarroll 2021
 *
 * Free to use under the MIT license.
 * http://www.opensource.org/licenses/mit-license.php
+*
+* Incorporates modified code from skeleton CSS, see below
 */
 
 /*
@@ -12,230 +14,1011 @@
 
 :root {
 
-  --exo-focus: #33C3F0; /* same as blue */
+  --exo-focus: #33C3F0; /* like skeleton, use blue for focus */
+  --exo-hover: yellow;
+  --exo-highlight: orange;
+  --exo-invalid: red;
 
-    /* background colours */
-  --exo-red: #FF0000;
-  --exo-orange: #FFA500;
-  --exo-blue: #33C3F0;
-  --exo-green:  #33CC33;
-  --exo-purple: #990099;
-  --exo-brown:  #993300;
-  --exo-gray:  #404040;
+    /* dark background colours */
+  --exo-dark-red: #8B0000;
+  --exo-dark-orange: #D2691E;
+  --exo-dark-blue: #00008B;
+  --exo-dark-green: #006400;
+  --exo-dark-purple: #4B0082;
+  --exo-dark-brown:  #654321;
+  --exo-dark-gray:  #202020;
+  --exo-dark-pink: #8B008B;
+  --exo-dark-yellow: #808000;
 
-    /* light versions of colours */
-  --exo-light-red: #EC7063;
+  /* https://webaim.org/resources/contrastchecker/ */
+
+
+    /* light background colours */
+  --exo-light-red: #FF8080;
   --exo-light-orange: #F6DDCC;
   --exo-light-blue: #D6EAF8;
   --exo-light-green: #D5F5E3;
   --exo-light-purple: #E8DAEF;
   --exo-light-brown: #EB984E;
   --exo-light-gray: #D0D0D0;
+  --exo-light-pink: #FF80FF;
+  --exo-light-yellow: #FFFF80;
+
+  --exo-white:  #FFFFFF;
+  --exo-black:  #000000;
+
+  --exo-dark-red2: #DF1010;
+  --exo-dark-orange2: #EF9500;
+  --exo-dark-blue2: #2020CF;
+  --exo-dark-green2:  #23BC23;
+  --exo-dark-purple2: #792079;
+  --exo-dark-brown2:  #AA5500;
+  --exo-dark-gray2:  #303030;
+  --exo-dark-pink2: #7B007B;
+  --exo-dark-yellow2: #A07000;
+
+
+    /* light background colours */
+  --exo-light-red2: #FC8073;
+  --exo-light-orange2: #FFEDDC;
+  --exo-light-blue2: #E6FAFF;
+  --exo-light-green2: #E5FFF3;
+  --exo-light-purple2: #F8EAFF;
+  --exo-light-brown2: #FBA85E;
+  --exo-light-gray2: #E0E0E0;
+  --exo-light-yellow2: #E0E000;
+  --exo-light-pink2: #D000D0;
+
+  --exo-white2:  #EFEFEF;
+  --exo-black2:  #202020;
+
+  --border-color: #888;
+
+  --round-small: 4px;
+  --round-medium: 8px;
+  --round-large: 16px;
+
+  --border-small: 2px;
+  --border-medium: 4px;
+  --border-large: 8px;
+
+  --padding-small: 4px;
+  --padding-medium: 8px;
+  --padding-large: 16px;
+
+  --margin-small: 4px;
+  --margin-medium: 8px;
+  --margin-large: 16px;
+
+  --icon-small: 24px;
+  --icon-medium: 48px;
+  --icon-large: 72px;
+  --icon-huge: 96px;
+
+  --cell-width: 128px;
+ }
+
+.exo-container {
+  position: relative;
+  max-width: 1280px; /* 10 cells */
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
-/* help popup */
-
-.exo-help-tooltip:focus {
-    outline: 0px solid black;
+.exo-container-narrow {
+  max-width: 960px; /* 8 cells */
 }
 
-.exo-help-tooltip > .exo-help-content {
+.exo-container-wide {
+   max-width: 1536px; /* 12 cells */
+}
+
+.exo-container * {
+  box-sizing: border-box;
+}
+
+
+/* Typography
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+body {
+  font-weight: 400;
+  font-family: "Raleway", sans-serif;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+h3 {
+    font-size: 30px;
+}
+
+h4 {
+    font-size: 24px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+label, legend {
+  margin-top: 10px;
+  height: 28px;
+  display: block;
+}
+
+label.exo-dummy-label {
+   margin-top: 0px;
+   display: inline;
+}
+
+fieldset {
+  padding: 0;
+  border-width: 0;
+}
+
+/* Table
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+table {
+  border-spacing: 0;
+}
+
+table caption {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+th:not(:last-child), td:not(:last-child) {
+    border-right: 1px solid var(--exo-black);
+}
+
+table.exo-dark-red-bg th:not(:last-child), table.exo-dark-red-bg td:not(:last-child),
+table.exo-dark-orange-bg th:not(:last-child), table.exo-dark-orange-bg td:not(:last-child),
+table.exo-dark-blue-bg th:not(:last-child), table.exo-dark-blue-bg td:not(:last-child),
+table.exo-dark-green-bg th:not(:last-child), table.exo-dark-green-bg td:not(:last-child),
+table.exo-dark-purple-bg th:not(:last-child), table.exo-dark-purple-bg td:not(:last-child),
+table.exo-dark-brown-bg th:not(:last-child), table.exo-dark-brown-bg td:not(:last-child),
+table.exo-dark-gray-bg th:not(:last-child), table.exo-dark-gray-bg td:not(:last-child),
+table.exo-dark-pink-bg th:not(:last-child), table.exo-dark-pink-bg td:not(:last-child),
+table.exo-black-bg th:not(:last-child), table.exo-black-bg td:not(:last-child) {
+    border-right: 1px solid var(--exo-white);
+}
+
+th, td {
+    padding: var(--padding-small);
+    text-align: left;
+    margin: var(--margin-small);
+}
+
+table.exo-large-padding th, table.exo-large-padding td {
+    padding: var(--padding-large);
+}
+
+table.exo-medium-padding th, table.exo-medium-padding td {
+    padding: var(--padding-medium);
+}
+
+table.exo-small-padding th, table.exo-small-padding td {
+    padding: var(--padding-small);
+}
+
+table.exo-no-padding th, table.exo-no-padding td {
+    padding: 0px;
+}
+
+th, td {
+  border-bottom: 1px solid var(--exo-black);
+}
+
+table.exo-dark-red-bg th, table.exo-dark-red-bg td,
+table.exo-dark-orange-bg th, table.exo-dark-orange-bg td,
+table.exo-dark-blue-bg th, table.exo-dark-blue-bg td,
+table.exo-dark-green-bg th, table.exo-dark-green-bg td,
+table.exo-dark-purple-bg th, table.exo-dark-purple-bg td,
+table.exo-dark-brown-bg th, table.exo-dark-brown-bg td,
+table.exo-dark-gray-bg th, table.exo-dark-gray-bg td,
+table.exo-dark-pink-bg th, table.exo-dark-pink-bg td,
+table.exo-black-bg th, table.exo-black-bg td
+{
+  border-bottom: 1px solid var(--exo-white);
+}
+
+table tbody tr:last-child td {
+    border-bottom-width: 0px;
+}
+
+table.exo-striped.exo-dark-red-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-red);
+}
+
+table.exo-striped.exo-dark-red-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-red2);
+}
+
+table.exo-striped.exo-dark-orange-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-orange);
+}
+
+table.exo-striped.exo-dark-orange-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-orange2);
+}
+
+table.exo-striped.exo-dark-blue-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-blue);
+}
+
+table.exo-striped.exo-dark-blue-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-blue2);
+}
+
+table.exo-striped.exo-dark-green-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-green);
+}
+
+table.exo-striped.exo-dark-green-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-green2);
+}
+
+table.exo-striped.exo-dark-purple-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-purple);
+}
+
+table.exo-striped.exo-dark-purple-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-purple2);
+}
+
+table.exo-striped.exo-dark-brown-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-brown);
+}
+
+table.exo-striped.exo-dark-brown-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-brown2);
+}
+
+table.exo-striped.exo-dark-gray-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-gray);
+}
+
+table.exo-striped.exo-dark-gray-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-gray2);
+}
+
+table.exo-striped.exo-dark-pink-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-pink);
+}
+
+table.exo-striped.exo-dark-pink-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-pink2);
+}
+
+table.exo-striped.exo-dark-yellow-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-yellow);
+}
+
+table.exo-striped.exo-dark-yellow-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-yellow2);
+}
+
+table.exo-striped.exo-light-red-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-red);
+}
+
+table.exo-striped.exo-light-red-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-red2);
+}
+
+table.exo-striped.exo-light-orange-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-orange);
+}
+
+table.exo-striped.exo-light-orange-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-orange2);
+}
+
+table.exo-striped.exo-light-blue-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-blue);
+}
+
+table.exo-striped.exo-light-blue-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-blue2);
+}
+
+table.exo-striped.exo-light-green-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-green);
+}
+
+table.exo-striped.exo-light-green-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-green2);
+}
+
+table.exo-striped.exo-light-purple-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-purple);
+}
+
+table.exo-striped.exo-light-purple-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-purple2);
+}
+
+table.exo-striped.exo-light-brown-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-brown);
+}
+
+table.exo-striped.exo-light-brown-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-brown2);
+}
+
+table.exo-striped.exo-light-gray-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-gray);
+}
+
+table.exo-striped.exo-light-gray-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-gray2);
+}
+
+table.exo-striped.exo-light-pink-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-pink);
+}
+
+table.exo-striped.exo-light-pink-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-pink2);
+}
+
+table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-yellow);
+}
+
+table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-yellow2);
+}
+
+
+/* Code
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+code {
+  padding: var(--padding-small);
+  margin: 0px;
+  background: #DDD;
+  border-radius: var(--round-small);
+  font-size: 10px;
+}
+
+pre > code {
+  display: block;
+  white-space: break-spaces;
+}
+
+
+
+/* Colours
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-dark-orange-fg {
+    color: var(--exo-dark-orange);
+}
+
+.exo-dark-red-fg {
+    color: var(--exo-dark-red);
+}
+
+.exo-dark-blue-fg {
+    color: var(--exo-dark-blue);
+}
+
+.exo-dark-green-fg {
+    color: var(--exo-dark-green);
+}
+
+.exo-dark-purple-fg {
+    color: var(--exo-dark-purple);
+}
+
+.exo-dark-brown-fg {
+    color: var(--exo-dark-brown);
+}
+
+.exo-dark-pink-fg {
+    color: var(--exo-dark-pink);
+}
+
+.exo-dark-yellow-fg {
+    color: var(--exo-dark-yellow);
+}
+
+.exo-dark-gray-fg {
+    color: var(--exo-dark-gray);
+}
+
+.exo-black-fg {
+    color: var(--exo-black);
+}
+
+.exo-light-orange-fg {
+    color: var(--exo-light-orange);
+}
+
+.exo-light-red-fg {
+    color: var(--exo-light-red);
+}
+
+.exo-light-blue-fg {
+    color: var(--exo-light-blue);
+}
+
+.exo-light-green-fg {
+    color: var(--exo-light-green);
+}
+
+.exo-light-purple-fg {
+    color: var(--exo-light-purple);
+}
+
+.exo-light-brown-fg {
+    color: var(--exo-light-brown);
+}
+
+.exo-light-gray-fg {
+    color: var(--exo-light-gray);
+}
+
+.exo-light-yellow-fg {
+    color: var(--exo-light-yellow);
+}
+
+.exo-light-pink-fg {
+    color: var(--exo-light-pink);
+}
+
+.exo-white-fg {
+    color: var(--exo-white);
+}
+
+.exo-dark-red-bg {
+    background-color: var(--exo-dark-red);
+}
+
+.exo-dark-orange-bg {
+    background-color: var(--exo-dark-orange);
+}
+
+.exo-dark-blue-bg {
+    background-color: var(--exo-dark-blue);
+}
+
+.exo-dark-green-bg {
+    background-color: var(--exo-dark-green);
+}
+
+.exo-dark-purple-bg {
+    background-color: var(--exo-dark-purple);
+}
+
+.exo-dark-brown-bg {
+    background-color: var(--exo-dark-brown);
+}
+
+.exo-dark-gray-bg {
+    background-color: var(--exo-dark-gray);
+}
+
+.exo-dark-pink-bg {
+    background-color: var(--exo-dark-pink);
+}
+
+.exo-dark-yellow-bg {
+    background-color: var(--exo-dark-yellow);
+}
+
+.exo-black-bg {
+    background-color: var(--exo-black);
+}
+
+.exo-light-red-bg {
+    background-color: var(--exo-light-red);
+}
+
+.exo-light-orange-bg {
+    background-color: var(--exo-light-orange);
+}
+
+.exo-light-blue-bg {
+    background-color: var(--exo-light-blue);
+}
+
+.exo-light-green-bg {
+    background-color: var(--exo-light-green);
+}
+
+.exo-light-purple-bg {
+    background-color: var(--exo-light-purple);
+}
+
+.exo-light-brown-bg {
+    background-color: var(--exo-light-brown);
+}
+
+.exo-light-gray-bg {
+    background-color: var(--exo-light-gray);
+}
+
+.exo-light-pink-bg {
+    background-color: var(--exo-light-pink);
+}
+
+.exo-light-yellow-bg {
+    background-color: var(--exo-light-yellow);
+}
+
+.exo-white-bg {
+    background-color: var(--exo-white);
+}
+
+
+/* Help hover/popups
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-help-content {
     display: none;
-    position: relative;
+    position: absolute;
 }
 
 .exo-help-content:focus {
     border-color: transparent;
 }
 
-.exo-help-tooltip:hover > .exo-help-content {
+.exo-help-tooltip {
     display: inline-block;
 }
 
-.exo-help-tooltip:focus > .exo-help-content {
+.exo-help-tooltip:hover > .exo-help-content, .exo-help-tooltip:focus > .exo-help-content {
     display: inline-block;
 }
 
 .exo-help-content {
     width: 200px;
-    border-radius: 8px;
+    border-radius: var(--round-small);
+    padding: var(--padding-small);
+    margin:  var(--margin-small);
+    z-index: 999;
+}
+
+/* hero style centered heading
+-------------------------------------------------- */
+
+.exo-hero {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: 10vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+}
+
+/* Layout - simple rows/cells based on CSS grid
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* each "exo-row" is a grid onto which cells are automatically flowed */
+/* each cell is 128 pixels wide */
+
+/* row with unlimited number of cells */
+
+.exo-row {
+  display: flex;
+  flex-flow: row wrap;
+  box-sizing: border-box;
+}
+
+.exo-1-cell {
+    width: var(--cell-width);
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
+.exo-2-cell {
+    width: calc(var(--cell-width) * 2);
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
+.exo-3-cell {
+    width: calc(var(--cell-width) * 3);
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
+.exo-4-cell {
+    width: calc(var(--cell-width) * 4);
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
+.exo-5-cell {
+    width: calc(var(--cell-width) * 5);
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
+.exo-6-row {
+    width: calc(var(--cell-width) * 6);
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
+.exo-7-cell {
+    width: calc(var(--cell-width) * 7);
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
+.exo-8-cell {
+    width: calc(var(--cell-width) * 8);
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
+.exo-9-cell {
+    width: calc(var(--cell-width) * 9);
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
+.exo-10-cell {
+    width: calc(var(--cell-width) * 10);
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
+.exo-11-cell {
+    width: calc(var(--cell-width) * 11);
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
+.exo-12-cell {
+    width: calc(var(--cell-width) * 12);
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
+.exo-flex-cell {
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.exo-cell-centered {
+    align-items: center;
+    align-self: center;
+}
+
+.exo-cell-left {
+    align-items: start;
+    align-self: start;
+}
+
+.exo-cell-right {
+    align-items: end;
+    align-self: end;
+}
+
+.exo-full-width {
+    width: 100%;
+}
+
+/* padding styles */
+
+.exo-no-padding {
+    padding: 0px;
+}
+
+.exo-small-padding {
+    padding: var(--padding-small);
+}
+
+.exo-medium-padding, .exo-padding {
+    padding: var(--padding-medium);
+}
+
+.exo-large-padding {
+    padding: var(--padding-large);
+}
+
+/* rounded styles */
+
+.exo-no-rounded {
+    border-radius: 0px;
+}
+
+.exo-small-rounded {
+    border-radius: var(--round-small);
+}
+
+.exo-medium-rounded, .exo-rounded {
+    border-radius: var(--round-medium);
+}
+
+.exo-large-rounded {
+    border-radius:var(--round-large);
+}
+
+/* border styles */
+
+.exo-no-border {
+    border-width: 0px;
+}
+
+.exo-small-border {
+    border: var(--border-small) solid var(--border-color);
+}
+
+.exo-medium-border, .exo-border {
+    border: var(--border-medium) solid var(--border-color);
+}
+
+.exo-large-border {
+    border: var(--border-large) solid var(--border-color);
+}
+
+/* margin styles */
+
+.exo-no-vmargin {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.exo-small-vmargin {
+    margin-top: var(--margin-small);
+    margin-bottom: var(--margin-small);
+}
+
+.exo-medium-vmargin, .exo-vmargin {
+    margin-top: var(--margin-medium);
+    margin-bottom: var(--margin-medium);
+}
+
+.exo-large-vmargin {
+    margin-top: var(--margin-large);
+    margin-bottom: var(--margin-large);
+}
+
+.exo-no-hmargin {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.exo-small-hmargin {
+    margin-left: var(--margin-small);
+    margin-right: var(--margin-small);
+}
+
+.exo-medium-hmargin, .exo-hmargin {
+    margin-left: var(--margin-medium);
+    margin-right: var(--margin-medium);
+}
+
+.exo-large-hmargin {
+    margin-left: var(--margin-large);
+    margin-right: var(--margin-large);
+}
+
+
+.exo-no-margin {
+    margin: 0px;
+}
+
+.exo-small-margin {
+    margin: var(--margin-small);
+}
+
+.exo-medium-margin, .exo-margin {
+    margin: var(--margin-medium);
+}
+
+.exo-large-margin {
+    margin: var(--margin-large);
+}
+
+
+
+/* Card layout
+-------------------------------------------------- */
+
+.exo-cards {
+    display: grid;
+    grid-template-columns: repeat( auto-fill, minmax(364px, 1fr) );
+    grid-auto-rows: 1fr;
+}
+
+.exo-narrow-cards {
+    grid-template-columns: repeat( auto-fill, minmax(236px, 1fr) );
+}
+
+.exo-wide-cards {
+    grid-template-columns: repeat( auto-fill, minmax(492px, 1fr) );
+}
+
+.exo-card {
+    display: flex;
+    flex-flow: column nowrap;
+    margin: var(--margin-small);
+    overflow: clip;
+    box-sizing: border-box;
+    border: var(--border-small) solid var(--border-color);
+    border-radius: var(--round-medium);
+}
+
+.exo-card-header {
+}
+
+.exo-card-content {
+    padding: var(--padding-medium);
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+.exo-card-footer {
     padding: 4px;
-    margin:  4px;
-    top: -4px;
-    left: 40px;
-    border: 2px solid #CCC;
-    background-color: white;
 }
 
-.exo-help-content:before {
-    content: "";
-    position: absolute;
-    right:100%;
-    top: 2px;
-    width:0;
-    height:0;
-    border-top: 8px solid transparent;
-    border-right: 16px solid #CCC;
-    border-bottom: 8px solid transparent;
+.exo-card > .exo-button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    align-self: center;
 }
 
-.exo-help-content:before {
-    border-right-width: 16px;
-    border-right-style: solid;
+.exo-card h1, .exo-card h2, .exo-card h3, .exo-card h4, .exo-card h5, .exo-card h6, .exo-card span
+.exo-card .exo-card-header, .exo-card .exo-card-footer, .exo-card.exo-card-content {
+    text-align: center;
 }
 
-.exo-help-content.exo-red:before {
-    border-right-color: var(--exo-red);
+/* Coloured borders
+-------------------------------------------------- */
+
+.exo-dark-red-border {
+    border-color: var(--exo-dark-red);
 }
 
-.exo-help-content.exo-orange:before {
-    border-right-color: var(--exo-orange);
+exo-dark-orange-border {
+    border-color: var(--exo-dark-orange);
 }
 
-.exo-help-content.exo-blue:before {
-    border-right-color: var(--exo-blue);
+.exo-dark-blue-border {
+    border-color: var(--exo-dark-blue);
 }
 
-.exo-help-content.exo-green:before {
-    border-right-color: var(--exo-green);
+.exo-dark-green-border {
+    border-color: var(--exo-dark-green);
 }
 
-.exo-help-content.exo-purple:before {
-    border-right-color: var(--exo-purple);
+.exo-dark-purple-border {
+    border-color: var(--exo-dark-purple);
 }
 
-.exo-help-content.exo-brown:before {
-    border-right-color: var(--exo-brown);
+.exo-dark-brown-border {
+    border-color: var(--exo-dark-brown);
 }
 
-.exo-help-content.exo-gray:before {
-    border-right-color: var(--exo-gray);
+.exo-dark-gray-border {
+    border-color: var(--exo-dark-gray);
 }
 
-.exo-help-content.exo-light-red:before {
-    border-right-color: var(--exo-light-red);
+.exo-dark-pink-border {
+    border-color: var(--exo-dark-pink);
 }
 
-.exo-help-content.exo-light-orange:before {
-    border-right-color: var(--exo-light-orange);
+.exo-dark-yellow-border {
+    border-color: var(--exo-dark-yellow);
 }
 
-.exo-help-content.exo-light-blue:before {
-    border-right-color: var(--exo-light-blue);
+.exo-black-border {
+    border-color: var(--exo-black);
 }
 
-.exo-help-content.exo-light-green:before {
-    border-right-color: var(--exo-light-green);
-}
-
-.exo-help-content.exo-light-purple:before {
-    border-right-color: var(--exo-light-purple);
-}
-
-.exo-help-content.exo-light-brown:before {
-    border-right-color: var(--exo-light-brown);
-}
-
-.exo-help-content.exo-light-gray:before {
-    border-right-color: var(--exo-light-gray);
-}
-
-/* main colour style definitions */
-
-.exo-red {
-    color: #FFF;
-    background-color: var(--exo-red);
-    border-color: var(--exo-red);
-}
-
-.exo-orange {
-    color: #FFF;
-    background-color: var(--exo-orange);
-    border-color: var(--exo-orange);
-}
-
-.exo-blue {
-    color: #FFF;
-    background-color: var(--exo-blue);
-    border-color: var(--exo-blue);
-}
-
-.exo-green {
-    color: #FFF;
-    background-color: var(--exo-green);
-    border-color: var(--exo-green);
-}
-
-.exo-purple {
-    color: #FFF;
-    background-color: var(--exo-purple);
-    border-color: var(--exo-purple);
-}
-
-.exo-brown {
-    color: #FFF;
-    background-color: var(--exo-brown);
-    border-color: var(--exo-brown);
-}
-
-.exo-gray {
-    color: #FFF;
-    background-color: var(--exo-gray);
-    border-color: var(--exo-gray);
-}
-
-.exo-light-red {
-    color: #000;
-    background-color: var(--exo-light-red);
+.exo-light-red-border {
     border-color: var(--exo-light-red);
 }
 
-.exo-light-orange {
-    color: #000;
-    background-color: var(--exo-light-orange);
+.exo-light-orange-border {
     border-color: var(--exo-light-orange);
 }
 
-.exo-light-blue {
-    color: #000;
-    background-color: var(--exo-light-blue);
+.exo-light-blue-border {
     border-color: var(--exo-light-blue);
 }
 
-.exo-light-green {
-    color: #000;
-    background-color: var(--exo-light-green);
+.exo-light-green-border {
     border-color: var(--exo-light-green);
 }
 
-.exo-light-purple {
-    color: #000;
-    background-color: var(--exo-light-purple);
+.exo-light-purple-border {
     border-color: var(--exo-light-purple);
 }
 
-.exo-light-brown {
-    color: #000;
-    background-color: var(--exo-light-brown);
+.exo-light-brown-border {
     border-color: var(--exo-light-brown);
 }
 
-.exo-light-gray {
-    color: #000;
-    background-color: var(--exo-light-gray);
+.exo-light-gray-border {
     border-color: var(--exo-light-gray);
 }
 
-/* use larger border for focus on input controls */
-input:focus, button:focus, select:focus {
-    border: 2px solid var(--exo-focus);
+.exo-light-pink-border {
+    border-color: var(--exo-light-pink);
 }
 
-input:not(focus), button:not(focus), select:not(focus) {
-    border: 2px solid #CCC;
+.exo-light-yellow-border {
+    border-color: var(--exo-light-yellow);
 }
 
-/* checkboxes */
+.exo-white-border {
+    border-color: var(--exo-white);
+}
+
+/* Input Controls
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* standardised height */
+
+input, select, button, summary, div.exo-button {
+    border-radius: var(--round-small);
+    height: 34px;
+}
+
+input:invalid {
+  outline: 5px dashed var(--exo-invalid);
+}
+
+input:focus, select:focus, button:focus, a:focus, .exo-toggle input:focus + .exo-toggle-slide, div.exo-button:focus,
+.exo-conditional input:focus ~ .exo-conditional-false, .exo-conditional input:focus ~ .exo-conditional-true,
+.exo-carousel:focus, div.exo-button:focus {
+    outline: 3px dotted var(--exo-focus);
+}
+
+input:hover, select:hover, button:hover, a:hover,
+summary:hover, .exo-toggle input:hover + .exo-toggle-slide, div.exo-button:hover, label:hover,
+.exo-conditional input:hover ~ .exo-conditional-false, .exo-conditional input:hover ~ .exo-conditional-true,
+.exo-carousel:hover  {
+    outline: 3px solid var(--exo-hover);
+}
+
+button:disabled, input:disabled, .exo-conditional input:disabled ~ *
+ {
+    opacity: 0.4;
+}
+
+button, input[type="button"], div.exo-button {
+    transition: transform 0.2s;
+}
+
+button:active:not(:disabled), input[type="button"]:active:not(:disabled), div.exo-button:active:not(:disabled) {
+     transform: scale(0.95);
+}
+
+
+
+/* Input Controls - Checkbox
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 input[type="checkbox"] {
     appearance: none;
@@ -250,30 +1033,47 @@ input[type="checkbox"] {
 	margin-bottom: 4px;
 }
 
+/* use a black tick icon */
+
 input[type="checkbox"]:checked {
 	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMkw0LjggMTJsLTEuNCAxLjRMOSAxOSAyMSA3bC0xLjQtMS40TDkgMTYuMnoiLz48L3N2Zz4=');
 }
 
-input[type="checkbox"]:not(:checked) {
-	background-color: #FFF;
-}
+/* for dark colour backgrounds, use a white tick icon */
 
-/* for dark backgrounds, use a white tick icon */
-
-input[type="checkbox"]:checked.exo-red, input[type="checkbox"]:checked.exo-orange, input[type="checkbox"]:checked.exo-blue,
-input[type="checkbox"]:checked.exo-green, input[type="checkbox"]:checked.exo-purple, input[type="checkbox"]:checked.exo-brown
+input[type="checkbox"]:checked.exo-dark-red-bg, input[type="checkbox"]:checked.exo-dark-orange-bg, input[type="checkbox"]:checked.exo-dark-blue-bg,
+input[type="checkbox"]:checked.exo-dark-green-bg, input[type="checkbox"]:checked.exo-dark-purple-bg, input[type="checkbox"]:checked.exo-dark-brown-bg,
+input[type="checkbox"]:checked.exo-dark-gray-bg, input[type="checkbox"]:checked.exo-dark-gray-bg, input[type="checkbox"]:checked.exo-dark-pink-bg,
+input[type="checkbox"]:checked.exo-dark-yellow-bg, input[type="checkbox"]:checked.exo-black-bg
 {
 	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iI0ZGRkZGRiI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMkw0LjggMTJsLTEuNCAxLjRMOSAxOSAyMSA3bC0xLjQtMS40TDkgMTYuMnoiLz48L3N2Zz4=');
 }
 
-/* number control */
+.exo-checkbox-true {
+    vertical-align: top;
+}
+
+.exo-checkbox-false {
+    vertical-align: top;
+}
+
+input[type="checkbox"]:checked ~ .exo-checkbox-false {
+    display: none;
+}
+
+input[type="checkbox"]:not(:checked) ~ .exo-checkbox-true {
+    display: none;
+}
+
+/* Input Controls - Number
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 input[type="number"] {
     appearance: none;
-    width: 200px;
 }
 
-/* radio buttons */
+/* Input Controls - Radio
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 input[type="radio"] {
     appearance: none;
@@ -296,64 +1096,96 @@ input[type="radio"]:not(:checked) {
 	background-color: #FFF;
 }
 
-input[type="radio"]:checked.exo-red {
-	background-color: var(--exo-red);
+input[type="radio"]:checked.exo-dark-red-bg {
+	background-color: var(--exo-dark-red);
 }
 
-input[type="radio"]:checked.exo-orange {
-	background-color: var(--exo-orange);
+input[type="radio"]:checked.exo-dark-orange-bg {
+	background-color: var(--exo-dark-orange);
 }
 
-input[type="radio"]:checked.exo-blue {
-	background-color: var(--exo-blue);
+input[type="radio"]:checked.exo-dark-blue-bg {
+	background-color: var(--exo-dark-blue);
 }
 
-input[type="radio"]:checked.exo-green {
-	background-color: var(--exo-green);
+input[type="radio"]:checked.exo-dark-green-bg {
+	background-color: var(--exo-dark-green);
 }
 
-input[type="radio"]:checked.exo-purple {
-	background-color: var(--exo-purple);
+input[type="radio"]:checked.exo-dark-purple-bg {
+	background-color: var(--exo-dark-purple);
 }
 
-input[type="radio"]:checked.exo-brown {
-	background-color: var(--exo-brown);
+input[type="radio"]:checked.exo-dark-brown-bg {
+	background-color: var(--exo-dark-brown);
 }
 
-input[type="radio"]:checked.exo-light-red {
+input[type="radio"]:checked.exo-dark-gray-bg {
+	background-color: var(--exo-dark-gray);
+}
+
+input[type="radio"]:checked.exo-dark-pink-bg {
+	background-color: var(--exo-dark-pink);
+}
+
+input[type="radio"]:checked.exo-dark-yellow-bg {
+	background-color: var(--exo-dark-yellow);
+}
+
+input[type="radio"]:checked.exo-black-bg {
+	background-color: var(--exo-black);
+}
+
+input[type="radio"]:checked.exo-light-red-bg {
 	background-color: var(--exo-light-red);
 }
 
-
-input[type="radio"]:checked.exo-light-orange {
+input[type="radio"]:checked.exo-light-orange-bg {
 	background-color: var(--exo-light-orange);
 }
 
-input[type="radio"]:checked.exo-light-blue {
+input[type="radio"]:checked.exo-light-blue-bg {
 	background-color: var(--exo-light-blue);
 }
 
-input[type="radio"]:checked.exo-light-green {
+input[type="radio"]:checked.exo-light-green-bg {
 	background-color: var(--exo-light-green);
 }
 
-input[type="radio"]:checked.exo-light-purple {
+input[type="radio"]:checked.exo-light-purple-bg {
 	background-color: var(--exo-light-purple);
 }
 
-input[type="radio"]:checked.exo-light-brown {
+input[type="radio"]:checked.exo-light-brown-bg {
 	background-color: var(--exo-light-brown);
 }
 
-/* range input controls */
+input[type="radio"]:checked.exo-light-gray-bg {
+	background-color: var(--exo-light-gray);
+}
+
+input[type="radio"]:checked.exo-light-pink-bg {
+	background-color: var(--exo-light-pink);
+}
+
+input[type="radio"]:checked.exo-light-yellow-bg {
+	background-color: var(--exo-light-yellow);
+}
+
+input[type="radio"]:checked.exo-white {
+	background-color: var(--exo-white);
+}
+
+/* Input Controls - Range
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
     width: 200px;
     height: 12px;
-    border-radius: 3px;
-    vertical-align: center;
+    border-radius: 4px;
+    vertical-align: middle;
     background: #333;
 }
 
@@ -373,7 +1205,8 @@ input[type=range]::-webkit-slider-thumb {
   background-color: #FFF;
 }
 
-/* toggles based on checkboxes */
+/* Input Controls - Toggle
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .exo-toggle {
     position: relative;
@@ -412,70 +1245,444 @@ input[type=range]::-webkit-slider-thumb {
     transition: 0.2s;
     border-radius: 33%;
 }
+
+.exo-toggle-true {
+    position: absolute;
+    margin-left: 48px;
+}
+
+.exo-toggle-false {
+    position: absolute;
+    margin-left: 48px;
+}
+
+.exo-toggle > input[type="checkbox"]:checked ~ .exo-toggle-false {
+    display: none;
+}
+
+.exo-toggle > input[type="checkbox"]:not(:checked) ~ .exo-toggle-true {
+    display: none;
+}
   
-.exo-toggle > input:checked + .exo-toggle-slide {
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide {
     background-color: #444;
 }
 
-.exo-toggle > input:focus + .exo-toggle-slide {
+.exo-toggle > input[type="checkbox"]:focus + .exo-toggle-slide {
     border: 2px solid var(--exo-focus);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide.exo-red {
-    background-color: var(--exo-red);
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-red-bg {
+    background-color: var(--exo-dark-red);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide.exo-orange {
-    background-color: var(--exo-orange);
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-orange-bg {
+    background-color: var(--exo-dark-orange);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide.exo-blue {
-    background-color: var(--exo-blue);
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-blue-bg {
+    background-color: var(--exo-dark-blue);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide.exo-green {
-    background-color: var(--exo-green);
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-green-bg {
+    background-color: var(--exo-dark-green);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide.exo-purple {
-    background-color: var(--exo-purple);
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-purple-bg {
+    background-color: var(--exo-dark-purple);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide.exo-brown {
-    background-color: var(--exo-brown);
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-brown-bg {
+    background-color: var(--exo-dark-brown);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide.exo-light-red {
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-gray-bg {
+    background-color: var(--exo-dark-gray);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-pink-bg {
+    background-color: var(--exo-dark-pink);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-yellow-bg {
+    background-color: var(--exo-dark-yellow);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-black-bg {
+    background-color: var(--exo-black);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-red-bg {
     background-color: var(--exo-light-red);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide.exo-light-orange {
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-orange-bg {
     background-color: var(--exo-light-orange);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide.exo-light-blue {
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-blue-bg {
     background-color: var(--exo-light-blue);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide.exo-light-green {
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-green-bg {
     background-color: var(--exo-light-green);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide.exo-light-purple {
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-purple-bg {
     background-color: var(--exo-light-purple);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide.exo-light-brown {
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-brown-bg {
     background-color: var(--exo-light-brown);
 }
 
-.exo-toggle > input:checked + .exo-toggle-slide:before {
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-gray-bg {
+    background-color: var(--exo-light-gray);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-pink-bg {
+    background-color: var(--exo-light-pink);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-yellow-bg {
+    background-color: var(--exo-light-yellow);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-white-bg {
+    background-color: var(--exo-white);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide:before {
     transform: translateX(26px);
 }
 
-/* summary and details */
+/* Input Controls - Select/Option
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-summary {
+select {
+  padding: 4px 4px;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  height: 38px;
+  min-width: var(--cell-width);
+}
+
+select[size] {
+    height: auto;
+}
+
+select > option.exo-icon {
+    padding-left: 28px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    background-size: 24px 24px;
+    background-position: left;
+}
+
+/* Input Controls - File
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+input[type="file"].exo-dark-red-bg, input[type="file"].exo-light-red-bg,
+input[type="file"].exo-dark-orange-bg, input[type="file"].exo-light-orange-bg,
+input[type="file"].exo-dark-blue-bg, input[type="file"].exo-light-blue-bg,
+input[type="file"].exo-dark-green-bg, input[type="file"].exo-light-green-bg,
+input[type="file"].exo-dark-purple-bg, input[type="file"].exo-light-purple-bg,
+input[type="file"].exo-dark-brown-bg, input[type="file"].exo-light-brown-bg,
+input[type="file"].exo-dark-gray-bg, input[type="file"].exo-light-gray-bg,
+input[type="file"].exo-dark-pink-bg, input[type="file"].exo-light-pink-bg,
+input[type="file"].exo-dark-yellow-bg, input[type="file"].exo-light-yellow-bg,
+input[type="file"].exo-black-bg, input[type="file"].exo-white-bg {
+    background-color: inherit;
+    border-color: inherit;
+    border: inherit;
+    color: inherit;
+}
+
+input[type="file"]::file-selector-button {
+  display: inline-block;
+  padding: var(--padding-small);
+  text-align: center;
+  white-space: nowrap;
+  border-radius: var(--round-small);
+}
+
+/* ...instead apply to just the file-selector-button pseudo-element */
+
+input[type="file"].exo-dark-red-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-red);
+}
+
+input[type="file"].exo-light-red-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-red);
+}
+
+input[type="file"].exo-dark-orange-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-orange);
+}
+
+input[type="file"].exo-light-orange-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-orange);
+}
+
+input[type="file"].exo-dark-blue-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-blue);
+}
+
+input[type="file"].exo-light-blue-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-blue);
+}
+
+input[type="file"].exo-dark-green-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-green);
+}
+
+input[type="file"].exo-light-green-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-green);
+}
+
+input[type="file"].exo-dark-purple-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-purple);
+}
+
+input[type="file"].exo-light-purple-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-purple);
+}
+
+input[type="file"].exo-dark-brown-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-brown);
+}
+
+input[type="file"].exo-light-brown::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-brown);
+}
+
+input[type="file"].exo-dark-gray-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-gray);
+}
+
+input[type="file"].exo-light-gray-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-gray);
+}
+
+input[type="file"].exo-dark-pink-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-pink);
+}
+
+input[type="file"].exo-light-pink-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-pink);
+}
+
+input[type="file"].exo-dark-yellow-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-yellow);
+}
+
+input[type="file"].exo-light-yellow-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-yellow);
+}
+
+input[type="file"].exo-black-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-black);
+}
+
+input[type="file"].exo-white-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-white);
+}
+
+
+/* Icons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* home and tick icons included here.  Other icons available in separate CSS files - see the icons folder */
+
+.exo-icon-home {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyIDUuNjlsNSA0LjVWMThoLTJ2LTZIOXY2SDd2LTcuODFsNS00LjVNMTIgM0wyIDEyaDN2OGg2di02aDJ2Nmg2di04aDNMMTIgM3oiLz48L3N2Zz4=');
+}
+
+.exo-icon-tick {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMkw0LjggMTJsLTEuNCAxLjRMOSAxOSAyMSA3bC0xLjQtMS40TDkgMTYuMnoiLz48L3N2Zz4=');
+}
+
+.exo-icon {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+div.exo-icon, span.exo-icon, label.exo-icon {
+    width: var(--icon-small);
+    height: var(--icon-small);
+    background-size: var(--icon-small) var(--icon-small);
+}
+
+div.exo-icon.exo-padding {
+    margin: 4px;
+}
+
+div.exo-icon-inline {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+label.exo-icon, span.exo-icon {
+    padding-left: var(--icon-small);
+    display: inline-flex;
+    align-items: center;
+}
+
+label.exo-icon.exo-icon-medium, span.exo-icon.exo-icon-medium {
+    padding-left: var(--icon-medium);
+    display: inline-flex;
+    align-items: center;
+}
+
+label.exo-icon.exo-icon-large, span.exo-icon.exo-icon-large {
+    padding-left: var(--icon-large);
+    display: inline-flex;
+    align-items: center;
+}
+
+.exo-icon.exo-icon-medium {
+    width: var(--icon-medium);
+    height: var(--icon-medium);
+    background-size: var(--icon-medium) var(--icon-medium);
+}
+
+.exo-icon.exo-icon-large {
+    width: var(--icon-large);
+    height: var(--icon-large);
+    background-size: var(--icon-large) var(--icon-large);
+}
+
+.exo-icon.exo-icon-huge {
+    width: var(--icon-huge);
+    height: var(--icon-huge);
+    background-size: var(--icon-huge) var(--icon-huge);
+}
+
+div.exo-icon-background {
+    width: var(--icon-small);
+    height: var(--icon-small);
+}
+
+div.exo-icon-background.exo-icon-medium {
+    width: var(--icon-medium);
+    height: var(--icon-medium);
+}
+
+div.exo-icon-background.exo-icon-large {
+    width: var(--icon-large);
+    height: var(--icon-large);
+}
+
+div.exo-icon-background.exo-icon-huge {
+    width: var(--icon-huge);
+    height: var(--icon-huge);
+}
+
+
+/* Fieldset
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+fieldset {
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+/* Progress Bar
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+progress {
+    appearance: none;
+    background-color: #DDD;
+    width: 200px;
+    height: 10px;
+    padding: 1px;
+    border: 1px solid #444;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #DDD;
+}
+
+progress::-webkit-progress-value {
+  background-color: #444;
+}
+progress::-moz-progress-bar {
+  background-color: #444;
+}
+
+progress.exo-dark-red-bg::-webkit-progress-value, progress.exo-dark-red-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-red);
+}
+
+progress.exo-dark-orange-bg::-webkit-progress-value, progress.exo-dark-orange-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-orange);
+}
+
+progress.exo-dark-blue-bg::-webkit-progress-value, progress.exo-dark-blue-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-blue);
+}
+
+progress.exo-dark-green-bg::-webkit-progress-value, progress.exo-dark-green-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-green);
+}
+
+progress.exo-dark-purple-bg::-webkit-progress-value, progress.exo-dark-purple-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-purple);
+}
+
+progress.exo-dark-brown-bg::-webkit-progress-value, progress.exo-dark-brown-bg::-moz-progress-bar  {
+  background-color: var(--exo-dark-brown);
+}
+
+progress.exo-dark-gray-bg::-webkit-progress-value, progress.exo-dark-gray-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-gray);
+}
+
+progress.exo-dark-pink-bg::-webkit-progress-value, progress.exo-dark-pink-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-pink);
+}
+
+progress.exo-dark-yellow-bg::-webkit-progress-value, progress.exo-dark-yellow-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-yellow);
+}
+
+progress.exo-black-bg::-webkit-progress-value, progress.exo-dark-black-bg::-moz-progress-bar {
+  background-color: var(--exo-black);
+}
+
+progress.exo-white-bg::-webkit-progress-value, progress.exo-white::-moz-progress-bar {
+  background-color: var(--exo-white);
+}
+
+
+
+
+/* Summary / Details
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+details > summary {
     width: 100%;
     padding-left: 10px;
     font-size: 24px;
@@ -485,10 +1692,13 @@ summary {
 
 details {
     width: 100%;
-    border-right: 11px solid transparent;
 }
 
-/* modal windows appear centered when opened */
+
+/* Modal Windows
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
 
 .exo-modal-window {
   position: fixed;
@@ -497,24 +1707,55 @@ details {
   bottom: 0;
   left: 0;
   z-index: 100;
+  background: rgba(0,0,0,0.5);
 }
 
-.exo-modal-window:target {
+/*
+.exo-modal > div.exo-modal-window > div.exo-modal-window-content {
+    background-color: var(--exo-white);
+}
+*/
+
+.exo-modal > div.exo-modal-window > div.exo-modal-window-content > label:hover {
+    outline: 0px solid var(--exo-hover);
+}
+
+.exo-modal > input[type="checkbox"]:focus ~ label > div.exo-button {
+    outline: 3px dotted var(--exo-focus);
+}
+
+.exo-modal > input[type="checkbox"]:focus ~ div.exo-modal-window > div.exo-modal-window-content > label > span.exo-modal-close {
+    outline: 3px dotted var(--exo-focus);
+}
+
+.exo-modal > input[type="checkbox"] ~ div.exo-modal-window > div.exo-modal-window-content > label > span.exo-modal-close:hover {
+    outline: 3px solid var(--exo-hover);
+}
+
+.exo-modal > input[type="checkbox"] {
+    opacity: 0;
+    width: 1px;
+    height: 32px;
+    appearance: none;
+    display: block;
+    position: absolute;
+}
+
+.exo-modal > input[type=checkbox]:checked ~ .exo-modal-window {
    visibility: visible;
    opacity: 1;
    pointer-events: auto;
    transition: all 0.5s;
 }
 
-.exo-modal-window:not(target) {
+.exo-modal > input[type=checkbox]:not(:checked) ~ .exo-modal-window {
    visibility: hidden;
    opacity: 0;
    pointer-events: none;
    transition: all 0.5s;
 }
 
-
-.exo-modal-window > .exo-modal-window-content {
+.exo-modal > .exo-modal-window > .exo-modal-window-content {
     max-width: 60%;
     max-height: 60%;
     position: absolute;
@@ -528,9 +1769,7 @@ details {
     border-radius: 4px;
 }
 
-
-
-button.exo-modal-close {
+.exo-modal > .exo-modal-window > .exo-modal-window-content > label > span.exo-modal-close {
     position:absolute;
     right: 2px;
     top: 2px;
@@ -540,75 +1779,19 @@ button.exo-modal-close {
     background-position: left;
     background-size: cover;
     background-repeat: no-repeat;
+    display: block;
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTE5IDYuNDFMMTcuNTkgNSAxMiAxMC41OSA2LjQxIDUgNSA2LjQxIDEwLjU5IDEyIDUgMTcuNTkgNi40MSAxOSAxMiAxMy40MSAxNy41OSAxOSAxOSAxNy41OSAxMy40MSAxMnoiLz48L3N2Zz4=');
 }
 
-button.exo-modal-close.exo-red, button.exo-modal-close.exo-orange, button.exo-modal-close.exo-green, button.exo-modal-close.exo-blue,
-button.exo-modal-close.exo-purple, button.exo-modal-close.exo-brown, button.exo-modal-close.exo-gray {
+button.exo-modal-close.exo-dark-red-bg, button.exo-modal-close.exo-dark-orange-bg, button.exo-modal-close.exo-dark-green-bg, button.exo-modal-close.exo-dark-blue-bg,
+button.exo-modal-close.exo-dark-purple-bg, button.exo-modal-close.exo-dark-brown-bg, button.exo-modal-close.exo-dark-gray-bg, button.exo-modal-close.exo-dark-pink-bg,
+button.exo-modal-close.exo-dark-yellow-bg, button.exo-modal-close.exo-black-bg {
     background-image: url('data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTE5IDYuNDFMMTcuNTkgNSAxMiAxMC41OSA2LjQxIDUgNSA2LjQxIDEwLjU5IDEyIDUgMTcuNTkgNi40MSAxOSAxMiAxMy40MSAxNy41OSAxOSAxOSAxNy41OSAxMy40MSAxMnoiIGZpbGw9IndoaXRlIi8+PC9zdmc+');
 }
 
-button.exo-modal-close:focus {
-    border: 2px solid var(--exo-focus)
-}
 
-
-/* icons */
-
-.exo-icon-home {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyIDUuNjlsNSA0LjVWMThoLTJ2LTZIOXY2SDd2LTcuODFsNS00LjVNMTIgM0wyIDEyaDN2OGg2di02aDJ2Nmg2di04aDNMMTIgM3oiLz48L3N2Zz4=');
-}
-
-.exo-icon-tick {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMkw0LjggMTJsLTEuNCAxLjRMOSAxOSAyMSA3bC0xLjQtMS40TDkgMTYuMnoiLz48L3N2Zz4=');
-    color: red;
-}
-
-.exo-icon {
-    background-position: left;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-div.exo-icon {
-    width: 24px;
-    height: 24px;
-    background-size: 24px 24px;
-}
-
-span.exo-icon {
-    width: 24px;
-    height: 24px;
-    display: inline-block;
-    vertical-align: middle;
-    background-size: 24px 24px;
-}
-
-div.exo-icon-large {
-    width: 48px;
-    height: 48px;
-    background-size: 48px 48px;
-}
-
-div.exo-icon-huge {
-    width: 72px;
-    height: 72px;
-    background-size: 72px 72px;
-}
-
-span.exo-icon-large {
-    width: 48px;
-    height: 48px;
-    background-size: 48px 48px;
-}
-
-span.exo-icon-huge {
-    width: 72px;
-    height: 72px;
-    background-size: 72px 72px;
-}
-
-/* buttons */
+/* Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 button > span.exo-icon {
     padding-right: 5px;
@@ -631,167 +1814,469 @@ button.exo-icon-huge {
     height: 72px;
 }
 
-/* select and option */
+/* add an exo-button class - sometimes useful to use with a div in place of a button/input */
 
-select {
-    min-width: 200px;
+div.exo-button {
+    padding: var(--padding-small);
+    border-radius: var(--round-small);
+    border: 2px solid #888;
+    display: inline-block;
 }
 
-select[size] {
-    height: auto;
+label.exo-button {
+    padding: var(--padding-small);
+    border-radius: var(--round-small);
+    border: 2px solid #888;
+    display: inline-block;
 }
 
-select > option.exo-icon {
-    padding-left: 28px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    background-size: 24px 24px;
+span.exo-button {
+    padding: var(--padding-small);
+    border-radius: var(--round-small);
+    border: 2px solid #888;
+    display: inline-block;
 }
 
-/* fieldset */
+div.exo-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
 
-fieldset {
-    border: 1px solid #444;
+
+/* Navigable Tree
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-tree ul > li {
+    list-style: none;
+    font-size: 16px;
+    list-style-position: inside;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 0px;
+}
+
+.exo-tree ul {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+
+.exo-tree li > label {
+    display: inline;
+    padding-top: 2px;
+}
+
+.exo-tree li > input[type="checkbox"] {
+    display: inline-block;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    border-width: 0px;
     border-radius: 4px;
-    padding: 10px;
+    margin-left: 0px;
+    margin-right: 2px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    padding: 0px;
 }
 
-/* progress bar */
+.exo-tree li > input[type="checkbox"]:not(:checked) ~ *:not(label) {
+    display: none;
+}
 
-progress {
+.exo-tree li > input[type="checkbox"] ~ *:not(label) {
+    margin-left: 32px;
+}
+
+.exo-tree li > input[type="checkbox"]:checked {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTcgMTF2MmgxMHYtMkg3em01LTlDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4eiIvPjwvc3ZnPg==');
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked) {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEzIDdoLTJ2NEg3djJoNHY0aDJ2LTRoNHYtMmgtNFY3em0tMS01QzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0wIDE4Yy00LjQxIDAtOC0zLjU5LTgtOHMzLjU5LTggOC04IDggMy41OSA4IDgtMy41OSA4LTggOHoiLz48L3N2Zz4=');
+}
+
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-red-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-orange-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-blue-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-green-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-purple-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-brown-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-gray-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-pink-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-yellow-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-black-bg {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTcgMTF2MmgxMHYtMkg3em01LTlDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4eiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=');
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-red-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-orange-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-blue-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-green-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-purple-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-brown-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-gray-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-pink-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-yellow-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-black-bg {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEzIDdoLTJ2NEg3djJoNHY0aDJ2LTRoNHYtMmgtNFY3em0tMS01QzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0wIDE4Yy00LjQxIDAtOC0zLjU5LTgtOHMzLjU5LTggOC04IDggMy41OSA4IDgtMy41OSA4LTggOHoiIGZpbGw9IndoaXRlIi8+PC9zdmc+');
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-red-bg {
+    background-color: var(--exo-dark-red);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-orange-bg {
+    background-color: var(--exo-dark-orange);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-green-bg {
+    background-color: var(--exo-dark-green);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-purple-bg {
+    background-color: var(--exo-dark-purple);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-brown-bg {
+    background-color: var(--exo-dark-brown);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-gray-bg {
+    background-color: var(--exo-dark-gray);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-pink-bg {
+    background-color: var(--exo-dark-pink);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-yellow-bg {
+    background-color: var(--exo-dark-yellow);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-black-bg {
+    background-color: var(--exo-black);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-red-bg {
+    background-color: var(--exo-light-red);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-orange-bg {
+    background-color: var(--exo-dark-orange);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-green-bg {
+    background-color: var(--exo-light-green);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-purple-bg {
+    background-color: var(--exo-light-purple);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-brown-bg {
+    background-color: var(--exo-light-brown);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-gray-bg {
+    background-color: var(--exo-light-gray);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-pink {
+    background-color: var(--exo-light-pink);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-yellow {
+    background-color: var(--exo-light-yellow);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-white {
+    background-color: var(--exo-white);
+}
+
+/* Conditional
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-conditional {
+    display: block;
+}
+
+.exo-conditional > input[type="checkbox"] {
+    opacity: 0;
+    width: 1px;
+    height: 32px;
     appearance: none;
-    background-color: #DDD;
-    width: 200px;
+    display: block;
+    position: absolute;
+}
+
+.exo-conditional > input[type="checkbox"]:checked ~ .exo-conditional-false {
+    display: none;
+}
+
+.exo-conditional > input[type="checkbox"]:not(:checked) ~ .exo-conditional-true {
+    display: none;
+}
+
+/* Spinner
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-icon-spinner {
+    /* exo-spinner-black.svg */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNDUiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1kYXNoYXJyYXk9IjIwIj4KICAgICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgZnJvbT0iMzYwIDUwIDUwIiB0bz0iMCA1MCA1MCIgZHVyPSI1cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+CiAgIDwvY2lyY2xlPgogICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIyNSIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWRhc2hhcnJheT0iMTAiPgogICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBmcm9tPSIwIDUwIDUwIiB0bz0iMzYwIDUwIDUwIiBkdXI9IjVzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgLz4KICAgPC9jaXJjbGU+Cjwvc3ZnPgo=');
+}
+
+
+/* Carousel
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-carousel {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    text-align: center;
+    margin-top: -32px;
+}
+
+.exo-carousel > input {
+    position: relative;
+    top: 40px;
+    height: 20px;
+    width: 20px;
+}
+
+.exo-carousel > .exo-carousel-content {
+    padding-top: 50px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: var(--round-medium);
+    width: 100%;
+}
+
+.exo-carousel-item {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.exo-carousel-item img {
+    width: 100%;
+}
+
+.exo-carousel-item > * {
+    flex: 1;
+}
+
+.exo-carousel-item > label {
+    flex: 0;
+    display: inline-block;
+    min-width: 48px;
+    min-height: 48px;
+    border-radius: var(--round-small);
+    padding: var(--padding-small);
+    margin: var(--margin-small);
+}
+
+.exo-carousel-content > *
+{
+    visibility: visible;
+}
+
+/* edit below to extend limit on 12 slides */
+
+.exo-carousel > input[type=radio]:nth-child(1):not(:checked) ~ .exo-carousel-content > *:nth-child(1),
+.exo-carousel > input[type=radio]:nth-child(2):not(:checked) ~ .exo-carousel-content > *:nth-child(2),
+.exo-carousel > input[type=radio]:nth-child(3):not(:checked) ~ .exo-carousel-content > *:nth-child(3),
+.exo-carousel > input[type=radio]:nth-child(4):not(:checked) ~ .exo-carousel-content > *:nth-child(4),
+.exo-carousel > input[type=radio]:nth-child(5):not(:checked) ~ .exo-carousel-content > *:nth-child(5),
+.exo-carousel > input[type=radio]:nth-child(6):not(:checked) ~ .exo-carousel-content > *:nth-child(6),
+.exo-carousel > input[type=radio]:nth-child(7):not(:checked) ~ .exo-carousel-content > *:nth-child(7),
+.exo-carousel > input[type=radio]:nth-child(8):not(:checked) ~ .exo-carousel-content > *:nth-child(8),
+.exo-carousel > input[type=radio]:nth-child(9):not(:checked) ~ .exo-carousel-content > *:nth-child(9),
+.exo-carousel > input[type=radio]:nth-child(10):not(:checked) ~ .exo-carousel-content > *:nth-child(10),
+.exo-carousel > input[type=radio]:nth-child(11):not(:checked) ~ .exo-carousel-content > *:nth-child(11),
+.exo-carousel > input[type=radio]:nth-child(12):not(:checked) ~ .exo-carousel-content > *:nth-child(12)
+ {
+    visibility: hidden;
+    height: 0px;
+    padding: 0px;
+}
+
+/* "Radio" Tabs
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-tabs {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: start;
+}
+
+.exo-tabs label {
+    display: inline;
+    padding: 4px;
+    margin: 4px;
+    padding-right: 27px;
+    margin-right: -25px;
+}
+
+.exo-tabs input:not(:checked) {
+    width: 0px;
+    height: 0px;
+    padding: 0px;
+    opacity: 0.01;
+    margin-top: 24px;
+    margin-right: 16px;
+}
+
+.exo-tabs input:checked {
+    width: 15px;
+    height: 15px;
+    padding: 0px;
+    margin-top: 8px;
+    margin-right: 5px;
+    background-color: var(--exo-hover);
+}
+
+.exo-tabs > .exo-tabs-content {
+   padding: 4px;
+   flex: 1;
+}
+
+.exo-tabs > label:focus
+{
+    outline: 4px dotted var(--exo-focus);
+}
+
+.exo-tabs > .exo-tabs-content > * {
+    padding: 4px;
+}
+
+.exo-tabs > .exo-tabs-content > * {
+    margin-top: 0px;
+}
+
+/* edit below to extend limit on 12 tabs */
+
+.exo-tabs-content > * {
+    visibility: visible;
+}
+
+.exo-tabs > input:nth-child(2):not(:checked) ~ .exo-tabs-content > *:nth-child(1),
+.exo-tabs > input:nth-child(4):not(:checked) ~ .exo-tabs-content > *:nth-child(2),
+.exo-tabs > input:nth-child(6):not(:checked) ~ .exo-tabs-content > *:nth-child(3),
+.exo-tabs > input:nth-child(8):not(:checked) ~ .exo-tabs-content > *:nth-child(4),
+.exo-tabs > input:nth-child(10):not(:checked) ~ .exo-tabs-content > *:nth-child(5),
+.exo-tabs > input:nth-child(12):not(:checked) ~ .exo-tabs-content > *:nth-child(6),
+.exo-tabs > input:nth-child(14):not(:checked) ~ .exo-tabs-content > *:nth-child(7),
+.exo-tabs > input:nth-child(16):not(:checked) ~ .exo-tabs-content > *:nth-child(8),
+.exo-tabs > input:nth-child(18):not(:checked) ~ .exo-tabs-content > *:nth-child(9),
+.exo-tabs > input:nth-child(20):not(:checked) ~ .exo-tabs-content > *:nth-child(10),
+.exo-tabs > input:nth-child(22):not(:checked) ~ .exo-tabs-content > *:nth-child(11),
+.exo-tabs > input:nth-child(24):not(:checked) ~ .exo-tabs-content > *:nth-child(12)
+ {
+    visibility: hidden;
+    height: 0px;
+    padding: 0px;
+}
+
+.exo-tabs > .exo-break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+/* Menu Navigation
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-menu {
+    display: block;
+}
+
+.exo-menu > .exo-menu-item {
+    display: inline;
+    padding: 4px;
+    margin: 4px;
+}
+
+.exo-menu > label:after {
+    content: '\A';
+    white-space: pre;
+}
+
+.exo-menu > input[type=checkbox] {
+    display: inline-block;
+    opacity: 0;
     height: 10px;
-    padding: 1px;
-    border: 1px solid #444;
+    width: 1px;
+    position: absolute;
+    margin: 0px;
 }
 
-progress::-webkit-progress-bar {
-  background-color: #DDD;
+.exo-menu > input[type=checkbox]:checked ~ .exo-menu-open {
+    display: none;
 }
 
-progress::-webkit-progress-value {
-  background-color: #444;
-}
-progress::-moz-progress-bar {
-  background-color: #444;
+.exo-menu > input[type=checkbox]:not(:checked) ~ .exo-menu-close {
+    display: none;
 }
 
-progress.exo-red::-webkit-progress-value {
-  background-color: var(--exo-red);
+.exo-menu > input[type=checkbox]:focus ~ .exo-menu-open , .exo-menu > input[type=checkbox]:focus ~ .exo-menu-close {
+    outline: 4px dotted var(--exo-focus);
 }
 
-progress.exo-red::-moz-progress-bar {
-  background-color: var(--exo-red);
+.exo-menu > .exo-menu-content {
+    margin-top: 5px;
 }
 
-progress.exo-orange::-webkit-progress-value {
-  background-color: var(--exo-orange);
+.exo-menu > input[type=radio] {
 }
 
-progress.exo-orange::-moz-progress-bar {
-  background-color: var(--exo-orange);
+.exo-menu > label:focus
+{
+    outline: 4px dotted var(--exo-focus);
 }
 
-progress.exo-blue::-webkit-progress-value {
-  background-color: var(--exo-blue);
+.exo-menu > .exo-menu-content > * {
+    padding: 4px;
 }
 
-progress.exo-blue::-moz-progress-bar {
-  background-color: var(--exo-blue);
+.exo-menu > .exo-menu-content > * {
 }
 
-progress.exo-green::-webkit-progress-value {
-  background-color: var(--exo-green);
+.exo-menu > input[type=checkbox]:not(:checked) ~ input[type=radio] {
+    display: none;
 }
 
-progress.exo-green::-moz-progress-bar {
-  background-color: var(--exo-green);
+.exo-menu > input[type=checkbox]:not(:checked) ~ .exo-menu-item {
+    display: none;
 }
 
-progress.exo-purple::-webkit-progress-value {
-  background-color: var(--exo-purple);
+.exo-menu > label:nth-child(2), .exo-menu > label:nth-child(3) {
+    margin-bottom: 10px;
 }
 
-progress.exo-purple::-moz-progress-bar {
-  background-color: var(--exo-purple);
+/* edit below to extend limit on 12 tabs */
+
+.exo-menu-content > * {
+    visibility: visible;
 }
 
-progress.exo-brown::-webkit-progress-value {
-  background-color: var(--exo-brown);
-}
-
-progress.exo-brown::-moz-progress-bar {
-  background-color: var(--exo-brown);
-}
-
-progress.exo-gray::-webkit-progress-value {
-  background-color: var(--exo-gray);
-}
-
-progress.exo-gray::-moz-progress-bar {
-  background-color: var(--exo-gray);
-}
-
-/* Offer a simple layout based on CSS grid */
-
-/* First customise the skeleton container - allow wider displays */
-
-.container {
-    max-width: 1280px;
-}
-
-/* each "exo-row" is a grid onto which cells are automatically flowed */
-/* each cell is 128 pixels wide and at least 100 pixels deep */
-
-.exo-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 128px);
-  gap: 0px;
-  grid-auto-rows: minmax(100px, auto);
-}
-
-/* a cell takes up 1 row and a variable number of columns */
-
-.exo-1-cell {
-    margin: 5px;
-    grid-column-end: span 1;
-}
-
-.exo-2-cell {
-    margin: 5px;
-    grid-column-end: span 2;
-}
-
-.exo-3-cell {
-    margin: 5px;
-    grid-column-end: span 3;
-}
-
-.exo-4-cell {
-    margin: 5px;
-    grid-column-end: span 4;
-}
-
-.exo-5-cell {
-    margin: 5px;
-    grid-column-end: span 5;
-}
-
-.exo-6-cell {
-    margin: 5px;
-    grid-column-end: span 6;
-}
-
-.exo-7-cell {
-    margin: 5px;
-    grid-column-end: span 7;
-}
-
-.exo-8-cell {
-    margin: 5px;
-    grid-column-end: span 8;
+.exo-menu > input[type=radio]:nth-child(5):not(:checked) ~ .exo-menu-content > *:nth-child(1),
+.exo-menu > input[type=radio]:nth-child(7):not(:checked) ~ .exo-menu-content > *:nth-child(2),
+.exo-menu > input[type=radio]:nth-child(9):not(:checked) ~ .exo-menu-content > *:nth-child(3),
+.exo-menu > input[type=radio]:nth-child(11):not(:checked) ~ .exo-menu-content > *:nth-child(4),
+.exo-menu > input[type=radio]:nth-child(13):not(:checked) ~ .exo-menu-content > *:nth-child(5),
+.exo-menu > input[type=radio]:nth-child(15):not(:checked) ~ .exo-menu-content > *:nth-child(6),
+.exo-menu > input[type=radio]:nth-child(17):not(:checked) ~ .exo-menu-content > *:nth-child(7),
+.exo-menu > input[type=radio]:nth-child(19):not(:checked) ~ .exo-menu-content > *:nth-child(8),
+.exo-menu > input[type=radio]:nth-child(21):not(:checked) ~ .exo-menu-content > *:nth-child(9),
+.exo-menu > input[type=radio]:nth-child(23):not(:checked) ~ .exo-menu-content > *:nth-child(10),
+.exo-menu > input[type=radio]:nth-child(25):not(:checked) ~ .exo-menu-content > *:nth-child(11),
+.exo-menu > input[type=radio]:nth-child(27):not(:checked) ~ .exo-menu-content > *:nth-child(12)
+ {
+    visibility: hidden;
+    height: 0px;
+    padding: 0px;
 }
 
 

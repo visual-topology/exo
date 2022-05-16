@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width;initial-scale=1">
+    <title>Exo CSS documentation - layouts</title>
+    <meta name="description" content="Demo and documentation-by-example for Exo CSS Layouts">
+    <meta name="author" content="Niall McCarroll">
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,300,600" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../exo-typography.css" type="text/css"/>
+    <link rel="stylesheet" href="../exo.css" type="text/css"/>
+    <script src="../model_view.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../model_view.css" type="text/css"/>
+    <script>
+    function getElementWidth(p,e) {
+        var sty = getComputedStyle(p);
+        return e.getBoundingClientRect().width +
+            parseFloat(sty.getPropertyValue('margin-left')) +
+            parseFloat(sty.getPropertyValue('margin-right'));
+    }
+
+    function boot_adjust() {
+        boot(100);
+        var elts = document.getElementsByClassName("exo-auto-cell");
+        for(var idx=0; idx<elts.length; idx++) {
+            var elt = elts[idx];
+            var elt0 = elt.firstElementChild;
+            if (elt0) {
+                var w = getElementWidth(elt,elt0);
+                var cells = Math.min(Math.ceil(w/128),12);
+                elt.classList.add("exo-"+cells+"-cell");
+                elt.classList.remove("exo-auto-cell");
+            }
+        }
+    }
+    </script>
+</head>
+<body onload="boot_adjust();" class="exo-container">
+
+    <h1>Exo Layouts</h1>
+
+    This page provides some examples of using exo layouts.
+    <ul>
+        <li><a href="#simple_layout">Simple Example</a></li>
+        <li><a href="#nested_layout">Nested Layout</a></li>
+        <li><a href="#styling_cells">Styling Cells</a></li>
+    </ul>
+
+    <h4 id="simple_layout">Simple Layout Example - 2 rows, up to 8 cells per row</h4>
+
+    <div class="exo-8-cell">
+        <pre><code id="view0">
+        </code></pre>
+    </div>
+
+    <div id="model0">
+        <div class="exo-row">
+            <div class="exo-1-cell exo-dark-red-bg exo-white-fg exo-padding exo-border exo-white-border">
+                (1-cell-wide) Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit.
+            </div>
+            <div class="exo-2-cell exo-dark-purple-bg exo-white-fg exo-padding exo-border exo-white-border">
+                (2-cell-wide) Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Aenean euismod, leo sed
+                imperdiet ullamcorper, augue lectus gravida
+                felis, quis facilisis mi tortor eu justo.
+            </div>
+            <div class="exo-5-cell exo-dark-green-bg exo-white-fg exo-padding exo-border exo-white-border">
+                (5-cell-wide) Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Aenean euismod, leo sed
+                imperdiet ullamcorper, augue lectus gravida
+                felis, quis facilisis mi tortor eu justo.
+            </div>
+        </div>
+        <div class="exo-row">
+            <div class="exo-8-cell exo-dark-orange-bg exo-white-fg exo-padding exo-border exo-white-border">
+                (8-cell-wide) Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Aenean euismod, leo sed
+                imperdiet ullamcorper, augue lectus gravida
+                felis, quis facilisis mi tortor eu justo.
+            </div>
+        </div>
+    </div>
+
+    <p/>
+    <h4 id="nested_layout">Nested Layout Example</h4>
+
+    <div class="exo-8-cell">
+        <pre><code id="view1">
+        </code></pre>
+    </div>
+
+    <div id="model1">
+        <div class="exo-row">
+            <div class="exo-cell exo-4-cell exo-light-blue-bg exo-padding">
+                <div class="exo-row">
+                    <div class="exo-cell exo-1-cell">
+                        <label for="cb1">Checkbox 1</label>
+                        <input id="cb1" type="checkbox" class="exo-dark-green-bg"/>
+                    </div>
+                    <div class="exo-cell exo-1-cell">
+                        <label for="cb3">Checkbox 3</label>
+                        <input id="cb3" type="checkbox" class="exo-dark-green-bg"/>
+                    </div>
+                </div>
+                <div class="exo-row">
+                    <div class="exo-cell exo-1-cell">
+                        <label for="cb2">Checkbox 2</label>
+                        <input id="cb2" type="checkbox" class="exo-dark-red-bg"/>
+                    </div>
+                    <div class="exo-cell exo-1-cell">
+                        <label for="cb4">Checkbox 4</label>
+                        <input id="cb4" type="checkbox" class="exo-dark-red-bg"/>
+                    </div>
+                </div>
+            </div>
+            <div class="exo-cell exo-1-cell exo-light-purple-bg exo-padding">
+                Aenean euismod, leo sed
+                imperdiet ullamcorper, augue lectus gravida
+                felis, quis facilisis mi tortor eu justo.
+            </div>
+        </div>
+    </div>
+
+
+    <p/>
+    <h4 id="styling_cells">Styling cells</h4>
+
+    Classes exo-[large-]inset, exo-[large-]rounded and exo-[large-]bordered can be
+    applied to cells (and other elements).
+
+    <div class="exo-8-cell">
+        <pre><code id="view2">
+        </code></pre>
+    </div>
+
+    <div id="model2">
+        <div class="exo-row exo-margin">
+            <div class="exo-3-cell exo-light-gray-bg exo-rounded">
+                exo-rounded
+            </div>
+
+            <div class="exo-3-cell exo-light-gray-bg exo-padding">
+                exo-padding
+            </div>
+        </div>
+
+        <div class="exo-row exo-margin">
+            <div class="exo-3-cell exo-dark-gray-bg exo-white-fg exo-border exo-padding">
+                exo-border + exo-padding
+            </div>
+
+            <div class="exo-3-cell exo-dark-gray-bg exo-white-fg exo-border exo-padding exo-rounded">
+                exo-border + exo-padding + exo-rounded
+            </div>
+        </div>
+        <div class="exo-row exo-margin">
+            <div class="exo-3-cell exo-light-grey-bg exo-padding exo-rounded exo-border exo-dark-red-border">
+                exo-border + exo-padding + exo-rounded + exo-dark-red-border
+            </div>
+            <div class="exo-3-cell exo-light-grey-bg exo-large-inset exo-large-rounded exo-large-border exo-dark-red-border">
+                exo-large-border + exo-large-inset + exo-large-rounded + exo-dark-red-border
+            </div>
+        </div>
+        <div class="exo-row exo-margin">
+            <div class="exo-3-cell exo-dark-gray-bg exo-white-fg exo-padding exo-rounded">
+                exo-rounded + exo-padding
+            </div>
+            <div class="exo-3-cell exo-dark-gray-bg exo-white-fg exo-large-inset exo-large-rounded">
+                exo-large-rounded + exo-large-inset
+            </div>
+        </div>
+    </div>
+</body>
+</html>

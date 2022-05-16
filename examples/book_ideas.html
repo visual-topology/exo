@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width;initial-scale=1">
+    <title>Exo CSS example</title>
+    <meta name="description" content="Example for Exo CSS- Book Idea Database">
+    <meta name="author" content="Niall McCarroll">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../exo.css" type="text/css"/>
+    <link rel="stylesheet" href="../icons/exo-icons.css" type="text/css"/>
+    <script type="text/javascript">
+        /* enable or disable the submit button based on other form controls */
+        function bind() {
+            var authors = document.getElementById("authors");
+            var sub_btn = document.getElementById("sub_btn");
+            var sole_authors_checkb = document.getElementById("sole_authors_checkb");
+            function submit_btn_enablement() {
+                if (sole_authors_checkb.checked && authors.value != "") {
+                    sub_btn.disabled = false;
+                } else {
+                    sub_btn.disabled = true;
+                }
+            }
+            sole_authors_checkb.addEventListener("change",submit_btn_enablement);
+            authors.addEventListener("change",submit_btn_enablement);
+            submit_btn_enablement();
+        };
+    </script>
+</head>
+<body onload="bind()" class="exo-container">
+    <div class="exo-row exo-8-row exo-dark-purple-bg exo-white-fg exo-rounded">
+        <div class="exo-8-cell">
+            <h2>Book Idea Database - Submit your idea</h2>
+        </div>
+    </div>
+    <div style="min-height:20px;"></div>
+    <h3>About the idea</h3>
+    <div class="exo-row exo-8-row exo-light-blue-bg exo-rounded">
+        <div class="exo-4-cell exo-padding">
+            <div>
+                <label for="working_title">Working Title</label>
+                <input id="working_title" type="text" class="exo-full-width"></input>
+            </div>
+            <div style="min-height:20px;"></div>
+            <fieldset>
+            <legend>Details</legend>
+            <div  style="width:100%;">
+                <label for="content_type">Type
+                    <div class="exo-icon exo-icon-help exo-help-tooltip" tabindex="0">
+                        <div class="exo-help-content exo-light-gray-bg">
+                            Choose the type of book
+                        </div>
+                    </div>
+                </label>
+                <select id="content_type" class="exo-dark-blue-bg exo-white-fg" class="exo-full-width">
+                    <option>Novel (fiction)</option>
+                    <option>Non-fiction</option>
+                    <option>Play/Screenplay</option>
+                    <option>Short Story</option>
+                    <option>Article</option>
+                </select>
+            </div>
+            <div style="min-height:20px;"></div>
+            <div>
+                <label for="market">
+                    Readership Age Group
+                </label>
+                <div id="market">
+                    <label for="general" style="display:inline-block;">
+                        <span class="label-body">
+                                General
+                        </span>
+                    </label>
+                    <input id="general" type="radio" name="market" value="general" checked="" class="exo-dark-blue-bg"/>
+                    <label for="junior" style="display:inline-block;">
+                        <span class="label-body">
+                                Children
+                        </span>
+                    </label>
+                    <input id="junior" type="radio" name="market" value="junior" class="exo-dark-blue-bg"/>
+                    <label for="ya" style="display:inline-block;">
+                        <span class="label-body">
+                                Young Adult
+                        </span>
+                    </label>
+                    <input id="ya" type="radio" name="market" value="ya" class="exo-dark-blue-bg"/>
+                </div>
+            </div>
+            </fieldset>
+        </div>
+
+        <div class="exo-4-cell exo-padding">
+            <div>
+                <label for="synopsis">Synopsis</label>
+                <textarea id="synopsis" type="text" class="exo-full-width" style="height:300px;"></textarea>
+            </div>
+            <div>
+                <label for="file-chooser">
+                    Upload Synopsis
+                </label>
+                <input id="file-chooser" type="file" class="exo-dark-blue-bg"/>
+            </div>
+        </div>
+    </div>
+    <div style="min-height:20px;"></div>
+    <h3>Development Schedule</h3>
+
+   <div class="exo-row exo-8-row exo-light-blue-bg exo-rounded">
+       <div class="exo-2-cell exo-padding">
+           <label for="num">
+                Draft % Completed
+           </label>
+           <input id="num" type="number" value="0" max="100" min="0" class="exo-full-width"/>
+       </div>
+       <div class="exo-3-cell exo-padding">
+            <div>
+                <label for="draft_date">Expected Draft Availability Date
+                    <div class="exo-icon exo-icon-help exo-help-tooltip" tabindex="0">
+                        <div class="exo-help-content exo-light-gray-bg">
+                            When would the first draft be available?
+                        </div>
+                    </div>
+                </label>
+                <input id="draft_date" type="date" class="exo-full-width"></input>
+            </div>
+        </div>
+        <div class="exo-3-cell exo-padding">
+            <div>
+                <label for="release_date">Expected Publication Date
+                    <div class="exo-icon exo-icon-help exo-help-tooltip" tabindex="0">
+                        <div class="exo-help-content exo-light-gray-bg">
+                            When would the finished book be published?
+                        </div>
+                    </div>
+                </label>
+                <input id="release_date" type="date" class="exo-full-width"></input>
+            </div>
+        </div>
+           </fieldset>
+    </div>
+
+    <div style="min-height:20px;"></div>
+    <h3>Declaration</h3>
+    <div class="exo-row exo-8-row exo-light-gray-bg exo-rounded">
+        <div class="exo-4-cell exo-padding">
+            <label for="authors">Author(s)</label>
+            <input id="authors" type="text"></input>
+        </div>
+        <div class="exo-2-cell exo-padding exo-light-gray-bg exo-rounded">
+            <label for="sole_authors_checkb">
+                I/We are the sole author(s)
+            </label>
+            <input id="sole_authors_checkb" type="checkbox" class="exo-white-bg"/>
+        </div>
+        <div class="exo-2-cell exo-padding exo-light-gray-bg exo-rounded">
+            <label for="sub_btn">
+                &nbsp;
+            </label>
+            <button id="sub_btn" class="exo-dark-purple-bg exo-white-fg exo-full-width" disabled="">Submit Idea</button>
+        </div>
+    </div>
+</body>
+</html>
