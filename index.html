@@ -83,15 +83,18 @@
 <p>
     To try the latest Exo code, simply add the following html5 code to your document's <code>&lt;head&gt;</code>:
 </p>
+
 <pre><code>
+            &lt;meta name="viewport" content="width=device-width,initial-scale=1"/&gt;
             &lt;link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type='text/css'/&gt;
-            &lt;link href="https://niallmcc.github.io/exo/exo.css" rel="stylesheet" type="text/css"/&gt;
-            &lt;!-- icon files are optional --&gt;
-            &lt;link href="https://niallmcc.github.io/exo/icons/exo-icons.css" rel="stylesheet" type="text/css"/&gt;
-        </code></pre>
+            &lt;link href="https://visualtopology.github.io/exo/exo.css" rel="stylesheet" type="text/css"/&gt;
+            &lt;!-- icon file is optional, include if you use exo-icons --&gt;
+            &lt;link href="https://visualtopology.github.io/exo/icons/exo-icons.css" rel="stylesheet" type="text/css"/&gt;
+</code></pre>
+
 <p>
     To use Exo in your own project, select and download a release from the <a
-        href="https://github.com/niallmcc/exo/releases">Exo releases github page</a>.
+        href="https://github.com/visualtopology/exo/releases">Exo releases github page</a>.
 </p>
 
 <h2 id="layout">Simple Row/Column Layout based on CSS Grid</h2>
@@ -163,7 +166,6 @@ For more details see <a href="examples/layout.html">layout examples.</a>
 </div>
 
 <h2 id="navigation">Naviburger - Menu-based Navigation</h2>
-
 
 <div class="exo-row">
     <div class="exo-4-cell model-view">
@@ -441,7 +443,7 @@ are required.
         <div class="exo-modal">
             <input type="checkbox" id="modal1">
             <label for="modal1" class="exo-button">
-                More Info <div class="exo-icon exo-icon-inine exo-icon-info"></div>
+                More Info
             </label>
             <div class="exo-modal-window">
                 <div class="exo-modal-window-content exo-light-brown-bg">
@@ -471,10 +473,10 @@ are required.
             <span class="exo-conditional">
                 <input type="checkbox"/>
                 <span class="exo-button exo-conditional-true">
-                    <span class="exo-icon exo-icon-inline exo-icon-large exo-icon-home"></span>Home
+                    <span class="exo-icon exo-icon-inline exo-icon-large exo-icon-home"></span>
                 </span>
                 <span class="exo-button exo-conditional-false">
-                    <span class="exo-icon exo-icon-inine exo-icon-large exo-icon-help"></span>Help
+                    <span class="exo-icon exo-icon-inine exo-icon-large exo-icon-help"></span>
                 </span>
             </span>
         </label>
@@ -625,12 +627,6 @@ Exo provides a number of options for styling buttons using text, icons and backg
         </div>
         <div class="exo-vmargin">
             <button class="exo-icon exo-icon-large exo-icon-home" aria-label="home"></button>
-        </div>
-        <div class="exo-vmargin">
-            <button aria-label="home">
-                <span class="exo-icon exo-icon-inline exo-icon-home"></span>
-                Home
-            </button>
         </div>
         <div class="exo-vmargin">
             <button class="exo-dark-purple-bg exo-white-fg">Purple Button</button>

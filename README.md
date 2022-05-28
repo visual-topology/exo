@@ -2,9 +2,11 @@
 
 a minimal CSS framework to support building web apps 
 
-for documentation on exo, goto https://niallmcc.github.io/exo/
+for documentation on exo, go to https://visualtopology.github.io/exo/
 
-exo is based on [skeleton CSS](https://github.com/dhg/Skeleton)
+## acknowledgements
+
+exo was originally inspired by [skeleton CSS](https://github.com/dhg/Skeleton)
 
 exo incorporates icons from the [Google Material Design Icons](https://fonts.google.com/icons?selected=Material+Icons)
 
