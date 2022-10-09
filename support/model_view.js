@@ -13,12 +13,12 @@ function indentLine(indent) {
     return line;
 }
 
-function renderChildren(parent) {
+function renderChildren(parent,indent,max_levels) {
     var lines = "";
     for(var i=0; i<parent.childNodes.length; i++) {
         var child = parent.childNodes[i];
         if (child.nodeType == Node.ELEMENT_NODE) {
-            lines += dumpElement(child,0);
+            lines += dumpElement(child,0, max_levels);
         }
         if (child.nodeType == Node.TEXT_NODE) {
             lines += dumpTextNode(child,0);
@@ -27,7 +27,10 @@ function renderChildren(parent) {
     return lines;
 }
 
-function dumpElement(element,indent) {
+function dumpElement(element,indent,max_levels) {
+    if (indent >= max_levels) {
+        return "";
+    }
     var lines = "";
     var line = indentLine(indent);
     var line_length = line.length;
@@ -56,7 +59,7 @@ function dumpElement(element,indent) {
         for(var i=0; i< children.length; i++) {
             var node = children[i];
             if (node.nodeType == Node.ELEMENT_NODE) {
-                lines += dumpElement(node,indent+1);
+                lines += dumpElement(node,indent+1,max_levels);
             }
             if (node.nodeType == Node.TEXT_NODE) {
                 lines += dumpTextNode(node,indent+1);
@@ -96,7 +99,7 @@ function dumpTextNode(node,indent) {
     return lines;
 }
 
-function boot(override_line_limit) {
+function boot(override_line_limit,max_levels) {
     if (override_line_limit) {
         line_limit = override_line_limit;
     }
@@ -107,7 +110,7 @@ function boot(override_line_limit) {
         if (!model || !view) {
             break;
         }
-        dumped = renderChildren(model,0);
+        dumped = renderChildren(model,0,max_levels);
         view.innerHTML = dumped;
         i += 1;
     }

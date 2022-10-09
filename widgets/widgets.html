@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="exo_widget.js"></script>
+    <script src="controls/exo_button.js"></script>
+    <link rel="stylesheet" href="../exo.css">
+    <link rel="stylesheet" href="../exo-icons.css">
+    <script src="../support/model_view.js" type="text/javascript"></script>
+    <!-- <script>
+        function init() {
+            document.getElementById("test_button").addEventListener("click",()=>alert("Click!"));
+        }
+    </script> -->
+    <style>
+        .model-view {
+          margin-right: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="../support/model_view.css" type="text/css"/>
+</head>
+<body  onload="boot(null,1)" class="exo-container">
+    <h2>Buttons</h2>
+    <p>Include <pre>&lt;script src="widgets/exo_button.js"&gt;&lt;/script&gt;</pre></p>
+    <div class="exo-row">
+        <div class="exo-4-cell model-view">
+            <pre><code id="view0"></code></pre>
+        </div>
+        <div id="model0">
+            <exo-button id="test_button" label="test" text="hello world" fg_colour="dark-red"></exo-button>
+            <script>
+var btn = document.getElementById("test_button");
+
+btn.addEventListener("click",
+    ()=>btn.setAttribute("label","!!!!"));
+            </script>
+        </div>
+    </div>
+</body>
+</html>
