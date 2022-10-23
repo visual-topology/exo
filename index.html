@@ -60,7 +60,7 @@
             <h4>Style</h4>
             <li><a href="#colours">Colours</a></li>
             <li><a href="#icons">Icons</a></li>
-            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#font_sizes">Font Sizes</a></li>
             <li><a href="#input_controls">Input controls</a></li>
             <li><a href="#tooltips">Tooltips</a></li>
             <li><a href="#spinner">Spinner</a></li>
@@ -593,28 +593,32 @@ The following examples cover some typical use cases, other sections will cover m
     <div id="model3" class="exo-4-cell">
         <table class="exo-border">
             <caption>Icon sizes</caption>
-            <tr><td>small(default)</td><td><div class="exo-icon-background exo-light-blue-bg"><div class="exo-icon exo-icon-home exo-red" role="img" aria-label="home icon"></div></div></td></tr>
-            <tr><td>medium</td><td><div class="exo-icon exo-icon-home exo-icon-medium" role="img" aria-label="home icon"></div></td></tr>
+            <tr><td>tiny</td><td><div class="exo-icon exo-icon-tiny exo-icon-home exo-red" role="img" aria-label="home icon"></div></td></tr>
+            <tr><td>small</td><td><div class="exo-icon exo-icon-small exo-icon-home exo-red" role="img" aria-label="home icon"></div></td></tr>
+            <tr><td>medium(default)</td><td><div class="exo-icon exo-icon-home" role="img" aria-label="home icon"></div></td></tr>
             <tr><td>large</td><td><div class="exo-icon exo-icon-home exo-icon-large" role="img" aria-label="home icon"></div></td></tr>
             <tr><td>huge</td><td><div class="exo-icon exo-icon-home exo-icon-huge" role="img" aria-label="home icon"></div></td></tr>
         </table>
         <p>
-        <div>Inline icons:
-            <div class="exo-icon exo-icon-inline exo-icon-home" role="img" aria-label="home icon"></div>
-            <div class="exo-icon exo-icon-inline exo-icon-home-red exo-light-blue" role="img" aria-label="home icon"></div>
-        </div>
         <div>Label icons:
-            <label class="exo-icon exo-icon-medium exo-icon-home exo-red">Home</label>
+            <label class="exo-icon exo-icon-home exo-red">Home</label>
         </div>
         <div>Span icons:
-            <span class="exo-icon exo-icon-medium exo-icon-home exo-dark-purple">Home</span>
+            <span class="exo-icon exo-icon-home exo-dark-purple"></span>
+            <span class="exo-icon exo-icon-home exo-dark-blue"></span>
+            <span class="exo-icon exo-icon-home exo-dark-green"></span>
+        </div>
+        <div>Light yellow on a rounded dark purple background:
+            <div class="exo-icon-background exo-icon-inline exo-rounded exo-dark-purple-bg">
+                <div class="exo-icon exo-icon-home exo-light-yellow" title="exo-icon exo-icon-home exo-light-yellow"></div>
+            </div>
         </div>
     </div>
 </div>
 
-<h2 id="buttons">Buttons</h2>
+<h2 id="font_sizes">Font Sizes</h2>
 
-Exo provides a number of options for styling buttons using text, icons and background colours.
+Exo provides a range of font sizes.
 
 <div class="exo-row">
     <div class="exo-4-cell model-view">
@@ -622,30 +626,22 @@ Exo provides a number of options for styling buttons using text, icons and backg
                 </code></pre>
     </div>
     <div id="model4" class="exo-4-cell">
-        <div class="exo-vmargin">
-            <button class="exo-icon exo-icon-home" aria-label="home"></button>
-        </div>
-        <div class="exo-vmargin">
-            <button class="exo-icon exo-icon-large exo-icon-home" aria-label="home"></button>
-        </div>
-        <div class="exo-vmargin">
-            <button class="exo-dark-purple-bg exo-white-fg">Purple Button</button>
-        </div>
-        <div class="exo-vmargin">
-            <button class="exo-light-green-bg exo-black-fg">Light Green Button</button>
-        </div>
-        <div class="exo-vmargin">
-            <button disabled="">Disabled Button</button>
-        </div>
-        <div class="exo-vmargin">
-            <input type="button" class="exo-dark-red-bg exo-white-fg" value="Input-based Button"/>
-        </div>
-        <div class="exo-vmargin">
-            <div role="button" class="exo-button exo-light-green-bg exo-black-fg" tabindex="0" aria-label="home">
-                <div class="exo-icon exo-icon-home" role="img" aria-hidden="true"></div>
-                Home
-            </div>
-        </div>
+        <p class="exo-tiny">
+            Tiny
+        </p>
+        <p class="exo-small">
+            Small
+        </p>
+        <p class="exo-medium">
+            Medium
+        </p>
+        <p class="exo-large">
+            Large
+        </p>
+        <p class="exo-huge">
+            Huge
+        </p>
+
     </div>
 </div>
 
@@ -660,6 +656,13 @@ A number of input control styles are supported, for some quick examples see belo
                 </code></pre>
     </div>
     <div id="model5" class="exo-4-cell">
+        <label for="btn1">Button</label>
+
+        <input id="btn1" type="button" value="Home"/>
+
+        <label for="btn2">Button with icon</label>
+        <input id="btn2" type="button" class="exo-icon exo-dark-blue-bg exo-dark-red exo-icon-home" value="Home"/>
+
         <label for="cb1">Checkbox</label>
         <input type="checkbox" id="cb1"/>
 

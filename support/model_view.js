@@ -13,12 +13,12 @@ function indentLine(indent) {
     return line;
 }
 
-function renderChildren(parent,indent,max_levels) {
+function renderChildren(parent,indent,tag_filter,exclude_attributes) {
     var lines = "";
     for(var i=0; i<parent.childNodes.length; i++) {
         var child = parent.childNodes[i];
         if (child.nodeType == Node.ELEMENT_NODE) {
-            lines += dumpElement(child,0, max_levels);
+            lines += dumpElement(child,0, tag_filter, exclude_attributes);
         }
         if (child.nodeType == Node.TEXT_NODE) {
             lines += dumpTextNode(child,0);
@@ -27,8 +27,8 @@ function renderChildren(parent,indent,max_levels) {
     return lines;
 }
 
-function dumpElement(element,indent,max_levels) {
-    if (indent >= max_levels) {
+function dumpElement(element,indent,tag_filter, exclude_attributes) {
+    if (tag_filter && !element.tagName.startsWith(tag_filter)) {
         return "";
     }
     var lines = "";
@@ -40,13 +40,18 @@ function dumpElement(element,indent,max_levels) {
     line_length += element.tagName.toLowerCase().length + 1;
     var attrs = element.attributes;
     for(var i = 0; i < attrs.length; i++) {
+        if (exclude_attributes && exclude_attributes.includes(attrs[i].name)) {
+            continue;
+        }
         if (line_length > line_limit) {
             lines += line;
             line = indentLine(indent+1);
             line_length = line.length
         }
         line += ' ' + '<span class="attr-name">' + attrs[i].name + '</span>';
-        line += "=" + '<span class="attr-value">' + '"' + attrs[i].value + '"' + '</span>';
+        if (attrs[i].value) {
+            line += "=" + '<span class="attr-value">' + '"' + attrs[i].value + '"' + '</span>';
+        }
         line_length += attrs[i].name.length + attrs[i].value.length + 4;
     }
     var children = element.childNodes;
@@ -59,10 +64,10 @@ function dumpElement(element,indent,max_levels) {
         for(var i=0; i< children.length; i++) {
             var node = children[i];
             if (node.nodeType == Node.ELEMENT_NODE) {
-                lines += dumpElement(node,indent+1,max_levels);
+                lines += dumpElement(node,indent+1,tag_filter,exclude_attributes);
             }
             if (node.nodeType == Node.TEXT_NODE) {
-                lines += dumpTextNode(node,indent+1);
+                lines += dumpTextNode(node,indent+1, element.tagName == "SCRIPT");
             }
         }
         line = indentLine(indent);
@@ -72,34 +77,38 @@ function dumpElement(element,indent,max_levels) {
     return lines;
 }
 
-function dumpTextNode(node,indent) {
+function dumpTextNode(node,indent,verbatim) {
     var lines = "";
-    var line = "";
-    var text = node.textContent.replace(/(\r\n|\n|\r)/gm, "").trim();
-    if (text) {
-        var words = text.split(" ");
-        line = indentLine(indent+1);
-        var added = false;
-        for(var idx=0; idx<words.length; idx++) {
-            var word = words[idx].trim();
-            if (word) {
-                if (added && (line.length + word.length > line_limit)) {
-                    lines += line;
-                    line = indentLine(indent + 1);
-                    added = false;
-                }
-                line += word + " ";
-                added = true;
-            }
-        }
-        if (added) {
-            lines += line;
-        }
-    }
-    return lines;
+    if (verbatim) {
+        node.textContent.split("\n").forEach(line => { lines += indentLine(indent+1)+line.trim(); });
+    } else {
+       var line = "";
+       var text = node.textContent.replace(/(\r\n|\n|\r)/gm, "").trim();
+       if (text) {
+           var words = text.split(" ");
+           line = indentLine(indent + 1);
+           var added = false;
+           for (var idx = 0; idx < words.length; idx++) {
+               var word = words[idx].trim();
+               if (word) {
+                   if (added && (line.length + word.length > line_limit)) {
+                       lines += line;
+                       line = indentLine(indent + 1);
+                       added = false;
+                   }
+                   line += word + " ";
+                   added = true;
+               }
+           }
+           if (added) {
+               lines += line;
+           }
+       }
+   }
+   return lines;
 }
 
-function boot(override_line_limit,max_levels) {
+function boot(override_line_limit,tag_filter,exclude_attributes) {
     if (override_line_limit) {
         line_limit = override_line_limit;
     }
@@ -110,7 +119,7 @@ function boot(override_line_limit,max_levels) {
         if (!model || !view) {
             break;
         }
-        dumped = renderChildren(model,0,max_levels);
+        dumped = renderChildren(model,0,tag_filter,exclude_attributes);
         view.innerHTML = dumped;
         i += 1;
     }
