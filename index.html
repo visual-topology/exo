@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Exo CSS documentation</title>
+    <title>Exo v0.0.2 CSS documentation</title>
     <meta name="description" content="Demo and documentation-by-example for Exo CSS">
-    <meta name="author" content="Niall McCarroll">
+    <meta name="author" content="Visual Topology">
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type='text/css'/>
     <link rel="stylesheet" href="exo.css" type="text/css"/>
     <link rel="stylesheet" href="exo-icons.css" type="text/css"/>
-    <script src="model_view.js" type="text/javascript"></script>
+    <script src="support/model_view.js" type="text/javascript"></script>
     <script type="text/javascript">
          $ = function( id ) { return document.getElementById( id ); };
     </script>
@@ -18,7 +18,7 @@
           margin-right: 10px;
         }
     </style>
-    <link rel="stylesheet" href="model_view.css" type="text/css"/>
+    <link rel="stylesheet" href="support/model_view.css" type="text/css"/>
 </head>
 <body onload="boot()" class="exo-container">
 
@@ -26,7 +26,7 @@
 <p>Exo is a minimal CSS framework for building simple but stylish single page web applications. It is licensed under the
     <a href="https://opensource.org/licenses/mit-license.php">open source MIT license</a>.</p>
 
-<p>Exo provides a class based system for defining colours, layouts, icons from the material design icon set,
+<p>Exo provides a class based system for defining colors, layouts, icons from the material design icon set,
     custom styled input controls, and more...</p>
 
 <p>This page provides <strong>example-based documentation</strong> for Exo.</p>
@@ -58,9 +58,9 @@
     <div class="exo-3-cell">
         <ul>
             <h4>Style</h4>
-            <li><a href="#colours">Colours</a></li>
+            <li><a href="#colors">Colours</a></li>
             <li><a href="#icons">Icons</a></li>
-            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#font_sizes">Font Sizes</a></li>
             <li><a href="#input_controls">Input controls</a></li>
             <li><a href="#tooltips">Tooltips</a></li>
             <li><a href="#spinner">Spinner</a></li>
@@ -337,7 +337,7 @@ are required.
                 <div class="exo-rounded exo-carousel-item">
                     <label for="cg-a2" class="exo-icon exo-icon-navigate-before exo-white-bg"/></label>
                     <div class="exo-card exo-white-fg exo-dark-orange-bg">
-                        <img src="images/olci_truecolour.png"/>
+                        <img src="images/olci_truecolor.png"/>
                         <h4>OLCI True Colour</h4>
                     </div>
                     <label for="cg-a4" class="exo-icon exo-icon-navigate-next exo-white-bg"/></label>
@@ -353,7 +353,7 @@ are required.
                  <div class="exo-rounded exo-carousel-item">
                     <label for="cg-a4" class="exo-icon exo-icon-navigate-before exo-white-bg"/></label>
                      <div class="exo-card exo-white-fg exo-dark-orange-bg">
-                        <img src="images/slstr_falsecolour.png"/>
+                        <img src="images/slstr_falsecolor.png"/>
                         <h4>SLSTR False Colour</h4>
                     </div>
                     <label for="cg-a1" class="exo-icon exo-icon-navigate-next exo-white-bg"/></label>
@@ -483,12 +483,12 @@ are required.
     </div>
 </div>
 
-<h2 id="colours">Colours</h2>
+<h2 id="colors">Colours</h2>
 
 Colours are used to assign a background and are divided into dark and light.
-Dark colours are used with a white foreground colour and light colours are used with a black foreground colour.
+Dark colors are used with a white foreground color and light colors are used with a black foreground color.
 
-To apply a background colour to an element, add class <code>exo-COLOUR</code> or <code>exo-light-COLOUR</code>.
+To apply a background color to an element, add class <code>exo-COLOUR</code> or <code>exo-light-COLOUR</code>.
 
 <h4>Dark Foreground Colours</h4>
 <div class="exo-row">
@@ -580,7 +580,7 @@ Icons are obtained from the <a href="https://fonts.google.com/icons?selected=Mat
     Material Design Icons Set</a> and are repackaged into CSS files and introduced into pages using
 <code>exo-icon*</code> classes.
 
-To use icons, import the CSS file(s) corresponding to the selected style and required colour(s). For more details see <a
+To use icons, import the CSS file(s) corresponding to the selected style and required color(s). For more details see <a
         href="exo-icons.html">tables of provided icons and details of which CSS files to import.</a>
 
 The following examples cover some typical use cases, other sections will cover more specific uses for icons.
@@ -593,28 +593,32 @@ The following examples cover some typical use cases, other sections will cover m
     <div id="model3" class="exo-4-cell">
         <table class="exo-border">
             <caption>Icon sizes</caption>
-            <tr><td>small(default)</td><td><div class="exo-icon-background exo-light-blue-bg"><div class="exo-icon exo-icon-home exo-red" role="img" aria-label="home icon"></div></div></td></tr>
-            <tr><td>medium</td><td><div class="exo-icon exo-icon-home exo-icon-medium" role="img" aria-label="home icon"></div></td></tr>
+            <tr><td>tiny</td><td><div class="exo-icon exo-icon-tiny exo-icon-home exo-red" role="img" aria-label="home icon"></div></td></tr>
+            <tr><td>small</td><td><div class="exo-icon exo-icon-small exo-icon-home exo-red" role="img" aria-label="home icon"></div></td></tr>
+            <tr><td>medium(default)</td><td><div class="exo-icon exo-icon-home" role="img" aria-label="home icon"></div></td></tr>
             <tr><td>large</td><td><div class="exo-icon exo-icon-home exo-icon-large" role="img" aria-label="home icon"></div></td></tr>
             <tr><td>huge</td><td><div class="exo-icon exo-icon-home exo-icon-huge" role="img" aria-label="home icon"></div></td></tr>
         </table>
         <p>
-        <div>Inline icons:
-            <div class="exo-icon exo-icon-inline exo-icon-home" role="img" aria-label="home icon"></div>
-            <div class="exo-icon exo-icon-inline exo-icon-home-red exo-light-blue" role="img" aria-label="home icon"></div>
-        </div>
         <div>Label icons:
-            <label class="exo-icon exo-icon-medium exo-icon-home exo-red">Home</label>
+            <label class="exo-icon exo-icon-home exo-red">Home</label>
         </div>
         <div>Span icons:
-            <span class="exo-icon exo-icon-medium exo-icon-home exo-dark-purple">Home</span>
+            <span class="exo-icon exo-icon-home exo-dark-purple"></span>
+            <span class="exo-icon exo-icon-home exo-dark-blue"></span>
+            <span class="exo-icon exo-icon-home exo-dark-green"></span>
+        </div>
+        <div>Light yellow on a rounded dark purple background:
+            <div class="exo-icon-background exo-icon-inline exo-rounded exo-dark-purple-bg">
+                <div class="exo-icon exo-icon-home exo-light-yellow" title="exo-icon exo-icon-home exo-light-yellow"></div>
+            </div>
         </div>
     </div>
 </div>
 
-<h2 id="buttons">Buttons</h2>
+<h2 id="font_sizes">Font Sizes</h2>
 
-Exo provides a number of options for styling buttons using text, icons and background colours.
+Exo provides a range of font sizes.
 
 <div class="exo-row">
     <div class="exo-4-cell model-view">
@@ -622,30 +626,22 @@ Exo provides a number of options for styling buttons using text, icons and backg
                 </code></pre>
     </div>
     <div id="model4" class="exo-4-cell">
-        <div class="exo-vmargin">
-            <button class="exo-icon exo-icon-home" aria-label="home"></button>
-        </div>
-        <div class="exo-vmargin">
-            <button class="exo-icon exo-icon-large exo-icon-home" aria-label="home"></button>
-        </div>
-        <div class="exo-vmargin">
-            <button class="exo-dark-purple-bg exo-white-fg">Purple Button</button>
-        </div>
-        <div class="exo-vmargin">
-            <button class="exo-light-green-bg exo-black-fg">Light Green Button</button>
-        </div>
-        <div class="exo-vmargin">
-            <button disabled="">Disabled Button</button>
-        </div>
-        <div class="exo-vmargin">
-            <input type="button" class="exo-dark-red-bg exo-white-fg" value="Input-based Button"/>
-        </div>
-        <div class="exo-vmargin">
-            <div role="button" class="exo-button exo-light-green-bg exo-black-fg" tabindex="0" aria-label="home">
-                <div class="exo-icon exo-icon-home" role="img" aria-hidden="true"></div>
-                Home
-            </div>
-        </div>
+        <p class="exo-tiny">
+            Tiny
+        </p>
+        <p class="exo-small">
+            Small
+        </p>
+        <p class="exo-medium">
+            Medium
+        </p>
+        <p class="exo-large">
+            Large
+        </p>
+        <p class="exo-huge">
+            Huge
+        </p>
+
     </div>
 </div>
 
@@ -660,8 +656,15 @@ A number of input control styles are supported, for some quick examples see belo
                 </code></pre>
     </div>
     <div id="model5" class="exo-4-cell">
+        <label for="btn1">Button</label>
+
+        <input id="btn1" type="button" value="Home"/>
+
+        <label for="btn2">Button with icon</label>
+        <input id="btn2" type="button" class="exo-icon exo-dark-blue-bg exo-dark-red exo-icon-home" value="Home"/>
+
         <label for="cb1">Checkbox</label>
-        <input type="checkbox" id="cb1"/>
+        <input type="checkbox" id="cb1" class="exo-dark-green-bg"/>
 
         <label for="toggle_normal">
             Checkbox rendered as a toggle
@@ -669,7 +672,7 @@ A number of input control styles are supported, for some quick examples see belo
         <label class="exo-dummy-label">
             <span class="exo-toggle">
                     <input type="checkbox" id="toggle_normal"/>
-                    <span class="exo-toggle-slide exo-dark-green-bg"></span>
+                    <span class="exo-toggle-slide exo-light-red-fg exo-dark-green-bg"></span>
             </span>
         </label>
 
