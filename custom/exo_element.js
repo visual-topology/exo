@@ -17,7 +17,9 @@ class CustomExoElement extends HTMLElement {
         if (!this.exo_built) {
             this.exo_built = true;
             setTimeout(() => {
-                this.exoBuild(this.exoGetParameters(this));
+                let parameters = this.exoGetParameters(this);
+                this.exoBuild(parameters);
+                this.exoUpdateParameters(parameters);
             }, 0);
         }
     }
@@ -38,12 +40,9 @@ class CustomExoElement extends HTMLElement {
         CustomExoElement.exo_counter += 1;
         this.exo_element.setAttribute("id",this.exo_id);
 
-        if (parameters["fg-colour"]) {
-            ExoUtils.addClass(this.exo_element,"exo-"+parameters["fg-colour"]+"-fg");
-        }
-        if (parameters["bg-colour"]) {
-            ExoUtils.addClass(this.exo_element,"exo-"+parameters["bg-colour"]+"-bg");
-        }
+
+
+        /*
 
         if (parameters["full-width"]) {
             ExoUtils.addClass(this.exo_element,"exo-full-width");
@@ -54,14 +53,38 @@ class CustomExoElement extends HTMLElement {
             ExoUtils.addStyle(this.exoGetRootElement(),"background-image","url('"+bg_image+"');");
         }
 
-        ["border","margin","padding","rounded","vmargin","hmargin"].forEach(
-            name => { this.applySizedDimension(name,parameters[name]) }
-        );
 
+        */
+
+
+    }
+
+    exoUpdateParameters(parameters) {
+        for(var name in parameters) {
+            if (name != "id") {
+                this.exoUpdate(name, parameters[name]);
+            }
+        }
     }
 
     exoUpdate(name,value) {
         switch(name) {
+            case "fg-color":
+                ExoUtils.removeClasses( this.exoGetElement(), /exo-(.*)-fg/);
+                ExoUtils.addClass(this.exo_element,"exo-"+value+"-fg");
+                break;
+            case "bg-color":
+                ExoUtils.removeClasses(this.exoGetElement(), /exo-(.*)-bg/);
+                ExoUtils.addClass(this.exo_element,"exo-"+value+"-bg");
+                break;
+            case "border":
+            case "margin":
+            case "padding":
+            case "rounded":
+            case "vmargin":
+            case "hmargin":
+                this.applySizedDimension(name,value);
+                break;
             default:
                 console.log("Unrecognized exoUpdate: "+name+","+value);
         }
@@ -86,8 +109,8 @@ class CustomExoElement extends HTMLElement {
 
     static exoGetParameters(element) {
         return {
-            "fg-colour":element.getAttribute("fg-colour"),
-            "bg-colour":element.getAttribute("bg-colour")
+            "fg-color":element.getAttribute("fg-color"),
+            "bg-color":element.getAttribute("bg-color")
         }
     }
 
@@ -98,6 +121,7 @@ class CustomExoElement extends HTMLElement {
         if (value == "") {
             value = "medium";
         }
+        ExoUtils.removeClasses(this.exoGetElement(), new RegExp("(exo-)(.*)(-"+name+")"));
         if (value) {
             switch (value) {
                 case "no":
@@ -117,7 +141,7 @@ class CustomExoElement extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ["id", "fg-colour", "bg-colour", "border","margin","padding","rounded","vmargin","hmargin"];
+        return ["id", "fg-color", "bg-color", "border","margin","padding","rounded","vmargin","hmargin"];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {

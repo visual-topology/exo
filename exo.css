@@ -1,7 +1,7 @@
 /* MIT License - Exo - Copyright (c) 2022 Visual Topology */
 
 /*
- Define variables for the exo colours
+ Define variables for the exo colors
 */
 
 :root {
@@ -11,7 +11,7 @@
   --exo-highlight: orange;
   --exo-invalid: red;
 
-    /* dark background colours */
+    /* dark background colors */
   --exo-dark-red: #8B0000;
   --exo-dark-orange: #D2691E;
   --exo-dark-blue: #00008B;
@@ -25,7 +25,7 @@
   /* https://webaim.org/resources/contrastchecker/ */
 
 
-    /* light background colours */
+    /* light background colors */
   --exo-light-red: #FF8080;
   --exo-light-orange: #F6DDCC;
   --exo-light-blue: #D6EAF8;
@@ -50,7 +50,7 @@
   --exo-dark-yellow2: #A07000;
 
 
-    /* light background colours */
+    /* light background colors */
   --exo-light-red2: #FC8073;
   --exo-light-orange2: #FFEDDC;
   --exo-light-blue2: #E6FAFF;
@@ -1144,7 +1144,7 @@ input[type="checkbox"]:checked {
 	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMkw0LjggMTJsLTEuNCAxLjRMOSAxOSAyMSA3bC0xLjQtMS40TDkgMTYuMnoiLz48L3N2Zz4=');
 }
 
-/* for dark colour backgrounds, use a white tick icon */
+/* for dark color backgrounds, use a white tick icon */
 
 input[type="checkbox"]:checked.exo-dark-red-bg, input[type="checkbox"]:checked.exo-dark-orange-bg, input[type="checkbox"]:checked.exo-dark-blue-bg,
 input[type="checkbox"]:checked.exo-dark-green-bg, input[type="checkbox"]:checked.exo-dark-purple-bg, input[type="checkbox"]:checked.exo-dark-brown-bg,
@@ -1154,11 +1154,7 @@ input[type="checkbox"]:checked.exo-dark-yellow-bg, input[type="checkbox"]:checke
 	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iI0ZGRkZGRiI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMkw0LjggMTJsLTEuNCAxLjRMOSAxOSAyMSA3bC0xLjQtMS40TDkgMTYuMnoiLz48L3N2Zz4=');
 }
 
-.exo-checkbox-true {
-    vertical-align: top;
-}
-
-.exo-checkbox-false {
+.exo-checkbox-true, .exo-checkbox-false {
     vertical-align: top;
 }
 
@@ -1339,6 +1335,7 @@ input[type=range]::-webkit-slider-thumb {
     transition: 0.2s;
     border-radius: 10px;
     border: 2px solid #DDD;
+
 }
 
 .exo-toggle .exo-toggle-slide:before {
@@ -1378,6 +1375,177 @@ input[type=range]::-webkit-slider-thumb {
 .exo-toggle > input[type="checkbox"]:focus + .exo-toggle-slide {
     border: 2px solid var(--exo-focus);
 }
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide:before {
+    transform: translateX(calc(var(--control-size) - 8px));
+}
+
+/* foreground colors */
+
+.exo-toggle .exo-toggle-slide.exo-dark-red-fg:before {
+    background-color: var(--exo-dark-red);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-orange-fg:before {
+    background-color: var(--exo-dark-orange);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-blue-fg:before {
+    background-color: var(--exo-dark-blue);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-green-fg:before {
+    background-color: var(--exo-dark-green);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-purple-fg:before {
+    background-color: var(--exo-dark-purple);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-brown-fg:before {
+    background-color: var(--exo-dark-brown);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-gray-fg:before {
+    background-color: var(--exo-dark-gray);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-pink-fg:before {
+    background-color: var(--exo-dark-pink);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-yellow-fg:before {
+    background-color: var(--exo-dark-yellow);
+}
+
+.exo-toggle .exo-toggle-slide.exo-black-fg:before {
+    background-color: var(--exo-black);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-red-fg:before {
+    background-color: var(--exo-light-red);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-orange-fg:before {
+    background-color: var(--exo-light-orange);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-blue-fg:before {
+    background-color: var(--exo-light-blue);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-green-fg:before {
+    background-color: var(--exo-light-green);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-purple-fg:before {
+    background-color: var(--exo-light-purple);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-brown-fg:before {
+    background-color: var(--exo-light-brown);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-gray-fg:before {
+    background-color: var(--exo-light-gray);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-pink-fg:before {
+    background-color: var(--exo-light-pink);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-yellow-fg:before {
+    background-color: var(--exo-light-yellow);
+}
+
+.exo-toggle .exo-toggle-slide.exo-white-fg:before {
+    background-color: var(--exo-white);
+}
+
+/* background colors (OFF) */
+
+.exo-toggle .exo-toggle-slide.exo-dark-red-bg {
+    background-color: var(--exo-light-red);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-orange-bg {
+    background-color: var(--exo-light-orange);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-blue-bg {
+    background-color: var(--exo-light-blue);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-green-bg {
+    background-color: var(--exo-light-green);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-purple-bg {
+    background-color: var(--exo-light-purple);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-brown-bg {
+    background-color: var(--exo-light-brown);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-gray-bg {
+    background-color: var(--exo-light-gray);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-pink-bg {
+    background-color: var(--exo-light-pink);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-yellow-bg {
+    background-color: var(--exo-light-yellow);
+}
+
+.exo-toggle .exo-toggle-slide.exo-black-bg {
+    background-color: var(--exo-white);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-red-bg {
+    background-color: var(--exo-dark-red);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-orange-bg {
+    background-color: var(--exo-dark-orange);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-blue-bg {
+    background-color: var(--exo-dark-blue);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-green-bg {
+    background-color: var(--exo-dark-green);
+}
+
+.exo-toggle.exo-toggle-slide.exo-light-purple-bg {
+    background-color: var(--exo-dark-purple);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-brown-bg {
+    background-color: var(--exo-dark-brown);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-gray-bg {
+    background-color: var(--exo-dark-gray);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-pink-bg {
+    background-color: var(--exo-dark-pink);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-yellow-bg {
+    background-color: var(--exo-dark-yellow);
+}
+
+.exo-toggle .exo-toggle-slide.exo-white-bg {
+    background-color: var(--exo-black);
+}
+
+
+/* background-colors */
 
 .exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-red-bg {
     background-color: var(--exo-dark-red);
@@ -1459,9 +1627,7 @@ input[type=range]::-webkit-slider-thumb {
     background-color: var(--exo-white);
 }
 
-.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide:before {
-    transform: translateX(calc(var(--control-size) - 8px));
-}
+
 
 /* Input Controls - Select/Option
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

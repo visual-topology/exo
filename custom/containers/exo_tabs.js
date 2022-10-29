@@ -34,8 +34,8 @@ class CustomExoTabs extends CustomExoContainer {
             if (node.nodeType == Node.ELEMENT_NODE && node.tagName == "EXO-TAB") {
                 exo_tabs.push(node);
                 var label_text = node.getAttribute("tab-label");
-                var fg_colour = node.getAttribute("fg-colour");
-                var bg_colour = node.getAttribute("bg-colour");
+                var fg_color = node.getAttribute("fg-color");
+                var bg_color = node.getAttribute("bg-color");
 
                 var input = document.createElement("input");
                 var radio_id = radio_name+idx;
@@ -49,13 +49,13 @@ class CustomExoTabs extends CustomExoContainer {
                     [["aria-hidden","true"],["for",radio_id]]);
                 label.appendChild(document.createTextNode(label_text));
                 labels.push(label);
-                if (fg_colour) {
-                    var fg_cls = "exo-"+fg_colour+"-fg";
+                if (fg_color) {
+                    var fg_cls = "exo-"+fg_color+"-fg";
                     ExoUtils.addClass(input,fg_cls);
                     ExoUtils.addClass(label,fg_cls);
                 }
-                if (bg_colour) {
-                    var bg_cls = "exo-"+bg_colour+"-bg";
+                if (bg_color) {
+                    var bg_cls = "exo-"+bg_color+"-bg";
                     ExoUtils.addClass(label,bg_cls);
                 }
             }

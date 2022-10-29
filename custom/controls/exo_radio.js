@@ -23,8 +23,7 @@ class CustomExoRadio extends CustomExoControl {
         this.exo_radio_name = this.exoGetId()+"_rbg";
         this.appendChild(this.exoGetRootElement());
         this.scan();
-
-        console.log(this.exo_radio_node_list);
+        
         var that = this;
         if (parameters["value"]) {
             this.exoUpdate("value",parameters["value"]);

@@ -17,12 +17,24 @@ class ExoUtils {
         }
     }
 
+    static getClasses(element) {
+        return (element.getAttribute("class") || "").split(" ").filter(name => name != "");
+    }
+
     static removeClass(element, classname) {
-        var classes = (element.getAttribute("class") || "").split(" ");
-        if (classes.findIndex(classname) != -1) {
-            classes.filter(name => name != classname);
-            element.setAttribute("class", classes.join(" "));
-        }
+        console.log("removing: "+classname);
+        var classes = ExoUtils.getClasses(element);
+        classes = classes.filter(name => name != classname);
+        element.setAttribute("class", classes.join(" "));
+    }
+
+    static removeClasses(element, pattern) {
+        var classes = ExoUtils.getClasses(element);
+        classes.forEach(cls => {
+            let resolved = cls.match(pattern);
+            if (resolved != null) {
+                this.removeClass(element, cls);
+            }});
     }
 
     static addStyle(element, name, value) {
@@ -57,5 +69,11 @@ class ExoUtils {
             alert("problem here");
         }
         parent.replaceChild(new_node,old_node);
+    }
+
+    static removeAllChildren(elt) {
+        while (elt.firstChild) {
+            elt.removeChild(elt.firstChild);
+        }
     }
 }

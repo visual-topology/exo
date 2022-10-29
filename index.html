@@ -26,7 +26,7 @@
 <p>Exo is a minimal CSS framework for building simple but stylish single page web applications. It is licensed under the
     <a href="https://opensource.org/licenses/mit-license.php">open source MIT license</a>.</p>
 
-<p>Exo provides a class based system for defining colours, layouts, icons from the material design icon set,
+<p>Exo provides a class based system for defining colors, layouts, icons from the material design icon set,
     custom styled input controls, and more...</p>
 
 <p>This page provides <strong>example-based documentation</strong> for Exo.</p>
@@ -58,7 +58,7 @@
     <div class="exo-3-cell">
         <ul>
             <h4>Style</h4>
-            <li><a href="#colours">Colours</a></li>
+            <li><a href="#colors">Colours</a></li>
             <li><a href="#icons">Icons</a></li>
             <li><a href="#font_sizes">Font Sizes</a></li>
             <li><a href="#input_controls">Input controls</a></li>
@@ -337,7 +337,7 @@ are required.
                 <div class="exo-rounded exo-carousel-item">
                     <label for="cg-a2" class="exo-icon exo-icon-navigate-before exo-white-bg"/></label>
                     <div class="exo-card exo-white-fg exo-dark-orange-bg">
-                        <img src="images/olci_truecolour.png"/>
+                        <img src="images/olci_truecolor.png"/>
                         <h4>OLCI True Colour</h4>
                     </div>
                     <label for="cg-a4" class="exo-icon exo-icon-navigate-next exo-white-bg"/></label>
@@ -353,7 +353,7 @@ are required.
                  <div class="exo-rounded exo-carousel-item">
                     <label for="cg-a4" class="exo-icon exo-icon-navigate-before exo-white-bg"/></label>
                      <div class="exo-card exo-white-fg exo-dark-orange-bg">
-                        <img src="images/slstr_falsecolour.png"/>
+                        <img src="images/slstr_falsecolor.png"/>
                         <h4>SLSTR False Colour</h4>
                     </div>
                     <label for="cg-a1" class="exo-icon exo-icon-navigate-next exo-white-bg"/></label>
@@ -483,12 +483,12 @@ are required.
     </div>
 </div>
 
-<h2 id="colours">Colours</h2>
+<h2 id="colors">Colours</h2>
 
 Colours are used to assign a background and are divided into dark and light.
-Dark colours are used with a white foreground colour and light colours are used with a black foreground colour.
+Dark colors are used with a white foreground color and light colors are used with a black foreground color.
 
-To apply a background colour to an element, add class <code>exo-COLOUR</code> or <code>exo-light-COLOUR</code>.
+To apply a background color to an element, add class <code>exo-COLOUR</code> or <code>exo-light-COLOUR</code>.
 
 <h4>Dark Foreground Colours</h4>
 <div class="exo-row">
@@ -580,7 +580,7 @@ Icons are obtained from the <a href="https://fonts.google.com/icons?selected=Mat
     Material Design Icons Set</a> and are repackaged into CSS files and introduced into pages using
 <code>exo-icon*</code> classes.
 
-To use icons, import the CSS file(s) corresponding to the selected style and required colour(s). For more details see <a
+To use icons, import the CSS file(s) corresponding to the selected style and required color(s). For more details see <a
         href="exo-icons.html">tables of provided icons and details of which CSS files to import.</a>
 
 The following examples cover some typical use cases, other sections will cover more specific uses for icons.
@@ -664,7 +664,7 @@ A number of input control styles are supported, for some quick examples see belo
         <input id="btn2" type="button" class="exo-icon exo-dark-blue-bg exo-dark-red exo-icon-home" value="Home"/>
 
         <label for="cb1">Checkbox</label>
-        <input type="checkbox" id="cb1"/>
+        <input type="checkbox" id="cb1" class="exo-dark-green-bg"/>
 
         <label for="toggle_normal">
             Checkbox rendered as a toggle
@@ -672,7 +672,7 @@ A number of input control styles are supported, for some quick examples see belo
         <label class="exo-dummy-label">
             <span class="exo-toggle">
                     <input type="checkbox" id="toggle_normal"/>
-                    <span class="exo-toggle-slide exo-dark-green-bg"></span>
+                    <span class="exo-toggle-slide exo-light-red-fg exo-dark-green-bg"></span>
             </span>
         </label>
 

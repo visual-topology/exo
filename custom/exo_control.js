@@ -47,6 +47,24 @@ class CustomExoControl extends CustomExoElement {
         this.exo_root_element.appendChild(this.exo_element);
     }
 
+    exoDefineOutput() {
+        this.output = document.createElement("output");
+        this.output.setAttribute("for",this.exoGetId());
+        var insert_before = null;
+        if (this.tooltip_div) {
+            this.tooltip_div.parentElement.insertBefore(this.output, this.tooltip_div.nextSibling);
+        } else if (this.label) {
+            this.label.parentElement.insertBefore(this.output, this.label.nextSibling);
+        } else {
+            this.exoGetElement().parentElement.insertBefore(this.output, this.exoGetElement());
+        }
+    }
+
+    exoSetOutputValue(value) {
+        ExoUtils.removeAllChildren(this.output);
+        this.output.appendChild(document.createTextNode(value));
+    }
+
     exoUpdate(name,value) {
         switch(name) {
             case "label":
@@ -54,7 +72,7 @@ class CustomExoControl extends CustomExoElement {
                 break;
 
             default:
-                console.log("Unrecognized exoUpdate: "+name+","+value);
+                super.exoUpdate(name,value);
         }
     }
 

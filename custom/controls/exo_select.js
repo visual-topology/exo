@@ -23,7 +23,7 @@ class CustomExoSelect extends CustomExoControl {
         var that = this;
 
         var v = null;
-        this.exoGetElement().addEventListener("input", function () {
+        this.exoGetElement().addEventListener("input", evt => {
             if (this.multiple) {
                 v = [];
                 for (var i = 0; i < this.options.length; i++) {

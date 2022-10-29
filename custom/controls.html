@@ -10,6 +10,7 @@
     <script src="controls/exo_select.js" type="module"></script>
     <script src="controls/exo_radio.js" type="module"></script>
     <script src="controls/exo_number.js" type="module"></script>
+    <script src="controls/exo_range.js" type="module"></script>
     <script src="controls/exo_date.js" type="module"></script>
     <script src="controls/exo_file.js" type="module"></script>
     <link rel="stylesheet" href="../../exo.css">
@@ -46,7 +47,7 @@
             <pre><code id="view0"></code></pre>
         </div>
         <div id="model0">
-            <exo-button id="test_button" label="test" text="hello world" tooltip="Help!!!" fg_colour="dark-red"></exo-button>
+            <exo-button id="test_button" label="test" text="hello world" tooltip="Help!!!" fg-color="dark-red"></exo-button>
             <script>
                 var btn = document.getElementById("test_button");
                 btn.addEventListener("exo-click",e => { alert("click"); })
@@ -61,7 +62,7 @@
             <pre><code id="view1"></code></pre>
         </div>
         <div id="model1">
-            <exo-checkbox id="test_checkbox" label="test" value="true" tooltip="Help!!!" fg_colour="dark-red"></exo-checkbox>
+            <exo-checkbox id="test_checkbox" label="test" value="true" tooltip="Help!!!" fg-color="dark-red"></exo-checkbox>
             <script>
                 var btn = document.getElementById("test_checkbox");
                 btn.addEventListener("exo-value",e => { alert(e.detail); })
@@ -76,10 +77,10 @@
             <pre><code id="view2"></code></pre>
         </div>
         <div id="model2">
-            <exo-toggle id="test_toggle" label="test" true_text="ON" false_text="OFF" value="true" tooltip="Help!!!" fg_colour="dark-red"></exo-toggle>
+            <exo-toggle id="test_toggle" label="test" true_text="ON" false_text="OFF" value="false" tooltip="Help!!!" fg-color="light-gray" bg-color="dark-red"></exo-toggle>
             <script>
                 var btn = document.getElementById("test_toggle");
-                btn.addEventListener("exo-value",e => { alert(e.detail); })
+                btn.addEventListener("exo-value",e => { e.target.setAttribute("bg-color","dark-green"); });
             </script>
         </div>
     </div>
@@ -91,7 +92,7 @@
             <pre><code id="view3"></code></pre>
         </div>
         <div id="model3">
-            <exo-text id="test_text" label="test" value="Enter text here" tooltip="Help!!!" fg_colour="dark-green"></exo-text>
+            <exo-text id="test_text" label="test" value="Enter text here" tooltip="Help!!!" fg-color="dark-green"></exo-text>
             <script>
                 var btn = document.getElementById("test_text");
                 btn.addEventListener("exo-value",e => { alert(e.detail); })
@@ -106,7 +107,7 @@
             <pre><code id="view4"></code></pre>
         </div>
         <div id="model4">
-            <exo-select id="test_select" label="test" value="aaa" tooltip="Help!!!" fg_colour="dark-green">
+            <exo-select id="test_select" label="test" value="aaa" tooltip="Help!!!" fg-color="dark-green">
                 <exo-select-option label="AAA" value="aaa"></exo-select-option>
                 <exo-select-option label="BBB" value="bbb"></exo-select-option>
             </exo-select>
@@ -124,7 +125,7 @@
             <pre><code id="view5"></code></pre>
         </div>
         <div id="model5">
-            <exo-radio id="test_radio" label="test" value="aaa" tooltip="Help!!!" fg_colour="dark-green">
+            <exo-radio id="test_radio" label="test" value="aaa" tooltip="Help!!!" fg-color="dark-green">
                 <exo-radio-button label="AAA" value="aaa"></exo-radio-button>
                 <exo-radio-button label="BBB" value="bbb"></exo-radio-button>
             </exo-radio>
@@ -142,7 +143,7 @@
             <pre><code id="view6"></code></pre>
         </div>
         <div id="model6">
-            <exo-number id="test_number" label="test" value="10" min="0" max="20" step="5" tooltip="Help!!!" fg_colour="dark-purple">
+            <exo-number id="test_number" label="test" value="10" min="0" max="20" step="5" tooltip="Help!!!" fg_color="dark-purple">
             </exo-number>
             <script>
                 var btn = document.getElementById("test_number");
@@ -151,14 +152,26 @@
         </div>
     </div>
 
-    <h2>Date</h2>
-    <p>To use the <code>exo-date</code> custom element, include: <pre>&lt;script type="module" src="custom/controls/exo_date.js"&gt;&lt;/script&gt;</pre></p>
+    <h2>Range</h2>
+    <p>To use the <code>exo-range</code> custom element, include: <pre>&lt;script type="module" src="custom/controls/exo_range.js"&gt;&lt;/script&gt;</pre></p>
     <div class="exo-row">
         <div class="exo-4-cell model-view">
             <pre><code id="view7"></code></pre>
         </div>
         <div id="model7">
-            <exo-date id="test_date" label="test" value="2018-04-10" min="2018-01-01" max="2018-12-31" tooltip="Help!!!" fg_colour="dark-purple">
+            <exo-range id="test_range" label="test" value="10" min="0" max="20" tooltip="Help!!!" fg-color="dark-purple">
+            </exo-range>
+        </div>
+    </div>
+
+    <h2>Date</h2>
+    <p>To use the <code>exo-date</code> custom element, include: <pre>&lt;script type="module" src="custom/controls/exo_date.js"&gt;&lt;/script&gt;</pre></p>
+    <div class="exo-row">
+        <div class="exo-4-cell model-view">
+            <pre><code id="view8"></code></pre>
+        </div>
+        <div id="model8">
+            <exo-date id="test_date" label="test" value="2018-04-10" min="2018-01-01" max="2018-12-31" tooltip="Help!!!" fg-color="dark-purple">
             </exo-date>
             <script>
                 var btn = document.getElementById("test_date");
@@ -171,10 +184,10 @@
     <p>To use the <code>exo-dfile</code> custom element, include: <pre>&lt;script type="module" src="custom/controls/exo_file.js"&gt;&lt;/script&gt;</pre></p>
     <div class="exo-row">
         <div class="exo-4-cell model-view">
-            <pre><code id="view8"></code></pre>
+            <pre><code id="view9"></code></pre>
         </div>
-        <div id="model8">
-            <exo-file id="test_file" label="test" tooltip="Help!!!" fg_colour="dark-purple">
+        <div id="model9">
+            <exo-file id="test_file" label="test" tooltip="Help!!!" fg-color="dark-purple">
             </exo-file>
             <script>
                 var btn = document.getElementById("test_file");
