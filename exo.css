@@ -1,6 +1,10 @@
 /* MIT License - Exo - Copyright (c) 2022 Visual Topology */
 
 /*
+  Exo v0.0.2
+*/
+
+/*
  Define variables for the exo colors
 */
 
@@ -39,6 +43,7 @@
   --exo-white:  #FFFFFF;
   --exo-black:  #000000;
 
+  /* color variants used for zebra tables */
   --exo-dark-red2: #DF1010;
   --exo-dark-orange2: #EF9500;
   --exo-dark-blue2: #2020CF;
@@ -49,8 +54,6 @@
   --exo-dark-pink2: #7B007B;
   --exo-dark-yellow2: #A07000;
 
-
-    /* light background colors */
   --exo-light-red2: #FC8073;
   --exo-light-orange2: #FFEDDC;
   --exo-light-blue2: #E6FAFF;
@@ -66,27 +69,29 @@
 
   --border-color: #888;
 
+  /* sizes: tiny,small,medium,large,huge */
+
   --round-tiny: 2px;
   --round-small: 4px;
-  --round-medium: 8px;
+  --round-medium: 8px; /* default */
   --round-large: 16px;
   --round-huge: 24px;
 
   --border-tiny: 1px;
   --border-small: 2px;
-  --border-medium: 4px;
+  --border-medium: 4px; /* default */
   --border-large: 8px;
   --border-huge: 16px;
 
   --padding-tiny: 1px;
   --padding-small: 4px;
-  --padding-medium: 8px;
+  --padding-medium: 8px; /* default */
   --padding-large: 16px;
   --padding-huge: 24px;
 
   --margin-tiny: 2px;
   --margin-small: 4px;
-  --margin-medium: 8px;
+  --margin-medium: 8px; /* default */
   --margin-large: 16px;
   --margin-huge: 24px;
 
@@ -96,23 +101,24 @@
   --exo-small-icon: 22px;
   --exo-small-font: 12px;
 
-  --exo-medium-icon: 34px;
-  --exo-medium-font: 18px;
+  --exo-medium-icon: 34px; /* default */
+  --exo-medium-font: 18px; /* default */
   
   --exo-large-icon: 48px;
   --exo-large-font: 26px;
     
   --exo-huge-icon: 72px;
   --exo-huge-font: 38px;
- 
-  --cell-width: 128px;
-    
-    /* size for controls */
-    --control-size: 36px;
 
-    --card-width-narrow: 236px;
-    --card-width-normal: 364px;
-    --card-width-wide: 492px;
+  /* other sizes for controls, cells, cards */
+
+  --cell-width: 128px;
+
+  --control-size: 36px;
+
+  --card-width-narrow: 236px;
+  --card-width-normal: 364px;
+  --card-width-wide: 492px;
  }
 
 .exo-container {
@@ -166,7 +172,10 @@
 body {
   font-weight: 400;
   font-family: "Raleway", sans-serif;
+  font-size: var(--exo-medium-font);
 }
+
+/* define header font sizes using 4px increments from the medium font size */
 
 h1 {
     font-size: calc(var(--exo-medium-font) + 16px);
@@ -1380,7 +1389,7 @@ input[type=range]::-webkit-slider-thumb {
     transform: translateX(calc(var(--control-size) - 8px));
 }
 
-/* foreground colors */
+/* slider foreground colors */
 
 .exo-toggle .exo-toggle-slide.exo-dark-red-fg:before {
     background-color: var(--exo-dark-red);
@@ -1462,7 +1471,7 @@ input[type=range]::-webkit-slider-thumb {
     background-color: var(--exo-white);
 }
 
-/* background colors (OFF) */
+/* slider background colors (OFF) */
 
 .exo-toggle .exo-toggle-slide.exo-dark-red-bg {
     background-color: var(--exo-light-red);
@@ -1545,7 +1554,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 
-/* background-colors */
+/* slider background-colors */
 
 .exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-red-bg {
     background-color: var(--exo-dark-red);
@@ -1778,7 +1787,7 @@ input[type="file"].exo-white-bg::file-selector-button {
 /* Icons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-/* home and tick icons included here.  Other icons available in separate CSS files - see the icons folder */
+/* home and tick icons included here.  Other icons available in separate CSS files - see exo-icons.css */
 
 .exo-icon-home {
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyIDUuNjlsNSA0LjVWMThoLTJ2LTZIOXY2SDd2LTcuODFsNS00LjVNMTIgM0wyIDEyaDN2OGg2di02aDJ2Nmg2di04aDNMMTIgM3oiLz48L3N2Zz4=');
@@ -1982,8 +1991,6 @@ details {
 
 /* Modal Windows
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-
 
 .exo-modal-window {
   position: fixed;
