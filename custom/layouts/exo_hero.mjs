@@ -1,7 +1,7 @@
 /* MIT License - Exo - Copyright (c) 2022 Visual Topology */
 
-import {CustomExoElement} from '../exo_element.js';
-import {ExoUtils} from '../exo_utils.js';
+import {CustomExoElement} from '../exo_element.mjs';
+import {ExoUtils} from '../exo_utils.mjs';
 
 export {CustomExoHero};
 

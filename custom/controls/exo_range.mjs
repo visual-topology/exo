@@ -16,7 +16,7 @@
 
 /* MIT License - Exo - Copyright (c) 2022 Visual Topology */
 
-import {CustomExoControl} from '../exo_control.js';
+import {CustomExoControl} from '../exo_control.mjs';
 
 
 class CustomExoRange extends CustomExoControl {

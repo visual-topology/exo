@@ -1,10 +1,10 @@
 /* MIT License - Exo - Copyright (c) 2022 Visual Topology */
 
-import {CustomExoContainer} from '../exo_container.js';
-import {ExoUtils} from '../exo_utils.js';
-import {CustomExoTab} from '../layouts/exo_tab.js';
+import {CustomExoContainer} from '../exo_container.mjs';
+import {ExoUtils} from '../exo_utils.mjs';
+import {CustomExoTab} from '../layouts/exo_tab.mjs';
 
-class CustomExoNaviburger extends CustomExoContainer {
+class CustomExoTabs extends CustomExoContainer {
 
     constructor() {
         super();
@@ -12,30 +12,16 @@ class CustomExoNaviburger extends CustomExoContainer {
 
     exoBuild(parameters) {
         super.exoBuild("div",parameters);
-        ExoUtils.addClass(this.exoGetElement(), "exo-menu");
-
-        var cb = document.createElement("input");
-        cb.setAttribute("aria-hidden","true");
-        cb.setAttribute("type","checkbox");
-        var cb_id = this.exoGetId()+"_cb";
-        cb.setAttribute("id", cb_id);
-        this.exoGetElement().appendChild(cb);
-        var lbl_open = document.createElement("label");
-        lbl_open.setAttribute("aria-hidden","true");
-        lbl_open.setAttribute("for",cb_id);
-        ExoUtils.addClasses(lbl_open,["exo-menu-open", "exo-button", "exo-icon", "exo-icon-medium", "exo-icon-menu"]);
-        this.exoGetElement().appendChild(lbl_open);
-        var lbl_close = document.createElement("label");
-        lbl_close.setAttribute("aria-hidden","true");
-        lbl_close.setAttribute("for",cb_id);
-        ExoUtils.addClasses(lbl_close,["exo-menu-close", "exo-button", "exo-icon", "exo-icon-medium", "exo-icon-clear"]);
-        this.exoGetElement().appendChild(lbl_close);
-
-        var br = document.createElement("br");
-        this.exoGetElement().appendChild(br);
-
+        ExoUtils.addClass(this.exoGetElement(), "exo-tabs");
         this.scan();
         this.appendChild(this.exoGetRootElement());
+    }
+
+    connectedCallback() {
+        var parameters = CustomExoTabs.exoGetParameters(this);
+        setTimeout(() => {
+            this.exoBuild(parameters);
+            },0);
     }
 
     scan() {
@@ -61,8 +47,6 @@ class CustomExoNaviburger extends CustomExoContainer {
                 ExoUtils.setAttributes(
                     label,
                     [["aria-hidden","true"],["for",radio_id]]);
-                ExoUtils.addClass(label, "exo-menu-item");
-
                 label.appendChild(document.createTextNode(label_text));
                 labels.push(label);
                 if (fg_color) {
@@ -72,19 +56,23 @@ class CustomExoNaviburger extends CustomExoContainer {
                 }
                 if (bg_color) {
                     var bg_cls = "exo-"+bg_color+"-bg";
-                    ExoUtils.addClass(input, bg_cls);
                     ExoUtils.addClass(label,bg_cls);
                 }
             }
         }
 
         for(var idx=0; idx<inputs.length; idx++) {
-            this.exoGetElement().appendChild(inputs[idx]);
             this.exoGetElement().appendChild(labels[idx]);
+            this.exoGetElement().appendChild(inputs[idx]);
         }
 
         var menu_div = document.createElement("div");
-        ExoUtils.addClass(menu_div, "exo-menu-content");
+
+        var break_div = document.createElement("div");
+        ExoUtils.addClass(break_div, "exo-break");
+        this.exoGetElement().appendChild(break_div);
+        ExoUtils.addClass(menu_div, "exo-tabs-content");
+
         this.exoGetElement().appendChild(menu_div);
         exo_tabs.forEach(exo_tab => {
             exo_tab.parentNode.removeChild(exo_tab);
@@ -96,7 +84,6 @@ class CustomExoNaviburger extends CustomExoContainer {
     exoUpdate(name,value) {
     }
 
-
     static get observedAttributes() {
        var attrs = CustomExoContainer.observedAttributes;
        return attrs;
@@ -105,6 +92,4 @@ class CustomExoNaviburger extends CustomExoContainer {
 }
 
 
-
-customElements.define("exo-naviburger", CustomExoNaviburger);
-
+customElements.define("exo-tabs", CustomExoTabs);

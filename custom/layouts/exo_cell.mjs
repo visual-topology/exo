@@ -1,7 +1,7 @@
 /* MIT License - Exo - Copyright (c) 2022 Visual Topology */
 
-import {CustomExoElement} from '../exo_element.js';
-import {ExoUtils} from '../exo_utils.js';
+import {CustomExoElement} from '../exo_element.mjs';
+import {ExoUtils} from '../exo_utils.mjs';
 
 export {CustomExoCell};
 
@@ -14,13 +14,19 @@ class CustomExoCell extends CustomExoElement {
     exoBuild(parameters) {
         super.exoBuild("div", parameters);
         ExoUtils.addClass(this.exoGetRootElement(),"exo-cell");
-        var width = this.getAttribute("cell-width") || "1";
-        ExoUtils.addClass(this.exoGetRootElement(),"exo-"+width+"-cell");
         ExoUtils.moveChildNodes(this,this.exoGetRootElement());
-
         ExoUtils.replaceNode(this,this.exoGetRootElement());
-        // this.appendChild(this.exoGetRootElement());
-        // console.log("exo-cell build");
+    }
+
+    exoUpdate(name,value) {
+        switch (name) {
+            case "cell-width":
+                ExoUtils.removeClasses(this.exoGetElement(), /exo-(.*)-cell/);
+                ExoUtils.addClass(this.exoGetElement(), "exo-" + value + "-cell");
+                break;
+            default:
+                super.exoUpdate(name,value);
+        }
     }
 
     exoGetAttributeNames() {

@@ -1,6 +1,6 @@
 /* MIT License - Exo - Copyright (c) 2022 Visual Topology */
 
-import {ExoUtils} from './exo_utils.js';
+import {ExoUtils} from './exo_utils.mjs';
 
 export { CustomExoElement };
 
@@ -44,14 +44,8 @@ class CustomExoElement extends HTMLElement {
 
         /*
 
-        if (parameters["full-width"]) {
-            ExoUtils.addClass(this.exo_element,"exo-full-width");
-        }
 
-        var bg_image = this.getAttribute("bg-image");
-        if (bg_image) {
-            ExoUtils.addStyle(this.exoGetRootElement(),"background-image","url('"+bg_image+"');");
-        }
+
 
 
         */
@@ -84,6 +78,14 @@ class CustomExoElement extends HTMLElement {
             case "vmargin":
             case "hmargin":
                 this.applySizedDimension(name,value);
+                break;
+            case "bg-image":
+                if (value) {
+                    ExoUtils.addStyle(this.exoGetElement(),"background-image","url('"+value+"');");
+                }
+                break;
+            case "full-width":
+                ExoUtils.addClass(this.exoGetElement(),"exo-full-width");
                 break;
             default:
                 console.log("Unrecognized exoUpdate: "+name+","+value);
