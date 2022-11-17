@@ -11,6 +11,7 @@ class CustomExoSelectOption extends HTMLElement {
 
 
 class CustomExoSelect extends CustomExoControl {
+
     constructor() {
         super();
     }
@@ -38,7 +39,7 @@ class CustomExoSelect extends CustomExoControl {
             evt.stopPropagation();
         });
         this.appendChild(this.exoGetRootElement());
-        this.scan();
+        this.exoScan();
     }
 
     exoUpdate(name, value) {
@@ -46,12 +47,15 @@ class CustomExoSelect extends CustomExoControl {
             case "value":
                 this.exoGetElement().value = value;
                 break;
+            case "size":
+                this.exoGetElement().setAttribute("size",value);
+                break;
             default:
                 super.exoUpdate(name, value);
         }
     }
 
-    setOptions(values) {
+    exoSetOptions(values) {
         for (var idx in this.options) {
             var option = this.options[idx];
             this.exoGetElement().removeChild(option.element);
@@ -64,17 +68,14 @@ class CustomExoSelect extends CustomExoControl {
             if (values[idx].length > 2) {
                 icon = values[idx][2];
             }
-            this.addOption(valid_value,label,icon);
+            this.exoAddOption(valid_value,label,icon);
         }
     }
 
-    addOption(value,label,icon) {
+    exoAddOption(value,label) {
         var option = document.createElement("option");
         option.appendChild(document.createTextNode(label));
         option.setAttribute("value", value);
-        if (icon) {
-            option.setAttribute("class", "exo-icon exo-icon-" + icon);
-        }
         this.exoGetElement().appendChild(option);
         this.options.push({"element": option, "value": value});
     }
@@ -89,37 +90,18 @@ class CustomExoSelect extends CustomExoControl {
         return attrs;
     }
 
-    scan() {
+    exoScan() {
         for(var idx=0; idx<this.childNodes.length; idx++) {
             var node = this.childNodes[idx];
-            this.addNodeCallback(node);
+            this.exoAddNodeCallback(node);
         }
     }
 
-    /*
-    setupMonitoring() {
-        const config = {childList: true};
-        var that = this;
-        const callback = (mutationList, observer) => {
-
-            for (const mutation of mutationList) {
-                if (mutation.type === 'childList') {
-                    mutation.addedNodes.forEach(node => that.addNodeCallback(node));
-                }
-            }
-        };
-
-        const observer = new MutationObserver(callback);
-        observer.observe(this, config);
-    } */
-
-    addNodeCallback(node) {
+    exoAddNodeCallback(node) {
         if (node.nodeType == Node.ELEMENT_NODE && node.tagName == "EXO-SELECT-OPTION") {
             var value = node.getAttribute("value");
             var label = node.getAttribute("label") || value;
-            var icon = node.getAttribute("icon");
-            this.addOption(value,label,icon);
-            // this.removeChild(node);
+            this.exoAddOption(value,label);
         }
 
     }

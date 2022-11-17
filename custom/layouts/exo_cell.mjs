@@ -30,7 +30,7 @@ class CustomExoCell extends CustomExoElement {
     }
 
     exoGetAttributeNames() {
-        return CustomExoSelect.observedAttributes;
+        return CustomExoCell.observedAttributes;
     }
 
     static get observedAttributes() {

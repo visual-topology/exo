@@ -9,6 +9,7 @@ class CustomExoElement extends HTMLElement {
     constructor() {
         super();
         this.exo_built = false;
+        this.exo_build_callbacks = [];
     }
 
     static exo_counter = 0;
@@ -39,18 +40,25 @@ class CustomExoElement extends HTMLElement {
         }
         CustomExoElement.exo_counter += 1;
         this.exo_element.setAttribute("id",this.exo_id);
+        window.setTimeout(() => {
+            this.exoBuildComplete();
+        },0);
+    }
 
+    exoBuildComplete() {
+        for(var idx=0; idx<this.exo_build_callbacks.length; idx++) {
+            this.exo_build_callbacks[idx]();
+        }
+        this.exo_build_callbacks = null;
+    }
 
-
-        /*
-
-
-
-
-
-        */
-
-
+    exoAddBuildCallback(cb) {
+        if (this.exo_build_callbacks == null) {
+            cb(); // already built, call immediately
+        } else {
+            // schedule this callback for execution once this
+            this.exo_build_callbacks.push(cb);
+        }
     }
 
     exoUpdateParameters(parameters) {

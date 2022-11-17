@@ -25,18 +25,9 @@ class CustomExoToggle extends CustomExoControl {
         label.appendChild(span);
         parent.appendChild(label);
 
-        if (parameters.true_text) {
-            var tt_span = document.createElement("span");
-            tt_span.setAttribute("class","exo-toggle-true");
-            tt_span.appendChild(document.createTextNode(parameters.true_text));
-            label.appendChild(tt_span);
-        }
-        if (parameters.false_text) {
-            var ft_span = document.createElement("span");
-            ft_span.setAttribute("class","exo-toggle-false");
-            ft_span.appendChild(document.createTextNode(parameters.false_text));
-            label.appendChild(ft_span);
-        }
+        this.label = label;
+        this.tt_span = null;
+        this.ft_span = null;
 
         var that = this;
 
@@ -56,9 +47,27 @@ class CustomExoToggle extends CustomExoControl {
                 this.exoGetElement().checked = value;
                 break;
             case "true-text":
-                break; // TODO
+                if (!this.tt_span) {
+                    this.tt_span = document.createElement("span");
+                    this.tt_span.setAttribute("class", "exo-toggle-true");
+                    this.label.appendChild(this.tt_span);
+                }
+                ExoUtils.removeAllChildren(this.tt_span);
+                if (value) {
+                    this.tt_span.appendChild(document.createTextNode(value));
+                }
+                break;
             case "false-text":
-                break; // TODO
+                 if (!this.ft_span) {
+                    this.ft_span = document.createElement("span");
+                    this.ft_span.setAttribute("class", "exo-toggle-false");
+                    this.label.appendChild(this.ft_span);
+                }
+                ExoUtils.removeAllChildren(this.ft_span);
+                if (value) {
+                    this.ft_span.appendChild(document.createTextNode(value));
+                }
+                break;
             case "fg-color":
                 ExoUtils.removeClasses( this.slider_span, /(exo-)(.*)(-fg)/);
                 ExoUtils.addClass(this.slider_span,"exo-"+value+"-fg");

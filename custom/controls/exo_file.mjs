@@ -16,9 +16,12 @@ class CustomExoFile extends CustomExoControl {
 
         this.exoGetElement().oninput = function (evt) {
             const filelist = that.exoGetElement().files;
-            that.upload(filelist, function(r) {
-                that.dispatchEvent(new CustomEvent("exo-value",{detail:r}));
-            });
+            var files = {};
+            for(var idx=0; idx<filelist.length;idx++) {
+                var file = filelist[idx];
+                files[file.name] = file;
+            }
+            that.dispatchEvent(new CustomEvent("exo-value",{detail:files}));
         }
         this.appendChild(this.exoGetRootElement());
     }
@@ -35,11 +38,9 @@ class CustomExoFile extends CustomExoControl {
     }
 
     static get observedAttributes() {
-        var attrs = CustomExoControl.observedAttributes;
-        attrs.push('value');
-        return attrs;
+        return CustomExoControl.observedAttributes;
     }
-
+/*
     async upload(filelist, callback) {
         var uploaded = {};
         for (var idx = 0; idx < filelist.length; idx++) {
@@ -49,13 +50,12 @@ class CustomExoFile extends CustomExoControl {
     }
 
     async upload_file(file, uploaded) {
-        var reader = new FileReader();
         var that = this;
         var ab = await file.arrayBuffer();
         var dec = new TextDecoder();
         uploaded[file.name] = dec.decode(ab);
     }
-
+*/
 }
 
 customElements.define("exo-file", CustomExoFile);

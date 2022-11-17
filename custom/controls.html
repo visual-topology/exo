@@ -13,6 +13,8 @@
     <script src="controls/exo_range.mjs" type="module"></script>
     <script src="controls/exo_date.mjs" type="module"></script>
     <script src="controls/exo_file.mjs" type="module"></script>
+    <script src="controls/exo_textarea.mjs" type="module"></script>
+    <script src="controls/exo_modal.mjs" type="module"></script>
     <link rel="stylesheet" href="../exo.css">
     <link rel="stylesheet" href="../exo-icons.css">
     <script src="../support/model_view.js" type="text/javascript"></script>
@@ -77,7 +79,7 @@
             <pre><code id="view2"></code></pre>
         </div>
         <div id="model2">
-            <exo-toggle id="test_toggle" label="test" true_text="ON" false_text="OFF" value="false" tooltip="Help!!!" fg-color="light-gray" bg-color="dark-red"></exo-toggle>
+            <exo-toggle id="test_toggle" label="test" true-text="ON" false-text="OFF" value="false" tooltip="Help!!!" fg-color="light-gray" bg-color="dark-red"></exo-toggle>
             <script>
                 var btn = document.getElementById("test_toggle");
                 btn.addEventListener("exo-value",e => { alert(e.detail); } );
@@ -181,7 +183,7 @@
     </div>
 
     <h2>File</h2>
-    <p>To use the <code>exo-dfile</code> custom element, include: <pre>&lt;script type="module" src="custom/controls/exo_file.mjs"&gt;&lt;/script&gt;</pre></p>
+    <p>To use the <code>exo-file</code> custom element, include: <pre>&lt;script type="module" src="custom/controls/exo_file.mjs"&gt;&lt;/script&gt;</pre></p>
     <div class="exo-row">
         <div class="exo-4-cell model-view">
             <pre><code id="view9"></code></pre>
@@ -193,6 +195,39 @@
                 var btn = document.getElementById("test_file");
                 btn.addEventListener("exo-value",e => { alert(JSON.stringify(e.detail)); })
             </script>
+        </div>
+    </div>
+
+    <h2>Text</h2>
+    <p>To use the <code>exo-textarea</code> custom element, include: <pre>&lt;script type="module" src="custom/controls/exo_textarea.mjs"&gt;&lt;/script&gt;</pre></p>
+    <div class="exo-row">
+        <div class="exo-4-cell model-view">
+            <pre><code id="view10"></code></pre>
+        </div>
+        <div id="model10">
+            <exo-textarea id="test_textarea" label="test" value="Enter text here" tooltip="Help!!!" rows="5" cols="40" bg-color="light-green"></exo-textarea>
+            <script>
+                var btn = document.getElementById("test_textarea");
+                btn.addEventListener("exo-value",e => { alert(e.detail); })
+            </script>
+        </div>
+    </div>
+
+    <h2>Modal</h2>
+    <p>To use the <code>exo-modal</code> custom element, include:
+    <ul>
+        <li><pre>&lt;script src="custom/controls/exo_modal.mjs" type="module"&gt;&lt;/script&gt;</pre></p></li>
+    </ul>
+    <div class="exo-row">
+        <div class="exo-4-cell model-view">
+            <pre><code id="view11"></code></pre>
+        </div>
+        <div id="model11">
+            <exo-cell cell-width="4">
+                <exo-modal label="Test Modal" tooltip="Use to test modal dialogues" text="Open Modal">
+                    <div>Modal Window Content</div>
+                </exo-modal>
+            </exo-cell>
         </div>
     </div>
 </body>

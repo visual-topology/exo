@@ -1083,30 +1083,33 @@ exo-dark-orange-border {
 /* medium-height */
 
 input, select, summary, div.exo-button {
-    border-radius: var(--round-small);
     height: var(--control-size);
+}
+
+input, select, summary, div.exo-button, textarea {
+    border-radius: var(--round-small);
     margin-left: 5px;
     margin-right: auto;
 }
 
-input:invalid {
+input:invalid, textarea:invalid {
   outline: 5px dashed var(--exo-invalid);
 }
 
 input:focus, select:focus, a:focus, .exo-toggle input:focus + .exo-toggle-slide, div.exo-button:focus,
 .exo-conditional input:focus ~ .exo-conditional-false, .exo-conditional input:focus ~ .exo-conditional-true,
-.exo-carousel:focus, div.exo-button:focus {
+.exo-carousel:focus, div.exo-button:focus, textarea:focus {
     outline: 3px dotted var(--exo-focus);
 }
 
 input:hover, select:hover, button:hover, a:hover,
 summary:hover, .exo-toggle input:hover + .exo-toggle-slide, div.exo-button:hover, label:hover,
 .exo-conditional input:hover ~ .exo-conditional-false, .exo-conditional input:hover ~ .exo-conditional-true,
-.exo-carousel:hover  {
+.exo-carousel:hover, textarea:hover  {
     outline: 3px solid var(--exo-hover);
 }
 
-input:disabled, .exo-conditional input:disabled ~ *
+input:disabled, textarea:disabled, .exo-conditional input:disabled ~ *
  {
     opacity: 0.4;
 }
@@ -2002,11 +2005,10 @@ details {
   background: rgba(0,0,0,0.5);
 }
 
-/*
+
 .exo-modal > div.exo-modal-window > div.exo-modal-window-content {
     background-color: var(--exo-white);
 }
-*/
 
 .exo-modal > div.exo-modal-window > div.exo-modal-window-content > label:hover {
     outline: 0px solid var(--exo-hover);
@@ -2054,7 +2056,8 @@ details {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px;
+    padding: 15px;
+    padding-top: 40px;
     border-width: 2px;
     border-style: solid;
     border-color: #333;

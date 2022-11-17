@@ -1,18 +1,4 @@
-/*
-<label for="slider">
-        Slider:
-    <output id="result" for="slider">
-            10
-    </output>
-</label>
-<div style="display:flex;">
-        0
-    <input id="slider" type="range" value="10"
-         max="20" min="0" oninput="result.value=slider.value"
-         style="display:inline;"/>
-        20
-</div>
- */
+
 
 /* MIT License - Exo - Copyright (c) 2022 Visual Topology */
 
@@ -53,7 +39,7 @@ class CustomExoRange extends CustomExoControl {
         let elt = this.exoGetElement();
         elt.parentNode.insertBefore(document.createTextNode(parameters["min"]),elt);
         elt.parentNode.insertBefore(document.createTextNode(parameters["max"]),elt.nextSibling);
-        this.exoDefineOutput();
+
         this.exoSetOutputValue(parameters["value"]);
     }
 
