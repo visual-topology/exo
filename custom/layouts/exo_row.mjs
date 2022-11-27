@@ -19,14 +19,10 @@ class CustomExoRow extends CustomExoElement {
         }
         this.built = true;
         super.exoBuild("div", parameters);
-        for(var idx=0; idx<this.childNodes.length; idx++) {
-            console.log("exo-row-child:"+this.childNodes[idx].tagName);
-        }
 
         ExoUtils.addClass(this.exoGetRootElement(),"exo-row");
         ExoUtils.moveChildNodes(this,this.exoGetRootElement());
         ExoUtils.replaceNode(this,this.exoGetRootElement());
-        // this.appendChild(this.exoGetRootElement());
     }
 }
 

@@ -22,7 +22,6 @@ class ExoUtils {
     }
 
     static removeClass(element, classname) {
-        console.log("removing: "+classname);
         var classes = ExoUtils.getClasses(element);
         classes = classes.filter(name => name != classname);
         element.setAttribute("class", classes.join(" "));
@@ -55,7 +54,6 @@ class ExoUtils {
         }
         for(var idx=0; idx<to_move.length; idx++) {
             var node = to_move[idx];
-            console.log("moved:"+String(node));
             if (node != to_element) {
                 from_element.removeChild(node);
                 to_element.appendChild(node);

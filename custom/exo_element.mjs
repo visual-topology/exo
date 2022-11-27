@@ -16,11 +16,13 @@ class CustomExoElement extends HTMLElement {
 
     connectedCallback() {
         if (!this.exo_built) {
-            this.exo_built = true;
             setTimeout(() => {
                 let parameters = this.exoGetParameters(this);
-                this.exoBuild(parameters);
-                this.exoUpdateParameters(parameters);
+                if (!this.exo_built) {
+                    this.exoBuild(parameters);
+                    this.exo_built = true;
+                    this.exoUpdateParameters(parameters);
+                }
             }, 0);
         }
     }
