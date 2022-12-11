@@ -1,9 +1,5 @@
 /* MIT License - Exo - Copyright (c) 2022 Visual Topology */
 
-import {CustomExoContainer} from '../exo_container.mjs';
-import {ExoUtils} from '../exo_utils.mjs';
-import {CustomExoTab} from '../layouts/exo_tab.mjs';
-
 class CustomExoTabs extends CustomExoContainer {
 
     constructor() {

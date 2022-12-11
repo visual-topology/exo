@@ -1,9 +1,6 @@
 /* MIT License - Exo - Copyright (c) 2022 Visual Topology */
 
-import {CustomExoControl} from '../exo_control.mjs';
-
-
-class CustomExoDate extends CustomExoControl {
+class CustomExoText extends CustomExoControl {
 
     constructor() {
         super();
@@ -12,23 +9,12 @@ class CustomExoDate extends CustomExoControl {
     exoBuild(parameters) {
         super.exoBuild("input", parameters);
 
-        this.exoGetElement().setAttribute("type","date");
-        if ("min" in parameters) {
-            this.exoGetElement().setAttribute("min", parameters["min"]);
-        }
-        if ("max" in parameters) {
-            this.exoGetElement().setAttribute("max", parameters["max"]);
-        }
-        if ("value" in parameters) {
-            this.exoGetElement().value = parameters["value"];
-        } else {
-            this.getExoElement().value = 0;
-        }
+        this.exoGetElement().setAttribute("type","text");
+        this.exoGetElement().value = parameters["value"] || "";
 
         var that = this;
 
         this.exoGetElement().oninput = function (evt) {
-            // var v = new Date(that.exoGetElement().value+"Z"); // UTC
             var v = that.exoGetElement().value;
             that.dispatchEvent(new CustomEvent("exo-value",{detail:v}));
             evt.stopPropagation();
@@ -47,14 +33,14 @@ class CustomExoDate extends CustomExoControl {
     }
 
     exoGetAttributeNames() {
-        return CustomExoDate.observedAttributes;
+        return CustomExoText.observedAttributes;
     }
 
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
-        attrs.push('value','min','max');
+        attrs.push('value');
         return attrs;
     }
 }
 
-customElements.define("exo-date", CustomExoDate);
+customElements.define("exo-text", CustomExoText);

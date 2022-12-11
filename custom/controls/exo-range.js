@@ -1,9 +1,8 @@
+
+
 /* MIT License - Exo - Copyright (c) 2022 Visual Topology */
 
-import {CustomExoControl} from '../exo_control.mjs';
-
-
-class CustomExoNumber extends CustomExoControl {
+class CustomExoRange extends CustomExoControl {
 
     constructor() {
         super();
@@ -12,30 +11,33 @@ class CustomExoNumber extends CustomExoControl {
     exoBuild(parameters) {
         super.exoBuild("input", parameters);
 
-        this.exoGetElement().setAttribute("type","number");
-        if ("min" in parameters) {
-            this.exoGetElement().setAttribute("min", parameters["min"]);
-        }
-        if ("max" in parameters) {
-            this.exoGetElement().setAttribute("max", parameters["max"]);
-        }
+        this.exoGetElement().setAttribute("type","range");
+        this.exoGetElement().setAttribute("style","display:inline;");
+
+        this.exoGetElement().setAttribute("min", parameters["min"]);
+        this.exoGetElement().setAttribute("max", parameters["max"]);
+
         if ("step" in parameters) {
             this.exoGetElement().setAttribute("step", parameters["step"]);
         }
-        if ("value" in parameters) {
-            this.exoGetElement().value = parameters["value"];
-        } else {
-            this.getExoElement().value = 0;
-        }
+        this.exoGetElement().value = parameters["value"];
 
         var that = this;
 
         this.exoGetElement().oninput = function (evt) {
-            var v = Number.parseFloat(that.exoGetElement().value);
+            const updated_value = that.exoGetElement().value;
+            that.exoSetOutputValue(updated_value);
+            var v = Number.parseFloat(updated_value);
             that.dispatchEvent(new CustomEvent("exo-value",{detail:v}));
             evt.stopPropagation();
         }
         this.appendChild(this.exoGetRootElement());
+
+        let elt = this.exoGetElement();
+        elt.parentNode.insertBefore(document.createTextNode(parameters["min"]),elt);
+        elt.parentNode.insertBefore(document.createTextNode(parameters["max"]),elt.nextSibling);
+
+        this.exoSetOutputValue(parameters["value"]);
     }
 
     exoUpdate(name,value) {
@@ -59,4 +61,4 @@ class CustomExoNumber extends CustomExoControl {
     }
 }
 
-customElements.define("exo-number", CustomExoNumber);
+customElements.define("exo-range", CustomExoRange);

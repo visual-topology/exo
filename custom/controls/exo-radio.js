@@ -1,8 +1,5 @@
 /* MIT License - Exo - Copyright (c) 2022 Visual Topology */
 
-import {CustomExoControl} from '../exo_control.mjs';
-import {ExoUtils} from '../exo_utils.mjs';
-
 class CustomExoRadioButton extends HTMLElement {
     constructor() {
         super();
