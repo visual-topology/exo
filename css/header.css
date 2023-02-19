@@ -1,0 +1,142 @@
+/* MIT License - Exo - Copyright (C) 2022-2023 Visual Topology */
+
+/*
+  Exo v0.0.2
+*/
+
+/*
+ Define variables for the exo colors
+*/
+
+:root {
+
+  --exo-focus: #33C3F0; /* like skeleton, use blue for focus */
+  --exo-hover: yellow;
+  --exo-highlight: orange;
+  --exo-invalid: red;
+
+    /* dark background colors */
+  --exo-dark-red: #8B0000;
+  --exo-dark-orange: #D2691E;
+  --exo-dark-blue: #00008B;
+  --exo-dark-green: #006400;
+  --exo-dark-purple: #4B0082;
+  --exo-dark-brown:  #654321;
+  --exo-dark-gray:  #202020;
+  --exo-dark-pink: #8B008B;
+  --exo-dark-yellow: #808000;
+
+  /* https://webaim.org/resources/contrastchecker/ */
+
+
+    /* light background colors */
+  --exo-light-red: #FF8080;
+  --exo-light-orange: #F6DDCC;
+  --exo-light-blue: #D6EAF8;
+  --exo-light-green: #D5F5E3;
+  --exo-light-purple: #E8DAEF;
+  --exo-light-brown: #EB984E;
+  --exo-light-gray: #D0D0D0;
+  --exo-light-pink: #FF80FF;
+  --exo-light-yellow: #FFFF80;
+
+  --exo-white:  #FFFFFF;
+  --exo-black:  #000000;
+
+  /* color variants used for zebra tables */
+  --exo-dark-red2: #DF1010;
+  --exo-dark-orange2: #EF9500;
+  --exo-dark-blue2: #2020CF;
+  --exo-dark-green2:  #23BC23;
+  --exo-dark-purple2: #792079;
+  --exo-dark-brown2:  #AA5500;
+  --exo-dark-gray2:  #303030;
+  --exo-dark-pink2: #7B007B;
+  --exo-dark-yellow2: #A07000;
+
+  --exo-light-red2: #FC8073;
+  --exo-light-orange2: #FFEDDC;
+  --exo-light-blue2: #E6FAFF;
+  --exo-light-green2: #E5FFF3;
+  --exo-light-purple2: #F8EAFF;
+  --exo-light-brown2: #FBA85E;
+  --exo-light-gray2: #E0E0E0;
+  --exo-light-yellow2: #E0E000;
+  --exo-light-pink2: #D000D0;
+
+  --exo-white2:  #EFEFEF;
+  --exo-black2:  #202020;
+
+  --border-color: #888;
+
+  /* sizes: tiny,small,medium,large,huge */
+
+  --round-tiny: 2px;
+  --round-small: 4px;
+  --round-medium: 8px; /* default */
+  --round-large: 16px;
+  --round-huge: 24px;
+
+  --border-tiny: 1px;
+  --border-small: 2px;
+  --border-medium: 4px; /* default */
+  --border-large: 8px;
+  --border-huge: 16px;
+
+  --padding-tiny: 1px;
+  --padding-small: 4px;
+  --padding-medium: 8px; /* default */
+  --padding-large: 16px;
+  --padding-huge: 24px;
+
+  --margin-tiny: 2px;
+  --margin-small: 4px;
+  --margin-medium: 8px; /* default */
+  --margin-large: 16px;
+  --margin-huge: 24px;
+
+  --exo-tiny-icon: 14px;
+  --exo-tiny-font: 9px;
+
+  --exo-small-icon: 22px;
+  --exo-small-font: 12px;
+
+  --exo-medium-icon: 34px; /* default */
+  --exo-medium-font: 18px; /* default */
+
+  --exo-large-icon: 48px;
+  --exo-large-font: 26px;
+
+  --exo-huge-icon: 72px;
+  --exo-huge-font: 38px;
+
+  /* other sizes for controls, cells, cards */
+
+  --cell-width: 128px;
+
+  --control-size: 36px;
+
+  --card-width-narrow: 236px;
+  --card-width-normal: 364px;
+  --card-width-wide: 492px;
+ }
+
+.exo-container {
+  position: relative;
+  max-width: calc(var(--cell-width) * 10); /* 10 cells */
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.exo-container-narrow {
+  max-width: calc(var(--cell-width) * 8); /* 8 cells */
+}
+
+.exo-container-wide {
+   max-width: calc(var(--cell-width) * 12); /* 12 cells */
+}
+
+.exo-container * {
+  box-sizing: border-box;
+}

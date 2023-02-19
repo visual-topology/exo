@@ -1,0 +1,46 @@
+/* Input Controls - Checkbox
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+input[type="checkbox"] {
+    appearance: none;
+	width: calc(var(--control-size) - 6px);
+	height: calc(var(--control-size) - 6px);
+	border-width: 2px;
+    border-style: solid;
+    border-color: #CCC;
+	border-radius: 10%;
+	background-clip: content-box;
+	padding: 0px;
+	display: inline-block;
+	margin-top: 2px;
+	margin-bottom: 4px;
+    background-size: calc(var(--control-size) - 8px);
+}
+
+/* use a black tick icon */
+
+input[type="checkbox"]:checked {
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMkw0LjggMTJsLTEuNCAxLjRMOSAxOSAyMSA3bC0xLjQtMS40TDkgMTYuMnoiLz48L3N2Zz4=');
+}
+
+/* for dark color backgrounds, use a white tick icon */
+
+input[type="checkbox"]:checked.exo-dark-red-bg, input[type="checkbox"]:checked.exo-dark-orange-bg, input[type="checkbox"]:checked.exo-dark-blue-bg,
+input[type="checkbox"]:checked.exo-dark-green-bg, input[type="checkbox"]:checked.exo-dark-purple-bg, input[type="checkbox"]:checked.exo-dark-brown-bg,
+input[type="checkbox"]:checked.exo-dark-gray-bg, input[type="checkbox"]:checked.exo-dark-gray-bg, input[type="checkbox"]:checked.exo-dark-pink-bg,
+input[type="checkbox"]:checked.exo-dark-yellow-bg, input[type="checkbox"]:checked.exo-black-bg
+{
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iI0ZGRkZGRiI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMkw0LjggMTJsLTEuNCAxLjRMOSAxOSAyMSA3bC0xLjQtMS40TDkgMTYuMnoiLz48L3N2Zz4=');
+}
+
+.exo-checkbox-true, .exo-checkbox-false {
+    vertical-align: top;
+}
+
+input[type="checkbox"]:checked ~ .exo-checkbox-false {
+    display: none;
+}
+
+input[type="checkbox"]:not(:checked) ~ .exo-checkbox-true {
+    display: none;
+}

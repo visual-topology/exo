@@ -1,0 +1,109 @@
+/* Input Controls
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* medium-height */
+
+input, select, summary, div.exo-button {
+    height: var(--control-size);
+}
+
+input, select, summary, div.exo-button, textarea {
+    border-radius: var(--round-small);
+    margin-left: 5px;
+    margin-right: auto;
+}
+
+input:invalid, textarea:invalid {
+  outline: 5px dashed var(--exo-invalid);
+}
+
+input:focus, select:focus, a:focus, .exo-toggle input:focus + .exo-toggle-slide, div.exo-button:focus,
+.exo-conditional input:focus ~ .exo-conditional-false, .exo-conditional input:focus ~ .exo-conditional-true,
+.exo-carousel:focus, div.exo-button:focus, textarea:focus {
+    outline: 3px dotted var(--exo-focus);
+}
+
+input:hover, select:hover, button:hover, a:hover,
+summary:hover, .exo-toggle input:hover + .exo-toggle-slide, div.exo-button:hover, label:hover,
+.exo-conditional input:hover ~ .exo-conditional-false, .exo-conditional input:hover ~ .exo-conditional-true,
+.exo-carousel:hover, textarea:hover  {
+    outline: 3px solid var(--exo-hover);
+}
+
+input:disabled, textarea:disabled, .exo-conditional input:disabled ~ *
+ {
+    opacity: 0.4;
+}
+
+input[type="button"], div.exo-button {
+    transition: transform 0.2s;
+}
+
+input[type="button"]:active:not(:disabled), div.exo-button:active:not(:disabled) {
+     transform: scale(0.95);
+}
+
+/* icons in input[type=button] - use 4px between image and text */
+
+input[type="button"].exo-icon {
+    padding-left: calc(var(--control-size) + 4px);
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-color: transparent;
+    background-size: calc(var(--control-size) - 2px);
+}
+
+/* Input Controls - Number
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+input[type="number"] {
+    appearance: none;
+}
+
+
+/* Input Controls - Range
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 200px;
+    height: 12px;
+    border-radius: 4px;
+    vertical-align: middle;
+    background: #333;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+input[type=range]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 3px;
+  background-color: #EEE;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 2px solid black;
+  height: 16px;
+  width: 16px;
+  border-radius: 3px;
+  background-color: #FFF;
+}
+
+/* Input Controls - Select/Option
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+select {
+  padding: 4px 4px;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  height: var(--control-size);
+  min-width: var(--cell-width);
+}
+
+select[size] {
+    height: auto;
+}

@@ -1,0 +1,76 @@
+/* Carousel
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-carousel {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    text-align: center;
+    margin-top: -32px;
+}
+
+.exo-carousel > input {
+    position: relative;
+    top: 40px;
+    height: 20px;
+    width: 20px;
+    margin: 5px;
+}
+
+.exo-carousel > .exo-carousel-content {
+    padding-top: 50px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: var(--round-medium);
+    width: 100%;
+}
+
+.exo-carousel-item {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.exo-carousel-item img {
+    width: 100%;
+}
+
+.exo-carousel-item > * {
+    flex: 1;
+}
+
+.exo-carousel-item > label {
+    flex: 0;
+    display: inline-block;
+    min-width: 48px;
+    min-height: 48px;
+    border-radius: var(--round-small);
+    padding: var(--padding-small);
+    margin: var(--margin-small);
+}
+
+.exo-carousel-content > *
+{
+    visibility: visible;
+}
+
+/* edit below to extend limit on 12 slides */
+
+.exo-carousel > input[type=radio]:nth-child(1):not(:checked) ~ .exo-carousel-content > *:nth-child(1),
+.exo-carousel > input[type=radio]:nth-child(2):not(:checked) ~ .exo-carousel-content > *:nth-child(2),
+.exo-carousel > input[type=radio]:nth-child(3):not(:checked) ~ .exo-carousel-content > *:nth-child(3),
+.exo-carousel > input[type=radio]:nth-child(4):not(:checked) ~ .exo-carousel-content > *:nth-child(4),
+.exo-carousel > input[type=radio]:nth-child(5):not(:checked) ~ .exo-carousel-content > *:nth-child(5),
+.exo-carousel > input[type=radio]:nth-child(6):not(:checked) ~ .exo-carousel-content > *:nth-child(6),
+.exo-carousel > input[type=radio]:nth-child(7):not(:checked) ~ .exo-carousel-content > *:nth-child(7),
+.exo-carousel > input[type=radio]:nth-child(8):not(:checked) ~ .exo-carousel-content > *:nth-child(8),
+.exo-carousel > input[type=radio]:nth-child(9):not(:checked) ~ .exo-carousel-content > *:nth-child(9),
+.exo-carousel > input[type=radio]:nth-child(10):not(:checked) ~ .exo-carousel-content > *:nth-child(10),
+.exo-carousel > input[type=radio]:nth-child(11):not(:checked) ~ .exo-carousel-content > *:nth-child(11),
+.exo-carousel > input[type=radio]:nth-child(12):not(:checked) ~ .exo-carousel-content > *:nth-child(12)
+ {
+    visibility: hidden;
+    height: 0px;
+    padding: 0px;
+}

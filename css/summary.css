@@ -1,0 +1,15 @@
+/* Summary / Details
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+details > summary {
+    width: 100%;
+    padding-left: 10px;
+    font-size: 24px;
+    border-radius: 4px;
+    margin: 0px;
+    border: 1px solid #bbb;
+}
+
+details {
+    width: 100%;
+}

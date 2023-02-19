@@ -1,0 +1,67 @@
+
+/* Progress Bar
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+progress {
+    appearance: none;
+    background-color: #DDD;
+    width: 200px;
+    height: 10px;
+    padding: 1px;
+    border: 1px solid #444;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #DDD;
+}
+
+progress::-webkit-progress-value {
+  background-color: #444;
+}
+progress::-moz-progress-bar {
+  background-color: #444;
+}
+
+progress.exo-dark-red-bg::-webkit-progress-value, progress.exo-dark-red-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-red);
+}
+
+progress.exo-dark-orange-bg::-webkit-progress-value, progress.exo-dark-orange-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-orange);
+}
+
+progress.exo-dark-blue-bg::-webkit-progress-value, progress.exo-dark-blue-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-blue);
+}
+
+progress.exo-dark-green-bg::-webkit-progress-value, progress.exo-dark-green-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-green);
+}
+
+progress.exo-dark-purple-bg::-webkit-progress-value, progress.exo-dark-purple-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-purple);
+}
+
+progress.exo-dark-brown-bg::-webkit-progress-value, progress.exo-dark-brown-bg::-moz-progress-bar  {
+  background-color: var(--exo-dark-brown);
+}
+
+progress.exo-dark-gray-bg::-webkit-progress-value, progress.exo-dark-gray-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-gray);
+}
+
+progress.exo-dark-pink-bg::-webkit-progress-value, progress.exo-dark-pink-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-pink);
+}
+
+progress.exo-dark-yellow-bg::-webkit-progress-value, progress.exo-dark-yellow-bg::-moz-progress-bar {
+  background-color: var(--exo-dark-yellow);
+}
+
+progress.exo-black-bg::-webkit-progress-value, progress.exo-dark-black-bg::-moz-progress-bar {
+  background-color: var(--exo-black);
+}
+
+progress.exo-white-bg::-webkit-progress-value, progress.exo-white::-moz-progress-bar {
+  background-color: var(--exo-white);
+}

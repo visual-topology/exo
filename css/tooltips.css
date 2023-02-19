@@ -1,0 +1,27 @@
+/* Help hover/popups
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-help-content {
+    display: none;
+    position: absolute;
+}
+
+.exo-help-content:focus {
+    border-color: transparent;
+}
+
+.exo-help-tooltip {
+    display: inline-block;
+}
+
+.exo-help-tooltip:hover > .exo-help-content, .exo-help-tooltip:focus > .exo-help-content {
+    display: inline-block;
+}
+
+.exo-help-content {
+    width: 200px;
+    border-radius: var(--round-small);
+    padding: var(--padding-small);
+    margin:  var(--margin-small);
+    z-index: 999;
+}

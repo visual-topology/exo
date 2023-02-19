@@ -1,0 +1,127 @@
+/* Input Controls - File
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+input[type="file"].exo-dark-red-bg, input[type="file"].exo-light-red-bg,
+input[type="file"].exo-dark-orange-bg, input[type="file"].exo-light-orange-bg,
+input[type="file"].exo-dark-blue-bg, input[type="file"].exo-light-blue-bg,
+input[type="file"].exo-dark-green-bg, input[type="file"].exo-light-green-bg,
+input[type="file"].exo-dark-purple-bg, input[type="file"].exo-light-purple-bg,
+input[type="file"].exo-dark-brown-bg, input[type="file"].exo-light-brown-bg,
+input[type="file"].exo-dark-gray-bg, input[type="file"].exo-light-gray-bg,
+input[type="file"].exo-dark-pink-bg, input[type="file"].exo-light-pink-bg,
+input[type="file"].exo-dark-yellow-bg, input[type="file"].exo-light-yellow-bg,
+input[type="file"].exo-black-bg, input[type="file"].exo-white-bg {
+    background-color: inherit;
+    border: inherit;
+    color: inherit;
+}
+
+input[type="file"]::file-selector-button {
+  display: inline-block;
+  padding: var(--padding-small);
+  text-align: center;
+  white-space: nowrap;
+  border-radius: var(--round-small);
+}
+
+/* ...instead apply to just the file-selector-button pseudo-element */
+
+input[type="file"].exo-dark-red-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-red);
+}
+
+input[type="file"].exo-light-red-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-red);
+}
+
+input[type="file"].exo-dark-orange-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-orange);
+}
+
+input[type="file"].exo-light-orange-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-orange);
+}
+
+input[type="file"].exo-dark-blue-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-blue);
+}
+
+input[type="file"].exo-light-blue-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-blue);
+}
+
+input[type="file"].exo-dark-green-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-green);
+}
+
+input[type="file"].exo-light-green-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-green);
+}
+
+input[type="file"].exo-dark-purple-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-purple);
+}
+
+input[type="file"].exo-light-purple-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-purple);
+}
+
+input[type="file"].exo-dark-brown-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-brown);
+}
+
+input[type="file"].exo-light-brown::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-brown);
+}
+
+input[type="file"].exo-dark-gray-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-gray);
+}
+
+input[type="file"].exo-light-gray-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-gray);
+}
+
+input[type="file"].exo-dark-pink-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-pink);
+}
+
+input[type="file"].exo-light-pink-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-pink);
+}
+
+input[type="file"].exo-dark-yellow-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-dark-yellow);
+}
+
+input[type="file"].exo-light-yellow-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-light-yellow);
+}
+
+input[type="file"].exo-black-bg::file-selector-button {
+    color: var(--exo-white);
+    background-color: var(--exo-black);
+}
+
+input[type="file"].exo-white-bg::file-selector-button {
+    color: var(--exo-black);
+    background-color: var(--exo-white);
+}

@@ -1,0 +1,134 @@
+
+/* Icons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* home and tick icons included here.  Other icons available in separate CSS files - see exo-icons.css */
+
+.exo-icon-home {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEyIDUuNjlsNSA0LjVWMThoLTJ2LTZIOXY2SDd2LTcuODFsNS00LjVNMTIgM0wyIDEyaDN2OGg2di02aDJ2Nmg2di04aDNMMTIgM3oiLz48L3N2Zz4=');
+}
+
+.exo-icon-tick {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMjRweCIgZmlsbD0iIzAwMDAwMCI+PHBhdGggZD0iTTAgMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMkw0LjggMTJsLTEuNCAxLjRMOSAxOSAyMSA3bC0xLjQtMS40TDkgMTYuMnoiLz48L3N2Zz4=');
+}
+
+.exo-icon {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+div.exo-icon, span.exo-icon, label.exo-icon {
+    width: var(--exo-medium-icon);
+    height: var(--exo-medium-icon);
+    background-size: var(--exo-medium-icon) var(--exo-medium-icon);
+}
+
+div.exo-icon.exo-padding {
+    margin: 4px;
+}
+
+div.exo-icon-inline {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+label.exo-icon, span.exo-icon {
+    padding-left: var(--exo-medium-icon);
+    display: inline-flex;
+    align-items: center;
+}
+
+span.exo-icon {
+    vertical-align: middle;
+}
+
+label.exo-icon.exo-icon-tiny, span.exo-icon.exo-icon-tiny {
+    padding-left: var(--exo-tiny-icon);
+    display: inline-flex;
+    align-items: center;
+}
+
+label.exo-icon.exo-icon-small, span.exo-icon.exo-icon-small {
+    padding-left: var(--exo-small-icon);
+    display: inline-flex;
+    align-items: center;
+}
+
+label.exo-icon.exo-icon-large, span.exo-icon.exo-icon-large {
+    padding-left: var(--exo-large-icon);
+    display: inline-flex;
+    align-items: center;
+}
+
+label.exo-icon.exo-icon-huge, span.exo-icon.exo-icon-huge {
+    padding-left: var(--exo-huge-icon);
+    display: inline-flex;
+    align-items: center;
+}
+
+.exo-icon.exo-icon-tiny {
+    width: var(--exo-tiny-icon);
+    height: var(--exo-tiny-icon);
+    background-size: var(--exo-tiny-icon) var(--exo-tiny-icon);
+}
+
+.exo-icon.exo-icon-small {
+    width: var(--exo-small-icon);
+    height: var(--exo-small-icon);
+    background-size: var(--exo-small-icon) var(--exo-small-icon);
+}
+
+.exo-icon.exo-icon-large {
+    width: var(--exo-large-icon);
+    height: var(--exo-large-icon);
+    background-size: var(--exo-large-icon) var(--exo-large-icon);
+}
+
+.exo-icon.exo-icon-huge {
+    width: var(--exo-huge-icon);
+    height: var(--exo-huge-icon);
+    background-size: var(--exo-huge-icon) var(--exo-huge-icon);
+}
+
+div.exo-icon-background {
+    width: var(--exo-medium-icon);
+    height: var(--exo-medium-icon);
+}
+
+div.exo-icon-background.exo-icon-tiny {
+    width: var(--exo-tiny-icon);
+    height: var(--exo-tiny-icon);
+}
+
+div.exo-icon-background.exo-icon-small {
+    width: var(--exo-small-icon);
+    height: var(--exo-small-icon);
+}
+
+div.exo-icon-background.exo-icon-large {
+    width: var(--exo-large-icon);
+    height: var(--exo-large-icon);
+}
+
+div.exo-icon-background.exo-icon-huge {
+    width: var(--exo-huge-icon);
+    height: var(--exo-huge-icon);
+}
+
+
+
+div.exo-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Spinner
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-icon-spinner {
+    /* exo-spinner-black.svg */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgPGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNDUiIHN0cm9rZS13aWR0aD0iMTAiIHN0cm9rZT0iYmxhY2siIGZpbGw9Im5vbmUiIHN0cm9rZS1kYXNoYXJyYXk9IjIwIj4KICAgICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIHR5cGU9InJvdGF0ZSIgZnJvbT0iMzYwIDUwIDUwIiB0bz0iMCA1MCA1MCIgZHVyPSI1cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIC8+CiAgIDwvY2lyY2xlPgogICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIyNSIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlPSJibGFjayIgZmlsbD0ibm9uZSIgc3Ryb2tlLWRhc2hhcnJheT0iMTAiPgogICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBmcm9tPSIwIDUwIDUwIiB0bz0iMzYwIDUwIDUwIiBkdXI9IjVzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgLz4KICAgPC9jaXJjbGU+Cjwvc3ZnPgo=');
+}
+
+

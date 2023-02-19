@@ -1,0 +1,215 @@
+/* Table
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+table {
+  border-spacing: 0;
+}
+
+table caption {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+th:not(:last-child), td:not(:last-child) {
+    border-right: 1px solid var(--exo-black);
+}
+
+table.exo-dark-red-bg th:not(:last-child), table.exo-dark-red-bg td:not(:last-child),
+table.exo-dark-orange-bg th:not(:last-child), table.exo-dark-orange-bg td:not(:last-child),
+table.exo-dark-blue-bg th:not(:last-child), table.exo-dark-blue-bg td:not(:last-child),
+table.exo-dark-green-bg th:not(:last-child), table.exo-dark-green-bg td:not(:last-child),
+table.exo-dark-purple-bg th:not(:last-child), table.exo-dark-purple-bg td:not(:last-child),
+table.exo-dark-brown-bg th:not(:last-child), table.exo-dark-brown-bg td:not(:last-child),
+table.exo-dark-gray-bg th:not(:last-child), table.exo-dark-gray-bg td:not(:last-child),
+table.exo-dark-pink-bg th:not(:last-child), table.exo-dark-pink-bg td:not(:last-child),
+table.exo-black-bg th:not(:last-child), table.exo-black-bg td:not(:last-child) {
+    border-right: 1px solid var(--exo-white);
+}
+
+th, td {
+    padding: var(--padding-small);
+    text-align: left;
+    margin: var(--margin-small);
+}
+
+table.exo-large-padding th, table.exo-large-padding td {
+    padding: var(--padding-large);
+}
+
+table.exo-medium-padding th, table.exo-medium-padding td {
+    padding: var(--padding-medium);
+}
+
+table.exo-small-padding th, table.exo-small-padding td {
+    padding: var(--padding-small);
+}
+
+table.exo-no-padding th, table.exo-no-padding td {
+    padding: 0px;
+}
+
+th, td {
+  border-bottom: 1px solid var(--exo-black);
+}
+
+table.exo-dark-red-bg th, table.exo-dark-red-bg td,
+table.exo-dark-orange-bg th, table.exo-dark-orange-bg td,
+table.exo-dark-blue-bg th, table.exo-dark-blue-bg td,
+table.exo-dark-green-bg th, table.exo-dark-green-bg td,
+table.exo-dark-purple-bg th, table.exo-dark-purple-bg td,
+table.exo-dark-brown-bg th, table.exo-dark-brown-bg td,
+table.exo-dark-gray-bg th, table.exo-dark-gray-bg td,
+table.exo-dark-pink-bg th, table.exo-dark-pink-bg td,
+table.exo-black-bg th, table.exo-black-bg td
+{
+  border-bottom: 1px solid var(--exo-white);
+}
+
+table tbody tr:last-child td {
+    border-bottom-width: 0px;
+}
+
+table.exo-striped.exo-dark-red-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-red);
+}
+
+table.exo-striped.exo-dark-red-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-red2);
+}
+
+table.exo-striped.exo-dark-orange-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-orange);
+}
+
+table.exo-striped.exo-dark-orange-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-orange2);
+}
+
+table.exo-striped.exo-dark-blue-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-blue);
+}
+
+table.exo-striped.exo-dark-blue-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-blue2);
+}
+
+table.exo-striped.exo-dark-green-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-green);
+}
+
+table.exo-striped.exo-dark-green-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-green2);
+}
+
+table.exo-striped.exo-dark-purple-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-purple);
+}
+
+table.exo-striped.exo-dark-purple-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-purple2);
+}
+
+table.exo-striped.exo-dark-brown-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-brown);
+}
+
+table.exo-striped.exo-dark-brown-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-brown2);
+}
+
+table.exo-striped.exo-dark-gray-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-gray);
+}
+
+table.exo-striped.exo-dark-gray-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-gray2);
+}
+
+table.exo-striped.exo-dark-pink-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-pink);
+}
+
+table.exo-striped.exo-dark-pink-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-pink2);
+}
+
+table.exo-striped.exo-dark-yellow-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-yellow);
+}
+
+table.exo-striped.exo-dark-yellow-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-yellow2);
+}
+
+table.exo-striped.exo-light-red-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-red);
+}
+
+table.exo-striped.exo-light-red-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-red2);
+}
+
+table.exo-striped.exo-light-orange-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-orange);
+}
+
+table.exo-striped.exo-light-orange-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-orange2);
+}
+
+table.exo-striped.exo-light-blue-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-blue);
+}
+
+table.exo-striped.exo-light-blue-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-blue2);
+}
+
+table.exo-striped.exo-light-green-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-green);
+}
+
+table.exo-striped.exo-light-green-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-green2);
+}
+
+table.exo-striped.exo-light-purple-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-purple);
+}
+
+table.exo-striped.exo-light-purple-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-purple2);
+}
+
+table.exo-striped.exo-light-brown-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-brown);
+}
+
+table.exo-striped.exo-light-brown-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-brown2);
+}
+
+table.exo-striped.exo-light-gray-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-gray);
+}
+
+table.exo-striped.exo-light-gray-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-gray2);
+}
+
+table.exo-striped.exo-light-pink-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-pink);
+}
+
+table.exo-striped.exo-light-pink-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-pink2);
+}
+
+table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-yellow);
+}
+
+table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-yellow2);
+}
+

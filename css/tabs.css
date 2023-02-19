@@ -1,0 +1,77 @@
+
+/* "Radio" Tabs
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-tabs {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: start;
+}
+
+.exo-tabs label {
+    display: inline;
+    padding: 4px;
+    margin: 4px;
+    padding-right: 27px;
+    margin-right: -25px;
+}
+
+.exo-tabs input:not(:checked) {
+    width: 0px;
+    height: 0px;
+    padding: 0px;
+    opacity: 0.01;
+    margin-top: 24px;
+    margin-right: 16px;
+}
+
+.exo-tabs input:checked {
+    width: 15px;
+    height: 15px;
+    padding: 0px;
+    margin-top: 8px;
+    margin-right: 5px;
+    background-color: var(--exo-hover);
+}
+
+.exo-tabs > .exo-tabs-content {
+   padding: 4px;
+   flex: 1;
+}
+
+.exo-tabs > label:focus
+{
+    outline: 4px dotted var(--exo-focus);
+}
+
+.exo-tabs > .exo-tabs-content > * {
+    padding: 4px;
+}
+
+.exo-tabs > .exo-tabs-content > * {
+    margin-top: 0px;
+}
+
+/* edit below to extend limit on 12 tabs */
+
+
+.exo-tabs > input:nth-child(2):not(:checked) ~ .exo-tabs-content > *:nth-child(1),
+.exo-tabs > input:nth-child(4):not(:checked) ~ .exo-tabs-content > *:nth-child(2),
+.exo-tabs > input:nth-child(6):not(:checked) ~ .exo-tabs-content > *:nth-child(3),
+.exo-tabs > input:nth-child(8):not(:checked) ~ .exo-tabs-content > *:nth-child(4),
+.exo-tabs > input:nth-child(10):not(:checked) ~ .exo-tabs-content > *:nth-child(5),
+.exo-tabs > input:nth-child(12):not(:checked) ~ .exo-tabs-content > *:nth-child(6),
+.exo-tabs > input:nth-child(14):not(:checked) ~ .exo-tabs-content > *:nth-child(7),
+.exo-tabs > input:nth-child(16):not(:checked) ~ .exo-tabs-content > *:nth-child(8),
+.exo-tabs > input:nth-child(18):not(:checked) ~ .exo-tabs-content > *:nth-child(9),
+.exo-tabs > input:nth-child(20):not(:checked) ~ .exo-tabs-content > *:nth-child(10),
+.exo-tabs > input:nth-child(22):not(:checked) ~ .exo-tabs-content > *:nth-child(11),
+.exo-tabs > input:nth-child(24):not(:checked) ~ .exo-tabs-content > *:nth-child(12)
+ {
+    display: none;
+}
+
+.exo-tabs > .exo-break {
+    flex-basis: 100%;
+    height: 0;
+}

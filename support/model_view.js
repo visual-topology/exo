@@ -28,15 +28,26 @@ function renderChildren(parent,indent,tag_filter,exclude_attributes) {
 }
 
 function dumpElement(element,indent,tag_filter, exclude_attributes) {
-    if (tag_filter && !element.tagName.startsWith(tag_filter)) {
-        return "";
+    var tag = element.tagName.toLowerCase();
+    if (tag_filter) {
+        var matched = false;
+
+        for(var idx=0; idx<tag_filter.length; idx++) {
+            if (tag.startsWith(tag_filter[idx])) {
+                matched = true;
+                break;
+            }
+        }
+        if (!matched) {
+            return "";
+        }
     }
     var lines = "";
     var line = indentLine(indent);
     var line_length = line.length;
 
     line += "&lt;";
-    line += '<span class="tag">'+element.tagName.toLowerCase()+'</span>';
+    line += '<span class="tag">'+tag+'</span>';
     line_length += element.tagName.toLowerCase().length + 1;
     var attrs = element.attributes;
     for(var i = 0; i < attrs.length; i++) {

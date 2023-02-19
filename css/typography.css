@@ -1,0 +1,252 @@
+
+/* Font Sizes
+-------------------------------------------------- */
+
+.exo-tiny {
+    font-size: var(--exo-tiny-font);
+}
+
+.exo-small {
+    font-size: var(--exo-small-font);
+}
+
+.exo-medium {
+    font-size: var(--exo-medium-font);
+}
+
+.exo-large {
+    font-size: var(--exo-large-font);
+}
+
+.exo-huge {
+    font-size: var(--exo-huge-font);
+}
+
+
+/* Typography
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+body {
+  font-weight: 400;
+  font-family: "Raleway", sans-serif;
+  font-size: var(--exo-medium-font);
+}
+
+/* define header font sizes using 4px increments from the medium font size */
+
+h1 {
+    font-size: calc(var(--exo-medium-font) + 16px);
+}
+
+h2 {
+    font-size: calc(var(--exo-medium-font) + 12px);
+}
+
+h3 {
+    font-size: calc(var(--exo-medium-font) + 8px);
+}
+
+h4 {
+    font-size: calc(var(--exo-medium-font) + 4px);
+}
+
+h5 {
+    font-size: var(--exo-medium-font);
+}
+
+label, legend {
+  margin-top: 10px;
+  height: 28px;
+  display: block;
+}
+
+label.exo-dummy-label {
+   margin-top: 0px;
+   display: inline;
+}
+
+fieldset {
+  padding: 0;
+  border-width: 0;
+}
+
+/* Code
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+code {
+  padding: var(--padding-small);
+  margin: 0px;
+  background: #DDD;
+  border-radius: var(--round-small);
+  font-size: 10px;
+}
+
+pre > code {
+  display: block;
+  white-space: break-spaces;
+}
+
+/* padding styles */
+
+.exo-no-padding {
+    padding: 0px;
+}
+
+.exo-tiny-padding {
+    padding: var(--padding-tiny);
+}
+
+.exo-small-padding {
+    padding: var(--padding-small);
+}
+
+.exo-medium-padding, .exo-padding {
+    padding: var(--padding-medium);
+}
+
+.exo-large-padding {
+    padding: var(--padding-large);
+}
+
+.exo-huge-padding {
+    padding: var(--padding-huge);
+}
+
+/* rounded styles */
+
+.exo-no-rounded {
+    border-radius: 0px;
+}
+
+.exo-tiny-rounded {
+    border-radius: var(--round-tiny);
+}
+
+.exo-small-rounded {
+    border-radius: var(--round-small);
+}
+
+.exo-medium-rounded, .exo-rounded {
+    border-radius: var(--round-medium);
+}
+
+.exo-large-rounded {
+    border-radius:var(--round-large);
+}
+
+.exo-huge-rounded {
+    border-radius: var(--round-huge);
+}
+
+
+/* border styles */
+
+.exo-no-border {
+    border-width: 0px;
+}
+
+.exo-tiny-border {
+    border: var(--border-tiny) solid var(--border-color);
+}
+
+.exo-small-border {
+    border: var(--border-small) solid var(--border-color);
+}
+
+.exo-medium-border, .exo-border {
+    border: var(--border-medium) solid var(--border-color);
+}
+
+.exo-large-border {
+    border: var(--border-large) solid var(--border-color);
+}
+
+.exo-huge-border {
+    border: var(--border-huge) solid var(--border-color);
+}
+
+
+/* margin styles */
+
+.exo-no-vmargin {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.exo-tiny-vmargin {
+    margin-top: var(--margin-tiny);
+    margin-bottom: var(--margin-tiny);
+}
+
+.exo-small-vmargin {
+    margin-top: var(--margin-small);
+    margin-bottom: var(--margin-small);
+}
+
+.exo-medium-vmargin, .exo-vmargin {
+    margin-top: var(--margin-medium);
+    margin-bottom: var(--margin-medium);
+}
+
+.exo-large-vmargin {
+    margin-top: var(--margin-large);
+    margin-bottom: var(--margin-large);
+}
+
+.exo-huge-vmargin {
+    margin-top: var(--margin-huge);
+    margin-bottom: var(--margin-huge);
+}
+
+.exo-no-hmargin {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.exo-tiny-hmargin {
+    margin-left: var(--margin-tiny);
+    margin-right: var(--margin-tiny);
+}
+
+.exo-small-hmargin {
+    margin-left: var(--margin-small);
+    margin-right: var(--margin-small);
+}
+
+.exo-medium-hmargin, .exo-hmargin {
+    margin-left: var(--margin-medium);
+    margin-right: var(--margin-medium);
+}
+
+.exo-large-hmargin {
+    margin-left: var(--margin-large);
+    margin-right: var(--margin-large);
+}
+
+.exo-huge-hmargin {
+    margin-left: var(--margin-huge);
+    margin-right: var(--margin-huge);
+}
+
+.exo-no-margin {
+    margin: 0px;
+}
+
+.exo-tiny-margin {
+    margin: var(--margin-tiny);
+}
+
+.exo-small-margin {
+    margin: var(--margin-small);
+}
+
+.exo-medium-margin, .exo-margin {
+    margin: var(--margin-medium);
+}
+
+.exo-large-margin {
+    margin: var(--margin-large);
+}
+
+.exo-huge-margin {
+    margin: var(--margin-huge);
+}

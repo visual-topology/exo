@@ -1,0 +1,321 @@
+
+
+/* Input Controls - Toggle
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-toggle {
+    position: relative;
+    display: inline-block;
+    width: calc((var(--control-size) - 8px) * 2 + 3px);
+    height: calc(var(--control-size) - 8px);
+}
+
+.exo-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.exo-toggle .exo-toggle-slide {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.2s;
+    border-radius: 10px;
+    border: 2px solid #DDD;
+
+}
+
+.exo-toggle .exo-toggle-slide:before {
+    position: absolute;
+    content: "";
+    height: calc(var(--control-size) - 15px);;
+    width: calc(var(--control-size) - 15px);;
+    left: 3px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.2s;
+    border-radius: 33%;
+}
+
+.exo-toggle-true {
+    position: absolute;
+    margin-left: calc((var(--control-size) - 8px) * 2 + 3px);
+}
+
+.exo-toggle-false {
+    position: absolute;
+    margin-left: calc((var(--control-size) - 8px) * 2 + 3px);
+}
+
+.exo-toggle > input[type="checkbox"]:checked ~ .exo-toggle-false {
+    display: none;
+}
+
+.exo-toggle > input[type="checkbox"]:not(:checked) ~ .exo-toggle-true {
+    display: none;
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide {
+    background-color: #444;
+}
+
+.exo-toggle > input[type="checkbox"]:focus + .exo-toggle-slide {
+    border: 2px solid var(--exo-focus);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide:before {
+    transform: translateX(calc(var(--control-size) - 8px));
+}
+
+/* slider foreground colors */
+
+.exo-toggle .exo-toggle-slide.exo-dark-red-fg:before {
+    background-color: var(--exo-dark-red);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-orange-fg:before {
+    background-color: var(--exo-dark-orange);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-blue-fg:before {
+    background-color: var(--exo-dark-blue);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-green-fg:before {
+    background-color: var(--exo-dark-green);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-purple-fg:before {
+    background-color: var(--exo-dark-purple);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-brown-fg:before {
+    background-color: var(--exo-dark-brown);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-gray-fg:before {
+    background-color: var(--exo-dark-gray);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-pink-fg:before {
+    background-color: var(--exo-dark-pink);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-yellow-fg:before {
+    background-color: var(--exo-dark-yellow);
+}
+
+.exo-toggle .exo-toggle-slide.exo-black-fg:before {
+    background-color: var(--exo-black);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-red-fg:before {
+    background-color: var(--exo-light-red);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-orange-fg:before {
+    background-color: var(--exo-light-orange);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-blue-fg:before {
+    background-color: var(--exo-light-blue);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-green-fg:before {
+    background-color: var(--exo-light-green);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-purple-fg:before {
+    background-color: var(--exo-light-purple);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-brown-fg:before {
+    background-color: var(--exo-light-brown);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-gray-fg:before {
+    background-color: var(--exo-light-gray);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-pink-fg:before {
+    background-color: var(--exo-light-pink);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-yellow-fg:before {
+    background-color: var(--exo-light-yellow);
+}
+
+.exo-toggle .exo-toggle-slide.exo-white-fg:before {
+    background-color: var(--exo-white);
+}
+
+/* slider background colors (OFF) */
+
+.exo-toggle .exo-toggle-slide.exo-dark-red-bg {
+    background-color: var(--exo-light-red);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-orange-bg {
+    background-color: var(--exo-light-orange);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-blue-bg {
+    background-color: var(--exo-light-blue);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-green-bg {
+    background-color: var(--exo-light-green);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-purple-bg {
+    background-color: var(--exo-light-purple);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-brown-bg {
+    background-color: var(--exo-light-brown);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-gray-bg {
+    background-color: var(--exo-light-gray);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-pink-bg {
+    background-color: var(--exo-light-pink);
+}
+
+.exo-toggle .exo-toggle-slide.exo-dark-yellow-bg {
+    background-color: var(--exo-light-yellow);
+}
+
+.exo-toggle .exo-toggle-slide.exo-black-bg {
+    background-color: var(--exo-white);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-red-bg {
+    background-color: var(--exo-dark-red);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-orange-bg {
+    background-color: var(--exo-dark-orange);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-blue-bg {
+    background-color: var(--exo-dark-blue);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-green-bg {
+    background-color: var(--exo-dark-green);
+}
+
+.exo-toggle.exo-toggle-slide.exo-light-purple-bg {
+    background-color: var(--exo-dark-purple);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-brown-bg {
+    background-color: var(--exo-dark-brown);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-gray-bg {
+    background-color: var(--exo-dark-gray);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-pink-bg {
+    background-color: var(--exo-dark-pink);
+}
+
+.exo-toggle .exo-toggle-slide.exo-light-yellow-bg {
+    background-color: var(--exo-dark-yellow);
+}
+
+.exo-toggle .exo-toggle-slide.exo-white-bg {
+    background-color: var(--exo-black);
+}
+
+
+/* slider background-colors */
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-red-bg {
+    background-color: var(--exo-dark-red);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-orange-bg {
+    background-color: var(--exo-dark-orange);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-blue-bg {
+    background-color: var(--exo-dark-blue);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-green-bg {
+    background-color: var(--exo-dark-green);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-purple-bg {
+    background-color: var(--exo-dark-purple);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-brown-bg {
+    background-color: var(--exo-dark-brown);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-gray-bg {
+    background-color: var(--exo-dark-gray);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-pink-bg {
+    background-color: var(--exo-dark-pink);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-dark-yellow-bg {
+    background-color: var(--exo-dark-yellow);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-black-bg {
+    background-color: var(--exo-black);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-red-bg {
+    background-color: var(--exo-light-red);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-orange-bg {
+    background-color: var(--exo-light-orange);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-blue-bg {
+    background-color: var(--exo-light-blue);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-green-bg {
+    background-color: var(--exo-light-green);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-purple-bg {
+    background-color: var(--exo-light-purple);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-brown-bg {
+    background-color: var(--exo-light-brown);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-gray-bg {
+    background-color: var(--exo-light-gray);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-pink-bg {
+    background-color: var(--exo-light-pink);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-light-yellow-bg {
+    background-color: var(--exo-light-yellow);
+}
+
+.exo-toggle > input[type="checkbox"]:checked + .exo-toggle-slide.exo-white-bg {
+    background-color: var(--exo-white);
+}
+

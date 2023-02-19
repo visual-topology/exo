@@ -1,0 +1,247 @@
+
+/* Colours
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-dark-orange-fg {
+    color: var(--exo-dark-orange);
+}
+
+.exo-dark-red-fg {
+    color: var(--exo-dark-red);
+}
+
+.exo-dark-blue-fg {
+    color: var(--exo-dark-blue);
+}
+
+.exo-dark-green-fg {
+    color: var(--exo-dark-green);
+}
+
+.exo-dark-purple-fg {
+    color: var(--exo-dark-purple);
+}
+
+.exo-dark-brown-fg {
+    color: var(--exo-dark-brown);
+}
+
+.exo-dark-pink-fg {
+    color: var(--exo-dark-pink);
+}
+
+.exo-dark-yellow-fg {
+    color: var(--exo-dark-yellow);
+}
+
+.exo-dark-gray-fg {
+    color: var(--exo-dark-gray);
+}
+
+.exo-black-fg {
+    color: var(--exo-black);
+}
+
+.exo-light-orange-fg {
+    color: var(--exo-light-orange);
+}
+
+.exo-light-red-fg {
+    color: var(--exo-light-red);
+}
+
+.exo-light-blue-fg {
+    color: var(--exo-light-blue);
+}
+
+.exo-light-green-fg {
+    color: var(--exo-light-green);
+}
+
+.exo-light-purple-fg {
+    color: var(--exo-light-purple);
+}
+
+.exo-light-brown-fg {
+    color: var(--exo-light-brown);
+}
+
+.exo-light-gray-fg {
+    color: var(--exo-light-gray);
+}
+
+.exo-light-yellow-fg {
+    color: var(--exo-light-yellow);
+}
+
+.exo-light-pink-fg {
+    color: var(--exo-light-pink);
+}
+
+.exo-white-fg {
+    color: var(--exo-white);
+}
+
+.exo-dark-red-bg {
+    background-color: var(--exo-dark-red);
+}
+
+.exo-dark-orange-bg {
+    background-color: var(--exo-dark-orange);
+}
+
+.exo-dark-blue-bg {
+    background-color: var(--exo-dark-blue);
+}
+
+.exo-dark-green-bg {
+    background-color: var(--exo-dark-green);
+}
+
+.exo-dark-purple-bg {
+    background-color: var(--exo-dark-purple);
+}
+
+.exo-dark-brown-bg {
+    background-color: var(--exo-dark-brown);
+}
+
+.exo-dark-gray-bg {
+    background-color: var(--exo-dark-gray);
+}
+
+.exo-dark-pink-bg {
+    background-color: var(--exo-dark-pink);
+}
+
+.exo-dark-yellow-bg {
+    background-color: var(--exo-dark-yellow);
+}
+
+.exo-black-bg {
+    background-color: var(--exo-black);
+}
+
+.exo-light-red-bg {
+    background-color: var(--exo-light-red);
+}
+
+.exo-light-orange-bg {
+    background-color: var(--exo-light-orange);
+}
+
+.exo-light-blue-bg {
+    background-color: var(--exo-light-blue);
+}
+
+.exo-light-green-bg {
+    background-color: var(--exo-light-green);
+}
+
+.exo-light-purple-bg {
+    background-color: var(--exo-light-purple);
+}
+
+.exo-light-brown-bg {
+    background-color: var(--exo-light-brown);
+}
+
+.exo-light-gray-bg {
+    background-color: var(--exo-light-gray);
+}
+
+.exo-light-pink-bg {
+    background-color: var(--exo-light-pink);
+}
+
+.exo-light-yellow-bg {
+    background-color: var(--exo-light-yellow);
+}
+
+.exo-white-bg {
+    background-color: var(--exo-white);
+}
+
+/* Coloured borders
+-------------------------------------------------- */
+
+.exo-dark-red-border {
+    border-color: var(--exo-dark-red);
+}
+
+.exo-dark-orange-border {
+    border-color: var(--exo-dark-orange);
+}
+
+.exo-dark-blue-border {
+    border-color: var(--exo-dark-blue);
+}
+
+.exo-dark-green-border {
+    border-color: var(--exo-dark-green);
+}
+
+.exo-dark-purple-border {
+    border-color: var(--exo-dark-purple);
+}
+
+.exo-dark-brown-border {
+    border-color: var(--exo-dark-brown);
+}
+
+.exo-dark-gray-border {
+    border-color: var(--exo-dark-gray);
+}
+
+.exo-dark-pink-border {
+    border-color: var(--exo-dark-pink);
+}
+
+.exo-dark-yellow-border {
+    border-color: var(--exo-dark-yellow);
+}
+
+.exo-black-border {
+    border-color: var(--exo-black);
+}
+
+.exo-light-red-border {
+    border-color: var(--exo-light-red);
+}
+
+.exo-light-orange-border {
+    border-color: var(--exo-light-orange);
+}
+
+.exo-light-blue-border {
+    border-color: var(--exo-light-blue);
+}
+
+.exo-light-green-border {
+    border-color: var(--exo-light-green);
+}
+
+.exo-light-purple-border {
+    border-color: var(--exo-light-purple);
+}
+
+.exo-light-brown-border {
+    border-color: var(--exo-light-brown);
+}
+
+.exo-light-gray-border {
+    border-color: var(--exo-light-gray);
+}
+
+.exo-light-pink-border {
+    border-color: var(--exo-light-pink);
+}
+
+.exo-light-yellow-border {
+    border-color: var(--exo-light-yellow);
+}
+
+.exo-white-border {
+    border-color: var(--exo-white);
+}
+

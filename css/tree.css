@@ -1,0 +1,151 @@
+/* Navigable Tree
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-tree ul > li {
+    list-style: none;
+    font-size: 16px;
+    list-style-position: inside;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 0px;
+}
+
+.exo-tree ul {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+
+.exo-tree li > label {
+    display: inline;
+    padding-top: 2px;
+}
+
+.exo-tree li > input[type="checkbox"] {
+    display: inline-block;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    background-size: 24px;
+    border-width: 0px;
+    border-radius: 4px;
+    margin-left: 0px;
+    margin-right: 2px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    padding: 0px;
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked) ~ *:not(label) {
+    display: none;
+}
+
+.exo-tree li > input[type="checkbox"] ~ *:not(label) {
+    margin-left: 32px;
+}
+
+.exo-tree li > input[type="checkbox"]:checked {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTcgMTF2MmgxMHYtMkg3em01LTlDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4eiIvPjwvc3ZnPg==');
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked) {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEzIDdoLTJ2NEg3djJoNHY0aDJ2LTRoNHYtMmgtNFY3em0tMS01QzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0wIDE4Yy00LjQxIDAtOC0zLjU5LTgtOHMzLjU5LTggOC04IDggMy41OSA4IDgtMy41OSA4LTggOHoiLz48L3N2Zz4=');
+}
+
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-red-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-orange-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-blue-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-green-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-purple-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-brown-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-gray-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-pink-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-dark-yellow-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-black-bg {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTcgMTF2MmgxMHYtMkg3em01LTlDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4eiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=');
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-red-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-orange-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-blue-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-green-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-purple-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-brown-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-gray-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-pink-bg,
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-yellow-bg,
+.exo-tree li > input[type="checkbox"]:checked.exo-black-bg {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTEzIDdoLTJ2NEg3djJoNHY0aDJ2LTRoNHYtMmgtNFY3em0tMS01QzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0wIDE4Yy00LjQxIDAtOC0zLjU5LTgtOHMzLjU5LTggOC04IDggMy41OSA4IDgtMy41OSA4LTggOHoiIGZpbGw9IndoaXRlIi8+PC9zdmc+');
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-red-bg {
+    background-color: var(--exo-dark-red);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-orange-bg {
+    background-color: var(--exo-dark-orange);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-green-bg {
+    background-color: var(--exo-dark-green);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-purple-bg {
+    background-color: var(--exo-dark-purple);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-brown-bg {
+    background-color: var(--exo-dark-brown);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-gray-bg {
+    background-color: var(--exo-dark-gray);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-pink-bg {
+    background-color: var(--exo-dark-pink);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-dark-yellow-bg {
+    background-color: var(--exo-dark-yellow);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-black-bg {
+    background-color: var(--exo-black);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-red-bg {
+    background-color: var(--exo-light-red);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-orange-bg {
+    background-color: var(--exo-dark-orange);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-green-bg {
+    background-color: var(--exo-light-green);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-purple-bg {
+    background-color: var(--exo-light-purple);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-brown-bg {
+    background-color: var(--exo-light-brown);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-gray-bg {
+    background-color: var(--exo-light-gray);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-pink {
+    background-color: var(--exo-light-pink);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-light-yellow {
+    background-color: var(--exo-light-yellow);
+}
+
+.exo-tree li > input[type="checkbox"]:not(:checked).exo-white {
+    background-color: var(--exo-white);
+}

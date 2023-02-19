@@ -1,0 +1,103 @@
+/* Input Controls - Radio
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+input[type="radio"] {
+    appearance: none;
+	width: calc(var(--control-size) - 8px);;
+	height: calc(var(--control-size) - 8px);;
+	border: 2px solid #CCC;
+	border-radius: 50%;
+	padding: 1px;
+	display: inline-block;
+	margin-top: 2px;
+	margin-bottom: 4px;
+    vertical-align: middle;
+}
+
+input[type="radio"]:checked {
+	background-color: #444;
+}
+
+input[type="radio"]:not(:checked) {
+	background-color: #FFF;
+}
+
+input[type="radio"]:checked.exo-dark-red-bg {
+	background-color: var(--exo-dark-red);
+}
+
+input[type="radio"]:checked.exo-dark-orange-bg {
+	background-color: var(--exo-dark-orange);
+}
+
+input[type="radio"]:checked.exo-dark-blue-bg {
+	background-color: var(--exo-dark-blue);
+}
+
+input[type="radio"]:checked.exo-dark-green-bg {
+	background-color: var(--exo-dark-green);
+}
+
+input[type="radio"]:checked.exo-dark-purple-bg {
+	background-color: var(--exo-dark-purple);
+}
+
+input[type="radio"]:checked.exo-dark-brown-bg {
+	background-color: var(--exo-dark-brown);
+}
+
+input[type="radio"]:checked.exo-dark-gray-bg {
+	background-color: var(--exo-dark-gray);
+}
+
+input[type="radio"]:checked.exo-dark-pink-bg {
+	background-color: var(--exo-dark-pink);
+}
+
+input[type="radio"]:checked.exo-dark-yellow-bg {
+	background-color: var(--exo-dark-yellow);
+}
+
+input[type="radio"]:checked.exo-black-bg {
+	background-color: var(--exo-black);
+}
+
+input[type="radio"]:checked.exo-light-red-bg {
+	background-color: var(--exo-light-red);
+}
+
+input[type="radio"]:checked.exo-light-orange-bg {
+	background-color: var(--exo-light-orange);
+}
+
+input[type="radio"]:checked.exo-light-blue-bg {
+	background-color: var(--exo-light-blue);
+}
+
+input[type="radio"]:checked.exo-light-green-bg {
+	background-color: var(--exo-light-green);
+}
+
+input[type="radio"]:checked.exo-light-purple-bg {
+	background-color: var(--exo-light-purple);
+}
+
+input[type="radio"]:checked.exo-light-brown-bg {
+	background-color: var(--exo-light-brown);
+}
+
+input[type="radio"]:checked.exo-light-gray-bg {
+	background-color: var(--exo-light-gray);
+}
+
+input[type="radio"]:checked.exo-light-pink-bg {
+	background-color: var(--exo-light-pink);
+}
+
+input[type="radio"]:checked.exo-light-yellow-bg {
+	background-color: var(--exo-light-yellow);
+}
+
+input[type="radio"]:checked.exo-white {
+	background-color: var(--exo-white);
+}
