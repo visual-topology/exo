@@ -51,6 +51,7 @@ class CustomExoSelect extends CustomExoControl {
                         this.exoAddOption(name, label);
                     }
                 });
+                break;
             default:
                 super.exoUpdate(name, value);
         }

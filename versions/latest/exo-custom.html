@@ -73,7 +73,18 @@
                     white, black
                 </td>
                 <td>
-                    Set the foreground or background color
+                    Set the foreground, background or border color. Not yet consistently supported for all input controls.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    border, margin, padding, rounded, vmargin, hmargin
+                </td>
+                <td>
+                    tiny, small, medium, large, huge
+                </td>
+                <td>
+                    Sets the size of different types of style applied to the control
                 </td>
             </tr>
             </tbody>
@@ -88,7 +99,7 @@
         <div id="model0">
             <exo-button id="test_button" label="test" text="hello world" tooltip="Help!!!" bg-color="light-orange" border-color="dark-blue" fg-color="dark-red"></exo-button>
             <script>
-                document.getElementById("test_button").addEventListener("click",e => { alert("click"); })
+                document.getElementById("test_button").addEventListener("click",e => { console.log("click"); })
             </script>
         </div>
     </div>
@@ -102,7 +113,7 @@
         <div id="model1">
             <exo-checkbox id="test_checkbox" label="test" value="true" tooltip="Help!!!" border-color="dark-purple" fg-color="dark-red"></exo-checkbox>
             <script>
-                document.getElementById("test_checkbox").addEventListener("change",e => { alert(e.target.checked); })
+                document.getElementById("test_checkbox").addEventListener("change",e => { console.log(e.target.checked); })
             </script>
         </div>
     </div>
@@ -116,7 +127,7 @@
         <div id="model2">
             <exo-toggle id="test_toggle" label="test" true-text="ON" false-text="OFF" value="false" tooltip="Help!!!" fg-color="light-gray" bg-color="dark-red"></exo-toggle>
             <script>
-                document.getElementById("test_toggle").addEventListener("change",e => { alert(e.target.checked); } );
+                document.getElementById("test_toggle").addEventListener("change",e => { console.log(e.target.checked); } );
             </script>
         </div>
     </div>
@@ -128,9 +139,9 @@
             <pre><code id="view3"></code></pre>
         </div>
         <div id="model3">
-            <exo-text id="test_text" label="test" value="Enter text here" tooltip="Help!!!" fg-color="dark-green"></exo-text>
+            <exo-text full-width id="test_text" label="test" value="Enter text here" tooltip="Help!!!" fg-color="dark-green"></exo-text>
             <script>
-                document.getElementById("test_text").addEventListener("change",e => { alert(e.target.value); })
+                document.getElementById("test_text").addEventListener("change",e => { console.log(e.target.value); })
             </script>
         </div>
     </div>
@@ -146,7 +157,7 @@
             </exo-select>
             <script>
                 var btn = document.getElementById("test_select");
-                btn.addEventListener("change",e => { alert(e.target.value); })
+                btn.addEventListener("change",e => { console.log(e.target.value); })
             </script>
         </div>
     </div>
@@ -161,7 +172,7 @@
             <exo-radio id="test_radio" label="test" value="aaa" options="aaa=>AAA;bbb=>BBB" tooltip="Help!!!" fg-color="dark-green">
             </exo-radio>
             <script>
-                document.getElementById("test_radio").addEventListener("change",e => { alert(e.target.value); })
+                document.getElementById("test_radio").addEventListener("change",e => { console.log(e.target.value); })
             </script>
         </div>
     </div>
@@ -173,10 +184,10 @@
             <pre><code id="view6"></code></pre>
         </div>
         <div id="model6">
-            <exo-number id="test_number" label="test" value="10" min="0" max="20" step="5" tooltip="Help!!!" fg_color="dark-purple">
+            <exo-number id="test_number" label="test" value="10" min="0" max="20" step="5" tooltip="Help!!!" fg-color="dark-purple">
             </exo-number>
             <script>
-                document.getElementById("test_number").addEventListener("change",e => { alert(e.target.value); })
+                document.getElementById("test_number").addEventListener("change",e => { console.log(e.target.value); })
             </script>
         </div>
     </div>
@@ -202,7 +213,7 @@
             </exo-date>
             <script>
                 var btn = document.getElementById("test_date");
-                btn.addEventListener("change",e => { alert(e.target.value); })
+                btn.addEventListener("change",e => { console.log(e.target.value); })
             </script>
         </div>
     </div>
@@ -217,7 +228,7 @@
             </exo-file>
             <script>
                 var btn = document.getElementById("test_file");
-                btn.addEventListener("exo-file-changed",e => { alert(JSON.stringify(e.detail)); })
+                btn.addEventListener("exo-file-changed",e => { console.log(JSON.stringify(e.detail)); })
             </script>
         </div>
     </div>
@@ -231,7 +242,25 @@
             <exo-textarea id="test_textarea" label="test" value="Enter text here" tooltip="Help!!!" rows="5" cols="40" bg-color="light-green"></exo-textarea>
             <script>
                 var btn = document.getElementById("test_textarea");
-                btn.addEventListener("change",e => { alert(e.target.value); })
+                btn.addEventListener("change",e => { console.log(e.target.value); })
+            </script>
+        </div>
+    </div>
+
+    <h2>Download</h2>
+    <div class="exo-row">
+        <div class="exo-4-cell model-view">
+            <pre><code id="view11"></code></pre>
+        </div>
+        <div id="model11">
+            <exo-download id="test_download" fg-color="dark-blue" bg-color="light-gray" download_filename="test.txt" label="test" tooltip="Help!!!" ></exo-download>
+            <script>
+                var btn = document.getElementById("test_download");
+                btn.addEventListener("exo-download",e => {
+                    console.log("Download starting...");
+                    btn.setAttribute("download_mimetype","text/plain");
+                    btn.setAttribute("download_content","Download Content!");
+                });
             </script>
         </div>
     </div>

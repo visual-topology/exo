@@ -9,7 +9,7 @@ input, select, summary, div.exo-button {
 
 input, select, summary, div.exo-button, textarea {
     border-radius: var(--round-small);
-    margin-left: 5px;
+    margin-left: 0px;
     margin-right: auto;
 }
 

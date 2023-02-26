@@ -46,6 +46,15 @@ class CustomExoRange extends CustomExoControl {
             case "value":
                 this.exoGetInputElement().value = value;
                 break;
+            case "min":
+                this.exoGetInputElement().setAttribute("min", value);
+                break;
+            case "max":
+                this.exoGetInputElement().setAttribute("max", value);
+                break;
+            case "step":
+                this.exoGetInputElement().setAttribute("step", value);
+                break;
             default:
                 super.exoUpdate(name,value);
         }

@@ -31,6 +31,7 @@ class CustomExoRadio extends CustomExoControl {
                         this.addRadioButton(name, label);
                     }
                 });
+                break;
             default:
                 super.exoUpdate(name, value);
         }

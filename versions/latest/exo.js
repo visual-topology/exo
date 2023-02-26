@@ -76,7 +76,7 @@ class ExoUtils {
     }
 }
 
-var exo_counter = "0";
+var exo_counter = 0;
 
 class CustomExoControl extends HTMLElement {
 
@@ -109,7 +109,7 @@ class CustomExoControl extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ["id", "fg-color", "bg-color", "border-color", "border","margin","padding","rounded","vmargin","hmargin","label","tooltip"];
+        return ["fg-color", "bg-color", "border-color", "border","margin","padding","rounded","vmargin","hmargin","label","tooltip"];
     }
 
     addEventListener(type, listener, options) {
@@ -162,9 +162,7 @@ class CustomExoControl extends HTMLElement {
 
     exoUpdateParameters(parameters) {
         for(var name in parameters) {
-            if (name != "id") {
-                this.exoUpdate(name, parameters[name]);
-            }
+            this.exoUpdate(name, parameters[name]);
         }
     }
 
@@ -175,15 +173,15 @@ class CustomExoControl extends HTMLElement {
         switch(name) {
             case "fg-color":
                 ExoUtils.removeClasses( this.exoGetInputElement(), /exo-(.*)-fg/);
-                ExoUtils.addClass(this.exo_element,"exo-"+value+"-fg");
+                ExoUtils.addClass(this.exoGetInputElement(),"exo-"+value+"-fg");
                 break;
             case "bg-color":
                 ExoUtils.removeClasses(this.exoGetInputElement(), /exo-(.*)-bg/);
-                ExoUtils.addClass(this.exo_element,"exo-"+value+"-bg");
+                ExoUtils.addClass(this.exoGetInputElement(),"exo-"+value+"-bg");
                 break;
             case "border-color":
                 ExoUtils.removeClasses(this.exoGetInputElement(), /exo-(.*)-border/);
-                ExoUtils.addClass(this.exo_element,"exo-"+value+"-border");
+                ExoUtils.addClass(this.exoGetInputElement(),"exo-"+value+"-border");
                 break;
             case "border":
             case "margin":
@@ -206,6 +204,9 @@ class CustomExoControl extends HTMLElement {
                 break;
             case "tooltip":
                 this.exoUpdateTooltip(value);
+                break;
+            case "id":
+                // ignore
                 break;
             default:
                 console.log("Unrecognized exoUpdate: "+name+","+value);
@@ -694,6 +695,7 @@ class CustomExoRadio extends CustomExoControl {
                         this.addRadioButton(name, label);
                     }
                 });
+                break;
             default:
                 super.exoUpdate(name, value);
         }
@@ -803,6 +805,15 @@ class CustomExoRange extends CustomExoControl {
             case "value":
                 this.exoGetInputElement().value = value;
                 break;
+            case "min":
+                this.exoGetInputElement().setAttribute("min", value);
+                break;
+            case "max":
+                this.exoGetInputElement().setAttribute("max", value);
+                break;
+            case "step":
+                this.exoGetInputElement().setAttribute("step", value);
+                break;
             default:
                 super.exoUpdate(name,value);
         }
@@ -876,6 +887,7 @@ class CustomExoSelect extends CustomExoControl {
                         this.exoAddOption(name, label);
                     }
                 });
+                break;
             default:
                 super.exoUpdate(name, value);
         }
@@ -1087,4 +1099,93 @@ class CustomExoToggle extends CustomExoControl {
 
 customElements.define("exo-toggle", CustomExoToggle);
 
+
+/* js/controls/exo-download.js */
+
+
+class CustomExoDownload extends CustomExoControl {
+
+    constructor() {
+        super();
+        this.exo_download_content = null;
+        this.exo_download_mimetype = null;
+        this.exo_download_href = null;
+        this.exo_download_filename = null;
+        this.exo_a = null;
+    }
+
+    exoBuild(parameters) {
+        super.exoBuildCommon("div", parameters);
+        this.exoGetInputElement().setAttribute("class","exo-button");
+
+        this.exo_a = document.createElement("a");
+        this.exo_a.setAttribute("href","");
+        this.exoGetInputElement().appendChild(this.exo_a);
+        var that = this;
+
+        this.exo_a.onclick = function (evt) {
+            that.dispatchEvent(new CustomEvent("exo-download",{"detail":{}}));
+            that.exoSetHref();
+        }
+        super.exoBuildComplete(parameters);
+    }
+
+    exoSetHref() {
+        if (!this.exo_download_href) {
+            var data_uri = "data:" + this.exo_download_mimetype + ";base64," + btoa(this.exo_download_content);
+            this.exo_a.setAttribute("href", data_uri);
+        }
+    }
+
+    exoUpdate(name,value) {
+        switch(name) {
+            case "download_filename":
+                this.exo_download_filename = value;
+                this.exo_a.setAttribute("download", value);
+                ExoUtils.removeAllChildren(this.exo_a);
+                this.exo_a.appendChild(document.createTextNode(value));
+                break;
+            case "download_mimetype":
+            case "download_content":
+                if (name == "download_mimetype") {
+                    this.exo_download_mimetype = value;
+                } else {
+                    this.exo_download_content = value;
+                }
+                if (this.exo_download_mimetype && this.exo_download_content) {
+                    this.exo_download_href = "";
+                    this.exo_a.setAttribute("href", this.exo_download_href);
+                }
+                break;
+            case "href":
+                this.exo_download_href = value;
+                this.exo_a.setAttribute("href", this.exo_download_href);
+                break;
+            case "fg-color":
+                // apply the color to the anchor to override the default link style
+                ExoUtils.removeClasses( this.exo_a, /exo-(.*)-fg/);
+                ExoUtils.addClass(this.exo_a,"exo-"+value+"-fg");
+                super.exoUpdate(name,value);
+                break;
+            default:
+                super.exoUpdate(name,value);
+        }
+    }
+
+    exoGetAttributeNames() {
+        return CustomExoFile.observedAttributes;
+    }
+
+    static get observedAttributes() {
+        var attrs = CustomExoControl.observedAttributes;
+        attrs.push("download_filename");
+        attrs.push("download_content");
+        attrs.push("download_mimetype");
+        attrs.push("href");
+        return attrs;
+    }
+
+}
+
+customElements.define("exo-download", CustomExoDownload);
 

@@ -74,7 +74,7 @@ class ExoUtils {
     }
 }
 
-var exo_counter = "0";
+var exo_counter = 0;
 
 class CustomExoControl extends HTMLElement {
 
@@ -107,7 +107,7 @@ class CustomExoControl extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ["id", "fg-color", "bg-color", "border-color", "border","margin","padding","rounded","vmargin","hmargin","label","tooltip"];
+        return ["fg-color", "bg-color", "border-color", "border","margin","padding","rounded","vmargin","hmargin","label","tooltip"];
     }
 
     addEventListener(type, listener, options) {
@@ -160,9 +160,7 @@ class CustomExoControl extends HTMLElement {
 
     exoUpdateParameters(parameters) {
         for(var name in parameters) {
-            if (name != "id") {
-                this.exoUpdate(name, parameters[name]);
-            }
+            this.exoUpdate(name, parameters[name]);
         }
     }
 
@@ -173,15 +171,15 @@ class CustomExoControl extends HTMLElement {
         switch(name) {
             case "fg-color":
                 ExoUtils.removeClasses( this.exoGetInputElement(), /exo-(.*)-fg/);
-                ExoUtils.addClass(this.exo_element,"exo-"+value+"-fg");
+                ExoUtils.addClass(this.exoGetInputElement(),"exo-"+value+"-fg");
                 break;
             case "bg-color":
                 ExoUtils.removeClasses(this.exoGetInputElement(), /exo-(.*)-bg/);
-                ExoUtils.addClass(this.exo_element,"exo-"+value+"-bg");
+                ExoUtils.addClass(this.exoGetInputElement(),"exo-"+value+"-bg");
                 break;
             case "border-color":
                 ExoUtils.removeClasses(this.exoGetInputElement(), /exo-(.*)-border/);
-                ExoUtils.addClass(this.exo_element,"exo-"+value+"-border");
+                ExoUtils.addClass(this.exoGetInputElement(),"exo-"+value+"-border");
                 break;
             case "border":
             case "margin":
@@ -204,6 +202,9 @@ class CustomExoControl extends HTMLElement {
                 break;
             case "tooltip":
                 this.exoUpdateTooltip(value);
+                break;
+            case "id":
+                // ignore
                 break;
             default:
                 console.log("Unrecognized exoUpdate: "+name+","+value);

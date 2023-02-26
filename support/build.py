@@ -123,6 +123,7 @@ with Output("versions/latest/exo.js") as of:
     of.add("js/controls/exo-text.js")
     of.add("js/controls/exo-textarea.js")
     of.add("js/controls/exo-toggle.js")
+    of.add("js/controls/exo-download.js")
 
 print("Building: exo.css")
 

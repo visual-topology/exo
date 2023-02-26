@@ -1108,7 +1108,7 @@ input, select, summary, div.exo-button {
 
 input, select, summary, div.exo-button, textarea {
     border-radius: var(--round-small);
-    margin-left: 5px;
+    margin-left: 0px;
     margin-right: auto;
 }
 
@@ -1271,6 +1271,8 @@ input[type="radio"] {
 	display: inline-block;
 	margin-top: 2px;
 	margin-bottom: 4px;
+	margin-right: 10px;
+	margin-left: 5px;
     vertical-align: middle;
 }
 
