@@ -253,13 +253,13 @@
             <pre><code id="view11"></code></pre>
         </div>
         <div id="model11">
-            <exo-download id="test_download" fg-color="dark-blue" bg-color="light-gray" download_filename="test.txt" label="test" tooltip="Help!!!" ></exo-download>
+            <exo-download id="test_download" fg-color="dark-blue" bg-color="light-gray" download-filename="test.txt" label="test" tooltip="Help!!!" ></exo-download>
             <script>
                 var btn = document.getElementById("test_download");
                 btn.addEventListener("exo-download",e => {
                     console.log("Download starting...");
-                    btn.setAttribute("download_mimetype","text/plain");
-                    btn.setAttribute("download_content","Download Content!");
+                    btn.setAttribute("download-mimetype","text/plain");
+                    btn.setAttribute("download-content","Download Content!");
                 });
             </script>
         </div>

@@ -36,15 +36,15 @@ class CustomExoDownload extends CustomExoControl {
 
     exoUpdate(name,value) {
         switch(name) {
-            case "download_filename":
+            case "download-filename":
                 this.exo_download_filename = value;
                 this.exo_a.setAttribute("download", value);
                 ExoUtils.removeAllChildren(this.exo_a);
                 this.exo_a.appendChild(document.createTextNode(value));
                 break;
-            case "download_mimetype":
-            case "download_content":
-                if (name == "download_mimetype") {
+            case "download-mimetype":
+            case "download-content":
+                if (name == "download-mimetype") {
                     this.exo_download_mimetype = value;
                 } else {
                     this.exo_download_content = value;
@@ -75,9 +75,9 @@ class CustomExoDownload extends CustomExoControl {
 
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
-        attrs.push("download_filename");
-        attrs.push("download_content");
-        attrs.push("download_mimetype");
+        attrs.push("download-filename");
+        attrs.push("download-content");
+        attrs.push("download-mimetype");
         attrs.push("href");
         return attrs;
     }
