@@ -18,6 +18,7 @@
         <div class="exo-1-cell"></div>
         <div class="exo-3-cell">
             <ul>
+                <li><a href="#buttons">Buttons</a></li>
                 <li><a href="#toggle">Toggle</a></li>
                 <li><a href="#range">Range</a></li>
                 <li><a href="#select">Select</a></li>
@@ -35,13 +36,39 @@
         </div>
     </div>
 
-    <h2 id="toggle">Toggle</h2>
+    <h2 id="buttons">Buttons</h2>
     <div class="exo-row">
         <div class="exo-4-cell">
             <pre><code id="view0">
             </code></pre>
         </div>
         <div id="model0" class="exo-4-cell">
+            <label for="button_text">
+                Button with text
+            </label>
+            <input type="button" id="button_text" value="Click here!"></input>
+            <label for="button_icon">
+                Button with icon
+            </label>
+            <input type="button" id="button_icon" aria-label="Click here!" class="exo-icon exo-icon-home"></input>
+            <label for="button_icon_text">
+                Button with icon and text
+            </label>
+            <input type="button" id="button_icon_text" value="Click here!!!!!!!!!!!!!!" class="exo-icon exo-icon-home exo-bold"></input>
+            <label for="button_bigicon_text">
+                Button with huge icon and text
+            </label>
+            <input type="button" id="button_bigicon_text" value="Click Here!!!!!!!!" class="exo-icon exo-icon-huge exo-huge exo-icon-home"></input>
+        </div>
+    </div>
+
+    <h2 id="toggle">Toggle</h2>
+    <div class="exo-row">
+        <div class="exo-4-cell">
+            <pre><code id="view1">
+            </code></pre>
+        </div>
+        <div id="model1" class="exo-4-cell">
             <label for="toggle_green">
                 Checkbox rendered as a colored toggle
             </label>
@@ -68,10 +95,10 @@
     <h2 id="number">Number</h2>
     <div class="exo-row">
         <div class="exo-4-cell">
-            <pre><code id="view1">
+            <pre><code id="view2">
             </code></pre>
         </div>
-        <div id="model1" class="exo-4-cell">
+        <div id="model2" class="exo-4-cell">
             <label for="num">Number</label>
             <input id="num" type="number" value="10" max="20" min="0" class="exo-rounded exo-cell-left">
         </div>
@@ -80,10 +107,10 @@
     <h2 id="range">Range</h2>
     <div class="exo-row">
         <div class="exo-4-cell">
-            <pre><code id="view2">
+            <pre><code id="view3">
             </code></pre>
         </div>
-        <div id="model2" class="exo-4-cell" >
+        <div id="model3" class="exo-4-cell" >
             <label for="slider">Slider:
                 <output id="result" for="slider">10</output>
             </label>
@@ -97,10 +124,10 @@
     <h2 id="checkbox">Checkbox</h2>
     <div class="exo-row">
         <div class="exo-4-cell">
-            <pre><code id="view3">
+            <pre><code id="view4">
             </code></pre>
         </div>
-        <div id="model3" class="exo-4-cell">
+        <div id="model4" class="exo-4-cell">
             <div><label for="checkb">
                 Checkbox
             </label>
@@ -119,10 +146,10 @@
     <h2 id="select">Select</h2>
     <div class="exo-row">
         <div class="exo-4-cell">
-            <pre><code id="view4">
+            <pre><code id="view5">
             </code></pre>
         </div>
-        <div id="model4" class="exo-4-cell">
+        <div id="model5" class="exo-4-cell">
             <label for="dd">
                 Select control (drop down)
             </label>
@@ -136,10 +163,10 @@
     <h2 id="select_list">Select (list view)</h2>
     <div class="exo-row">
         <div class="exo-4-cell">
-            <pre><code id="view5">
+            <pre><code id="view6">
             </code></pre>
         </div>
-        <div id="model5" class="exo-4-cell">
+        <div id="model6" class="exo-4-cell">
             <label for="sel">
                 Select control (list view)
             </label>
@@ -157,10 +184,10 @@
     <h2 id="file_chooser">File Chooser</h2>
     <div class="exo-row">
         <div class="exo-4-cell">
-            <pre><code id="view6">
+            <pre><code id="view7">
             </code></pre>
         </div>
-        <div id="model6" class="exo-4-cell">
+        <div id="model7" class="exo-4-cell">
             <label for="file-chooser">
                 Choose A File
             </label>
@@ -171,10 +198,10 @@
     <h2 id="date">Date</h2>
     <div class="exo-row">
         <div class="exo-4-cell">
-            <pre><code id="view7">
+            <pre><code id="view8">
             </code></pre>
         </div>
-        <div id="model7" class="exo-4-cell">
+        <div id="model8" class="exo-4-cell">
             <label for="sel">
                 Input Date
             </label>
@@ -185,10 +212,10 @@
     <h2 id="radio">Radio Buttons</h2>
     <div class="exo-row">
         <div class="exo-4-cell">
-            <pre><code id="view8">
+            <pre><code id="view9">
             </code></pre>
         </div>
-        <div id="model8" class="exo-4-cell">
+        <div id="model9" class="exo-4-cell">
             <label for="rbs">Radio Buttons</label>
             <div id="rbs">
                 <label for="b1" style="display:inline-block;">
@@ -220,10 +247,10 @@
     <h2 id="textarea">Text Area</h2>
     <div class="exo-row">
         <div class="exo-4-cell">
-            <pre><code id="view9">
+            <pre><code id="view10">
             </code></pre>
         </div>
-        <div id="model9" class="exo-4-cell">
+        <div id="model10" class="exo-4-cell">
             <label for="ta">Text Area</label>
             <textarea class="exo-light-green-bg" id="ta" rows="10"></textarea>
         </div>

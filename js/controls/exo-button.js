@@ -7,14 +7,14 @@ class CustomExoButton extends CustomExoControl {
     }
 
     exoBuild(parameters) {
-        super.exoBuildCommon(parameters["text"] ? "input" : "button", parameters);
+        super.exoBuildCommon("input", parameters);
+        this.exoGetInputElement().setAttribute("type","button");
         if (parameters["text"]) {
-            this.exoGetInputElement().setAttribute("type","button");
             this.exoGetInputElement().setAttribute("value", parameters["text"]);
-        } else {
-            ExoUtils.addClass(this.exoGetInputElement(),"exo-icon " + parameters["icon"]);
         }
-
+        if (parameters["icon"]) {
+            ExoUtils.addClass(this.exoGetInputElement(),"exo-icon exo-icon-" + parameters["icon"]);
+        }
         super.exoBuildComplete(parameters);
     }
 

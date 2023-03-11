@@ -5,6 +5,7 @@ class CustomExoSelect extends CustomExoControl {
 
     constructor() {
         super();
+        this.exo_option_labels = {};
     }
 
     exoBuild(parameters) {
@@ -26,7 +27,7 @@ class CustomExoSelect extends CustomExoControl {
             } else {
                 v = that.exoGetInputElement().value;
             }
-            that.dispatchEvent(new CustomEvent("exo-value",{detail:v}));
+            that.exoSetControlValue(v);
             evt.stopPropagation();
         });
         this.appendChild(this.exoGetRootElement());
@@ -42,21 +43,24 @@ class CustomExoSelect extends CustomExoControl {
                 this.exoGetInputElement().setAttribute("size",value);
                 break;
             case "options":
-                var options = value.split(";");
-                options.map(option => {
-                    var delimiter = option.indexOf("=>");
-                    if (delimiter > 0) {
-                        var name = option.slice(0, delimiter);
-                        var label = option.slice(delimiter + 2);
-                        this.exoAddOption(name, label);
-                    }
-                });
+                let options = JSON.parse(value);
+                this.exoClearOptions();
+                options.map((item) => this.exoAddOption(item[0],item[1]));
+                if (!(this.value in this.exo_option_labels)) {
+                    this.exoSetControlValue(null);
+                }
                 break;
             default:
                 super.exoUpdate(name, value);
         }
     }
 
+    exoClearOptions() {
+        if (this.exoGetInputElement()) {
+            ExoUtils.removeAllChildren(this.exoGetInputElement());
+        }
+        this.exo_option_labels = {};
+    }
 
     exoAddOption(value,label) {
         var option = document.createElement("option");
@@ -64,6 +68,11 @@ class CustomExoSelect extends CustomExoControl {
         option.setAttribute("value", value);
         this.exoGetInputElement().appendChild(option);
         this.options.push({"element": option, "value": value});
+        this.exo_option_labels[value] = label;
+    }
+
+    exoGetLabel(value) {
+        return this.exo_option_labels[value];
     }
 
     exoGetAttributeNames() {

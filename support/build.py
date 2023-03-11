@@ -124,6 +124,8 @@ with Output("versions/latest/exo.js") as of:
     of.add("js/controls/exo-textarea.js")
     of.add("js/controls/exo-toggle.js")
     of.add("js/controls/exo-download.js")
+    of.add("js/composite-controls/exo-merge-lists.js")
+    of.add("js/composite-controls/exo-table-control.js")
 
 print("Building: exo.css")
 

@@ -105,7 +105,7 @@
         href="https://github.com/visualtopology/exo/releases">Exo releases github page</a>.
 </p>
 
-<h2 id="layout">Simple Row/Column Layout based on CSS Grid</h2>
+<h2 id="layout">Simple Row/Column Layout based on CSS flexbox</h2>
 
 <p>
     To style a page (center and limit width to 1280 pixels) add class <code>exo-container</code> to your document's
@@ -402,15 +402,15 @@ are required.
 
             <ul class="exo-tree">
                 <li role="treeitem">
-                    <input type="checkbox" aria-hidden="true">
-                    <label>File 1</label>
+                    <input type="checkbox" aria-hidden="true" class="exo-icon-huge">
+                    <label class="exo-huge">File 1</label>
                     <div class="exo-light-gray-bg">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </div>
                 </li>
                 <li role="treeitem">
-                    <input type="checkbox" checked="checked" aria-hidden="true">
-                    <label>Folder 1</label>
+                    <input type="checkbox" checked="checked" aria-hidden="true" class="exo-icon-huge">
+                    <label class="exo-huge">Folder 1</label>
                     <ul>
                         <li role="treeitem">
                             <div class="exo-light-brown-bg">Lorem ipsum.</div></li>

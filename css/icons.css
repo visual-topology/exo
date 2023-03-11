@@ -67,25 +67,25 @@ label.exo-icon.exo-icon-huge, span.exo-icon.exo-icon-huge {
     align-items: center;
 }
 
-.exo-icon.exo-icon-tiny {
+div.exo-icon-tiny, span.exo-icon-tiny, label.exo-icon-tiny {
     width: var(--exo-tiny-icon);
     height: var(--exo-tiny-icon);
     background-size: var(--exo-tiny-icon) var(--exo-tiny-icon);
 }
 
-.exo-icon.exo-icon-small {
+div.exo-icon-small, span.exo-icon-small, label.exo-icon-small {
     width: var(--exo-small-icon);
     height: var(--exo-small-icon);
     background-size: var(--exo-small-icon) var(--exo-small-icon);
 }
 
-.exo-icon.exo-icon-large {
+div.exo-icon-large, span.exo-icon-large, label.exo-icon-large {
     width: var(--exo-large-icon);
     height: var(--exo-large-icon);
     background-size: var(--exo-large-icon) var(--exo-large-icon);
 }
 
-.exo-icon.exo-icon-huge {
+div.exo-icon-huge, span.exo-icon-huge, label.exo-icon-huge {
     width: var(--exo-huge-icon);
     height: var(--exo-huge-icon);
     background-size: var(--exo-huge-icon) var(--exo-huge-icon);
@@ -115,8 +115,6 @@ div.exo-icon-background.exo-icon-huge {
     width: var(--exo-huge-icon);
     height: var(--exo-huge-icon);
 }
-
-
 
 div.exo-icon {
     display: inline-block;

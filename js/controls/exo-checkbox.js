@@ -17,6 +17,7 @@ class CustomExoCheckbox extends CustomExoControl {
         switch(name) {
             case "value":
                 this.exoGetInputElement().checked = (value == "true") ? true : false;
+                this.exoSetControlValue(value);
                 break;
             default:
                 super.exoUpdate(name,value);

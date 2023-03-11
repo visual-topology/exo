@@ -27,6 +27,12 @@
   box-sizing: border-box;
 }
 
+.exo-cell {
+    display: flex;
+    padding: var(--padding-medium);
+    flex-flow: column nowrap;
+}
+
 .exo-1-cell {
     width: var(--cell-width);
     display: flex;

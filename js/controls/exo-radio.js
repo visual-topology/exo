@@ -19,35 +19,39 @@ class CustomExoRadio extends CustomExoControl {
         switch (name) {
             case "value":
                 this.exoSetControlValue(value);
-                this.exoControlValueUpdated();
+                this.exoSetButtonStates();
                 break;
             case "options":
-                var options = value.split(";");
-                options.map(option => {
-                    var delimiter = option.indexOf("=>");
-                    if (delimiter > 0) {
-                        var name = option.slice(0, delimiter);
-                        var label = option.slice(delimiter + 2);
-                        this.addRadioButton(name, label);
-                    }
-                });
+                let options = JSON.parse(value);
+                this.exoClearRadioButtons();
+                options.map((item) => this.exoAddRadioButton(item[0],item[1]));
+                this.exoSetButtonStates(); // update the buttons
                 break;
             default:
                 super.exoUpdate(name, value);
         }
     }
 
-    exoControlValueUpdated() {
+    exoSetButtonStates() {
         var value = this.exoGetControlValue();
-        var radios = document.getElementsByName(this.exo_radio_name);
-        for(var idx=0; idx<radios.length; idx++) {
-            if (radios[idx].value == value) {
-                radios[idx].checked = true;
+        for(var v in this.exo_button_map) {
+            var btn = this.exo_button_map[v];
+            if (value == v) {
+                btn.checked = true;
+            } else {
+                btn.checked = false;
             }
         }
     }
 
-    addRadioButton(value,label_text) {
+
+    exoClearRadioButtons() {
+        ExoUtils.removeAllChildren(this.exoGetInputElement());
+        this.exo_button_map = {};
+        this.exo_button_count = 0;
+    }
+
+    exoAddRadioButton(value,label_text) {
 
         var btn_id = this.exoGetId()+"_b"+this.exo_button_count;
         this.exo_button_count += 1;
@@ -72,7 +76,6 @@ class CustomExoRadio extends CustomExoControl {
 
         input.addEventListener("input", evt => {
             this.exoSetControlValue(value);
-            this.dispatchEvent(new CustomEvent("exo-value", {detail: value}));
             evt.stopPropagation();
         });
     }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Exo Custom Controls</title>
     <script src="exo.js" ></script>
     <link rel="stylesheet" href="exo.css">
     <link rel="stylesheet" href="exo-icons.css">
@@ -78,13 +78,13 @@
             </tr>
             <tr>
                 <td>
-                    border, margin, padding, rounded, vmargin, hmargin
+                    disabled
                 </td>
                 <td>
-                    tiny, small, medium, large, huge
+                    true, false
                 </td>
                 <td>
-                    Sets the size of different types of style applied to the control
+                    Enable or disable this control
                 </td>
             </tr>
             </tbody>
@@ -153,7 +153,7 @@
             <pre><code id="view4"></code></pre>
         </div>
         <div id="model4">
-            <exo-select id="test_select" label="test" value="aaa" tooltip="Help!!!" options="aaa=>AAA;bbb=>BBB" fg-color="dark-green">
+            <exo-select id="test_select" label="test" value="aaa" tooltip="Help!!!" options='[["aaa","AAA"],["bbb","BBB"]]' fg-color="dark-green">
             </exo-select>
             <script>
                 var btn = document.getElementById("test_select");
@@ -169,7 +169,7 @@
             <pre><code id="view5"></code></pre>
         </div>
         <div id="model5">
-            <exo-radio id="test_radio" label="test" value="aaa" options="aaa=>AAA;bbb=>BBB" tooltip="Help!!!" fg-color="dark-green">
+            <exo-radio id="test_radio" label="test" value="aaa" options='[["aaa","AAA"],["bbb","BBB"]]' tooltip="Help!!!" fg-color="dark-green">
             </exo-radio>
             <script>
                 document.getElementById("test_radio").addEventListener("change",e => { console.log(e.target.value); })

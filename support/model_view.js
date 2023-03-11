@@ -61,7 +61,11 @@ function dumpElement(element,indent,tag_filter, exclude_attributes) {
         }
         line += ' ' + '<span class="attr-name">' + attrs[i].name + '</span>';
         if (attrs[i].value) {
-            line += "=" + '<span class="attr-value">' + '"' + attrs[i].value + '"' + '</span>';
+            let q = '"';
+            if (attrs[i].value.includes(q)) {
+                q = "'";
+            }
+            line += "=" + '<span class="attr-value">' + q + attrs[i].value + q + '</span>';
         }
         line_length += attrs[i].name.length + attrs[i].value.length + 4;
     }

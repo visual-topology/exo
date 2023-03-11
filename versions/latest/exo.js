@@ -10,11 +10,15 @@ class ExoUtils {
 
     static addClass(element, classname) {
         var classes = (element.getAttribute("class") || "").split(" ");
-        if (classes.findIndex(name => name == classname) == -1) {
-            classes.push(classname);
-            var new_classes = classes.join(" ")
-            element.setAttribute("class", new_classes);
+        var classnames = classname.split(" ");
+        for(let idx=0; idx<classnames.length; idx++) {
+            let cls = classnames[idx];
+            if (classes.findIndex(name => name == cls) == -1) {
+                classes.push(cls);
+            }
         }
+        var new_classes = classes.join(" ")
+        element.setAttribute("class", new_classes);
     }
 
     static getClasses(element) {
@@ -91,6 +95,7 @@ class CustomExoControl extends HTMLElement {
         this.exo_id = "s"+exo_counter;
         exo_counter += 1;
         this.exo_built = false;
+        this.pending_event_listeners = [];
     }
 
     exoGetId() {
@@ -109,14 +114,23 @@ class CustomExoControl extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ["fg-color", "bg-color", "border-color", "border","margin","padding","rounded","vmargin","hmargin","label","tooltip"];
+        return ["fg-color", "bg-color", "border-color", "border","margin","padding","rounded",
+            "vmargin","hmargin","label","tooltip","disabled","class","aria-label", "visible"];
     }
 
     addEventListener(type, listener, options) {
+        if (!this.exo_built) {
+            this.pending_event_listeners.push([type, listener, options]);
+        } else {
+            this.exoAttachEventListener(type, listener, options);
+        }
+    }
+
+    exoAttachEventListener(type, listener, options) {
         if (!type.startsWith("exo")) {
             return this.exoGetInputElement().addEventListener(type, listener, options);
         } else {
-            return super.addEventListener(type,listener,options);
+            return super.addEventListener(type, listener, options);
         }
     }
 
@@ -151,8 +165,11 @@ class CustomExoControl extends HTMLElement {
             this.exoUpdate(parameter_name,parameters[parameter_name]);
         }
         this.appendChild(this.exoGetRootElement());
+        for(var idx=0; idx<this.pending_event_listeners.length; idx++) {
+            var pending = this.pending_event_listeners[idx];
+            this.exoAttachEventListener(pending[0],pending[1],pending[2]);
+        }
     }
-
 
     exoGetParameters() {
         let parameters = {};
@@ -208,6 +225,32 @@ class CustomExoControl extends HTMLElement {
             case "id":
                 // ignore
                 break;
+            case "class":
+                ExoUtils.addClass(this.exoGetInputElement(),value);
+                break;
+            case "disabled":
+                switch(value) {
+                    case "true":
+                        this.exoGetInputElement().setAttribute("disabled", "disabled");
+                        break;
+                    case "false":
+                        this.exoGetInputElement().removeAttribute("disabled");
+                        break;
+                }
+                break;
+            case "visible":
+                switch(value) {
+                    case "true":
+                        ExoUtils.addStyle(this.exoGetRootElement(),"visibility", "visible");
+                        break;
+                    case "false":
+                        ExoUtils.addStyle(this.exoGetRootElement(),"visibility", "hidden");
+                        break;
+                }
+                break;
+            case "aria-label":
+                this.exoGetInputElement().setAttribute(name,value);
+                break;
             default:
                 console.log("Unrecognized exoUpdate: "+name+","+value);
         }
@@ -215,11 +258,6 @@ class CustomExoControl extends HTMLElement {
 
     exoGetInputElement() {
         return this.exo_element;
-    }
-
-    exoUpdateLabelText(text) {
-        this.label.innerHTML = "";
-        this.label.appendChild(document.createTextNode(text?text:"\u00A0"));
     }
 
     applySizedDimension(name,value) {
@@ -265,14 +303,11 @@ class CustomExoControl extends HTMLElement {
 
     exoSetControlValue(value) {
         this.exo_control_value = value;
+        this.value = value;
     }
 
     exoGetControlValue() {
         return this.exo_control_value;
-    }
-
-    exoSetEditable(can_edit) {
-        this.exoGetInputElement().disabled = !can_edit;
     }
 
     exoGetRootElement() {
@@ -370,14 +405,14 @@ class CustomExoButton extends CustomExoControl {
     }
 
     exoBuild(parameters) {
-        super.exoBuildCommon(parameters["text"] ? "input" : "button", parameters);
+        super.exoBuildCommon("input", parameters);
+        this.exoGetInputElement().setAttribute("type","button");
         if (parameters["text"]) {
-            this.exoGetInputElement().setAttribute("type","button");
             this.exoGetInputElement().setAttribute("value", parameters["text"]);
-        } else {
-            ExoUtils.addClass(this.exoGetInputElement(),"exo-icon " + parameters["icon"]);
         }
-
+        if (parameters["icon"]) {
+            ExoUtils.addClass(this.exoGetInputElement(),"exo-icon exo-icon-" + parameters["icon"]);
+        }
         super.exoBuildComplete(parameters);
     }
 
@@ -428,6 +463,7 @@ class CustomExoCheckbox extends CustomExoControl {
         switch(name) {
             case "value":
                 this.exoGetInputElement().checked = (value == "true") ? true : false;
+                this.exoSetControlValue(value);
                 break;
             default:
                 super.exoUpdate(name,value);
@@ -683,35 +719,39 @@ class CustomExoRadio extends CustomExoControl {
         switch (name) {
             case "value":
                 this.exoSetControlValue(value);
-                this.exoControlValueUpdated();
+                this.exoSetButtonStates();
                 break;
             case "options":
-                var options = value.split(";");
-                options.map(option => {
-                    var delimiter = option.indexOf("=>");
-                    if (delimiter > 0) {
-                        var name = option.slice(0, delimiter);
-                        var label = option.slice(delimiter + 2);
-                        this.addRadioButton(name, label);
-                    }
-                });
+                let options = JSON.parse(value);
+                this.exoClearRadioButtons();
+                options.map((item) => this.exoAddRadioButton(item[0],item[1]));
+                this.exoSetButtonStates(); // update the buttons
                 break;
             default:
                 super.exoUpdate(name, value);
         }
     }
 
-    exoControlValueUpdated() {
+    exoSetButtonStates() {
         var value = this.exoGetControlValue();
-        var radios = document.getElementsByName(this.exo_radio_name);
-        for(var idx=0; idx<radios.length; idx++) {
-            if (radios[idx].value == value) {
-                radios[idx].checked = true;
+        for(var v in this.exo_button_map) {
+            var btn = this.exo_button_map[v];
+            if (value == v) {
+                btn.checked = true;
+            } else {
+                btn.checked = false;
             }
         }
     }
 
-    addRadioButton(value,label_text) {
+
+    exoClearRadioButtons() {
+        ExoUtils.removeAllChildren(this.exoGetInputElement());
+        this.exo_button_map = {};
+        this.exo_button_count = 0;
+    }
+
+    exoAddRadioButton(value,label_text) {
 
         var btn_id = this.exoGetId()+"_b"+this.exo_button_count;
         this.exo_button_count += 1;
@@ -736,7 +776,6 @@ class CustomExoRadio extends CustomExoControl {
 
         input.addEventListener("input", evt => {
             this.exoSetControlValue(value);
-            this.dispatchEvent(new CustomEvent("exo-value", {detail: value}));
             evt.stopPropagation();
         });
     }
@@ -841,6 +880,7 @@ class CustomExoSelect extends CustomExoControl {
 
     constructor() {
         super();
+        this.exo_option_labels = {};
     }
 
     exoBuild(parameters) {
@@ -862,7 +902,7 @@ class CustomExoSelect extends CustomExoControl {
             } else {
                 v = that.exoGetInputElement().value;
             }
-            that.dispatchEvent(new CustomEvent("exo-value",{detail:v}));
+            that.exoSetControlValue(v);
             evt.stopPropagation();
         });
         this.appendChild(this.exoGetRootElement());
@@ -878,21 +918,24 @@ class CustomExoSelect extends CustomExoControl {
                 this.exoGetInputElement().setAttribute("size",value);
                 break;
             case "options":
-                var options = value.split(";");
-                options.map(option => {
-                    var delimiter = option.indexOf("=>");
-                    if (delimiter > 0) {
-                        var name = option.slice(0, delimiter);
-                        var label = option.slice(delimiter + 2);
-                        this.exoAddOption(name, label);
-                    }
-                });
+                let options = JSON.parse(value);
+                this.exoClearOptions();
+                options.map((item) => this.exoAddOption(item[0],item[1]));
+                if (!(this.value in this.exo_option_labels)) {
+                    this.exoSetControlValue(null);
+                }
                 break;
             default:
                 super.exoUpdate(name, value);
         }
     }
 
+    exoClearOptions() {
+        if (this.exoGetInputElement()) {
+            ExoUtils.removeAllChildren(this.exoGetInputElement());
+        }
+        this.exo_option_labels = {};
+    }
 
     exoAddOption(value,label) {
         var option = document.createElement("option");
@@ -900,6 +943,11 @@ class CustomExoSelect extends CustomExoControl {
         option.setAttribute("value", value);
         this.exoGetInputElement().appendChild(option);
         this.options.push({"element": option, "value": value});
+        this.exo_option_labels[value] = label;
+    }
+
+    exoGetLabel(value) {
+        return this.exo_option_labels[value];
     }
 
     exoGetAttributeNames() {
@@ -931,6 +979,7 @@ class CustomExoText extends CustomExoControl {
 
         this.exoGetInputElement().setAttribute("type","text");
         this.exoGetInputElement().value = parameters["value"] || "";
+
 
         super.exoBuildComplete(parameters);
     }
@@ -1047,7 +1096,8 @@ class CustomExoToggle extends CustomExoControl {
     exoUpdate(name,value) {
         switch(name) {
             case "value":
-                this.exoGetInputElement().checked = value;
+                this.exoGetInputElement().checked = (value == "true") ? true : false;
+                this.exoSetControlValue(value);
                 break;
             case "true-text":
                 if (!this.tt_span) {
@@ -1188,4 +1238,341 @@ class CustomExoDownload extends CustomExoControl {
 }
 
 customElements.define("exo-download", CustomExoDownload);
+
+/* js/composite-controls/exo-merge-lists.js */
+
+
+class CustomExoMergeLists extends CustomExoControl {
+
+    constructor() {
+        super();
+        this.merged = [];
+        this.exo_key_map = {};
+        this.options1 = null;
+        this.options2 = null;
+        this.addb = null;
+        this.subb = null;
+        this.sel1 = null;
+        this.sel2 = null;
+        this.sel3 = null;
+        const value_s = JSON.stringify(this.merged);
+        this.exoSetControlValue(value_s);
+    }
+
+    exoBuild(parameters) {
+        super.exoBuildCommon("div", parameters);
+
+        let r = document.createElement("div");
+        r.setAttribute("class","exo-row");
+        let cell1 = document.createElement("div");
+        cell1.setAttribute("class","exo-cell");
+        this.sel1 = document.createElement("exo-select");
+        this.sel2 = document.createElement("exo-select");
+
+        this.sel1.addEventListener("change", (evt) => this.exoUpdateButtons());
+        this.sel2.addEventListener("change", (evt) => this.exoUpdateButtons());
+
+        let cell2 = document.createElement("div");
+        cell2.setAttribute("class","exo-cell exo-cell-centered");
+        this.addb = document.createElement("exo-button");
+        this.addb.setAttribute("icon","arrow-right");
+        this.addb.setAttribute("disabled","true");
+        this.addb.setAttribute("aria-label","Add Combination");
+        this.addb.addEventListener("click", (evt) => {
+            const v1 = this.sel1.value;
+            const v2 = this.sel2.value;
+            if (v1 && v2) {
+                this.sel1.exoSetControlValue(null);
+                this.sel2.exoSetControlValue(null);
+                this.exoAddMerge(v1, v2);
+                this.exoUpdateMerged();
+                this.exoUpdateButtons();
+                this.exoDispatch();
+            }
+        });
+        this.subb = document.createElement("exo-button");
+        this.subb.setAttribute("icon","arrow-left");
+        this.subb.setAttribute("disabled","true");
+        this.subb.setAttribute("aria-label","Remove Combination");
+        this.subb.addEventListener("click", (evt) => {
+            const k = this.sel3.value;
+            const v = this.exo_key_map[k];
+            this.exoRemoveMerge(v[0],v[1]);
+            delete this.exo_key_map[k];
+            this.exoUpdateMerged();
+            this.exoUpdateButtons();
+            this.exoDispatch();
+        });
+        cell2.appendChild(this.addb);
+        cell2.appendChild(this.subb);
+
+        let cell3 = document.createElement("div");
+        cell3.setAttribute("class","exo-cell");
+        this.sel3 = document.createElement("exo-select");
+        this.sel3.addEventListener("change", (evt) => this.exoUpdateButtons());
+        cell3.appendChild(this.sel3);
+
+        r.appendChild(cell1);
+        r.appendChild(cell2);
+        r.appendChild(cell3);
+        cell1.appendChild(this.sel1);
+        cell1.appendChild(this.sel2);
+        this.exoGetInputElement().appendChild(r);
+        super.exoBuildComplete(parameters);
+    }
+
+    exoAddMerge(v1,v2) {
+        for(let idx=0; idx<this.merged.length; idx++) {
+            if (this.merged[idx][0] == v1 && this.merged[idx][1] == v2) {
+                return;
+            }
+        }
+        this.merged.push([v1,v2]);
+    }
+
+    exoRemoveMerge(v1,v2) {
+        this.merged = this.merged.filter((item) => item[0] != v1 || item[1] != v2);
+    }
+
+    exoUpdateMerged() {
+        this.sel3.exoClearOptions();
+        const options = [];
+        this.exo_key_map = {};
+        for (let idx = 0; idx < this.merged.length; idx++) {
+            let v1 = this.merged[idx][0];
+            let v2 = this.merged[idx][1];
+            let key = v1 + "+" + v2;
+            let label = this.options1[v1] + "+" + this.options2[v2];
+            this.exo_key_map[key] = [v1, v2];
+            options.push([key, label]);
+        }
+        const options_s = JSON.stringify(options);
+        const value_s = JSON.stringify(this.merged);
+        this.sel3.setAttribute("options", options_s);
+        this.exoSetControlValue(value_s);
+    }
+
+    exoUpdateButtons() {
+        if (this.sel3.value) {
+            this.subb.setAttribute("disabled","false");
+        } else {
+            this.subb.setAttribute("disabled","true");
+        }
+        if (this.sel1.value && this.sel2.value) {
+            this.addb.setAttribute("disabled","false");
+        } else {
+            this.addb.setAttribute("disabled","true");
+        }
+    }
+
+    exoDispatch() {
+        const value_s = JSON.stringify(this.merged);
+        this.dispatchEvent(new CustomEvent("exo-value", {detail: value_s}));
+    }
+
+    exoUpdate(name, value) {
+        switch (name) {
+            case "value":
+                this.merged = JSON.parse(value);
+                if (this.options1  && this.options2) {
+                    this.exoUpdateMerged();
+                }
+                break;
+            case "options1":
+                this.sel1.setAttribute("options",value);
+                this.options1 = {};
+                JSON.parse(value).map((item) => this.options1[item[0]] = item[1]);
+                if (this.options2) {
+                    this.exoUpdateMerged();
+                }
+                break;
+            case "options2":
+                this.sel2.setAttribute("options",value);
+                this.options2 = {};
+                JSON.parse(value).map((item) => this.options2[item[0]] = item[1]);
+                if (this.options1) {
+                    this.exoUpdateMerged();
+                }
+                break;
+            case "size":
+                this.sel1.setAttribute("size",value);
+                this.sel2.setAttribute("size",value);
+                this.sel3.setAttribute("size",""+2*Number.parseInt(value));
+                break;
+            default:
+                super.exoUpdate(name, value);
+        }
+    }
+
+    exoGetAttributeNames() {
+        return CustomExoSelect.observedAttributes;
+    }
+
+    static get observedAttributes() {
+        var attrs = CustomExoControl.observedAttributes;
+        attrs.push('options1','options2','value');
+        return attrs;
+    }
+
+
+}
+
+customElements.define("exo-merge-lists", CustomExoMergeLists);
+
+/* js/composite-controls/exo-table-control.js */
+
+
+/*
+    The value of this control is a data structure as below
+    {
+        "columns": [{
+               "name": "col1"
+               "label": "Column 1"
+               "type": "string" | "boolean"
+               "editable": true|false
+            }],
+        "rows": [
+            {
+               "col1": "aaa"
+            }
+        ]
+    }
+ */
+
+class CustomExoTableControl extends CustomExoControl {
+
+    constructor() {
+        super();
+        this.exo_tbl_elt = null;
+        this.exo_table_definition = {};
+        this.exo_column_names = [];
+        this.exo_columns_by_name = {};
+        const value_s = JSON.stringify(this.exo_table_definition);
+        this.exoSetControlValue(value_s);
+    }
+
+    exoBuild(parameters) {
+        super.exoBuildCommon("table", parameters);
+        this.exo_tbl_elt = this.exoGetInputElement();
+        ExoUtils.addClass(this.exo_tbl_elt,"exo-border");
+        super.exoBuildComplete(parameters);
+    }
+
+    exoRefresh() {
+        ExoUtils.removeAllChildren(this.exo_tbl_elt);
+        this.exo_visible_column_names = [];
+        if (this.exo_table_definition.columns) {
+            let tr_elt = document.createElement("tr");
+            this.exo_table_definition.columns.map((column_definition) => {
+                let th_elt = document.createElement("th");
+                th_elt.appendChild(document.createTextNode(column_definition.label));
+                tr_elt.appendChild(th_elt);
+                this.exo_column_names.push(column_definition.name);
+                this.exo_columns_by_name[column_definition.name] = column_definition;
+            });
+            this.exo_tbl_elt.appendChild(tr_elt);
+        }
+        if (this.exo_table_definition.rows) {
+
+            this.exo_table_definition.rows.map((row,row_index) => {
+                let tr_elt = document.createElement("tr");
+                this.exo_column_names.map((name) => {
+                    let td_elt = document.createElement("td");
+                    let col_def = this.exo_columns_by_name[name];
+                    let value = row[name];
+                    if (col_def.type == "boolean") {
+                        let ctrl = document.createElement("exo-checkbox");
+                        ctrl.setAttribute("value",""+value);
+                        if (!col_def.editable) {
+                            ctrl.setAttribute("disabled","true");
+                        } else {
+                            ctrl.addEventListener("change", (evt) => {
+                                this.exoUpdateCell(name, row_index, evt.target.checked);
+                            });
+                        }
+                        td_elt.appendChild(ctrl);
+                    } else {
+                        if (!col_def.editable) {
+                            td_elt.appendChild(document.createTextNode("" + value));
+                        } else {
+
+                            let enable = document.createElement("exo-checkbox");
+
+
+                            enable.setAttribute("class", "exo-inline");
+
+                            td_elt.appendChild(enable);
+
+                            let ctrl = document.createElement("exo-text");
+
+                            ctrl.addEventListener("change", (evt) => {
+                                this.exoUpdateCell(name, row_index, evt.target.value);
+                            });
+
+                            if (value == undefined) {
+                                enable.setAttribute("value", "false");
+                                value = "";
+                                ctrl.setAttribute("visible","false");
+                            } else {
+                                enable.setAttribute("value", "true");
+                            }
+
+                            ctrl.setAttribute("value", value);
+
+                            enable.addEventListener("change", (evt) => {
+                                ctrl.setAttribute("visible", evt.target.checked ? "true" : "false");
+                                if (!evt.target.checked) {
+                                    this.exoUpdateCell(name, row_index, undefined);
+                                } else {
+                                    let v = ctrl.exoGetInputElement().value;
+                                    alert(v);
+                                    this.exoUpdateCell(name, row_index, v);
+                                }
+                            });
+
+                            td_elt.appendChild(ctrl);
+                        }
+                    }
+                    tr_elt.appendChild(td_elt);
+                });
+                this.exo_tbl_elt.appendChild(tr_elt);
+            });
+        }
+    }
+
+    exoUpdateCell(column_name, row_index, new_value) {
+        if (new_value !== undefined) {
+            this.exo_table_definition.rows[row_index][column_name] = new_value;
+        } else {
+            delete this.exo_table_definition.rows[row_index][column_name];
+        }
+        const value_s = JSON.stringify(this.exo_table_definition);
+        this.exoSetControlValue(value_s);
+        this.dispatchEvent(new CustomEvent("exo-value", {detail: value_s}));
+    }
+
+    exoUpdate(name, value) {
+        switch (name) {
+            case "value":
+                this.exo_table_definition = JSON.parse(value);
+                this.exoRefresh();
+                break;
+            default:
+                super.exoUpdate(name, value);
+        }
+    }
+
+    exoGetAttributeNames() {
+        return CustomExoSelect.observedAttributes;
+    }
+
+    static get observedAttributes() {
+        var attrs = CustomExoControl.observedAttributes;
+        attrs.push('value');
+        return attrs;
+    }
+
+}
+
+customElements.define("exo-table-control", CustomExoTableControl);
 
