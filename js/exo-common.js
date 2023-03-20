@@ -2,6 +2,14 @@
 
 class ExoUtils {
 
+    static createElement(tag, attrs) {
+        let elt = document.createElement(tag);
+        for(let name in attrs) {
+            elt.setAttribute(name,attrs[name]);
+        }
+        return elt;
+    }
+
     static addClasses(element, classnames) {
         classnames.forEach(classname => ExoUtils.addClass(element, classname));
     }

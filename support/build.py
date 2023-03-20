@@ -126,6 +126,8 @@ with Output("versions/latest/exo.js") as of:
     of.add("js/controls/exo-download.js")
     of.add("js/composite-controls/exo-merge-lists.js")
     of.add("js/composite-controls/exo-table-control.js")
+    of.add("js/layouts/tree.js")
+    of.add("js/layouts/tabs.js")
 
 print("Building: exo.css")
 
@@ -150,8 +152,9 @@ with Output("versions/latest/exo.css") as of:
     of.add("css/carousel.css")
     of.add("css/button.css")
     of.add("css/tabs.css")
-    of.add("css/menu.css")
     of.add("css/icons.css")
+
+
 
 print("Building: exo-icons.css")
 

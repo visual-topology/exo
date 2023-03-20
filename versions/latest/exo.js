@@ -4,6 +4,14 @@
 
 class ExoUtils {
 
+    static createElement(tag, attrs) {
+        let elt = document.createElement(tag);
+        for(let name in attrs) {
+            elt.setAttribute(name,attrs[name]);
+        }
+        return elt;
+    }
+
     static addClasses(element, classnames) {
         classnames.forEach(classname => ExoUtils.addClass(element, classname));
     }
@@ -1525,7 +1533,6 @@ class CustomExoTableControl extends CustomExoControl {
                                     this.exoUpdateCell(name, row_index, undefined);
                                 } else {
                                     let v = ctrl.exoGetInputElement().value;
-                                    alert(v);
                                     this.exoUpdateCell(name, row_index, v);
                                 }
                             });
@@ -1575,4 +1582,175 @@ class CustomExoTableControl extends CustomExoControl {
 }
 
 customElements.define("exo-table-control", CustomExoTableControl);
+
+/* js/layouts/tree.js */
+
+/*
+
+   <div class="exo-tree" role="tree">
+      <ul class="exo-tree">
+      </ul>
+   </div>
+
+   <li role="treeitem">
+            <input type="checkbox" aria-hidden="true"/>
+            <label class="exo-huge">
+                    File 1
+            </label>
+            <div class="exo-light-gray-bg">
+                    Lorem ipsum dolor
+                    sit amet,
+                    consectetur
+                    adipiscing elit.
+            </div>
+        </li>
+ */
+
+
+class ExoTree extends HTMLDivElement {
+    constructor() {
+      super();
+      this.connected = false;
+    }
+
+    connectedCallback() {
+        if (this.connected) {
+            return;
+        }
+        this.connected = true;
+        let p_elt = this.parentElement;
+        if (p_elt.exo_ul == undefined) {
+
+            // p_elt.exo_ul = ExoUtils.createElement("ul",{"class":"exo-tree"});
+            p_elt.exo_ul = ExoUtils.createElement("ul",{});
+            p_elt.appendChild(p_elt.exo_ul);
+        }
+        let li = ExoUtils.createElement("li",{"role":"treeitem"});
+        let inp = ExoUtils.createElement("input",{"type":"checkbox","aria-hidden":"true"});
+        this.label = ExoUtils.createElement("label");
+        this.label.appendChild(document.createTextNode(this.getAttribute("label")));
+        li.appendChild(inp);
+        li.appendChild(this.label);
+        p_elt.exo_ul.appendChild(li);
+        li.appendChild(this);
+        this.set
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name == "label" && this.label) {
+            ExoUtils.removeAllChildren(this.label);
+            this.label.appendChild(document.createTextNode(newValue));
+        }
+    }
+
+    static get observedAttributes() {
+        return ["label"];
+    }
+}
+
+customElements.define(
+  "exo-tree",
+  ExoTree,
+    {"extends":"div"}
+);
+
+
+
+/* js/layouts/tabs.js */
+
+/*
+<input aria-hidden="true" type="checkbox" id="nm1">
+            <label aria-hidden="true" class="exo-tabs-open exo-button exo-icon exo-icon-medium exo-icon-menu" for="nm1">
+            </label>
+            <label aria-hidden="true" class="exo-tabs-close exo-button exo-rounded exo-icon exo-icon-medium exo-icon-clear" for="nm1">
+            </label>
+            <br>
+
+            <input aria-hidden="true" type="radio" name="g2" id="ncontent-a1" checked="">
+            <label aria-hidden="true" class="exo-tabs-item exo-white-bg" for="ncontent-a1" tabindex="-1">Tab 1</label>
+ */
+class ExoTab extends HTMLElement {
+    constructor() {
+      super();
+      this.connected = false;
+    }
+
+    connectedCallback() {
+        if (this.connected) {
+            return;
+        }
+        this.connected = true;
+        let p_elt = this.parentElement;
+        if (p_elt.exo_tab_count == undefined) {
+            p_elt.exo_tab_count = 0;
+            p_elt.exo_tabs = [];
+        }
+        let parent_id = p_elt.getAttribute("id");
+        let group_id = parent_id+"-tab-group";
+        let tab_content_id = parent_id+"-tab-content";
+        let cb_id = parent_id+"-cb";
+        let first = false;
+        let content_elt = null;
+        if (p_elt.exo_tab_count == 0) {
+
+            let cb_elt = ExoUtils.createElement("input",{"aria-hidden":"true", "type":"checkbox", "id":cb_id});
+            let cb_label_open = ExoUtils.createElement("label",{
+                "aria-hidden":"true",
+                "class":"exo-tabs-open exo-button exo-icon exo-icon-medium exo-icon-menu",
+                "for":cb_id});
+            let cb_label_close = ExoUtils.createElement("label",{
+                "aria-hidden":"true",
+                "class":"exo-tabs-close exo-button exo-rounded exo-icon exo-icon-medium exo-icon-clear",
+                "for":cb_id});
+
+            let break_elt = document.createElement("br");
+            content_elt = document.createElement("div");
+            content_elt.setAttribute("class","exo-tabs-content");
+            content_elt.setAttribute("id", tab_content_id);
+            p_elt.insertBefore(content_elt,p_elt.firstElementChild);
+            p_elt.insertBefore(break_elt,p_elt.firstElementChild);
+            p_elt.insertBefore(cb_label_close,p_elt.firstElementChild);
+            p_elt.insertBefore(cb_label_open,p_elt.firstElementChild);
+            p_elt.insertBefore(cb_elt,p_elt.firstElementChild);
+            first = true;
+        } else {
+            content_elt = document.getElementById(tab_content_id);
+        }
+        let content_id = parent_id + "-tab-"+p_elt.exo_tab_count;
+
+        this.label = ExoUtils.createElement("label",{
+            "for":content_id,
+            "aria-hidden":"true",
+            "class":"exo-tabs-item exo-white-bg"});
+        this.label.appendChild(document.createTextNode(this.getAttribute("label")));
+
+        let input = ExoUtils.createElement("input", {
+            "type":"radio","name":group_id,"id":content_id
+        });
+        if (first) {
+            input.setAttribute("checked","checked");
+        }
+        p_elt.insertBefore(input, content_elt);
+        p_elt.insertBefore(this.label, content_elt);
+        p_elt.exo_tabs.push(this);
+        p_elt.exo_tab_count += 1;
+        document.getElementById(tab_content_id).appendChild(this);
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name == "label" && this.label) {
+            ExoUtils.removeAllChildren(this.label);
+            this.label.appendChild(document.createTextNode(newValue));
+        }
+    }
+
+    static get observedAttributes() {
+        return ["label"];
+    }
+}
+
+customElements.define(
+  "exo-tab",
+  ExoTab
+);
 

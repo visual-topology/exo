@@ -102,7 +102,6 @@ class CustomExoTableControl extends CustomExoControl {
                                     this.exoUpdateCell(name, row_index, undefined);
                                 } else {
                                     let v = ctrl.exoGetInputElement().value;
-                                    alert(v);
                                     this.exoUpdateCell(name, row_index, v);
                                 }
                             });
