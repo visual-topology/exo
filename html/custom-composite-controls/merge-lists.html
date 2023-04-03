@@ -1,0 +1,8 @@
+<div>
+    <exo-merge-lists id="test_merge" label='Test' value='[["aaa","ccc"]]' tooltip="Help!!!" size="5" options1='[["aaa","AAA"],["bbb","BBB"]]' options2='[["ccc","CCC"],["ddd","DDD"]]'>
+    </exo-merge-lists>
+    <script>
+        var btn = document.getElementById("test_merge");
+        btn.addEventListener("exo-value",e => { console.log(e.detail); })
+    </script>
+</div>

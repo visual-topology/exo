@@ -1,0 +1,8 @@
+<div>
+    <exo-file id="test_file" label="test" tooltip="Help!!!" fg-color="dark-purple">
+    </exo-file>
+    <script>
+        var btn = document.getElementById("test_file");
+        btn.addEventListener("exo-file-changed",e => { console.log(JSON.stringify(e.detail)); })
+    </script>
+</div>

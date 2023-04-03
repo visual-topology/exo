@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="exo.js" ></script>
+    <link rel="stylesheet" href="exo.css">
+    <link rel="stylesheet" href="exo-icons.css">
+    <script src="../../support/model_view.js" type="text/javascript"></script>
+    <style>
+        .model-view {
+          margin-right: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="../../support/model_view.css" type="text/css"/>
+</head>
+<body  onload="boot(null,['exo','script'])" class="exo-container">
+    <h1>Exo - Custom Elements - Composite Controls</h1>
+    <p>
+        Custom HTML elements described here wrap some useful structures for building UIs with exo
+    </p>
+
+    <h2>Installation</h2>
+
+    <p>
+        Include the exo.js script to use HTML custom elements:
+    </p>
+
+    <pre><code>
+            &lt;!-- js file is optional, include if you use exo custom HTML elements --&gt;
+            &lt;script src="exo.js" type="text/javascript">&lt;/script>
+    </code></pre>
+
+    <h2>Merge Lists</h2>
+    <div class="exo-row">
+        <div class="exo-4-cell model-view">
+            <pre><code id="view0"></code></pre>
+        </div>
+        <div id="model0" class="exo-4-cell">
+            <exo-merge-lists id="test_merge" label='Test' value='[["aaa","ccc"]]' tooltip="Help!!!" size="5" options1='[["aaa","AAA"],["bbb","BBB"]]' options2='[["ccc","CCC"],["ddd","DDD"]]'>
+            </exo-merge-lists>
+            <script>
+                var btn = document.getElementById("test_merge");
+                btn.addEventListener("exo-value",e => { console.log(e.detail); })
+            </script>
+        </div>
+    </div>
+
+    <h2>Table Control</h2>
+    <div class="exo-row">
+        <div class="exo-4-cell model-view">
+            <pre><code id="view1"></code></pre>
+        </div>
+        <div id="model1" class="exo-6-cell">
+            <exo-table-control id="test_tc" label='Test' value='{
+                "columns":[
+                    {"name":"orig", "label":"Original Name", "type":"string", "editable":false},
+                    {"name":"include", "label":"Include Column", "type":"boolean", "editable":true},
+                    {"name":"renamed", "label":"Rename Column", "type":"string", "editable":true}
+                ],
+                "rows":[
+                    {"orig":"CityName","include":true,"renamed":"City Name"},{"orig":"PopSz","include":true,"renamed":"Population Size"}] }',
+                tooltip="Help!!!">
+            </exo-table-control>
+            <script>
+                var btn = document.getElementById("test_tc");
+                btn.addEventListener("exo-value",e => { console.log(e.detail); })
+            </script>
+        </div>
+    </div>
+
+</body>
+</html>

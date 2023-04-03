@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Exo 0.0.2 Custom Controls</title>
+    <script src="exo.js" ></script>
+    <link rel="stylesheet" href="exo.css">
+    <link rel="stylesheet" href="exo-icons.css">
+</head>
+<body  class="exo-container">
+    <h1>Exo - Custom Elements - Controls</h1>
+    <p>
+        Custom HTML elements described here wrap some useful structures for building UIs with exo
+    </p>
+
+    <h2>Installation</h2>
+
+    <p>
+        Include the exo.js script to use HTML custom elements:
+    </p>
+
+    <pre><code>
+            &lt;!-- js file is optional, include if you use exo custom HTML elements --&gt;
+            &lt;script src="exo.js" type="text/javascript">&lt;/script>
+    </code></pre>
+
+    <h2>Common attributes</h2>
+    <table class="exo-striped exo-border exo-black-border">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Example Values</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                   label
+                </td>
+                <td>
+                    Enter your name:
+                </td>
+                <td>
+                    Display a label above the control
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    tooltip
+                </td>
+                <td>
+                    Use this control to enter your name.
+                </td>
+                <td>
+                    Display a question mark button above the control, display text as a tooltip on hover or click
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    fg-color, bg-color, border-color
+                </td>
+                <td>
+                    dark-red, dark-orange, dark-blue, dark-green, dark-purple, dark-brown, dark-gray, dark-pink, dark-yellow,
+                    light-red, light-orange, light-blue, light-green, light-purple, light-brown, light-gray, light-pink, light-yellow,
+                    white, black
+                </td>
+                <td>
+                    Set the foreground, background or border color. Not yet consistently supported for all input controls.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    disabled
+                </td>
+                <td>
+                    true, false
+                </td>
+                <td>
+                    Enable or disable this control
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    <h2>Button</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-button</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_button"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span>
+     <span style="color:blue;">text</span>=<span style="color:purple;">"hello world"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span>
+     <span style="color:blue;">
+</span> <span style="color:blue;">bg-color</span>=<span style="color:purple;">"light-orange"</span> <span style="color:blue;">border-color</span>=<span style="color:purple;">"dark-blue"</span>
+     <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-red"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    document.getElementById("test_button").addEventListener("click",e => { console.log("click"); })
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+  <exo-button id="test_button" label="test" text="hello world" tooltip="Help!!!"
+              bg-color="light-orange" border-color="dark-blue" fg-color="dark-red"></exo-button>
+  <script>
+    document.getElementById("test_button").addEventListener("click",e => { console.log("click"); })
+  </script>
+
+            </div>
+    </div>
+    
+
+    <h2>Checkbox</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-checkbox</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_checkbox"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span>
+     <span style="color:blue;">value</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span> <span style="color:blue;">border-color</span>=<span style="color:purple;">"dark-purple"</span>
+     <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-red"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    document.getElementById("test_checkbox").addEventListener("change",e => { console.log(e.target.checked); })
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+  <exo-checkbox id="test_checkbox" label="test" value="true" tooltip="Help!!!" border-color="dark-purple" fg-color="dark-red"></exo-checkbox>
+  <script>
+     document.getElementById("test_checkbox").addEventListener("change",e => { console.log(e.target.checked); })
+  </script>
+
+            </div>
+    </div>
+    
+
+    <h2>Toggle</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-toggle</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_toggle"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span>
+     <span style="color:blue;">true-text</span>=<span style="color:purple;">"ON"</span> <span style="color:blue;">false-text</span>=<span style="color:purple;">"OFF"</span> <span style="color:blue;">value</span>=<span style="color:purple;">"false"</span>
+     <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span> <span style="color:blue;">fg-color</span>=<span style="color:purple;">"light-gray"</span>
+     <span style="color:blue;">bg-color</span>=<span style="color:purple;">"dark-red"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    document.getElementById("test_toggle").addEventListener("change",e => { console.log(e.target.checked); } );
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <exo-toggle id="test_toggle" label="test" true-text="ON" false-text="OFF" value="false" tooltip="Help!!!" fg-color="light-gray" bg-color="dark-red"></exo-toggle>
+    <script>
+        document.getElementById("test_toggle").addEventListener("change",e => { console.log(e.target.checked); } );
+    </script>
+
+            </div>
+    </div>
+    
+
+    <h2>Text</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-text</span> <span style="color:blue;">full-width</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_text"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span>
+     <span style="color:blue;">value</span>=<span style="color:purple;">"Enter text here"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span>
+     <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-green"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    document.getElementById("test_text").addEventListener("change",e => { console.log(e.target.value); })
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <exo-text full-width id="test_text" label="test" value="Enter text here" tooltip="Help!!!" fg-color="dark-green"></exo-text>
+    <script>
+        document.getElementById("test_text").addEventListener("change",e => { console.log(e.target.value); })
+    </script>
+
+            </div>
+    </div>
+    
+
+    <h2>Select</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-select</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_select"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span>
+     <span style="color:blue;">value</span>=<span style="color:purple;">"aaa"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span> <span style="color:blue;">options</span>=<span style="color:purple;">'[["aaa","AAA"],["bbb","BBB"]]'</span>
+     <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-green"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    var btn = document.getElementById("test_select");
+    btn.addEventListener("change",e => { console.log(e.target.value); })
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <exo-select id="test_select" label="test" value="aaa" tooltip="Help!!!" options='[["aaa","AAA"],["bbb","BBB"]]' fg-color="dark-green">
+    </exo-select>
+    <script>
+        var btn = document.getElementById("test_select");
+        btn.addEventListener("change",e => { console.log(e.target.value); })
+    </script>
+
+            </div>
+    </div>
+    
+
+    <h2>Radio Buttons</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-radio</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_radio"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span> <span style="color:blue;">value</span>=<span style="color:purple;">"aaa"</span>
+     <span style="color:blue;">options</span>=<span style="color:purple;">'[["aaa","AAA"],["bbb","BBB"]]'</span>
+     <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span> <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-green"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    document.getElementById("test_radio").addEventListener("change",e => { console.log(e.target.value); })
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <exo-radio id="test_radio" label="test" value="aaa" options='[["aaa","AAA"],["bbb","BBB"]]' tooltip="Help!!!" fg-color="dark-green">
+    </exo-radio>
+    <script>
+        document.getElementById("test_radio").addEventListener("change",e => { console.log(e.target.value); })
+    </script>
+
+            </div>
+    </div>
+    
+
+    <h2>Number</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-number</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_number"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span>
+     <span style="color:blue;">value</span>=<span style="color:purple;">"10"</span> <span style="color:blue;">min</span>=<span style="color:purple;">"0"</span> <span style="color:blue;">max</span>=<span style="color:purple;">"20"</span> <span style="color:blue;">step</span>=<span style="color:purple;">"5"</span>
+     <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span> <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-purple"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    document.getElementById("test_number").addEventListener("change",e => { console.log(e.target.value); })
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <exo-number id="test_number" label="test" value="10" min="0" max="20" step="5" tooltip="Help!!!" fg-color="dark-purple">
+    </exo-number>
+    <script>
+        document.getElementById("test_number").addEventListener("change",e => { console.log(e.target.value); })
+    </script>
+
+            </div>
+    </div>
+    
+
+    <h2>Range</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-range</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_range"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span> <span style="color:blue;">value</span>=<span style="color:purple;">"10"</span>
+     <span style="color:blue;">min</span>=<span style="color:purple;">"0"</span> <span style="color:blue;">max</span>=<span style="color:purple;">"20"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span> <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-purple"</span>/&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <exo-range id="test_range" label="test" value="10" min="0" max="20" tooltip="Help!!!" fg-color="dark-purple">
+    </exo-range>
+
+            </div>
+    </div>
+    
+
+    <h2>Date</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-date</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_date"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span> <span style="color:blue;">value</span>=<span style="color:purple;">"2018-04-10"</span>
+     <span style="color:blue;">min</span>=<span style="color:purple;">"2018-01-01"</span> <span style="color:blue;">max</span>=<span style="color:purple;">"2018-12-31"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span>
+     <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-purple"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    var btn = document.getElementById("test_date");
+    btn.addEventListener("change",e => { console.log(e.target.value); })
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <exo-date id="test_date" label="test" value="2018-04-10" min="2018-01-01" max="2018-12-31" tooltip="Help!!!" fg-color="dark-purple">
+    </exo-date>
+    <script>
+        var btn = document.getElementById("test_date");
+        btn.addEventListener("change",e => { console.log(e.target.value); })
+    </script>
+
+            </div>
+    </div>
+    
+
+    <h2>File</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-file</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_file"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span>
+     <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-purple"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    var btn = document.getElementById("test_file");
+    btn.addEventListener("exo-file-changed",e => { console.log(JSON.stringify(e.detail)); })
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <exo-file id="test_file" label="test" tooltip="Help!!!" fg-color="dark-purple">
+    </exo-file>
+    <script>
+        var btn = document.getElementById("test_file");
+        btn.addEventListener("exo-file-changed",e => { console.log(JSON.stringify(e.detail)); })
+    </script>
+
+            </div>
+    </div>
+    
+
+    <h2>Text Area</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-textarea</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_textarea"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span>
+     <span style="color:blue;">value</span>=<span style="color:purple;">"Enter text here"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span>
+     <span style="color:blue;">rows</span>=<span style="color:purple;">"5"</span> <span style="color:blue;">cols</span>=<span style="color:purple;">"40"</span> <span style="color:blue;">bg-color</span>=<span style="color:purple;">"light-green"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    var btn = document.getElementById("test_textarea");
+    btn.addEventListener("change",e => { console.log(e.target.value); })
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+  <exo-textarea id="test_textarea" label="test" value="Enter text here" tooltip="Help!!!" rows="5" cols="40" bg-color="light-green"></exo-textarea>
+  <script>
+      var btn = document.getElementById("test_textarea");
+      btn.addEventListener("change",e => { console.log(e.target.value); })
+  </script>
+
+            </div>
+    </div>
+    
+
+    <h2>Download</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-download</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_download"</span> <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-blue"</span>
+     <span style="color:blue;">bg-color</span>=<span style="color:purple;">"light-gray"</span> <span style="color:blue;">download-filename</span>=<span style="color:purple;">"test.txt"</span>
+     <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    var btn = document.getElementById("test_download");
+    btn.addEventListener("exo-download",e => {
+    console.log("Download starting...");
+    btn.setAttribute("download-mimetype","text/plain");
+    btn.setAttribute("download-content","Download Content!");
+    });
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <exo-download id="test_download" fg-color="dark-blue" bg-color="light-gray" download-filename="test.txt" label="test" tooltip="Help!!!" ></exo-download>
+    <script>
+        var btn = document.getElementById("test_download");
+        btn.addEventListener("exo-download",e => {
+            console.log("Download starting...");
+            btn.setAttribute("download-mimetype","text/plain");
+            btn.setAttribute("download-content","Download Content!");
+        });
+    </script>
+
+            </div>
+    </div>
+    
+
+</body>
+</html>
