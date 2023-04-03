@@ -2,17 +2,29 @@
 
 class ExoUtils {
 
+    static createElement(tag, attrs) {
+        let elt = document.createElement(tag);
+        for(let name in attrs) {
+            elt.setAttribute(name,attrs[name]);
+        }
+        return elt;
+    }
+
     static addClasses(element, classnames) {
         classnames.forEach(classname => ExoUtils.addClass(element, classname));
     }
 
     static addClass(element, classname) {
         var classes = (element.getAttribute("class") || "").split(" ");
-        if (classes.findIndex(name => name == classname) == -1) {
-            classes.push(classname);
-            var new_classes = classes.join(" ")
-            element.setAttribute("class", new_classes);
+        var classnames = classname.split(" ");
+        for(let idx=0; idx<classnames.length; idx++) {
+            let cls = classnames[idx];
+            if (classes.findIndex(name => name == cls) == -1) {
+                classes.push(cls);
+            }
         }
+        var new_classes = classes.join(" ")
+        element.setAttribute("class", new_classes);
     }
 
     static getClasses(element) {
@@ -89,6 +101,7 @@ class CustomExoControl extends HTMLElement {
         this.exo_id = "s"+exo_counter;
         exo_counter += 1;
         this.exo_built = false;
+        this.pending_event_listeners = [];
     }
 
     exoGetId() {
@@ -107,14 +120,23 @@ class CustomExoControl extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ["fg-color", "bg-color", "border-color", "border","margin","padding","rounded","vmargin","hmargin","label","tooltip"];
+        return ["fg-color", "bg-color", "border-color", "border","margin","padding","rounded",
+            "vmargin","hmargin","label","tooltip","disabled","class","aria-label", "visible"];
     }
 
     addEventListener(type, listener, options) {
+        if (!this.exo_built) {
+            this.pending_event_listeners.push([type, listener, options]);
+        } else {
+            this.exoAttachEventListener(type, listener, options);
+        }
+    }
+
+    exoAttachEventListener(type, listener, options) {
         if (!type.startsWith("exo")) {
             return this.exoGetInputElement().addEventListener(type, listener, options);
         } else {
-            return super.addEventListener(type,listener,options);
+            return super.addEventListener(type, listener, options);
         }
     }
 
@@ -149,8 +171,11 @@ class CustomExoControl extends HTMLElement {
             this.exoUpdate(parameter_name,parameters[parameter_name]);
         }
         this.appendChild(this.exoGetRootElement());
+        for(var idx=0; idx<this.pending_event_listeners.length; idx++) {
+            var pending = this.pending_event_listeners[idx];
+            this.exoAttachEventListener(pending[0],pending[1],pending[2]);
+        }
     }
-
 
     exoGetParameters() {
         let parameters = {};
@@ -206,6 +231,32 @@ class CustomExoControl extends HTMLElement {
             case "id":
                 // ignore
                 break;
+            case "class":
+                ExoUtils.addClass(this.exoGetInputElement(),value);
+                break;
+            case "disabled":
+                switch(value) {
+                    case "true":
+                        this.exoGetInputElement().setAttribute("disabled", "disabled");
+                        break;
+                    case "false":
+                        this.exoGetInputElement().removeAttribute("disabled");
+                        break;
+                }
+                break;
+            case "visible":
+                switch(value) {
+                    case "true":
+                        ExoUtils.addStyle(this.exoGetRootElement(),"visibility", "visible");
+                        break;
+                    case "false":
+                        ExoUtils.addStyle(this.exoGetRootElement(),"visibility", "hidden");
+                        break;
+                }
+                break;
+            case "aria-label":
+                this.exoGetInputElement().setAttribute(name,value);
+                break;
             default:
                 console.log("Unrecognized exoUpdate: "+name+","+value);
         }
@@ -213,11 +264,6 @@ class CustomExoControl extends HTMLElement {
 
     exoGetInputElement() {
         return this.exo_element;
-    }
-
-    exoUpdateLabelText(text) {
-        this.label.innerHTML = "";
-        this.label.appendChild(document.createTextNode(text?text:"\u00A0"));
     }
 
     applySizedDimension(name,value) {
@@ -263,14 +309,11 @@ class CustomExoControl extends HTMLElement {
 
     exoSetControlValue(value) {
         this.exo_control_value = value;
+        this.value = value;
     }
 
     exoGetControlValue() {
         return this.exo_control_value;
-    }
-
-    exoSetEditable(can_edit) {
-        this.exoGetInputElement().disabled = !can_edit;
     }
 
     exoGetRootElement() {

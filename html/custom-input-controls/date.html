@@ -1,0 +1,8 @@
+<div>
+    <exo-date id="test_date" label="test" value="2018-04-10" min="2018-01-01" max="2018-12-31" tooltip="Help!!!" fg-color="dark-purple">
+    </exo-date>
+    <script>
+        var btn = document.getElementById("test_date");
+        btn.addEventListener("change",e => { console.log(e.target.value); })
+    </script>
+</div>

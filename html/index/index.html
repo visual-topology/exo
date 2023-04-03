@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Exo {EXO-VERSION} CSS documentation</title>
+    <meta name="description" content="Demo and documentation-by-example for Exo CSS">
+    <meta name="author" content="Visual Topology">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type='text/css'>
+    <link rel="stylesheet" href="exo.css" type="text/css">
+    <link rel="stylesheet" href="exo-icons.css" type="text/css">
+
+    <script type="text/javascript">
+         $ = function( id ) { return document.getElementById( id ); };
+    </script>
+    <style>
+        .model-view {
+          margin-right: 10px;
+        }
+    </style>
+
+</head>
+<body class="exo-container">
+
+<h1>Exo {EXO-VERSION}</h1>
+
+<p>Exo is a minimal CSS framework for building simple but stylish single page web applications. It is licensed under the
+    <a href="https://opensource.org/licenses/mit-license.php">open source MIT license</a>.</p>
+
+<p>Exo provides a class based system for defining colors, layouts, icons from the material design icon set,
+    custom styled input controls, and more...</p>
+
+<p>This page provides <strong>example-based documentation</strong> for Exo.</p>
+
+<h2>Contents</h2>
+<div class="exo-row">
+    <div class="exo-3-cell">
+        <ul>
+            <h4>General</h4>
+            <li><a href="#installing">Installation</a></li>
+            <li><a href="#examples">Examples</a></li>
+        </ul>
+        <ul>
+            <h4>HTML Custom Elements</h4>
+            <li><a href="exo-custom.html">Custom Elements</a></li>
+        </ul>
+    </div>
+    <div class="exo-3-cell">
+        <ul>
+            <h4>Structure</h4>
+            <li><a href="#layout">Layout</a></li>
+            <li><a href="#hero">Hero</a></li>
+            <li><a href="#tabs">Tabs</a></li>
+            <li><a href="#cards">Cards</a></li>
+            <li><a href="#carousel">Carousel</a></li>
+            <li><a href="#summary_details">Summary-Details</a></li>
+            <li><a href="#navigable_tree">Collapsable Tree</a></li>
+            <li><a href="#modal_windows">Modal Windows</a></li>
+            <li><a href="#conditional">Conditionals</a></li>
+        </ul>
+    </div>
+    <div class="exo-3-cell">
+        <ul>
+            <h4>Style</h4>
+            <li><a href="#colors">Colours</a></li>
+            <li><a href="#icons">Icons</a></li>
+            <li><a href="#font_sizes">Font Sizes</a></li>
+            <li><a href="#input_controls">Input controls</a></li>
+            <li><a href="#tooltips">Tooltips</a></li>
+            <li><a href="#spinner">Spinner</a></li>
+            <li><a href="#table">Table</a></li>
+        </ul>
+    </div>
+</div>
+
+<h2 id="examples">Examples</h2>
+
+<p>
+    For some demo pages that use exo, see:
+</p>
+
+<ul>
+    <li><a href="examples/book-ideas.html">Book Ideas</a></li>
+</ul>
+
+<h2 id="installing">Installing Exo</h2>
+<p>
+    To try the latest Exo CSS, simply add the following html5 code to your document's <code>&lt;head&gt;</code>:
+</p>
+
+<pre><code>
+INCLUDE_HTML(install.html)
+</code></pre>
+
+<p>
+    Optional, if using exo-icons, add the following html5 code to your document's <code>&lt;head&gt;</code>:
+</p>
+
+<pre><code>
+INCLUDE_HTML(install_icons.html)
+</code></pre>
+
+<p>
+    Optional, if using exo HTML custom elements (see below), add the following html5 code to your document's <code>&lt;head&gt;</code>:
+</p>
+
+<pre><code>
+INCLUDE_HTML(install_custom.html)
+</code></pre>
+
+<p>
+    To use a particular version of Exo, substitute its version number for <code>latest</code> in the URLs above.
+</p>
+
+<p>
+    To use Exo in your own project, select and download a release from the <a
+        href="https://github.com/visualtopology/exo/releases">Exo releases github page</a>.
+</p>
+
+<h2 id="layout">Simple Row/Cell Layout based on CSS flexbox</h2>
+
+<p>
+    To style a page (center and limit width to 1280 pixels) add class <code>exo-container</code> to your document's
+    <code>body</code>.
+</p>
+
+<p>
+    Exo supplies a CSS-flexbox based system for laying out rows composed of fixed (128px) width cells:
+</p>
+
+INCLUDE_EXAMPLE6(layout.html)
+
+For more details on row/cell layouts see <a href="layout.html">layout examples.</a>
+
+<h2 id="hero">Hero</h2>
+
+INCLUDE_EXAMPLE(hero.html)
+
+<h2 id="tabs">Tabs</h2>
+
+Exo offers a tab-like system for structuring pages - tab buttons are displayed in an area above a content window that displays the
+selected tab.  On narrow screens, the tabs are drawn in a collapsable menu.
+
+Note that there are a maximum of 12 tabs defined in the CSS - customise exo.css (search for "extend tab limit") if more
+are required.
+
+INCLUDE_EXAMPLE(tabs.html)
+
+<h2 id="cards">Cards</h2>
+
+INCLUDE_EXAMPLE(cards.html)
+
+<h2 id="carousel">Carousel</h2>
+
+INCLUDE_EXAMPLE(carousel.html)
+
+<h2 id="summary_details">Summary / Details</h2>
+
+INCLUDE_EXAMPLE(summary.html)
+
+<h2 id="navigable_tree">Collapsable Tree</h2>
+
+INCLUDE_EXAMPLE(tree.html)
+
+<h2 id="modal_windows">Modal Windows</h2>
+
+INCLUDE_EXAMPLE(modal.html)
+
+<h2 id="conditional">Conditional</h2>
+
+INCLUDE_EXAMPLE(conditional.html)
+
+<h2 id="colors">Colours</h2>
+
+Colours are used to assign a background and are divided into dark and light.
+Dark colors are used with a white foreground color and light colors are used with a black foreground color.
+
+To apply a background color to an element, add class <code>exo-COLOUR</code> or <code>exo-light-COLOUR</code>.
+
+<h4>Dark Foreground Colours</h4>
+
+INCLUDE_EXAMPLE(dark-fg.html)
+
+<h4>Light Foreground Colours</h4>
+
+INCLUDE_EXAMPLE(light-fg.html)
+
+<h4>Dark Background Colours</h4>
+
+INCLUDE_EXAMPLE(dark-bg.html)
+
+<h4>Light Background Colours</h4>
+
+INCLUDE_EXAMPLE(light-bg.html)
+
+<h2 id="icons">Icons</h2>
+
+Icons are obtained from the <a href="https://fonts.google.com/icons?selected=Material+Icons" target="_blank">Google
+    Material Design Icons Set</a> and are repackaged into CSS files and introduced into pages using
+<code>exo-icon*</code> classes.
+
+To use icons, import the CSS file(s) corresponding to the selected style and required color(s). For more details see <a
+        href="exo-icons.html">tables of provided icons and details of which CSS files to import.</a>
+
+The following examples cover some typical use cases, other sections will cover more specific uses for icons.
+
+INCLUDE_EXAMPLE(icons.html)
+
+<h2 id="font_sizes">Font Sizes</h2>
+
+Exo provides a range of font sizes.
+
+INCLUDE_EXAMPLE(font-sizes.html)
+
+<h2 id="input_controls">Input Controls</h2>
+
+A number of input control styles are supported, for some quick examples see below, or consult the <a
+        href="input-controls.html">input controls detailed examples</a>
+
+INCLUDE_EXAMPLE(controls.html)
+
+<h2 id="tooltips">Tooltips</h2>
+
+INCLUDE_EXAMPLE(tooltips.html)
+
+<h2 id="progress">Progress Bars</h2>
+
+INCLUDE_EXAMPLE(progress.html)
+
+<h2 id="spinner">Spinner</h2>
+
+INCLUDE_EXAMPLE(spinner.html)
+
+<h2 id="table">Tables</h2>
+
+INCLUDE_EXAMPLE(table.html)
+
+</body>
+</html>

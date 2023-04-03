@@ -1,0 +1,7 @@
+<div>
+  <exo-textarea id="test_textarea" label="test" value="Enter text here" tooltip="Help!!!" rows="5" cols="40" bg-color="light-green"></exo-textarea>
+  <script>
+      var btn = document.getElementById("test_textarea");
+      btn.addEventListener("change",e => { console.log(e.target.value); })
+  </script>
+</div>

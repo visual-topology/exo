@@ -12,6 +12,7 @@ class CustomExoText extends CustomExoControl {
         this.exoGetInputElement().setAttribute("type","text");
         this.exoGetInputElement().value = parameters["value"] || "";
 
+
         super.exoBuildComplete(parameters);
     }
 

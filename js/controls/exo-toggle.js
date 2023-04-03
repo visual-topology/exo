@@ -34,7 +34,8 @@ class CustomExoToggle extends CustomExoControl {
     exoUpdate(name,value) {
         switch(name) {
             case "value":
-                this.exoGetInputElement().checked = value;
+                this.exoGetInputElement().checked = (value == "true") ? true : false;
+                this.exoSetControlValue(value);
                 break;
             case "true-text":
                 if (!this.tt_span) {

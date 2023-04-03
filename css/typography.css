@@ -23,6 +23,7 @@
 }
 
 
+
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -249,4 +250,15 @@ pre > code {
 
 .exo-huge-margin {
     margin: var(--margin-huge);
+}
+
+/* Font Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.exo-bold {
+    font-weight: bold;
+}
+
+.exo-italic {
+    font-style: italic;
 }

@@ -49,7 +49,6 @@
             <h4>Structure</h4>
             <li><a href="#layout">Layout</a></li>
             <li><a href="#hero">Hero</a></li>
-            <li><a href="#navigation">Naviburger</a></li>
             <li><a href="#tabs">Tabs</a></li>
             <li><a href="#cards">Cards</a></li>
             <li><a href="#carousel">Carousel</a></li>
@@ -105,7 +104,7 @@
         href="https://github.com/visualtopology/exo/releases">Exo releases github page</a>.
 </p>
 
-<h2 id="layout">Simple Row/Column Layout based on CSS Grid</h2>
+<h2 id="layout">Simple Row/Column Layout based on CSS flexbox</h2>
 
 <p>
     To style a page (center and limit width to 1280 pixels) add class <code>exo-container</code> to your document's
@@ -173,54 +172,10 @@ For more details see <a href="examples/layout.html">layout examples.</a>
     </div>
 </div>
 
-<h2 id="navigation">Naviburger - Menu-based Navigation</h2>
-
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                    <pre><code id="view16">
-                    </code></pre>
-    </div>
-    <div id="model16" class="exo-4-cell">
-        <div class="exo-menu exo-white-fg">
-            <input aria-hidden="true" type="checkbox" id="m1">
-            <label aria-hidden="true" class="exo-menu-open exo-button exo-icon exo-icon-medium exo-icon-menu" for="m1">
-            </label>
-            <label aria-hidden="true" class="exo-menu-close exo-button exo-rounded exo-icon exo-icon-medium exo-icon-clear" for="m1">
-            </label>
-            <br>
-
-            <input aria-hidden="true" type="radio" name="g2" id="content-a1" checked="" class="exo-dark-orange">
-            <label aria-hidden="true" class="exo-dark-red-bg exo-rounded exo-menu-item" for="content-a1">Basic Explanation</label>
-
-            <input aria-hidden="true" type="radio" name="g2" id="content-a2" class="exo-dark-orange">
-            <label aria-hidden="true" class="exo-dark-purple-bg exo-rounded exo-menu-item" for="content-a2">More Technical Detail</label>
-
-            <input aria-hidden="true" type="radio" name="g2" id="content-a3" class="exo-dark-orange">
-            <label aria-hidden="true" class="exo-dark-blue-bg exo-rounded exo-menu-item" for="content-a3">Maximum Detail (Burn my eyes)</label>
-
-            <div class="exo-menu-content">
-                <section class="exo-dark-red-bg exo-rounded">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.
-                </section>
-                <section class="exo-dark-purple-bg exo-rounded">
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.
-                </section>
-                <section class="exo-dark-blue-bg exo-rounded">
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                    anim id est laborum.
-                </section>
-            </div>
-        </div>
-    </div>
-</div>
-
 <h2 id="tabs">Tabs</h2>
 
 Exo offers a tab-like system - tab buttons are displayed in an area above a content window that displays the
-selected tab.
+selected tab.  On narrow screens, the tabs are drawn in a collapsable menu.
 Note that there are a maximum of 12 tabs defined in the CSS - customise exo.css (search for "extend tab limit") if more
 are required.
 
@@ -230,33 +185,42 @@ are required.
                 </code></pre>
     </div>
     <div id="model15" class="exo-4-cell">
-        <div class="exo-tabs exo-white-fg">
-            <label aria-hidden="true" class="exo-dark-red-bg exo-rounded" for="content-1">Tab 1</label>
-            <input aria-hidden="true" type="radio" name="g" id="content-1" checked="">
-            <label aria-hidden="true" class="exo-dark-purple-bg exo-rounded" for="content-2">Tab 2</label>
-            <input aria-hidden="true" type="radio" name="g" id="content-2">
-            <label aria-hidden="true" class="exo-dark-blue-bg exo-rounded" for="content-3">Tab 3</label>
-            <input aria-hidden="true" type="radio" name="g" id="content-3">
+        <div class="exo-tabs">
+            <input aria-hidden="true" type="checkbox" id="nm1">
+            <label aria-hidden="true" class="exo-tabs-open exo-button exo-icon exo-icon-medium exo-icon-menu" for="nm1">
+            </label>
+            <label aria-hidden="true" class="exo-tabs-close exo-button exo-rounded exo-icon exo-icon-medium exo-icon-clear" for="nm1">
+            </label>
+            <br>
 
-            <div class="exo-break"></div>
+            <input aria-hidden="true" type="radio" name="g2" id="ncontent-a1" checked="">
+            <label aria-hidden="true" class="exo-tabs-item exo-white-bg" for="ncontent-a1" tabindex="-1">Tab 1</label>
+
+            <input aria-hidden="true" type="radio" name="g2" id="ncontent-a2">
+            <label aria-hidden="true" class="exo-tabs-item exo-white-bg" for="ncontent-a2" tabindex="-1">Tab 2</label>
+
+            <input aria-hidden="true" type="radio" name="g2" id="ncontent-a3">
+            <label aria-hidden="true" class="exo-tabs-item exo-white-bg" for="ncontent-a3" tabindex="-1">Tab 3</label>
+
             <div class="exo-tabs-content">
-                <section class="exo-dark-red-bg exo-rounded">
+                <section>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua.
                 </section>
-                <section class="exo-dark-purple-bg exo-rounded">
+                <section>
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                     consequat.
                 </section>
-                <section class="exo-dark-blue-bg exo-rounded">
+                <section>
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
                     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
                     anim id est laborum.
                 </section>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
+
 
 <h2 id="cards">Cards</h2>
 
@@ -400,17 +364,17 @@ are required.
     <div id="model7" class="exo-4-cell">
         <div class="exo-tree" role="tree">
 
-            <ul class="exo-tree">
+            <ul>
                 <li role="treeitem">
                     <input type="checkbox" aria-hidden="true">
-                    <label>File 1</label>
+                    <label class="exo-huge">File 1</label>
                     <div class="exo-light-gray-bg">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </div>
                 </li>
                 <li role="treeitem">
                     <input type="checkbox" checked="checked" aria-hidden="true">
-                    <label>Folder 1</label>
+                    <label class="exo-huge">Folder 1</label>
                     <ul>
                         <li role="treeitem">
                             <div class="exo-light-brown-bg">Lorem ipsum.</div></li>
@@ -520,10 +484,10 @@ To apply a background color to an element, add class <code>exo-COLOUR</code> or 
 <h4>Light Foreground Colours</h4>
 <div class="exo-row">
     <div class="exo-4-cell model-view">
-                <pre><code id="view20">
+                <pre><code id="view16">
                 </code></pre>
     </div>
-    <div id="model20" class="exo-4-cell">
+    <div id="model16" class="exo-4-cell">
         <div class="exo-black-bg">
             <div class="exo-light-orange-fg">exo-light-orange-fg</div>
             <div class="exo-light-red-fg">exo-light-red-fg</div>

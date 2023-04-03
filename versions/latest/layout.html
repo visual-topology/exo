@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Exo 0.0.2 CSS documentation - layouts</title>
+    <meta name="description" content="Demo and documentation-by-example for Exo CSS Layouts">
+    <meta name="author" content="Visual Topology">
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,300,600" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="exo.css" type="text/css"/>
+</head>
+<body class="exo-container">
+
+    <h1>Exo Layouts</h1>
+
+    This page provides some examples of using exo layouts.
+    <ul>
+        <li><a href="#simple_layout">Simple Example</a></li>
+        <li><a href="#nested_layout">Nested Layout</a></li>
+        <li><a href="#styling_cells">Styling Cells</a></li>
+    </ul>
+
+    <h4 id="simple_layout">Simple Layout Example - 2 rows, up to 8 cells per row</h4>
+
+    
+    <div class="exo-8-cell model-view">
+        <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-row"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-1-cell exo-dark-red-bg exo-white-fg exo-padding exo-border exo-white-border"</span>&gt;
+        (1-cell-wide) Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit.
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-2-cell exo-dark-purple-bg exo-white-fg exo-padding exo-border exo-white-border"</span>&gt;
+        (2-cell-wide) Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Aenean euismod, leo sed
+        imperdiet ullamcorper, augue lectus gravida
+        felis, quis facilisis mi tortor eu justo.
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-5-cell exo-dark-green-bg exo-white-fg exo-padding exo-border exo-white-border"</span>&gt;
+        (5-cell-wide) Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Aenean euismod, leo sed
+        imperdiet ullamcorper, augue lectus gravida
+        felis, quis facilisis mi tortor eu justo.
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-row"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-8-cell exo-dark-orange-bg exo-white-fg exo-padding exo-border exo-white-border"</span>&gt;
+        (8-cell-wide) Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Aenean euismod, leo sed
+        imperdiet ullamcorper, augue lectus gravida
+        felis, quis facilisis mi tortor eu justo.
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+        </code></pre>
+    </div>
+    
+    <div class="exo-row">
+        <div class="exo-1-cell exo-dark-red-bg exo-white-fg exo-padding exo-border exo-white-border">
+            (1-cell-wide) Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+        </div>
+        <div class="exo-2-cell exo-dark-purple-bg exo-white-fg exo-padding exo-border exo-white-border">
+            (2-cell-wide) Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Aenean euismod, leo sed
+            imperdiet ullamcorper, augue lectus gravida
+            felis, quis facilisis mi tortor eu justo.
+        </div>
+        <div class="exo-5-cell exo-dark-green-bg exo-white-fg exo-padding exo-border exo-white-border">
+            (5-cell-wide) Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Aenean euismod, leo sed
+            imperdiet ullamcorper, augue lectus gravida
+            felis, quis facilisis mi tortor eu justo.
+        </div>
+    </div>
+    <div class="exo-row">
+        <div class="exo-8-cell exo-dark-orange-bg exo-white-fg exo-padding exo-border exo-white-border">
+            (8-cell-wide) Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Aenean euismod, leo sed
+            imperdiet ullamcorper, augue lectus gravida
+            felis, quis facilisis mi tortor eu justo.
+        </div>
+    </div>
+
+    
+
+    <h4 id="nested_layout">Nested Layout Example</h4>
+
+    
+    <div class="exo-8-cell model-view">
+        <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-row"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-cell exo-4-cell exo-light-blue-bg exo-padding"</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-row"</span>&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-cell exo-1-cell"</span>&gt;
+                &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cb1"</span>&gt;
+                    Checkbox 1
+                &lt;/<span style="color:red;">label</span>&gt;
+                &lt;<span style="color:red;">input</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cb1"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span>
+                     <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-green-bg"</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-cell exo-1-cell"</span>&gt;
+                &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cb3"</span>&gt;
+                    Checkbox 3
+                &lt;/<span style="color:red;">label</span>&gt;
+                &lt;<span style="color:red;">input</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cb3"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span>
+                     <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-green-bg"</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-row"</span>&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-cell exo-1-cell"</span>&gt;
+                &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cb2"</span>&gt;
+                    Checkbox 2
+                &lt;/<span style="color:red;">label</span>&gt;
+                &lt;<span style="color:red;">input</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cb2"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span>
+                     <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-red-bg"</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-cell exo-1-cell"</span>&gt;
+                &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cb4"</span>&gt;
+                    Checkbox 4
+                &lt;/<span style="color:red;">label</span>&gt;
+                &lt;<span style="color:red;">input</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cb4"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span>
+                     <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-red-bg"</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-cell exo-1-cell exo-light-purple-bg exo-padding"</span>&gt;
+        Aenean euismod, leo sed
+        imperdiet ullamcorper, augue lectus gravida
+        felis, quis facilisis mi tortor eu justo.
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+        </code></pre>
+    </div>
+    
+    <div class="exo-row">
+        <div class="exo-cell exo-4-cell exo-light-blue-bg exo-padding">
+            <div class="exo-row">
+                <div class="exo-cell exo-1-cell">
+                    <label for="cb1">Checkbox 1</label>
+                    <input id="cb1" type="checkbox" class="exo-dark-green-bg"/>
+                </div>
+                <div class="exo-cell exo-1-cell">
+                    <label for="cb3">Checkbox 3</label>
+                    <input id="cb3" type="checkbox" class="exo-dark-green-bg"/>
+                </div>
+            </div>
+            <div class="exo-row">
+                <div class="exo-cell exo-1-cell">
+                    <label for="cb2">Checkbox 2</label>
+                    <input id="cb2" type="checkbox" class="exo-dark-red-bg"/>
+                </div>
+                <div class="exo-cell exo-1-cell">
+                    <label for="cb4">Checkbox 4</label>
+                    <input id="cb4" type="checkbox" class="exo-dark-red-bg"/>
+                </div>
+            </div>
+        </div>
+        <div class="exo-cell exo-1-cell exo-light-purple-bg exo-padding">
+            Aenean euismod, leo sed
+            imperdiet ullamcorper, augue lectus gravida
+            felis, quis facilisis mi tortor eu justo.
+        </div>
+    </div>
+
+    
+
+    <h4 id="styling_cells">Styling cells</h4>
+
+    Classes exo-[large-|small-]rounded, exo-[large-|small-]padding and exo-[large-|small-]border can be
+    applied to cells (and other elements).
+
+    
+    <div class="exo-8-cell model-view">
+        <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-row exo-margin"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-3-cell exo-light-gray-bg exo-rounded"</span>&gt;
+        exo-rounded
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-3-cell exo-light-gray-bg exo-padding"</span>&gt;
+        exo-padding
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-row exo-margin"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-3-cell exo-dark-gray-bg exo-white-fg exo-border exo-padding"</span>&gt;
+        exo-border + exo-padding
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-3-cell exo-dark-gray-bg exo-white-fg exo-border exo-padding exo-rounded"</span>&gt;
+        exo-border + exo-padding + exo-rounded
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-row exo-margin"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-3-cell exo-light-grey-bg exo-padding exo-rounded exo-border exo-dark-red-border"</span>&gt;
+        exo-border + exo-padding + exo-rounded + exo-dark-red-border
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-3-cell exo-light-grey-bg exo-large-padding exo-large-rounded exo-large-border exo-dark-red-border"</span>&gt;
+        exo-large-border + exo-large-padding + exo-large-rounded + exo-dark-red-border
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-row exo-margin"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-3-cell exo-dark-gray-bg exo-white-fg exo-padding exo-rounded"</span>&gt;
+        exo-rounded + exo-padding
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-3-cell exo-dark-gray-bg exo-white-fg exo-small-padding exo-large-rounded"</span>&gt;
+        exo-large-rounded + exo-small-padding
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+        </code></pre>
+    </div>
+    
+    <div class="exo-row exo-margin">
+        <div class="exo-3-cell exo-light-gray-bg exo-rounded">
+            exo-rounded
+        </div>
+
+        <div class="exo-3-cell exo-light-gray-bg exo-padding">
+            exo-padding
+        </div>
+    </div>
+
+    <div class="exo-row exo-margin">
+        <div class="exo-3-cell exo-dark-gray-bg exo-white-fg exo-border exo-padding">
+            exo-border + exo-padding
+        </div>
+
+        <div class="exo-3-cell exo-dark-gray-bg exo-white-fg exo-border exo-padding exo-rounded">
+            exo-border + exo-padding + exo-rounded
+        </div>
+    </div>
+    <div class="exo-row exo-margin">
+        <div class="exo-3-cell exo-light-grey-bg exo-padding exo-rounded exo-border exo-dark-red-border">
+            exo-border + exo-padding + exo-rounded + exo-dark-red-border
+        </div>
+        <div class="exo-3-cell exo-light-grey-bg exo-large-padding exo-large-rounded exo-large-border exo-dark-red-border">
+            exo-large-border + exo-large-padding + exo-large-rounded + exo-dark-red-border
+        </div>
+    </div>
+    <div class="exo-row exo-margin">
+        <div class="exo-3-cell exo-dark-gray-bg exo-white-fg exo-padding exo-rounded">
+            exo-rounded + exo-padding
+        </div>
+        <div class="exo-3-cell exo-dark-gray-bg exo-white-fg exo-small-padding exo-large-rounded">
+            exo-large-rounded + exo-small-padding
+        </div>
+    </div>
+
+    
+
+</body>
+</html>

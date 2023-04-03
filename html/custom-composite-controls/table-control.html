@@ -1,0 +1,16 @@
+<div>
+  <exo-table-control id="test_tc" label='Test' value='{
+                "columns":[
+                    {"name":"orig", "label":"Original Name", "type":"string", "editable":false},
+                    {"name":"include", "label":"Include Column", "type":"boolean", "editable":true},
+                    {"name":"renamed", "label":"Rename Column", "type":"string", "editable":true}
+                ],
+                "rows":[
+                    {"orig":"CityName","include":true,"renamed":"City Name"},{"orig":"PopSz","include":true,"renamed":"Population Size"}] }',
+                tooltip="Help!!!">
+  </exo-table-control>
+  <script>
+          var btn = document.getElementById("test_tc");
+          btn.addEventListener("exo-value",e => { console.log(e.detail); })
+  </script>
+</div>

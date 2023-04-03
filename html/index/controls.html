@@ -1,0 +1,73 @@
+<div id="model5" class="exo-4-cell">
+    <label for="btn1">Button</label>
+
+    <input id="btn1" type="button" value="Home"/>
+
+    <label for="btn2">Button with icon</label>
+    <input id="btn2" type="button" class="exo-icon exo-dark-blue-bg exo-dark-red exo-icon-home" value="Home"/>
+
+    <label for="cb1">Checkbox</label>
+    <input type="checkbox" id="cb1" class="exo-dark-green-bg"/>
+
+    <label for="toggle_normal">
+        Checkbox rendered as a toggle
+    </label>
+    <label class="exo-dummy-label">
+        <span class="exo-toggle">
+                <input type="checkbox" id="toggle_normal"/>
+                <span class="exo-toggle-slide exo-light-red-fg exo-dark-green-bg"></span>
+        </span>
+    </label>
+
+    <label for="num">Number</label>
+    <input id="num" type="number" value="10" max="20" min="0" class="exo-cell-left">
+
+    <label for="slider">Slider:
+        <output id="result" for="slider">10</output>
+    </label>
+
+    <div style="display:flex;">
+        0<input id="slider" type="range" value="10" max="20" min="0"
+                oninput="result.value=slider.value" style="display:inline;">20
+    </div>
+
+    <label for="dd">
+        Select control (drop down)
+    </label>
+    <select id="dd" class="exo-dark-orange-bg exo-white-fg exo-cell-left">
+        <option value="o1" class="exo-icon exo-icon-home">option 1</option>
+        <option value="o2" class="exo-icon exo-icon-home">option 2</option>
+    </select>
+
+    <label for="rbs">Radio Buttons</label>
+    <div id="rbs">
+        <label for="b1" style="display:inline-block;">
+                    <span class="label-body">
+                        Apples
+                    </span>
+        </label>
+        <input id="b1" type="radio" name="fruit"
+               value="apples"
+               class="exo-dark-green-bg" checked="">
+        <label for="b2" style="display:inline-block;">
+                    <span class="label-body">
+                        Oranges
+                    </span>
+        </label>
+        <input id="b2" type="radio" name="fruit"
+               value="oranges" class="exo-dark-orange-bg">
+        <label for="b3" style="display:inline-block;">
+                    <span class="label-body">
+                        Grapes
+                    </span>
+        </label>
+        <input id="b3" type="radio" name="fruit"
+               value="grapes" class="exo-dark-purple-bg">
+        <label for="dl">Download Button</label>
+        <div>
+            <div class="exo-button exo-dark-blue-fg exo-light-blue-bg">
+                <a id="dl" download="download.txt" href="data:text/plain;base64,RG93bmxvYWQgQ29udGVudCE=">Download</a>
+            </div>
+        </div>
+    </div>
+</div>

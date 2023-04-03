@@ -3,8 +3,8 @@
 
 /* medium-height */
 
-input, select, summary, div.exo-button {
-    height: var(--control-size);
+input:not([type="radio"]):not([type="range"]), select, summary, div.exo-button {
+    min-height: var(--control-size);
 }
 
 input, select, summary, div.exo-button, textarea {
@@ -45,14 +45,68 @@ input[type="button"]:active:not(:disabled), div.exo-button:active:not(:disabled)
 
 /* icons in input[type=button] - use 4px between image and text */
 
+
+
+
 input[type="button"].exo-icon {
-    padding-left: calc(var(--control-size) + 4px);
+    padding-right: 0px;
+    padding-left: calc(var(--exo-medium-icon));
     vertical-align: middle;
     background-repeat: no-repeat;
     background-position: left;
     background-color: transparent;
-    background-size: calc(var(--control-size) - 2px);
+    background-size: calc(var(--exo-medium-icon) - 2px);
 }
+
+input[type="button"][value].exo-icon {
+    padding-right: 4px;
+    padding-left: calc(var(--exo-medium-icon) + 4px);
+}
+
+input[type="button"].exo-icon-tiny {
+    padding-left: calc(var(--exo-tiny-icon));
+    min-height: calc(var(--exo-tiny-icon));
+    background-size: calc(var(--exo-tiny-icon) - 2px);
+}
+
+input[type="button"][value].exo-icon-tiny {
+    padding-right: 4px;
+    padding-left: calc(var(--exo-tiny-icon) + 4px);
+}
+
+input[type="button"].exo-icon-small {
+    padding-left: calc(var(--exo-small-icon));
+    min-height: calc(var(--exo-small-icon));
+    background-size: calc(var(--exo-small-icon) - 2px);
+}
+
+input[type="button"][value].exo-icon-small {
+    padding-right: 4px;
+    padding-left: calc(var(--exo-small-icon) + 4px);
+}
+
+input[type="button"].exo-icon-large {
+    padding-left: calc(var(--exo-large-icon));
+    min-height: calc(var(--exo-large-icon));
+    background-size: calc(var(--exo-large-icon) - 2px);
+}
+
+input[type="button"][value].exo-icon-large {
+    padding-right: 4px;
+    padding-left: calc(var(--exo-large-icon) + 4px);
+}
+
+input[type="button"].exo-icon-huge {
+    padding-left: calc(var(--exo-huge-icon));
+    min-height: calc(var(--exo-huge-icon));
+    background-size: calc(var(--exo-huge-icon) - 2px);
+}
+
+input[type="button"][value].exo-icon-huge {
+    padding-right: 4px;
+    padding-left: calc(var(--exo-huge-icon) + 4px);
+}
+
 
 /* Input Controls - Number
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

@@ -1,0 +1,7 @@
+<div>
+    <exo-radio id="test_radio" label="test" value="aaa" options='[["aaa","AAA"],["bbb","BBB"]]' tooltip="Help!!!" fg-color="dark-green">
+    </exo-radio>
+    <script>
+        document.getElementById("test_radio").addEventListener("change",e => { console.log(e.target.value); })
+    </script>
+</div>
