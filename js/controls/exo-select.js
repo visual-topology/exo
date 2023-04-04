@@ -75,10 +75,6 @@ class CustomExoSelect extends CustomExoControl {
         return this.exo_option_labels[value];
     }
 
-    exoGetAttributeNames() {
-        return CustomExoSelect.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('options','value');

@@ -30,10 +30,6 @@ class CustomExoDateTimeBase extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoDateTimeBase.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('value','min','max');

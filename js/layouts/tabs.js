@@ -1,14 +1,5 @@
-/*
-<input aria-hidden="true" type="checkbox" id="nm1">
-            <label aria-hidden="true" class="exo-tabs-open exo-button exo-icon exo-icon-medium exo-icon-menu" for="nm1">
-            </label>
-            <label aria-hidden="true" class="exo-tabs-close exo-button exo-rounded exo-icon exo-icon-medium exo-icon-clear" for="nm1">
-            </label>
-            <br>
+/* MIT License - Exo - Copyright (C) 2022-2023 Visual Topology */
 
-            <input aria-hidden="true" type="radio" name="g2" id="ncontent-a1" checked="">
-            <label aria-hidden="true" class="exo-tabs-item exo-white-bg" for="ncontent-a1" tabindex="-1">Tab 1</label>
- */
 class ExoTab extends HTMLElement {
     constructor() {
       super();

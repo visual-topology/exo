@@ -1,22 +1,11 @@
-/* add an exo-button class - sometimes useful to use with a div or span in place of an input */
+/* exo-button class - sometimes useful to use with a div or span in place of an input */
 
-div.exo-button {
+div.exo-button, span.exo-button, label.exo-button {
     padding: var(--padding-small);
     border-radius: var(--round-small);
     border: 2px solid #888;
     display: inline-block;
+    height: auto;
 }
 
-label.exo-button {
-    padding: var(--padding-small);
-    border-radius: var(--round-small);
-    border: 2px solid #888;
-    display: inline-block;
-}
 
-span.exo-button {
-    padding: var(--padding-small);
-    border-radius: var(--round-small);
-    border: 2px solid #888;
-    display: inline-block;
-}

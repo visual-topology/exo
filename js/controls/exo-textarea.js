@@ -34,10 +34,6 @@ class CustomExoTextArea extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoTextArea.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('value','rows','cols');

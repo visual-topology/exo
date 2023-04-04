@@ -31,6 +31,7 @@
     display: flex;
     padding: var(--padding-medium);
     flex-flow: column nowrap;
+    box-sizing: border-box;
 }
 
 .exo-1-cell {
@@ -140,4 +141,9 @@
 
 .exo-full-width {
     width: 100%;
+}
+
+.exo-auto-cell {
+    /* apply this class to cells which snap to the grid depending upon their width  */
+    /* call exo_autocell_snap2grid() in exo.js to perform the snapping */
 }

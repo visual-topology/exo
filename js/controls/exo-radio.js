@@ -80,10 +80,6 @@ class CustomExoRadio extends CustomExoControl {
         });
     }
 
-    exoGetAttributeNames() {
-        return CustomExoRadio.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('options','value');

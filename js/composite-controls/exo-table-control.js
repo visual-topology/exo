@@ -138,10 +138,6 @@ class CustomExoTableControl extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoSelect.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('value');

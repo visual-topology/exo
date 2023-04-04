@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width;initial-scale=1">
-    <title>Exo CSS example</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Exo {EXO-VERSION} Example</title>
     <meta name="description" content="Example for Exo CSS- Book Idea Database">
     <meta name="author" content="Visual Topology">
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
@@ -47,7 +47,7 @@
             <legend>Details</legend>
             <div  style="width:100%;">
                 <label for="content_type">Type
-                    <div class="exo-icon exo-icon-help exo-help-tooltip" tabindex="0">
+                    <div class="exo-icon exo-icon-help exo-icon-small exo-help-tooltip" tabindex="0">
                         <div class="exo-help-content exo-light-gray-bg">
                             Choose the type of book
                         </div>
@@ -116,25 +116,25 @@
        <div class="exo-3-cell exo-padding">
             <div>
                 <label for="draft_date">Expected Draft Availability Date
-                    <div class="exo-icon exo-icon-help exo-help-tooltip" tabindex="0">
+                    <div class="exo-icon exo-icon-small exo-icon-help exo-help-tooltip" tabindex="0">
                         <div class="exo-help-content exo-light-gray-bg">
                             When would the first draft be available?
                         </div>
                     </div>
                 </label>
-                <input id="draft_date" type="date" class="exo-full-width"></input>
+                <input id="draft_date" type="date" class="exo-full-width">
             </div>
         </div>
         <div class="exo-3-cell exo-padding">
             <div>
                 <label for="release_date">Expected Publication Date
-                    <div class="exo-icon exo-icon-help exo-help-tooltip" tabindex="0">
+                    <div class="exo-icon exo-icon-small exo-icon-help exo-help-tooltip" tabindex="0">
                         <div class="exo-help-content exo-light-gray-bg">
                             When would the finished book be published?
                         </div>
                     </div>
                 </label>
-                <input id="release_date" type="date" class="exo-full-width"></input>
+                <input id="release_date" type="date" class="exo-full-width">
             </div>
         </div>
            </fieldset>
@@ -145,7 +145,7 @@
     <div class="exo-row exo-8-row exo-light-gray-bg exo-rounded">
         <div class="exo-4-cell exo-padding">
             <label for="authors">Author(s)</label>
-            <input id="authors" type="text"></input>
+            <textarea id="authors" type="text" class="exo-full-width"></textarea>
         </div>
         <div class="exo-2-cell exo-padding exo-light-gray-bg exo-rounded">
             <label for="sole_authors_checkb">
@@ -155,9 +155,8 @@
         </div>
         <div class="exo-2-cell exo-padding exo-light-gray-bg exo-rounded">
             <label for="sub_btn">
-                &nbsp;
             </label>
-            <button id="sub_btn" class="exo-dark-purple-bg exo-white-fg exo-full-width" disabled="">Submit Idea</button>
+            <input type="button" id="sub_btn" class="exo-dark-purple-bg exo-white-fg exo-full-width" disabled value="Submit Idea">
         </div>
     </div>
 </body>

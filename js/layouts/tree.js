@@ -1,24 +1,4 @@
-/*
-
-   <div class="exo-tree" role="tree">
-      <ul class="exo-tree">
-      </ul>
-   </div>
-
-   <li role="treeitem">
-            <input type="checkbox" aria-hidden="true"/>
-            <label class="exo-huge">
-                    File 1
-            </label>
-            <div class="exo-light-gray-bg">
-                    Lorem ipsum dolor
-                    sit amet,
-                    consectetur
-                    adipiscing elit.
-            </div>
-        </li>
- */
-
+/* MIT License - Exo - Copyright (C) 2022-2023 Visual Topology */
 
 class ExoTree extends HTMLDivElement {
     constructor() {

@@ -30,10 +30,6 @@ class CustomExoButton extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoButton.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('text');

@@ -30,10 +30,6 @@ class CustomExoFile extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoFile.observedAttributes;
-    }
-
     static get observedAttributes() {
         return CustomExoControl.observedAttributes;
     }

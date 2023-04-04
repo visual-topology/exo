@@ -72,10 +72,6 @@ class CustomExoToggle extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoToggle.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('value');

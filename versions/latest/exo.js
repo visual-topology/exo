@@ -1,6 +1,27 @@
 /* js/exo-common.js */
 
-/* MIT License - Exo - Copyright (C) 2022-2023 Visual Topology */
+/* MIT License
+
+Copyright (c) 2021-2023 Visual Topology
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 
 class ExoUtils {
 
@@ -148,10 +169,6 @@ class CustomExoControl extends HTMLElement {
         } else {
             return super.addEventListener(type,listener,options);
         }
-    }
-
-    exoGetAttributeNames() {
-        return CustomExoControl.observedAttributes();
     }
 
     exoBuildCommon(tag, parameters) {
@@ -436,10 +453,6 @@ class CustomExoButton extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoButton.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('text');
@@ -476,10 +489,6 @@ class CustomExoCheckbox extends CustomExoControl {
             default:
                 super.exoUpdate(name,value);
         }
-    }
-
-    exoGetAttributeNames() {
-        return CustomExoCheckbox.observedAttributes;
     }
 
     static get observedAttributes() {
@@ -523,10 +532,6 @@ class CustomExoDateTimeBase extends CustomExoControl {
             default:
                 super.exoUpdate(name,value);
         }
-    }
-
-    exoGetAttributeNames() {
-        return CustomExoDateTimeBase.observedAttributes;
     }
 
     static get observedAttributes() {
@@ -627,10 +632,6 @@ class CustomExoFile extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoFile.observedAttributes;
-    }
-
     static get observedAttributes() {
         return CustomExoControl.observedAttributes;
     }
@@ -689,10 +690,6 @@ class CustomExoNumber extends CustomExoControl {
             default:
                 super.exoUpdate(name,value);
         }
-    }
-
-    exoGetAttributeNames() {
-        return CustomExoNumber.observedAttributes;
     }
 
     static get observedAttributes() {
@@ -788,10 +785,6 @@ class CustomExoRadio extends CustomExoControl {
         });
     }
 
-    exoGetAttributeNames() {
-        return CustomExoRadio.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('options','value');
@@ -864,10 +857,6 @@ class CustomExoRange extends CustomExoControl {
             default:
                 super.exoUpdate(name,value);
         }
-    }
-
-    exoGetAttributeNames() {
-        return CustomExoNumber.observedAttributes;
     }
 
     static get observedAttributes() {
@@ -958,10 +947,6 @@ class CustomExoSelect extends CustomExoControl {
         return this.exo_option_labels[value];
     }
 
-    exoGetAttributeNames() {
-        return CustomExoSelect.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('options','value');
@@ -1000,10 +985,6 @@ class CustomExoText extends CustomExoControl {
             default:
                 super.exoUpdate(name,value);
         }
-    }
-
-    exoGetAttributeNames() {
-        return CustomExoText.observedAttributes;
     }
 
     static get observedAttributes() {
@@ -1051,10 +1032,6 @@ class CustomExoTextArea extends CustomExoControl {
             default:
                 super.exoUpdate(name,value);
         }
-    }
-
-    exoGetAttributeNames() {
-        return CustomExoTextArea.observedAttributes;
     }
 
     static get observedAttributes() {
@@ -1142,10 +1119,6 @@ class CustomExoToggle extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoToggle.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('value');
@@ -1228,10 +1201,6 @@ class CustomExoDownload extends CustomExoControl {
             default:
                 super.exoUpdate(name,value);
         }
-    }
-
-    exoGetAttributeNames() {
-        return CustomExoFile.observedAttributes;
     }
 
     static get observedAttributes() {
@@ -1412,10 +1381,6 @@ class CustomExoMergeLists extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoSelect.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('options1','options2','value');
@@ -1569,10 +1534,6 @@ class CustomExoTableControl extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoSelect.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('value');
@@ -1584,27 +1545,6 @@ class CustomExoTableControl extends CustomExoControl {
 customElements.define("exo-table-control", CustomExoTableControl);
 
 /* js/layouts/tree.js */
-
-/*
-
-   <div class="exo-tree" role="tree">
-      <ul class="exo-tree">
-      </ul>
-   </div>
-
-   <li role="treeitem">
-            <input type="checkbox" aria-hidden="true"/>
-            <label class="exo-huge">
-                    File 1
-            </label>
-            <div class="exo-light-gray-bg">
-                    Lorem ipsum dolor
-                    sit amet,
-                    consectetur
-                    adipiscing elit.
-            </div>
-        </li>
- */
 
 
 class ExoTree extends HTMLDivElement {
@@ -1658,17 +1598,7 @@ customElements.define(
 
 /* js/layouts/tabs.js */
 
-/*
-<input aria-hidden="true" type="checkbox" id="nm1">
-            <label aria-hidden="true" class="exo-tabs-open exo-button exo-icon exo-icon-medium exo-icon-menu" for="nm1">
-            </label>
-            <label aria-hidden="true" class="exo-tabs-close exo-button exo-rounded exo-icon exo-icon-medium exo-icon-clear" for="nm1">
-            </label>
-            <br>
 
-            <input aria-hidden="true" type="radio" name="g2" id="ncontent-a1" checked="">
-            <label aria-hidden="true" class="exo-tabs-item exo-white-bg" for="ncontent-a1" tabindex="-1">Tab 1</label>
- */
 class ExoTab extends HTMLElement {
     constructor() {
       super();
@@ -1753,4 +1683,118 @@ customElements.define(
   "exo-tab",
   ExoTab
 );
+
+/* js/layouts/modal.js */
+
+
+var exo_modal_counter = 0;
+
+class ExoModal extends HTMLDivElement {
+    constructor() {
+      super();
+      this.connected = false;
+    }
+
+    connectedCallback() {
+        if (this.connected) {
+            return;
+        }
+        this.connected = true;
+        this.modal_id = "exo_modal_id"+exo_modal_counter;
+        exo_modal_counter += 1;
+        this.setAttribute("class","exo-modal-window-content");
+        var w = ExoUtils.createElement("div",{"class":"exo-modal-window"});
+        var m = ExoUtils.createElement("div", {"class":"exo-modal"});
+        var i = ExoUtils.createElement("input",{"type":"checkbox","id":this.modal_id});
+        var l = ExoUtils.createElement("label",{"class":"exo-button","for":this.modal_id});
+        m.appendChild(i);
+        m.appendChild(l);
+        m.appendChild(w);
+        var cl = ExoUtils.createElement("label",{"for":this.modal_id});
+        this.close_button = ExoUtils.createElement("span",{"tabindex":"-1","class":"exo-icon exo-modal-close"});
+        cl.appendChild(this.close_button);
+        let p_elt = this.parentElement;
+        w.appendChild(this);
+        this.appendChild(cl);
+        p_elt.appendChild(m);
+        this.label = l;
+
+        ExoModal.observedAttributes.map((attr) => {
+            if (this.hasAttribute(attr)) {
+                this.attributeChangedCallback(attr,null,this.getAttribute(attr));
+            }
+        });
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (this.label) {
+            switch(name) {
+                case "button-text":
+                    ExoUtils.removeAllChildren(this.label);
+                    this.label.appendChild(document.createTextNode(newValue));
+                    break;
+                case "button-fg-color":
+                    ExoUtils.removeClasses( this.label, /exo-(.*)-fg/);
+                    ExoUtils.addClass(this.label,"exo-"+newValue+"-fg");
+                    break;
+                case "button-bg-color":
+                    ExoUtils.removeClasses( this.label, /exo-(.*)-bg/);
+                    ExoUtils.addClass(this.label,"exo-"+newValue+"-bg");
+                    break;
+                case "fg-color":
+                    ExoUtils.removeClasses( this, /exo-(.*)-fg/);
+                    ExoUtils.addClass(this,"exo-"+newValue+"-fg");
+                    break;
+                case "bg-color":
+                    ExoUtils.removeClasses( this, /exo-(.*)-bg/);
+                    ExoUtils.addClass(this,"exo-"+newValue+"-bg");
+                    break;
+                case "close-button-color":
+                    ExoUtils.addClass(this.close_button,"exo-"+newValue);
+                    break;
+
+            }
+        }
+    }
+
+    static get observedAttributes() {
+        return ["button-text", "button-fg-color", "button-bg-color", "fg-color", "bg-color", "close-button-color"];
+    }
+}
+
+customElements.define(
+  "exo-modal",
+  ExoModal,
+    {"extends":"div"}
+);
+
+
+
+/* js/layouts/autocell.js */
+
+
+/*
+    Call this function after the document is loaded (or whenever cell content is updated) to snap the cell width of all cells marked exo-auto-cell
+ */
+function exo_autocell_snap2grid() {
+
+    function getElementWidth(p,e) {
+        var sty = getComputedStyle(p);
+        return e.getBoundingClientRect().width +
+            parseFloat(sty.getPropertyValue('margin-left')) +
+            parseFloat(sty.getPropertyValue('margin-right'));
+    }
+
+    var elts = document.getElementsByClassName("exo-auto-cell");
+    for(var idx=0; idx<elts.length; idx++) {
+        var elt = elts[idx];
+        var elt0 = elt.firstElementChild;
+        if (elt0) {
+            ExoUtils.removeClasses(elt0, /exo-(.*)-cell/);
+            var w = getElementWidth(elt,elt0);
+            var cells = Math.min(Math.ceil(w/128),12);
+            ExoUtils.addClass(elt0,"exo-"+cells+"-cell");
+        }
+    }
+}
 
