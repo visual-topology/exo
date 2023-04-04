@@ -69,10 +69,6 @@ class CustomExoDownload extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoFile.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push("download-filename");

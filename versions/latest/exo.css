@@ -1,9 +1,30 @@
 /* css/header.css */
 
-/* MIT License - Exo - Copyright (C) 2022-2023 Visual Topology */
+/* MIT License
+
+Copyright (c) 2021-2023 Visual Topology
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 
 /*
-  Exo v0.0.2
+  Exo 0.0.2
 */
 
 /*
@@ -411,225 +432,6 @@ pre > code {
 }
 
 
-/* css/table.css */
-
-/* Table
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-table {
-  border-spacing: 0;
-}
-
-table caption {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-th:not(:last-child), td:not(:last-child) {
-    border-right: 1px solid var(--exo-black);
-}
-
-table.exo-dark-red-bg th:not(:last-child), table.exo-dark-red-bg td:not(:last-child),
-table.exo-dark-orange-bg th:not(:last-child), table.exo-dark-orange-bg td:not(:last-child),
-table.exo-dark-blue-bg th:not(:last-child), table.exo-dark-blue-bg td:not(:last-child),
-table.exo-dark-green-bg th:not(:last-child), table.exo-dark-green-bg td:not(:last-child),
-table.exo-dark-purple-bg th:not(:last-child), table.exo-dark-purple-bg td:not(:last-child),
-table.exo-dark-brown-bg th:not(:last-child), table.exo-dark-brown-bg td:not(:last-child),
-table.exo-dark-gray-bg th:not(:last-child), table.exo-dark-gray-bg td:not(:last-child),
-table.exo-dark-pink-bg th:not(:last-child), table.exo-dark-pink-bg td:not(:last-child),
-table.exo-black-bg th:not(:last-child), table.exo-black-bg td:not(:last-child) {
-    border-right: 1px solid var(--exo-white);
-}
-
-th, td {
-    padding: var(--padding-small);
-    text-align: left;
-    margin: var(--margin-small);
-}
-
-table.exo-large-padding th, table.exo-large-padding td {
-    padding: var(--padding-large);
-}
-
-table.exo-medium-padding th, table.exo-medium-padding td {
-    padding: var(--padding-medium);
-}
-
-table.exo-small-padding th, table.exo-small-padding td {
-    padding: var(--padding-small);
-}
-
-table.exo-no-padding th, table.exo-no-padding td {
-    padding: 0px;
-}
-
-th, td {
-  border-bottom: 1px solid var(--exo-black);
-}
-
-table.exo-dark-red-bg th, table.exo-dark-red-bg td,
-table.exo-dark-orange-bg th, table.exo-dark-orange-bg td,
-table.exo-dark-blue-bg th, table.exo-dark-blue-bg td,
-table.exo-dark-green-bg th, table.exo-dark-green-bg td,
-table.exo-dark-purple-bg th, table.exo-dark-purple-bg td,
-table.exo-dark-brown-bg th, table.exo-dark-brown-bg td,
-table.exo-dark-gray-bg th, table.exo-dark-gray-bg td,
-table.exo-dark-pink-bg th, table.exo-dark-pink-bg td,
-table.exo-black-bg th, table.exo-black-bg td
-{
-  border-bottom: 1px solid var(--exo-white);
-}
-
-table tbody tr:last-child td {
-    border-bottom-width: 0px;
-}
-
-table.exo-striped.exo-dark-red-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-dark-red);
-}
-
-table.exo-striped.exo-dark-red-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-dark-red2);
-}
-
-table.exo-striped.exo-dark-orange-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-dark-orange);
-}
-
-table.exo-striped.exo-dark-orange-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-dark-orange2);
-}
-
-table.exo-striped.exo-dark-blue-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-dark-blue);
-}
-
-table.exo-striped.exo-dark-blue-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-dark-blue2);
-}
-
-table.exo-striped.exo-dark-green-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-dark-green);
-}
-
-table.exo-striped.exo-dark-green-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-dark-green2);
-}
-
-table.exo-striped.exo-dark-purple-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-dark-purple);
-}
-
-table.exo-striped.exo-dark-purple-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-dark-purple2);
-}
-
-table.exo-striped.exo-dark-brown-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-dark-brown);
-}
-
-table.exo-striped.exo-dark-brown-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-dark-brown2);
-}
-
-table.exo-striped.exo-dark-gray-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-dark-gray);
-}
-
-table.exo-striped.exo-dark-gray-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-dark-gray2);
-}
-
-table.exo-striped.exo-dark-pink-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-dark-pink);
-}
-
-table.exo-striped.exo-dark-pink-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-dark-pink2);
-}
-
-table.exo-striped.exo-dark-yellow-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-dark-yellow);
-}
-
-table.exo-striped.exo-dark-yellow-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-dark-yellow2);
-}
-
-table.exo-striped.exo-light-red-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-light-red);
-}
-
-table.exo-striped.exo-light-red-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-light-red2);
-}
-
-table.exo-striped.exo-light-orange-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-light-orange);
-}
-
-table.exo-striped.exo-light-orange-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-light-orange2);
-}
-
-table.exo-striped.exo-light-blue-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-light-blue);
-}
-
-table.exo-striped.exo-light-blue-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-light-blue2);
-}
-
-table.exo-striped.exo-light-green-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-light-green);
-}
-
-table.exo-striped.exo-light-green-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-light-green2);
-}
-
-table.exo-striped.exo-light-purple-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-light-purple);
-}
-
-table.exo-striped.exo-light-purple-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-light-purple2);
-}
-
-table.exo-striped.exo-light-brown-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-light-brown);
-}
-
-table.exo-striped.exo-light-brown-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-light-brown2);
-}
-
-table.exo-striped.exo-light-gray-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-light-gray);
-}
-
-table.exo-striped.exo-light-gray-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-light-gray2);
-}
-
-table.exo-striped.exo-light-pink-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-light-pink);
-}
-
-table.exo-striped.exo-light-pink-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-light-pink2);
-}
-
-table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(even) {
-  background-color: var(--exo-light-yellow);
-}
-
-table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(odd) {
-  background-color: var(--exo-light-yellow2);
-}
-
-
-
 /* css/colors.css */
 
 
@@ -881,6 +683,225 @@ table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(odd) {
 
 
 
+/* css/table.css */
+
+/* Table
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+table {
+  border-spacing: 0;
+}
+
+table caption {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+th:not(:last-child), td:not(:last-child) {
+    border-right: 1px solid var(--exo-black);
+}
+
+table.exo-dark-red-bg th:not(:last-child), table.exo-dark-red-bg td:not(:last-child),
+table.exo-dark-orange-bg th:not(:last-child), table.exo-dark-orange-bg td:not(:last-child),
+table.exo-dark-blue-bg th:not(:last-child), table.exo-dark-blue-bg td:not(:last-child),
+table.exo-dark-green-bg th:not(:last-child), table.exo-dark-green-bg td:not(:last-child),
+table.exo-dark-purple-bg th:not(:last-child), table.exo-dark-purple-bg td:not(:last-child),
+table.exo-dark-brown-bg th:not(:last-child), table.exo-dark-brown-bg td:not(:last-child),
+table.exo-dark-gray-bg th:not(:last-child), table.exo-dark-gray-bg td:not(:last-child),
+table.exo-dark-pink-bg th:not(:last-child), table.exo-dark-pink-bg td:not(:last-child),
+table.exo-black-bg th:not(:last-child), table.exo-black-bg td:not(:last-child) {
+    border-right: 1px solid var(--exo-white);
+}
+
+th, td {
+    padding: var(--padding-small);
+    text-align: left;
+    margin: var(--margin-small);
+}
+
+table.exo-large-padding th, table.exo-large-padding td {
+    padding: var(--padding-large);
+}
+
+table.exo-medium-padding th, table.exo-medium-padding td {
+    padding: var(--padding-medium);
+}
+
+table.exo-small-padding th, table.exo-small-padding td {
+    padding: var(--padding-small);
+}
+
+table.exo-no-padding th, table.exo-no-padding td {
+    padding: 0px;
+}
+
+th, td {
+  border-bottom: 1px solid var(--exo-black);
+}
+
+table.exo-dark-red-bg th, table.exo-dark-red-bg td,
+table.exo-dark-orange-bg th, table.exo-dark-orange-bg td,
+table.exo-dark-blue-bg th, table.exo-dark-blue-bg td,
+table.exo-dark-green-bg th, table.exo-dark-green-bg td,
+table.exo-dark-purple-bg th, table.exo-dark-purple-bg td,
+table.exo-dark-brown-bg th, table.exo-dark-brown-bg td,
+table.exo-dark-gray-bg th, table.exo-dark-gray-bg td,
+table.exo-dark-pink-bg th, table.exo-dark-pink-bg td,
+table.exo-black-bg th, table.exo-black-bg td
+{
+  border-bottom: 1px solid var(--exo-white);
+}
+
+table tbody tr:last-child td {
+    border-bottom-width: 0px;
+}
+
+table.exo-striped.exo-dark-red-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-red);
+}
+
+table.exo-striped.exo-dark-red-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-red2);
+}
+
+table.exo-striped.exo-dark-orange-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-orange);
+}
+
+table.exo-striped.exo-dark-orange-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-orange2);
+}
+
+table.exo-striped.exo-dark-blue-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-blue);
+}
+
+table.exo-striped.exo-dark-blue-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-blue2);
+}
+
+table.exo-striped.exo-dark-green-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-green);
+}
+
+table.exo-striped.exo-dark-green-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-green2);
+}
+
+table.exo-striped.exo-dark-purple-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-purple);
+}
+
+table.exo-striped.exo-dark-purple-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-purple2);
+}
+
+table.exo-striped.exo-dark-brown-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-brown);
+}
+
+table.exo-striped.exo-dark-brown-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-brown2);
+}
+
+table.exo-striped.exo-dark-gray-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-gray);
+}
+
+table.exo-striped.exo-dark-gray-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-gray2);
+}
+
+table.exo-striped.exo-dark-pink-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-pink);
+}
+
+table.exo-striped.exo-dark-pink-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-pink2);
+}
+
+table.exo-striped.exo-dark-yellow-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-dark-yellow);
+}
+
+table.exo-striped.exo-dark-yellow-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-dark-yellow2);
+}
+
+table.exo-striped.exo-light-red-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-red);
+}
+
+table.exo-striped.exo-light-red-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-red2);
+}
+
+table.exo-striped.exo-light-orange-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-orange);
+}
+
+table.exo-striped.exo-light-orange-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-orange2);
+}
+
+table.exo-striped.exo-light-blue-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-blue);
+}
+
+table.exo-striped.exo-light-blue-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-blue2);
+}
+
+table.exo-striped.exo-light-green-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-green);
+}
+
+table.exo-striped.exo-light-green-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-green2);
+}
+
+table.exo-striped.exo-light-purple-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-purple);
+}
+
+table.exo-striped.exo-light-purple-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-purple2);
+}
+
+table.exo-striped.exo-light-brown-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-brown);
+}
+
+table.exo-striped.exo-light-brown-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-brown2);
+}
+
+table.exo-striped.exo-light-gray-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-gray);
+}
+
+table.exo-striped.exo-light-gray-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-gray2);
+}
+
+table.exo-striped.exo-light-pink-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-pink);
+}
+
+table.exo-striped.exo-light-pink-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-pink2);
+}
+
+table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(even) {
+  background-color: var(--exo-light-yellow);
+}
+
+table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(odd) {
+  background-color: var(--exo-light-yellow2);
+}
+
+
+
 /* css/tooltips.css */
 
 /* Help hover/popups
@@ -947,6 +968,7 @@ table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(odd) {
     display: flex;
     padding: var(--padding-medium);
     flex-flow: column nowrap;
+    box-sizing: border-box;
 }
 
 .exo-1-cell {
@@ -1058,6 +1080,11 @@ table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(odd) {
     width: 100%;
 }
 
+.exo-auto-cell {
+    /* apply this class to cells which snap to the grid depending upon their width  */
+    /* call exo_autocell_snap2grid() in exo.js to perform the snapping */
+}
+
 /* css/cards.css */
 
 
@@ -1088,9 +1115,6 @@ table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(odd) {
     border-radius: var(--round-medium);
 }
 
-.exo-card-header {
-}
-
 .exo-card-content {
     padding: var(--padding-medium);
     flex-grow: 1;
@@ -1098,6 +1122,7 @@ table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(odd) {
 }
 
 .exo-card-footer {
+    margin-top: 10px;
     padding: 4px;
 }
 
@@ -1105,12 +1130,14 @@ table.exo-striped.exo-light-yellow-bg tbody tr:nth-child(odd) {
     margin-top: 15px;
     margin-bottom: 15px;
     align-self: center;
+    margin-left: auto;
+    marign-right: auto;
 }
 
-.exo-card h1, .exo-card h2, .exo-card h3, .exo-card h4, .exo-card h5, .exo-card h6, .exo-card span
-.exo-card .exo-card-header, .exo-card .exo-card-footer, .exo-card.exo-card-content {
+.exo-card > * {
     text-align: center;
 }
+
 
 
 /* css/input.css */
@@ -1998,12 +2025,88 @@ details {
   background: rgba(0,0,0,0.5);
 }
 
-
-.exo-modal > div.exo-modal-window > div.exo-modal-window-content {
+div.exo-modal-window-content {
     background-color: var(--exo-white);
 }
 
-.exo-modal > div.exo-modal-window > div.exo-modal-window-content > label:hover {
+div.exo-modal-window-content.exo-dark-red-bg {
+    background-color: var(--exo-dark-red);
+}
+
+div.exo-modal-window-content.exo-dark-orange-bg {
+    background-color: var(--exo-dark-orange);
+}
+
+div.exo-modal-window-content.exo-dark-blue-bg {
+    background-color: var(--exo-dark-blue);
+}
+
+div.exo-modal-window-content.exo-dark-green-bg {
+    background-color: var(--exo-dark-green);
+}
+
+div.exo-modal-window-content.exo-dark-purple-bg {
+    background-color: var(--exo-dark-purple);
+}
+
+div.exo-modal-window-content.exo-dark-brown-bg {
+    background-color: var(--exo-dark-brown);
+}
+
+div.exo-modal-window-content.exo-dark-gray-bg {
+    background-color: var(--exo-dark-gray);
+}
+
+div.exo-modal-window-content.exo-dark-pink-bg {
+    background-color: var(--exo-dark-pink);
+}
+
+div.exo-modal-window-content.exo-dark-yellow-bg {
+    background-color: var(--exo-dark-yellow);
+}
+
+div.exo-modal-window-content.exo-black-bg {
+    background-color: var(--exo-black);
+}
+
+div.exo-modal-window-content.exo-light-red-bg {
+    background-color: var(--exo-light-red);
+}
+
+div.exo-modal-window-content.exo-light-orange-bg {
+    background-color: var(--exo-light-orange);
+}
+
+div.exo-modal-window-content.exo-light-blue-bg {
+    background-color: var(--exo-light-blue);
+}
+
+div.exo-modal-window-content.exo-light-green-bg {
+    background-color: var(--exo-light-green);
+}
+
+div.exo-modal-window-content.exo-light-purple-bg {
+    background-color: var(--exo-light-purple);
+}
+
+div.exo-modal-window-content.exo-light-brown-bg {
+    background-color: var(--exo-light-brown);
+}
+
+div.exo-modal-window-content.exo-light-gray-bg {
+    background-color: var(--exo-light-gray);
+}
+
+div.exo-modal-window-content.exo-light-pink-bg {
+    background-color: var(--exo-light-pink);
+}
+
+div.exo-modal-window-content.exo-light-yellow-bg {
+    background-color: var(--exo-light-yellow);
+}
+
+
+div.exo-modal-window-content > label:hover {
     outline: 0px solid var(--exo-hover);
 }
 
@@ -2042,7 +2145,7 @@ details {
    transition: all 0.5s;
 }
 
-.exo-modal > .exo-modal-window > .exo-modal-window-content {
+.exo-modal-window-content {
     max-width: 60%;
     max-height: 60%;
     position: absolute;
@@ -2050,14 +2153,10 @@ details {
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 15px;
-    padding-top: 40px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #333;
-    border-radius: 4px;
+    padding-top: 20px;
 }
 
-.exo-modal > .exo-modal-window > .exo-modal-window-content > label > span.exo-modal-close {
+.exo-modal-window-content > label > span.exo-modal-close {
     position:absolute;
     right: 2px;
     top: 2px;
@@ -2362,28 +2461,18 @@ details {
 
 /* css/button.css */
 
-/* add an exo-button class - sometimes useful to use with a div or span in place of an input */
+/* exo-button class - sometimes useful to use with a div or span in place of an input */
 
-div.exo-button {
+div.exo-button, span.exo-button, label.exo-button {
     padding: var(--padding-small);
     border-radius: var(--round-small);
     border: 2px solid #888;
     display: inline-block;
+    height: auto;
 }
 
-label.exo-button {
-    padding: var(--padding-small);
-    border-radius: var(--round-small);
-    border: 2px solid #888;
-    display: inline-block;
-}
 
-span.exo-button {
-    padding: var(--padding-small);
-    border-radius: var(--round-small);
-    border: 2px solid #888;
-    display: inline-block;
-}
+
 
 /* css/tabs.css */
 

@@ -26,9 +26,6 @@
     border-radius: var(--round-medium);
 }
 
-.exo-card-header {
-}
-
 .exo-card-content {
     padding: var(--padding-medium);
     flex-grow: 1;
@@ -36,6 +33,7 @@
 }
 
 .exo-card-footer {
+    margin-top: 10px;
     padding: 4px;
 }
 
@@ -43,9 +41,11 @@
     margin-top: 15px;
     margin-bottom: 15px;
     align-self: center;
+    margin-left: auto;
+    marign-right: auto;
 }
 
-.exo-card h1, .exo-card h2, .exo-card h3, .exo-card h4, .exo-card h5, .exo-card h6, .exo-card span
-.exo-card .exo-card-header, .exo-card .exo-card-footer, .exo-card.exo-card-content {
+.exo-card > * {
     text-align: center;
 }
+

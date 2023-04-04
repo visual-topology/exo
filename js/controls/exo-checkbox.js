@@ -24,10 +24,6 @@ class CustomExoCheckbox extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoCheckbox.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('value');

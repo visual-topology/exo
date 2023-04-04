@@ -60,10 +60,6 @@ class CustomExoRange extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoNumber.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('value','min','max','step');

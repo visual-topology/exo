@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Exo v0.0.2 CSS documentation</title>
+    <title>Exo 0.0.2 CSS documentation</title>
     <meta name="description" content="Demo and documentation-by-example for Exo CSS">
     <meta name="author" content="Visual Topology">
-    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type='text/css'/>
-    <link rel="stylesheet" href="exo.css" type="text/css"/>
-    <link rel="stylesheet" href="exo-icons.css" type="text/css"/>
-    <script src="../../support/model_view.js" type="text/javascript"></script>
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type='text/css'>
+    <link rel="stylesheet" href="exo.css" type="text/css">
+    <link rel="stylesheet" href="exo-icons.css" type="text/css">
+
     <script type="text/javascript">
          $ = function( id ) { return document.getElementById( id ); };
     </script>
@@ -18,11 +18,12 @@
           margin-right: 10px;
         }
     </style>
-    <link rel="stylesheet" href="../../support/model_view.css" type="text/css"/>
-</head>
-<body onload="boot()" class="exo-container">
 
-<h1>Exo</h1>
+</head>
+<body class="exo-container">
+
+<h1>Exo 0.0.2</h1>
+
 <p>Exo is a minimal CSS framework for building simple but stylish single page web applications. It is licensed under the
     <a href="https://opensource.org/licenses/mit-license.php">open source MIT license</a>.</p>
 
@@ -79,32 +80,52 @@
 </p>
 
 <ul>
-    <li><a href="examples/book_ideas.html">Book Ideas</a></li>
+    <li><a href="examples/book-ideas.html">Book Ideas</a></li>
 </ul>
 
 <h2 id="installing">Installing Exo</h2>
 <p>
-    To try the latest Exo code, simply add the following html5 code to your document's <code>&lt;head&gt;</code>:
+    To try the latest Exo CSS, simply add the following html5 code to your document's <code>&lt;head&gt;</code>:
 </p>
 
 <pre><code>
-            &lt;meta name="viewport" content="width=device-width,initial-scale=1"/&gt;
-            &lt;link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type='text/css'/&gt;
-            &lt;link href="https://visualtopology.github.io/exo/versions/latest/exo.css" rel="stylesheet" type="text/css"/&gt;
 
-            &lt;!-- icon file is optional, include if you use exo-icons --&gt;
-            &lt;link href="https://visualtopology.github.io/exo/versions/latest/exo-icons.css" rel="stylesheet" type="text/css"/&gt;
-
-            &lt;!-- js file is optional, include if you use exo custom HTML elements --&gt;
-            &lt;script src="https://visualtopology.github.io/exo/versions/latest/exo.js" type="text/javascript">&lt;/script>
+&lt;<span style="color:red;">meta</span> <span style="color:blue;">name</span>=<span style="color:purple;">"viewport"</span> <span style="color:blue;">content</span>=<span style="color:purple;">"width=device-width,initial-scale=1"</span>&gt;
+&lt;<span style="color:red;">link</span> <span style="color:blue;">href</span>=<span style="color:purple;">"//fonts.googleapis.com/css?family=Raleway:400,300,600"</span> <span style="color:blue;">rel</span>=<span style="color:purple;">"stylesheet"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"text/css"</span>&gt;
+&lt;<span style="color:red;">link</span> <span style="color:blue;">href</span>=<span style="color:purple;">"https://visualtopology.github.io/exo/versions/latest/exo.css"</span> <span style="color:blue;">rel</span>=<span style="color:purple;">"stylesheet"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"text/css"</span>&gt;
+    
 </code></pre>
+
+<p>
+    Optional, if using exo-icons, add the following html5 code to your document's <code>&lt;head&gt;</code>:
+</p>
+
+<pre><code>
+
+&lt;<span style="color:red;">link</span> <span style="color:blue;">href</span>=<span style="color:purple;">"https://visualtopology.github.io/exo/versions/latest/exo-icons.css"</span> <span style="color:blue;">rel</span>=<span style="color:purple;">"stylesheet"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"text/css"</span>&gt;
+    
+</code></pre>
+
+<p>
+    Optional, if using exo HTML custom elements (see below), add the following html5 code to your document's <code>&lt;head&gt;</code>:
+</p>
+
+<pre><code>
+
+&lt;<span style="color:red;">script</span> <span style="color:blue;">src</span>=<span style="color:purple;">"https://visualtopology.github.io/exo/versions/latest/exo.js"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"text/javascript"</span>/&gt;
+    
+</code></pre>
+
+<p>
+    To use a particular version of Exo, substitute its version number for <code>latest</code> in the URLs above.
+</p>
 
 <p>
     To use Exo in your own project, select and download a release from the <a
         href="https://github.com/visualtopology/exo/releases">Exo releases github page</a>.
 </p>
 
-<h2 id="layout">Simple Row/Column Layout based on CSS flexbox</h2>
+<h2 id="layout">Simple Row/Cell Layout based on CSS flexbox</h2>
 
 <p>
     To style a page (center and limit width to 1280 pixels) add class <code>exo-container</code> to your document's
@@ -115,345 +136,707 @@
     Exo supplies a CSS-flexbox based system for laying out rows composed of fixed (128px) width cells:
 </p>
 
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view0">
-                </code></pre>
-    </div>
-    <div id="model0">
-        <div class="exo-row">
-            <div class="exo-1-cell exo-dark-red-bg exo-white-fg">
-                Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.
-            </div>
-            <div class="exo-2-cell exo-dark-purple-bg exo-white-fg">
-                Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Aenean euismod, leo sed
-                imperdiet ullamcorper, augue lectus gravida
-                felis, quis facilisis mi tortor eu justo.
-            </div>
-            <div class="exo-1-cell exo-dark-gray-bg exo-white-fg">
-                Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.
-            </div>
-        </div>
-        <div class="exo-row">
-            <div class="exo-2-cell exo-dark-green-bg exo-white-fg">
-                Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Aenean euismod, leo sed
-                imperdiet ullamcorper, augue lectus gravida
-                felis, quis facilisis mi tortor eu justo.
-            </div>
-            <div class="exo-1-cell">
-            </div>
-            <div class="exo-1-cell exo-dark-blue-bg exo-white-fg">
-                Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit.
-            </div>
-        </div>
-    </div>
-</div>
 
-For more details see <a href="examples/layout.html">layout examples.</a>
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-row"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-1-cell exo-dark-red-bg exo-white-fg"</span>&gt;
+        Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit.
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-2-cell exo-dark-purple-bg exo-white-fg"</span>&gt;
+        Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Aenean euismod, leo sed
+        imperdiet ullamcorper, augue lectus gravida
+        felis, quis facilisis mi tortor eu justo.
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-1-cell exo-dark-gray-bg exo-white-fg"</span>&gt;
+        Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit.
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-row"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-2-cell exo-dark-green-bg exo-white-fg"</span>&gt;
+        Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Aenean euismod, leo sed
+        imperdiet ullamcorper, augue lectus gravida
+        felis, quis facilisis mi tortor eu justo.
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-1-cell"</span>&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-1-cell exo-dark-blue-bg exo-white-fg"</span>&gt;
+        Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit.
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-6-cell">
+                
+    <div class="exo-row">
+        <div class="exo-1-cell exo-dark-red-bg exo-white-fg">
+            Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+        </div>
+        <div class="exo-2-cell exo-dark-purple-bg exo-white-fg">
+            Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Aenean euismod, leo sed
+            imperdiet ullamcorper, augue lectus gravida
+            felis, quis facilisis mi tortor eu justo.
+        </div>
+        <div class="exo-1-cell exo-dark-gray-bg exo-white-fg">
+            Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+        </div>
+    </div>
+    <div class="exo-row">
+        <div class="exo-2-cell exo-dark-green-bg exo-white-fg">
+            Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Aenean euismod, leo sed
+            imperdiet ullamcorper, augue lectus gravida
+            felis, quis facilisis mi tortor eu justo.
+        </div>
+        <div class="exo-1-cell">
+        </div>
+        <div class="exo-1-cell exo-dark-blue-bg exo-white-fg">
+            Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.
+        </div>
+    </div>
+
+            </div>
+    </div>
+    
+
+For more details on row/cell layouts see <a href="layout.html">layout examples.</a>
 
 <h2 id="hero">Hero</h2>
 
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-        <pre><code id="view17">
-        </code></pre>
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-hero exo-rounded exo-border"</span>
+     <span style="color:blue;">
+</span> <span style="color:blue;">style</span>=<span style="color:purple;">"background-image: url('../../images/banner.jpg');"</span>&gt;
+    Hero
+    &lt;<span style="color:red;">h5</span>&gt;
+        Grab attention!
+    &lt;/<span style="color:red;">h5</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <div class="exo-hero exo-rounded exo-border"
+       style="background-image: url('../../images/banner.jpg');">
+       Hero
+        <h5>Grab attention!</h5>
+  </div>
+
+            </div>
     </div>
-    <div id="model17" class="exo-4-cell">
-        <div class="exo-hero exo-rounded exo-border"
-           style="background-image: url('../../images/banner.jpg');">
-           Hero
-            <h5>Grab attention!</h5>
-      </div>
-    </div>
-</div>
+    
 
 <h2 id="tabs">Tabs</h2>
 
-Exo offers a tab-like system - tab buttons are displayed in an area above a content window that displays the
+Exo offers a tab-like system for structuring pages - tab buttons are displayed in an area above a content window that displays the
 selected tab.  On narrow screens, the tabs are drawn in a collapsable menu.
+
 Note that there are a maximum of 12 tabs defined in the CSS - customise exo.css (search for "extend tab limit") if more
 are required.
 
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view15">
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-tabs"</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span>
+         <span style="color:blue;">id</span>=<span style="color:purple;">"nm1"</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-tabs-open exo-button exo-icon exo-icon-medium exo-icon-menu"</span>
+         <span style="color:blue;">for</span>=<span style="color:purple;">"nm1"</span>/&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-tabs-close exo-button exo-rounded exo-icon exo-icon-medium exo-icon-clear"</span>
+         <span style="color:blue;">for</span>=<span style="color:purple;">"nm1"</span>/&gt;
+    &lt;<span style="color:red;">br</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"radio"</span>
+         <span style="color:blue;">name</span>=<span style="color:purple;">"g2"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"ncontent-a1"</span> <span style="color:blue;">checked</span>=<span style="color:purple;">"checked"</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-tabs-item exo-white-bg"</span>
+         <span style="color:blue;">for</span>=<span style="color:purple;">"ncontent-a1"</span> <span style="color:blue;">tabindex</span>=<span style="color:purple;">"-1"</span>&gt;
+        Tab 1
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"radio"</span>
+         <span style="color:blue;">name</span>=<span style="color:purple;">"g2"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"ncontent-a2"</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-tabs-item exo-white-bg"</span>
+         <span style="color:blue;">for</span>=<span style="color:purple;">"ncontent-a2"</span> <span style="color:blue;">tabindex</span>=<span style="color:purple;">"-1"</span>&gt;
+        Tab 2
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"radio"</span>
+         <span style="color:blue;">name</span>=<span style="color:purple;">"g2"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"ncontent-a3"</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-tabs-item exo-white-bg"</span>
+         <span style="color:blue;">for</span>=<span style="color:purple;">"ncontent-a3"</span> <span style="color:blue;">tabindex</span>=<span style="color:purple;">"-1"</span>&gt;
+        Tab 3
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-tabs-content"</span>&gt;
+        &lt;<span style="color:red;">section</span>&gt;
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+            et dolore magna aliqua.
+        &lt;/<span style="color:red;">section</span>&gt;
+        &lt;<span style="color:red;">section</span>&gt;
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+        &lt;/<span style="color:red;">section</span>&gt;
+        &lt;<span style="color:red;">section</span>&gt;
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+        &lt;/<span style="color:red;">section</span>&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
                 </code></pre>
-    </div>
-    <div id="model15" class="exo-4-cell">
-        <div class="exo-tabs">
-            <input aria-hidden="true" type="checkbox" id="nm1">
-            <label aria-hidden="true" class="exo-tabs-open exo-button exo-icon exo-icon-medium exo-icon-menu" for="nm1">
-            </label>
-            <label aria-hidden="true" class="exo-tabs-close exo-button exo-rounded exo-icon exo-icon-medium exo-icon-clear" for="nm1">
-            </label>
-            <br>
-
-            <input aria-hidden="true" type="radio" name="g2" id="ncontent-a1" checked="">
-            <label aria-hidden="true" class="exo-tabs-item exo-white-bg" for="ncontent-a1" tabindex="-1">Tab 1</label>
-
-            <input aria-hidden="true" type="radio" name="g2" id="ncontent-a2">
-            <label aria-hidden="true" class="exo-tabs-item exo-white-bg" for="ncontent-a2" tabindex="-1">Tab 2</label>
-
-            <input aria-hidden="true" type="radio" name="g2" id="ncontent-a3">
-            <label aria-hidden="true" class="exo-tabs-item exo-white-bg" for="ncontent-a3" tabindex="-1">Tab 3</label>
-
-            <div class="exo-tabs-content">
-                <section>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.
-                </section>
-                <section>
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.
-                </section>
-                <section>
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                    anim id est laborum.
-                </section>
             </div>
-        </div>
-    </div> 
-</div>
+            <div class="exo-4-cell">
+                <div class="exo-tabs">
+    <input aria-hidden="true" type="checkbox" id="nm1">
+    <label aria-hidden="true" class="exo-tabs-open exo-button exo-icon exo-icon-medium exo-icon-menu" for="nm1">
+    </label>
+    <label aria-hidden="true" class="exo-tabs-close exo-button exo-rounded exo-icon exo-icon-medium exo-icon-clear" for="nm1">
+    </label>
+    <br>
 
+    <input aria-hidden="true" type="radio" name="g2" id="ncontent-a1" checked="checked">
+    <label aria-hidden="true" class="exo-tabs-item exo-white-bg" for="ncontent-a1" tabindex="-1">Tab 1</label>
+
+    <input aria-hidden="true" type="radio" name="g2" id="ncontent-a2">
+    <label aria-hidden="true" class="exo-tabs-item exo-white-bg" for="ncontent-a2" tabindex="-1">Tab 2</label>
+
+    <input aria-hidden="true" type="radio" name="g2" id="ncontent-a3">
+    <label aria-hidden="true" class="exo-tabs-item exo-white-bg" for="ncontent-a3" tabindex="-1">Tab 3</label>
+
+    <div class="exo-tabs-content">
+        <section>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+            et dolore magna aliqua.
+        </section>
+        <section>
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+        </section>
+        <section>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+        </section>
+    </div>
+</div>
+            </div>
+    </div>
+    
 
 <h2 id="cards">Cards</h2>
 
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view18">
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-cards exo-narrow-cards"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card exo-white-fg exo-dark-orange-bg"</span>&gt;
+        &lt;<span style="color:red;">img</span> <span style="color:blue;">src</span>=<span style="color:purple;">"../../images/banner.jpg"</span>
+             <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card-header"</span>&gt;
+        &lt;<span style="color:red;">h4</span>&gt;
+            Card 1
+        &lt;/<span style="color:red;">h4</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card-content"</span>&gt;
+            Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Aenean euismod, leo sed
+            imperdiet ullamcorper, augue lectus gravida
+            felis, quis facilisis mi tortor eu justo.
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-button exo-white-bg"</span>
+             <span style="color:blue;">role</span>=<span style="color:purple;">"button"</span>&gt;
+            &lt;<span style="color:red;">a</span> <span style="color:blue;">href</span>=<span style="color:purple;">""</span> <span style="color:blue;">target</span>=<span style="color:purple;">"_blank"</span>&gt;
+                More Information...
+            &lt;/<span style="color:red;">a</span>&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card-footer exo-dark-gray-bg exo-small"</span>&gt;
+            Footer 1
+        &lt;/<span style="color:red;">div</span>&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card exo-white-fg exo-dark-red-bg"</span>&gt;
+        &lt;<span style="color:red;">img</span> <span style="color:blue;">src</span>=<span style="color:purple;">"../../images/banner.jpg"</span>
+             <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card-header"</span>&gt;
+        &lt;<span style="color:red;">h4</span>&gt;
+            Card 2
+        &lt;/<span style="color:red;">h4</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card-content"</span>&gt;
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-button exo-white-bg"</span>
+             <span style="color:blue;">role</span>=<span style="color:purple;">"button"</span>&gt;
+            &lt;<span style="color:red;">a</span> <span style="color:blue;">href</span>=<span style="color:purple;">""</span> <span style="color:blue;">target</span>=<span style="color:purple;">"_blank"</span>&gt;
+                More Information...
+            &lt;/<span style="color:red;">a</span>&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card-footer exo-dark-gray-bg exo-small"</span>&gt;
+            Footer 2
+        &lt;/<span style="color:red;">div</span>&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card exo-white-fg exo-dark-green-bg"</span>&gt;
+        &lt;<span style="color:red;">img</span> <span style="color:blue;">src</span>=<span style="color:purple;">"../../images/banner.jpg"</span>
+             <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card-header"</span>&gt;
+        &lt;<span style="color:red;">h4</span>&gt;
+            Card 3
+        &lt;/<span style="color:red;">h4</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card-content"</span>&gt;
+            Lorem ipsum.
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-button exo-white-bg"</span>
+             <span style="color:blue;">role</span>=<span style="color:purple;">"button"</span>&gt;
+            &lt;<span style="color:red;">a</span> <span style="color:blue;">href</span>=<span style="color:purple;">""</span> <span style="color:blue;">target</span>=<span style="color:purple;">"_blank"</span>&gt;
+                More Information...
+            &lt;/<span style="color:red;">a</span>&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card-footer exo-dark-gray-bg exo-small"</span>&gt;
+            Footer 3
+        &lt;/<span style="color:red;">div</span>&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card exo-white-fg exo-dark-purple-bg"</span>&gt;
+        &lt;<span style="color:red;">img</span> <span style="color:blue;">src</span>=<span style="color:purple;">"../../images/banner.jpg"</span>
+             <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card-header"</span>&gt;
+        &lt;<span style="color:red;">h4</span>&gt;
+            Card 4
+        &lt;/<span style="color:red;">h4</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card-content"</span>&gt;
+            Lorem ipsum.
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-button exo-white-bg"</span>
+             <span style="color:blue;">role</span>=<span style="color:purple;">"button"</span>&gt;
+            &lt;<span style="color:red;">a</span> <span style="color:blue;">href</span>=<span style="color:purple;">""</span> <span style="color:blue;">target</span>=<span style="color:purple;">"_blank"</span>&gt;
+                More Information...
+            &lt;/<span style="color:red;">a</span>&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card-footer exo-dark-gray-bg exo-small"</span>&gt;
+            Footer 4
+        &lt;/<span style="color:red;">div</span>&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
                 </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                <div class="exo-cards exo-narrow-cards">
+    <div class="exo-card exo-white-fg exo-dark-orange-bg">
+        <img src="../../images/banner.jpg" class="exo-card-header"/>
+        <h4>Card 1</h4>
+        <div class="exo-card-content">
+            Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit. Aenean euismod, leo sed
+          imperdiet ullamcorper, augue lectus gravida
+          felis, quis facilisis mi tortor eu justo.
+        </div>
+        <div class="exo-button exo-white-bg" role="button"><a href="" target="_blank">More Information...</a></div>
+        <div class="exo-card-footer exo-dark-gray-bg exo-small">Footer 1</div>
     </div>
-    <div id="model18" class="exo-4-cell">
-        <div class="exo-cards exo-narrow-cards">
-              <div class="exo-card exo-white-fg exo-dark-orange-bg">
-                  <img src="../../images/banner.jpg" class="exo-card-header"/>
-                  <h4>Card 1</h4>
-                  <div class="exo-card-content">
-                      Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Aenean euismod, leo sed
-                    imperdiet ullamcorper, augue lectus gravida
-                    felis, quis facilisis mi tortor eu justo.
-                  </div>
-                  <div class="exo-button exo-black-fg exo-white-bg" role="button">More Information...</div>
-                  <div class="exo-card-footer exo-black">Footer 1</div>
-              </div>
-              <div class="exo-card exo-white-fg exo-dark-red-bg">
-                  <img src="../../images/banner.jpg" class="exo-card-header"/>
-                  <h4>Card 2</h4>
-                   <div class="exo-card-content">
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
-                  </div>
-                  <div class="exo-button exo-black-fg exo-white-bg" role="button">More Information...</div>
-                  <div class="exo-card-footer exo-black">Footer 2</div>
-              </div>
-              <div class="exo-card exo-white-fg exo-dark-green-bg">
-                  <img src="../../images/banner.jpg" class="exo-card-header"/>
-                  <h4>Card 3</h4>
-                  <div class="exo-card-content">
-                      Lorem ipsum.
-                  </div>
-                  <div class="exo-button exo-black-fg exo-white-bg" role="button">More Information...</div>
-                  <div class="exo-card-footer exo-black">Footer 3</div>
-              </div>
-              <div class="exo-card exo-white-fg exo-dark-purple-bg">
-                  <img src="../../images/banner.jpg" class="exo-card-header"/>
-                  <h4>Card 4</h4>
-                   <div class="exo-card-content">
-                        Lorem ipsum.
-                  </div>
-                  <div class="exo-button exo-black-fg exo-white-bg" role="button">More Information...</div>
-                  <div class="exo-card-footer exo-black">Footer 4</div>
-              </div>
-          </div>
+    <div class="exo-card exo-white-fg exo-dark-red-bg">
+        <img src="../../images/banner.jpg" class="exo-card-header"/>
+        <h4>Card 2</h4>
+         <div class="exo-card-content">
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat.
+        </div>
+        <div class="exo-button exo-white-bg" role="button"><a href="" target="_blank">More Information...</a></div>
+        <div class="exo-card-footer exo-dark-gray-bg exo-small">Footer 2</div>
+    </div>
+    <div class="exo-card exo-white-fg exo-dark-green-bg">
+        <img src="../../images/banner.jpg" class="exo-card-header"/>
+        <h4>Card 3</h4>
+        <div class="exo-card-content">
+            Lorem ipsum.
+        </div>
+        <div class="exo-button exo-white-bg" role="button"><a href="" target="_blank">More Information...</a></div>
+        <div class="exo-card-footer exo-dark-gray-bg exo-small">Footer 3</div>
+    </div>
+    <div class="exo-card exo-white-fg exo-dark-purple-bg">
+        <img src="../../images/banner.jpg" class="exo-card-header"/>
+        <h4>Card 4</h4>
+         <div class="exo-card-content">
+              Lorem ipsum.
+        </div>
+        <div class="exo-button exo-white-bg" role="button"><a href="" target="_blank">More Information...</a></div>
+        <div class="exo-card-footer exo-dark-gray-bg exo-small">Footer 4</div>
     </div>
 </div>
+            </div>
+    </div>
+    
 
 <h2 id="carousel">Carousel</h2>
 
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view14">
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-carousel exo-white-fg"</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"radio"</span>
+         <span style="color:blue;">name</span>=<span style="color:purple;">"cg2"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cg-a1"</span> <span style="color:blue;">checked</span>=<span style="color:purple;">""</span>
+         <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-orange-bg"</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"radio"</span>
+         <span style="color:blue;">name</span>=<span style="color:purple;">"cg2"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cg-a2"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-orange-bg"</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"radio"</span>
+         <span style="color:blue;">name</span>=<span style="color:purple;">"cg2"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cg-a3"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-orange-bg"</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"radio"</span>
+         <span style="color:blue;">name</span>=<span style="color:purple;">"cg2"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cg-a4"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-orange-bg"</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"radio"</span>
+         <span style="color:blue;">name</span>=<span style="color:purple;">"cg2"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cg-a5"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-orange-bg"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-carousel-content exo-light-blue-bg"</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-rounded exo-carousel-item"</span>&gt;
+            &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cg-a5"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-navigate-before exo-white-bg"</span>/&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card exo-white-fg exo-dark-orange-bg"</span>&gt;
+                &lt;<span style="color:red;">img</span> <span style="color:blue;">src</span>=<span style="color:purple;">"../../images/infrared.png"</span>&gt;
+                &lt;<span style="color:red;">h4</span>&gt;
+                    Thermal
+                &lt;/<span style="color:red;">h4</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+            &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cg-a2"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-navigate-next exo-white-bg"</span>/&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-rounded exo-carousel-item"</span>&gt;
+            &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cg-a1"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-navigate-before exo-white-bg"</span>/&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card exo-white-fg exo-dark-orange-bg"</span>&gt;
+                &lt;<span style="color:red;">img</span> <span style="color:blue;">src</span>=<span style="color:purple;">"../../images/olci_chlorophyll.png"</span>&gt;
+                &lt;<span style="color:red;">h4</span>&gt;
+                    OLCI Chlorophyll
+                &lt;/<span style="color:red;">h4</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+            &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cg-a3"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-navigate-next exo-white-bg"</span>/&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-rounded exo-carousel-item"</span>&gt;
+            &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cg-a2"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-navigate-before exo-white-bg"</span>/&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card exo-white-fg exo-dark-orange-bg"</span>&gt;
+                &lt;<span style="color:red;">img</span> <span style="color:blue;">src</span>=<span style="color:purple;">"../../images/olci_truecolor.png"</span>&gt;
+                &lt;<span style="color:red;">h4</span>&gt;
+                    OLCI True Colour
+                &lt;/<span style="color:red;">h4</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+            &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cg-a4"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-navigate-next exo-white-bg"</span>/&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-rounded exo-carousel-item"</span>&gt;
+            &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cg-a3"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-navigate-before exo-white-bg"</span>/&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card exo-white-fg exo-dark-orange-bg"</span>&gt;
+                &lt;<span style="color:red;">img</span> <span style="color:blue;">src</span>=<span style="color:purple;">"../../images/map.png"</span>&gt;
+                &lt;<span style="color:red;">h4</span>&gt;
+                    Google Map
+                &lt;/<span style="color:red;">h4</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+            &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cg-a5"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-navigate-next exo-white-bg"</span>/&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-rounded exo-carousel-item"</span>&gt;
+            &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cg-a4"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-navigate-before exo-white-bg"</span>/&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-card exo-white-fg exo-dark-orange-bg"</span>&gt;
+                &lt;<span style="color:red;">img</span> <span style="color:blue;">src</span>=<span style="color:purple;">"../../images/slstr_falsecolor.png"</span>&gt;
+                &lt;<span style="color:red;">h4</span>&gt;
+                    SLSTR False Colour
+                &lt;/<span style="color:red;">h4</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+            &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cg-a1"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-navigate-next exo-white-bg"</span>/&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-gray-fg"</span>&gt;
+            Images Copyright (c)
+            &lt;<span style="color:red;">a</span> <span style="color:blue;">href</span>=<span style="color:purple;">"https://ovl.oceandatalab.com"</span>
+                 <span style="color:blue;">target</span>=<span style="color:purple;">"_blank"</span>&gt;
+                ESA, OceanDataLab
+            &lt;/<span style="color:red;">a</span>&gt;
+            and
+            &lt;<span style="color:red;">a</span> <span style="color:blue;">href</span>=<span style="color:purple;">"https://maps.google.com"</span>
+                 <span style="color:blue;">target</span>=<span style="color:purple;">"_blank"</span>&gt;
+                Google Maps
+            &lt;/<span style="color:red;">a</span>&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
                 </code></pre>
-    </div>
-    <div id="model14" class="exo-4-cell">
-        <div class="exo-carousel exo-white-fg">
-            <input aria-hidden="true" type="radio" name="cg2" id="cg-a1" checked="" class="exo-dark-orange-bg">
-            <input aria-hidden="true" type="radio" name="cg2" id="cg-a2" class="exo-dark-orange-bg">
-            <input aria-hidden="true" type="radio" name="cg2" id="cg-a3" class="exo-dark-orange-bg">
-            <input aria-hidden="true" type="radio" name="cg2" id="cg-a4" class="exo-dark-orange-bg">
-            <input aria-hidden="true" type="radio" name="cg2" id="cg-a5" class="exo-dark-orange-bg">
-            <div class="exo-carousel-content exo-light-blue-bg">
-                <div class="exo-rounded exo-carousel-item">
-                    <label for="cg-a5" class="exo-icon exo-icon-navigate-before exo-white-bg"/></label>
-                    <div class="exo-card exo-white-fg exo-dark-orange-bg">
-                        <img src="../../images/infrared.png"/>
-                        <h4>Thermal</h4>
-                    </div>
-                    <label for="cg-a2" class="exo-icon exo-icon-navigate-next exo-white-bg"/></label>
-                </div>
-                <div class="exo-rounded exo-carousel-item">
-                    <label for="cg-a1" class="exo-icon exo-icon-navigate-before exo-white-bg"/></label>
-                    <div class="exo-card exo-white-fg exo-dark-orange-bg">
-                        <img src="../../images/olci_chlorophyll.png"/>
-                        <h4>OLCI Chlorophyll</h4>
-                    </div>
-                    <label for="cg-a3" class="exo-icon exo-icon-navigate-next exo-white-bg"/></label>
-                </div>
-                <div class="exo-rounded exo-carousel-item">
-                    <label for="cg-a2" class="exo-icon exo-icon-navigate-before exo-white-bg"/></label>
-                    <div class="exo-card exo-white-fg exo-dark-orange-bg">
-                        <img src="../../images/olci_truecolor.png"/>
-                        <h4>OLCI True Colour</h4>
-                    </div>
-                    <label for="cg-a4" class="exo-icon exo-icon-navigate-next exo-white-bg"/></label>
-                </div>
-                <div class="exo-rounded exo-carousel-item">
-                    <label for="cg-a3" class="exo-icon exo-icon-navigate-before exo-white-bg"/></label>
-                    <div class="exo-card exo-white-fg exo-dark-orange-bg">
-                        <img src="../../images/map.png"/>
-                        <h4>Google Map</h4>
-                    </div>
-                    <label for="cg-a5" class="exo-icon exo-icon-navigate-next exo-white-bg"/></label>
-                </div>
-                 <div class="exo-rounded exo-carousel-item">
-                    <label for="cg-a4" class="exo-icon exo-icon-navigate-before exo-white-bg"/></label>
-                     <div class="exo-card exo-white-fg exo-dark-orange-bg">
-                        <img src="../../images/slstr_falsecolor.png"/>
-                        <h4>SLSTR False Colour</h4>
-                    </div>
-                    <label for="cg-a1" class="exo-icon exo-icon-navigate-next exo-white-bg"/></label>
-                </div>
-                <div class="exo-dark-gray-fg">Images Copyright (c) <a href="https://ovl.oceandatalab.com" target="_blank">ESA, OceanDataLab</a> and <a href="https://maps.google.com" target="_blank">Google Maps</a>
-                </div>
             </div>
+            <div class="exo-4-cell">
+                <div class="exo-carousel exo-white-fg">
+    <input aria-hidden="true" type="radio" name="cg2" id="cg-a1" checked="" class="exo-dark-orange-bg">
+    <input aria-hidden="true" type="radio" name="cg2" id="cg-a2" class="exo-dark-orange-bg">
+    <input aria-hidden="true" type="radio" name="cg2" id="cg-a3" class="exo-dark-orange-bg">
+    <input aria-hidden="true" type="radio" name="cg2" id="cg-a4" class="exo-dark-orange-bg">
+    <input aria-hidden="true" type="radio" name="cg2" id="cg-a5" class="exo-dark-orange-bg">
+    <div class="exo-carousel-content exo-light-blue-bg">
+        <div class="exo-rounded exo-carousel-item">
+            <label for="cg-a5" class="exo-icon exo-icon-navigate-before exo-white-bg"></label>
+            <div class="exo-card exo-white-fg exo-dark-orange-bg">
+                <img src="../../images/infrared.png"/>
+                <h4>Thermal</h4>
+            </div>
+            <label for="cg-a2" class="exo-icon exo-icon-navigate-next exo-white-bg"></label>
+        </div>
+        <div class="exo-rounded exo-carousel-item">
+            <label for="cg-a1" class="exo-icon exo-icon-navigate-before exo-white-bg"></label>
+            <div class="exo-card exo-white-fg exo-dark-orange-bg">
+                <img src="../../images/olci_chlorophyll.png"/>
+                <h4>OLCI Chlorophyll</h4>
+            </div>
+            <label for="cg-a3" class="exo-icon exo-icon-navigate-next exo-white-bg"></label>
+        </div>
+        <div class="exo-rounded exo-carousel-item">
+            <label for="cg-a2" class="exo-icon exo-icon-navigate-before exo-white-bg"></label>
+            <div class="exo-card exo-white-fg exo-dark-orange-bg">
+                <img src="../../images/olci_truecolor.png"/>
+                <h4>OLCI True Colour</h4>
+            </div>
+            <label for="cg-a4" class="exo-icon exo-icon-navigate-next exo-white-bg"></label>
+        </div>
+        <div class="exo-rounded exo-carousel-item">
+            <label for="cg-a3" class="exo-icon exo-icon-navigate-before exo-white-bg"></label>
+            <div class="exo-card exo-white-fg exo-dark-orange-bg">
+                <img src="../../images/map.png"/>
+                <h4>Google Map</h4>
+            </div>
+            <label for="cg-a5" class="exo-icon exo-icon-navigate-next exo-white-bg"></label>
+        </div>
+        <div class="exo-rounded exo-carousel-item">
+            <label for="cg-a4" class="exo-icon exo-icon-navigate-before exo-white-bg"></label>
+             <div class="exo-card exo-white-fg exo-dark-orange-bg">
+                <img src="../../images/slstr_falsecolor.png"/>
+                <h4>SLSTR False Colour</h4>
+            </div>
+            <label for="cg-a1" class="exo-icon exo-icon-navigate-next exo-white-bg"></label>
+        </div>
+        <div class="exo-dark-gray-fg">Images Copyright (c) <a href="https://ovl.oceandatalab.com" target="_blank">ESA, OceanDataLab</a> and <a href="https://maps.google.com" target="_blank">Google Maps</a>
         </div>
     </div>
 </div>
-
+            </div>
+    </div>
+    
 
 <h2 id="summary_details">Summary / Details</h2>
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view6">
+
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">details</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-blue-bg"</span>&gt;
+    &lt;<span style="color:red;">summary</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-orange-bg"</span>&gt;
+        Details
+    &lt;/<span style="color:red;">summary</span>&gt;
+    &lt;<span style="color:red;">p</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-padding"</span>&gt;
+        Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Aenean euismod, leo sed
+        imperdiet ullamcorper, augue lectus gravida
+        felis, quis facilisis mi tortor eu justo.
+    &lt;/<span style="color:red;">p</span>&gt;
+&lt;/<span style="color:red;">details</span>&gt;
                 </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                <details class="exo-light-blue-bg">
+    <summary class="exo-light-orange-bg">Details</summary>
+    <p class="exo-padding">Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit. Aenean euismod, leo sed
+        imperdiet ullamcorper, augue lectus gravida
+        felis, quis facilisis mi tortor eu justo.</p>
+</details>
+            </div>
     </div>
-    <div id="model6" class="exo-4-cell">
-        <details class="exo-light-blue-bg">
-            <summary class="exo-light-orange-bg">Details</summary>
-            <p class="exo-padding">Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Aenean euismod, leo sed
-                imperdiet ullamcorper, augue lectus gravida
-                felis, quis facilisis mi tortor eu justo.</p>
-        </details>
-    </div>
-</div>
+    
 
 <h2 id="navigable_tree">Collapsable Tree</h2>
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view7">
-                </code></pre>
-    </div>
-    <div id="model7" class="exo-4-cell">
-        <div class="exo-tree" role="tree">
 
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-tree"</span> <span style="color:blue;">role</span>=<span style="color:purple;">"tree"</span>&gt;
+    &lt;<span style="color:red;">ul</span>&gt;
+        &lt;<span style="color:red;">li</span> <span style="color:blue;">role</span>=<span style="color:purple;">"treeitem"</span>&gt;
+            &lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span> <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span>&gt;
+            &lt;<span style="color:red;">label</span>&gt;
+                File 1
+            &lt;/<span style="color:red;">label</span>&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-gray-bg"</span>&gt;
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            &lt;/<span style="color:red;">div</span>&gt;
+        &lt;/<span style="color:red;">li</span>&gt;
+        &lt;<span style="color:red;">li</span> <span style="color:blue;">role</span>=<span style="color:purple;">"treeitem"</span>&gt;
+            &lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span> <span style="color:blue;">checked</span>=<span style="color:purple;">"checked"</span>
+                 <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span>&gt;
+            &lt;<span style="color:red;">label</span>&gt;
+                Folder 1
+            &lt;/<span style="color:red;">label</span>&gt;
+            &lt;<span style="color:red;">ul</span>&gt;
+                &lt;<span style="color:red;">li</span> <span style="color:blue;">role</span>=<span style="color:purple;">"treeitem"</span>&gt;
+                    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-brown-bg"</span>&gt;
+                        Lorem ipsum.
+                    &lt;/<span style="color:red;">div</span>&gt;
+                &lt;/<span style="color:red;">li</span>&gt;
+                &lt;<span style="color:red;">li</span> <span style="color:blue;">role</span>=<span style="color:purple;">"treeitem"</span>&gt;
+                    &lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span>
+                         <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span>&gt;
+                    &lt;<span style="color:red;">label</span>&gt;
+                        Folder 2
+                    &lt;/<span style="color:red;">label</span>&gt;
+                    &lt;<span style="color:red;">ul</span>&gt;
+                        &lt;<span style="color:red;">li</span> <span style="color:blue;">role</span>=<span style="color:purple;">"treeitem"</span>&gt;
+                            &lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span>
+                                 <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span>&gt;
+                            &lt;<span style="color:red;">label</span>&gt;
+                                File 2
+                            &lt;/<span style="color:red;">label</span>&gt;
+                            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-green-bg"</span>&gt;
+                                Lorem ipsum.
+                            &lt;/<span style="color:red;">div</span>&gt;
+                        &lt;/<span style="color:red;">li</span>&gt;
+                        &lt;<span style="color:red;">li</span> <span style="color:blue;">role</span>=<span style="color:purple;">"treeitem"</span>&gt;
+                            &lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span>
+                                 <span style="color:blue;">aria-hidden</span>=<span style="color:purple;">"true"</span>&gt;
+                            &lt;<span style="color:red;">label</span>&gt;
+                                File 3
+                            &lt;/<span style="color:red;">label</span>&gt;
+                            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-blue-bg"</span>&gt;
+                                Lorem ipsum.
+                            &lt;/<span style="color:red;">div</span>&gt;
+                        &lt;/<span style="color:red;">li</span>&gt;
+                    &lt;/<span style="color:red;">ul</span>&gt;
+                &lt;/<span style="color:red;">li</span>&gt;
+            &lt;/<span style="color:red;">ul</span>&gt;
+        &lt;/<span style="color:red;">li</span>&gt;
+    &lt;/<span style="color:red;">ul</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                <div class="exo-tree" role="tree">
+
+    <ul>
+        <li role="treeitem">
+            <input type="checkbox" aria-hidden="true">
+            <label>File 1</label>
+            <div class="exo-light-gray-bg">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </div>
+        </li>
+        <li role="treeitem">
+            <input type="checkbox" checked="checked" aria-hidden="true">
+            <label>Folder 1</label>
             <ul>
                 <li role="treeitem">
-                    <input type="checkbox" aria-hidden="true">
-                    <label class="exo-huge">File 1</label>
-                    <div class="exo-light-gray-bg">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </li>
+                    <div class="exo-light-brown-bg">Lorem ipsum.</div></li>
                 <li role="treeitem">
-                    <input type="checkbox" checked="checked" aria-hidden="true">
-                    <label class="exo-huge">Folder 1</label>
+                    <input type="checkbox" aria-hidden="true">
+                    <label>Folder 2</label>
                     <ul>
                         <li role="treeitem">
-                            <div class="exo-light-brown-bg">Lorem ipsum.</div></li>
+                            <input type="checkbox" aria-hidden="true">
+                            <label>File 2</label>
+                            <div class="exo-light-green-bg">
+                                Lorem ipsum.
+                            </div>
+                        </li>
                         <li role="treeitem">
                             <input type="checkbox" aria-hidden="true">
-                            <label>Folder 2</label>
-                            <ul>
-                                <li role="treeitem">
-                                    <input type="checkbox" aria-hidden="true">
-                                    <label>File 2</label>
-                                    <div class="exo-light-green-bg">
-                                        Lorem ipsum.
-                                    </div>
-                                </li>
-                                <li role="treeitem">
-                                    <input type="checkbox" aria-hidden="true">
-                                    <label>File 3</label>
-                                    <div class="exo-light-blue-bg">
-                                        Lorem ipsum.
-                                    </div>
-                                </li>
-                            </ul>
+                            <label>File 3</label>
+                            <div class="exo-light-blue-bg">
+                                Lorem ipsum.
+                            </div>
                         </li>
                     </ul>
                 </li>
             </ul>
-        </div>
-    </div>
+        </li>
+    </ul>
 </div>
+            </div>
+    </div>
+    
 
 <h2 id="modal_windows">Modal Windows</h2>
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view8">
+
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-modal"</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"modal1"</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"modal1"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-button exo-dark-gray-bg exo-white-fg"</span>&gt;
+        More Info
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-modal-window"</span>&gt;
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-modal-window-content exo-white-fg exo-dark-gray-bg"</span>&gt;
+            &lt;<span style="color:red;">div</span>&gt;
+                Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Aenean euismod, leo sed
+                imperdiet ullamcorper, augue lectus gravida
+                felis, quis facilisis mi tortor eu justo.
+            &lt;/<span style="color:red;">div</span>&gt;
+            &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"modal1"</span>&gt;
+                &lt;<span style="color:red;">span</span> <span style="color:blue;">tabindex</span>=<span style="color:purple;">"-1"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-modal-close exo-white"</span>/&gt;
+            &lt;/<span style="color:red;">label</span>&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
                 </code></pre>
-    </div>
-    <div id="model8" class="exo-4-cell">
-        <div class="exo-modal">
-            <input type="checkbox" id="modal1">
-            <label for="modal1" class="exo-button">
-                More Info
-            </label>
-            <div class="exo-modal-window">
-                <div class="exo-modal-window-content exo-light-brown-bg">
-                    <div>Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Aenean euismod, leo sed
-                        imperdiet ullamcorper, augue lectus gravida
-                        felis, quis facilisis mi tortor eu justo.
-                    </div>
-                    <label for="modal1">
-                        <span tabindex="-1" class="exo-modal-close"></span>
-                    </label>
-                </div>
             </div>
+            <div class="exo-4-cell">
+                <div class="exo-modal">
+    <input type="checkbox" id="modal1">
+    <label for="modal1" class="exo-button exo-dark-gray-bg exo-white-fg">
+        More Info
+    </label>
+    <div class="exo-modal-window">
+        <div class="exo-modal-window-content exo-white-fg exo-dark-gray-bg">
+            <div>Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Aenean euismod, leo sed
+                imperdiet ullamcorper, augue lectus gravida
+                felis, quis facilisis mi tortor eu justo.
+            </div>
+            <label for="modal1">
+                <span tabindex="-1" class="exo-icon exo-modal-close exo-white"></span>
+            </label>
         </div>
     </div>
 </div>
+            </div>
+    </div>
+    
 
 <h2 id="conditional">Conditional</h2>
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view9">
+
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">label</span>&gt;
+    Home or help
+    &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-conditional"</span>&gt;
+        &lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span>&gt;
+        &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-button exo-conditional-true"</span>&gt;
+            &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-inline exo-icon-large exo-icon-home"</span>/&gt;
+        &lt;/<span style="color:red;">span</span>&gt;
+        &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-button exo-conditional-false"</span>&gt;
+            &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-inine exo-icon-large exo-icon-help"</span>/&gt;
+        &lt;/<span style="color:red;">span</span>&gt;
+    &lt;/<span style="color:red;">span</span>&gt;
+&lt;/<span style="color:red;">label</span>&gt;
                 </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                <label>
+    Home or help
+    <span class="exo-conditional">
+        <input type="checkbox"/>
+        <span class="exo-button exo-conditional-true">
+            <span class="exo-icon exo-icon-inline exo-icon-large exo-icon-home"></span>
+        </span>
+        <span class="exo-button exo-conditional-false">
+            <span class="exo-icon exo-icon-inine exo-icon-large exo-icon-help"></span>
+        </span>
+    </span>
+</label>
+            </div>
     </div>
-    <div id="model9" class="exo-1-cell">
-        <label>
-            Home or help
-            <span class="exo-conditional">
-                <input type="checkbox"/>
-                <span class="exo-button exo-conditional-true">
-                    <span class="exo-icon exo-icon-inline exo-icon-large exo-icon-home"></span>
-                </span>
-                <span class="exo-button exo-conditional-false">
-                    <span class="exo-icon exo-icon-inine exo-icon-large exo-icon-help"></span>
-                </span>
-            </span>
-        </label>
-    </div>
-</div>
+    
 
 <h2 id="colors">Colours</h2>
 
@@ -463,88 +846,222 @@ Dark colors are used with a white foreground color and light colors are used wit
 To apply a background color to an element, add class <code>exo-COLOUR</code> or <code>exo-light-COLOUR</code>.
 
 <h4>Dark Foreground Colours</h4>
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view19">
+
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-orange-fg"</span>&gt;
+    exo-dark-orange-fg
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-red-fg"</span>&gt;
+    exo-dark-red-fg
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-blue-fg"</span>&gt;
+    exo-dark-blue-fg
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-purple-fg"</span>&gt;
+    exo-dark-purple-fg
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-green-fg"</span>&gt;
+    exo-dark-green-fg
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-brown-fg"</span>&gt;
+    exo-dark-brown-fg
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-gray-fg"</span>&gt;
+    exo-dark-gray-fg
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-pink-fg"</span>&gt;
+    exo-dark-pink-fg
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-yellow-fg"</span>&gt;
+    exo-dark-yellow-fg
+&lt;/<span style="color:red;">div</span>&gt;
                 </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+  <div class="exo-dark-orange-fg">exo-dark-orange-fg</div>
+  <div class="exo-dark-red-fg">exo-dark-red-fg</div>
+  <div class="exo-dark-blue-fg">exo-dark-blue-fg</div>
+  <div class="exo-dark-purple-fg">exo-dark-purple-fg</div>
+  <div class="exo-dark-green-fg">exo-dark-green-fg</div>
+  <div class="exo-dark-brown-fg">exo-dark-brown-fg</div>
+  <div class="exo-dark-gray-fg">exo-dark-gray-fg</div>
+  <div class="exo-dark-pink-fg">exo-dark-pink-fg</div>
+  <div class="exo-dark-yellow-fg">exo-dark-yellow-fg</div>
+
+            </div>
     </div>
-    <div id="model19" class="exo-4-cell">
-        <div class="exo-dark-orange-fg">exo-dark-orange-fg</div>
-        <div class="exo-dark-red-fg">exo-dark-red-fg</div>
-        <div class="exo-dark-blue-fg">exo-dark-blue-fg</div>
-        <div class="exo-dark-purple-fg">exo-dark-purple-fg</div>
-        <div class="exo-dark-green-fg">exo-dark-green-fg</div>
-        <div class="exo-dark-brown-fg">exo-dark-brown-fg</div>
-        <div class="exo-dark-gray-fg">exo-dark-gray-fg</div>
-        <div class="exo-dark-pink-fg">exo-dark-pink-fg</div>
-        <div class="exo-dark-yellow-fg">exo-dark-yellow-fg</div>
-    </div>
-</div>
+    
 
 <h4>Light Foreground Colours</h4>
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view16">
+
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-black-bg"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-orange-fg"</span>&gt;
+        exo-light-orange-fg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-red-fg"</span>&gt;
+        exo-light-red-fg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-blue-fg"</span>&gt;
+        exo-light-blue-fg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-purple-fg"</span>&gt;
+        exo-light-purple-fg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-green-fg"</span>&gt;
+        exo-light-green-fg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-brown-fg"</span>&gt;
+        exo-light-brown-fg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-gray-fg"</span>&gt;
+        exo-light-gray-fg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-yellow-fg"</span>&gt;
+        exo-light-yellow-fg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-pink-fg"</span>&gt;
+        exo-light-pink-fg
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
                 </code></pre>
-    </div>
-    <div id="model16" class="exo-4-cell">
-        <div class="exo-black-bg">
-            <div class="exo-light-orange-fg">exo-light-orange-fg</div>
-            <div class="exo-light-red-fg">exo-light-red-fg</div>
-            <div class="exo-light-blue-fg">exo-light-blue-fg</div>
-            <div class="exo-light-purple-fg">exo-light-purple-fg</div>
-            <div class="exo-light-green-fg">exo-light-green-fg</div>
-            <div class="exo-light-brown-fg">exo-light-brown-fg</div>
-            <div class="exo-light-gray-fg">exo-light-gray-fg</div>
-            <div class="exo-light-yellow-fg">exo-light-yellow-fg</div>
-            <div class="exo-light-pink-fg">exo-light-pink-fg</div>
-        </div>
-    </div>
+            </div>
+            <div class="exo-4-cell">
+                <div class="exo-black-bg">
+    <div class="exo-light-orange-fg">exo-light-orange-fg</div>
+    <div class="exo-light-red-fg">exo-light-red-fg</div>
+    <div class="exo-light-blue-fg">exo-light-blue-fg</div>
+    <div class="exo-light-purple-fg">exo-light-purple-fg</div>
+    <div class="exo-light-green-fg">exo-light-green-fg</div>
+    <div class="exo-light-brown-fg">exo-light-brown-fg</div>
+    <div class="exo-light-gray-fg">exo-light-gray-fg</div>
+    <div class="exo-light-yellow-fg">exo-light-yellow-fg</div>
+    <div class="exo-light-pink-fg">exo-light-pink-fg</div>
 </div>
+            </div>
+    </div>
+    
 
 <h4>Dark Background Colours</h4>
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view1">
+
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-white-fg"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-orange-bg"</span>&gt;
+        exo-dark-orange-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-red-bg"</span>&gt;
+        exo-dark-red-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-blue-bg"</span>&gt;
+        exo-dark-blue-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-purple-bg"</span>&gt;
+        exo-dark-purple-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-green-bg"</span>&gt;
+        exo-dark-green-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-brown-bg"</span>&gt;
+        exo-dark-brown-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-gray-bg"</span>&gt;
+        exo-dark-gray-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-pink-bg"</span>&gt;
+        exo-dark-pink-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-yellow-bg"</span>&gt;
+        exo-dark-yellow-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-black-bg"</span>&gt;
+        exo-black-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
                 </code></pre>
-    </div>
-    <div id="model1" class="exo-4-cell">
-        <div class="exo-white-fg">
-            <div class="exo-dark-orange-bg">exo-dark-orange-bg</div>
-            <div class="exo-dark-red-bg">exo-dark-red-bg</div>
-            <div class="exo-dark-blue-bg">exo-dark-blue-bg</div>
-            <div class="exo-dark-purple-bg">exo-dark-purple-bg</div>
-            <div class="exo-dark-green-bg">exo-dark-green-bg</div>
-            <div class="exo-dark-brown-bg">exo-dark-brown-bg</div>
-            <div class="exo-dark-gray-bg">exo-dark-gray-bg</div>
-            <div class="exo-dark-pink-bg">exo-dark-pink-bg</div>
-            <div class="exo-dark-yellow-bg">exo-dark-yellow-bg</div>
-            <div class="exo-black-bg">exo-black-bg</div>
-        </div>
-    </div>
+            </div>
+            <div class="exo-4-cell">
+                <div class="exo-white-fg">
+  <div class="exo-dark-orange-bg">exo-dark-orange-bg</div>
+  <div class="exo-dark-red-bg">exo-dark-red-bg</div>
+  <div class="exo-dark-blue-bg">exo-dark-blue-bg</div>
+  <div class="exo-dark-purple-bg">exo-dark-purple-bg</div>
+  <div class="exo-dark-green-bg">exo-dark-green-bg</div>
+  <div class="exo-dark-brown-bg">exo-dark-brown-bg</div>
+  <div class="exo-dark-gray-bg">exo-dark-gray-bg</div>
+  <div class="exo-dark-pink-bg">exo-dark-pink-bg</div>
+  <div class="exo-dark-yellow-bg">exo-dark-yellow-bg</div>
+  <div class="exo-black-bg">exo-black-bg</div>
 </div>
+            </div>
+    </div>
+    
 
 <h4>Light Background Colours</h4>
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view2">
+
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-black-fg"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-orange-bg"</span>&gt;
+        exo-light-orange-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-red-bg"</span>&gt;
+        exo-light-red-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-blue-bg"</span>&gt;
+        exo-light-blue-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-purple-bg"</span>&gt;
+        exo-light-purple-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-green-bg"</span>&gt;
+        exo-light-green-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-brown-bg"</span>&gt;
+        exo-light-brown-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-gray-bg"</span>&gt;
+        exo-light-gray-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-pink-bg"</span>&gt;
+        exo-light-pink-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-light-yellow-bg"</span>&gt;
+        exo-light-yellow-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-white-bg"</span>&gt;
+        exo-white-bg
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
                 </code></pre>
-    </div>
-    <div id="model2" class="exo-4-cell">
-        <div class="exo-black-fg">
-            <div class="exo-light-orange-bg">exo-light-orange-bg</div>
-            <div class="exo-light-red-bg">exo-light-red-bg</div>
-            <div class="exo-light-blue-bg">exo-light-blue-bg</div>
-            <div class="exo-light-purple-bg">exo-light-purple-bg</div>
-            <div class="exo-light-green-bg">exo-light-green-bg</div>
-            <div class="exo-light-brown-bg">exo-light-brown-bg</div>
-            <div class="exo-light-gray-bg">exo-light-gray-bg</div>
-            <div class="exo-light-pink-bg">exo-light-pink-bg</div>
-            <div class="exo-light-yellow-bg">exo-light-yellow-bg</div>
-            <div class="exo-white-bg">exo-white-bg</div>
-        </div>
-    </div>
+            </div>
+            <div class="exo-4-cell">
+                <div class="exo-black-fg">
+  <div class="exo-light-orange-bg">exo-light-orange-bg</div>
+  <div class="exo-light-red-bg">exo-light-red-bg</div>
+  <div class="exo-light-blue-bg">exo-light-blue-bg</div>
+  <div class="exo-light-purple-bg">exo-light-purple-bg</div>
+  <div class="exo-light-green-bg">exo-light-green-bg</div>
+  <div class="exo-light-brown-bg">exo-light-brown-bg</div>
+  <div class="exo-light-gray-bg">exo-light-gray-bg</div>
+  <div class="exo-light-pink-bg">exo-light-pink-bg</div>
+  <div class="exo-light-yellow-bg">exo-light-yellow-bg</div>
+  <div class="exo-white-bg">exo-white-bg</div>
 </div>
+            </div>
+    </div>
+    
 
 <h2 id="icons">Icons</h2>
 
@@ -557,254 +1074,562 @@ To use icons, import the CSS file(s) corresponding to the selected style and req
 
 The following examples cover some typical use cases, other sections will cover more specific uses for icons.
 
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view3">
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">table</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-border"</span>&gt;
+    &lt;<span style="color:red;">caption</span>&gt;
+        Icon sizes
+    &lt;/<span style="color:red;">caption</span>&gt;
+    &lt;<span style="color:red;">tr</span>&gt;
+        &lt;<span style="color:red;">td</span>&gt;
+            tiny
+        &lt;/<span style="color:red;">td</span>&gt;
+        &lt;<span style="color:red;">td</span>&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-tiny exo-icon-home exo-red"</span>
+                 <span style="color:blue;">role</span>=<span style="color:purple;">"img"</span> <span style="color:blue;">aria-label</span>=<span style="color:purple;">"home icon"</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+        &lt;/<span style="color:red;">td</span>&gt;
+    &lt;/<span style="color:red;">tr</span>&gt;
+    &lt;<span style="color:red;">tr</span>&gt;
+        &lt;<span style="color:red;">td</span>&gt;
+            small
+        &lt;/<span style="color:red;">td</span>&gt;
+        &lt;<span style="color:red;">td</span>&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-small exo-icon-home exo-red"</span>
+                 <span style="color:blue;">role</span>=<span style="color:purple;">"img"</span> <span style="color:blue;">aria-label</span>=<span style="color:purple;">"home icon"</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+        &lt;/<span style="color:red;">td</span>&gt;
+    &lt;/<span style="color:red;">tr</span>&gt;
+    &lt;<span style="color:red;">tr</span>&gt;
+        &lt;<span style="color:red;">td</span>&gt;
+            medium(default)
+        &lt;/<span style="color:red;">td</span>&gt;
+        &lt;<span style="color:red;">td</span>&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-home"</span>
+                 <span style="color:blue;">role</span>=<span style="color:purple;">"img"</span> <span style="color:blue;">aria-label</span>=<span style="color:purple;">"home icon"</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+        &lt;/<span style="color:red;">td</span>&gt;
+    &lt;/<span style="color:red;">tr</span>&gt;
+    &lt;<span style="color:red;">tr</span>&gt;
+        &lt;<span style="color:red;">td</span>&gt;
+            large
+        &lt;/<span style="color:red;">td</span>&gt;
+        &lt;<span style="color:red;">td</span>&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-home exo-icon-large"</span>
+                 <span style="color:blue;">role</span>=<span style="color:purple;">"img"</span> <span style="color:blue;">aria-label</span>=<span style="color:purple;">"home icon"</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+        &lt;/<span style="color:red;">td</span>&gt;
+    &lt;/<span style="color:red;">tr</span>&gt;
+    &lt;<span style="color:red;">tr</span>&gt;
+        &lt;<span style="color:red;">td</span>&gt;
+            huge
+        &lt;/<span style="color:red;">td</span>&gt;
+        &lt;<span style="color:red;">td</span>&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-home exo-icon-huge"</span>
+                 <span style="color:blue;">role</span>=<span style="color:purple;">"img"</span> <span style="color:blue;">aria-label</span>=<span style="color:purple;">"home icon"</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+        &lt;/<span style="color:red;">td</span>&gt;
+    &lt;/<span style="color:red;">tr</span>&gt;
+&lt;/<span style="color:red;">table</span>&gt;
+&lt;<span style="color:red;">p</span>&gt;
+    &lt;<span style="color:red;">div</span>&gt;
+        Label icons:
+        &lt;<span style="color:red;">label</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-home exo-red"</span>&gt;
+            Home
+        &lt;/<span style="color:red;">label</span>&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span>&gt;
+        Span icons:
+        &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-home exo-dark-purple"</span>/&gt;
+        &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-home exo-dark-blue"</span>/&gt;
+        &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-home exo-dark-green"</span>/&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">div</span>&gt;
+        Light yellow on a rounded dark purple background:
+        &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon-background exo-icon-inline exo-rounded exo-dark-purple-bg"</span>&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-home exo-light-yellow"</span>
+                 <span style="color:blue;">title</span>=<span style="color:purple;">"exo-icon exo-icon-home exo-light-yellow"</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">p</span>&gt;
                 </code></pre>
-    </div>
-    <div id="model3" class="exo-4-cell">
-        <table class="exo-border">
-            <caption>Icon sizes</caption>
-            <tr><td>tiny</td><td><div class="exo-icon exo-icon-tiny exo-icon-home exo-red" role="img" aria-label="home icon"></div></td></tr>
-            <tr><td>small</td><td><div class="exo-icon exo-icon-small exo-icon-home exo-red" role="img" aria-label="home icon"></div></td></tr>
-            <tr><td>medium(default)</td><td><div class="exo-icon exo-icon-home" role="img" aria-label="home icon"></div></td></tr>
-            <tr><td>large</td><td><div class="exo-icon exo-icon-home exo-icon-large" role="img" aria-label="home icon"></div></td></tr>
-            <tr><td>huge</td><td><div class="exo-icon exo-icon-home exo-icon-huge" role="img" aria-label="home icon"></div></td></tr>
-        </table>
-        <p>
-        <div>Label icons:
-            <label class="exo-icon exo-icon-home exo-red">Home</label>
-        </div>
-        <div>Span icons:
-            <span class="exo-icon exo-icon-home exo-dark-purple"></span>
-            <span class="exo-icon exo-icon-home exo-dark-blue"></span>
-            <span class="exo-icon exo-icon-home exo-dark-green"></span>
-        </div>
-        <div>Light yellow on a rounded dark purple background:
-            <div class="exo-icon-background exo-icon-inline exo-rounded exo-dark-purple-bg">
-                <div class="exo-icon exo-icon-home exo-light-yellow" title="exo-icon exo-icon-home exo-light-yellow"></div>
             </div>
-        </div>
+            <div class="exo-4-cell">
+                
+  <table class="exo-border">
+      <caption>Icon sizes</caption>
+      <tr><td>tiny</td><td><div class="exo-icon exo-icon-tiny exo-icon-home exo-red" role="img" aria-label="home icon"></div></td></tr>
+      <tr><td>small</td><td><div class="exo-icon exo-icon-small exo-icon-home exo-red" role="img" aria-label="home icon"></div></td></tr>
+      <tr><td>medium(default)</td><td><div class="exo-icon exo-icon-home" role="img" aria-label="home icon"></div></td></tr>
+      <tr><td>large</td><td><div class="exo-icon exo-icon-home exo-icon-large" role="img" aria-label="home icon"></div></td></tr>
+      <tr><td>huge</td><td><div class="exo-icon exo-icon-home exo-icon-huge" role="img" aria-label="home icon"></div></td></tr>
+  </table>
+  <p>
+  <div>Label icons:
+      <label class="exo-icon exo-icon-home exo-red">Home</label>
+  </div>
+  <div>Span icons:
+      <span class="exo-icon exo-icon-home exo-dark-purple"></span>
+      <span class="exo-icon exo-icon-home exo-dark-blue"></span>
+      <span class="exo-icon exo-icon-home exo-dark-green"></span>
+  </div>
+  <div>Light yellow on a rounded dark purple background:
+      <div class="exo-icon-background exo-icon-inline exo-rounded exo-dark-purple-bg">
+          <div class="exo-icon exo-icon-home exo-light-yellow" title="exo-icon exo-icon-home exo-light-yellow"></div>
+      </div>
+  </div>
+
+            </div>
     </div>
-</div>
+    
 
 <h2 id="font_sizes">Font Sizes</h2>
 
 Exo provides a range of font sizes.
 
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view4">
-                </code></pre>
-    </div>
-    <div id="model4" class="exo-4-cell">
-        <p class="exo-tiny">
-            Tiny
-        </p>
-        <p class="exo-small">
-            Small
-        </p>
-        <p class="exo-medium">
-            Medium
-        </p>
-        <p class="exo-large">
-            Large
-        </p>
-        <p class="exo-huge">
-            Huge
-        </p>
 
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">p</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-tiny"</span>&gt;
+    Tiny
+&lt;/<span style="color:red;">p</span>&gt;
+&lt;<span style="color:red;">p</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-small"</span>&gt;
+    Small
+&lt;/<span style="color:red;">p</span>&gt;
+&lt;<span style="color:red;">p</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-medium"</span>&gt;
+    Medium
+&lt;/<span style="color:red;">p</span>&gt;
+&lt;<span style="color:red;">p</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-large"</span>&gt;
+    Large
+&lt;/<span style="color:red;">p</span>&gt;
+&lt;<span style="color:red;">p</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-huge"</span>&gt;
+    Huge
+&lt;/<span style="color:red;">p</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <p class="exo-tiny">
+        Tiny
+    </p>
+    <p class="exo-small">
+        Small
+    </p>
+    <p class="exo-medium">
+        Medium
+    </p>
+    <p class="exo-large">
+        Large
+    </p>
+    <p class="exo-huge">
+        Huge
+    </p>
+
+            </div>
     </div>
-</div>
+    
 
 <h2 id="input_controls">Input Controls</h2>
 
 A number of input control styles are supported, for some quick examples see below, or consult the <a
-        href="examples/input_controls.html">input controls detailed examples</a>
+        href="input-controls.html">input controls detailed examples</a>
 
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view5">
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">id</span>=<span style="color:purple;">"model5"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-4-cell"</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"btn1"</span>&gt;
+        Button
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">id</span>=<span style="color:purple;">"btn1"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"button"</span> <span style="color:blue;">value</span>=<span style="color:purple;">"Home"</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"btn2"</span>&gt;
+        Button with icon
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">id</span>=<span style="color:purple;">"btn2"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"button"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-dark-blue-bg exo-dark-red exo-icon-home"</span>
+         <span style="color:blue;">value</span>=<span style="color:purple;">"Home"</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cb1"</span>&gt;
+        Checkbox
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cb1"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-green-bg"</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"toggle_normal"</span>&gt;
+        Checkbox rendered as a toggle
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dummy-label"</span>&gt;
+        &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-toggle"</span>&gt;
+            &lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"toggle_normal"</span>&gt;
+            &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-toggle-slide exo-light-red-fg exo-dark-green-bg"</span>/&gt;
+        &lt;/<span style="color:red;">span</span>&gt;
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"num"</span>&gt;
+        Number
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">input</span> <span style="color:blue;">id</span>=<span style="color:purple;">"num"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"number"</span> <span style="color:blue;">value</span>=<span style="color:purple;">"10"</span>
+         <span style="color:blue;">max</span>=<span style="color:purple;">"20"</span> <span style="color:blue;">min</span>=<span style="color:purple;">"0"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-cell-left"</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"slider"</span>&gt;
+        Slider:
+        &lt;<span style="color:red;">output</span> <span style="color:blue;">id</span>=<span style="color:purple;">"result"</span> <span style="color:blue;">for</span>=<span style="color:purple;">"slider"</span>&gt;
+            10
+        &lt;/<span style="color:red;">output</span>&gt;
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">style</span>=<span style="color:purple;">"display:flex;"</span>&gt;
+        0
+        &lt;<span style="color:red;">input</span> <span style="color:blue;">id</span>=<span style="color:purple;">"slider"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"range"</span> <span style="color:blue;">value</span>=<span style="color:purple;">"10"</span>
+             <span style="color:blue;">max</span>=<span style="color:purple;">"20"</span> <span style="color:blue;">min</span>=<span style="color:purple;">"0"</span> <span style="color:blue;">
+</span> <span style="color:blue;">oninput</span>=<span style="color:purple;">"result.value=slider.value"</span>
+             <span style="color:blue;">style</span>=<span style="color:purple;">"display:inline;"</span>&gt;
+        20
+    &lt;/<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"dd"</span>&gt;
+        Select control (drop down)
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">select</span> <span style="color:blue;">id</span>=<span style="color:purple;">"dd"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-orange-bg exo-white-fg exo-cell-left"</span>&gt;
+        &lt;<span style="color:red;">option</span> <span style="color:blue;">value</span>=<span style="color:purple;">"o1"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-home"</span>&gt;
+            option 1
+        &lt;/<span style="color:red;">option</span>&gt;
+        &lt;<span style="color:red;">option</span> <span style="color:blue;">value</span>=<span style="color:purple;">"o2"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-home"</span>&gt;
+            option 2
+        &lt;/<span style="color:red;">option</span>&gt;
+    &lt;/<span style="color:red;">select</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"rbs"</span>&gt;
+        Radio Buttons
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">id</span>=<span style="color:purple;">"rbs"</span>&gt;
+        &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"b1"</span> <span style="color:blue;">style</span>=<span style="color:purple;">"display:inline-block;"</span>&gt;
+            &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"label-body"</span>&gt;
+                Apples
+            &lt;/<span style="color:red;">span</span>&gt;
+        &lt;/<span style="color:red;">label</span>&gt;
+        &lt;<span style="color:red;">input</span> <span style="color:blue;">id</span>=<span style="color:purple;">"b1"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"radio"</span> <span style="color:blue;">name</span>=<span style="color:purple;">"fruit"</span>
+             <span style="color:blue;">
+</span> <span style="color:blue;">value</span>=<span style="color:purple;">"apples"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-green-bg"</span>
+             <span style="color:blue;">checked</span>=<span style="color:purple;">""</span>&gt;
+        &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"b2"</span> <span style="color:blue;">style</span>=<span style="color:purple;">"display:inline-block;"</span>&gt;
+            &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"label-body"</span>&gt;
+                Oranges
+            &lt;/<span style="color:red;">span</span>&gt;
+        &lt;/<span style="color:red;">label</span>&gt;
+        &lt;<span style="color:red;">input</span> <span style="color:blue;">id</span>=<span style="color:purple;">"b2"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"radio"</span> <span style="color:blue;">name</span>=<span style="color:purple;">"fruit"</span>
+             <span style="color:blue;">
+</span> <span style="color:blue;">value</span>=<span style="color:purple;">"oranges"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-orange-bg"</span>&gt;
+        &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"b3"</span> <span style="color:blue;">style</span>=<span style="color:purple;">"display:inline-block;"</span>&gt;
+            &lt;<span style="color:red;">span</span> <span style="color:blue;">class</span>=<span style="color:purple;">"label-body"</span>&gt;
+                Grapes
+            &lt;/<span style="color:red;">span</span>&gt;
+        &lt;/<span style="color:red;">label</span>&gt;
+        &lt;<span style="color:red;">input</span> <span style="color:blue;">id</span>=<span style="color:purple;">"b3"</span> <span style="color:blue;">type</span>=<span style="color:purple;">"radio"</span> <span style="color:blue;">name</span>=<span style="color:purple;">"fruit"</span>
+             <span style="color:blue;">
+</span> <span style="color:blue;">value</span>=<span style="color:purple;">"grapes"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-purple-bg"</span>&gt;
+        &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"dl"</span>&gt;
+            Download Button
+        &lt;/<span style="color:red;">label</span>&gt;
+        &lt;<span style="color:red;">div</span>&gt;
+            &lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-button exo-dark-blue-fg exo-light-blue-bg"</span>&gt;
+                &lt;<span style="color:red;">a</span> <span style="color:blue;">id</span>=<span style="color:purple;">"dl"</span> <span style="color:blue;">download</span>=<span style="color:purple;">"download.txt"</span>
+                     <span style="color:blue;">href</span>=<span style="color:purple;">"data:text/plain;base64,RG93bmxvYWQgQ29udGVudCE="</span>&gt;
+                    Download
+                &lt;/<span style="color:red;">a</span>&gt;
+            &lt;/<span style="color:red;">div</span>&gt;
+        &lt;/<span style="color:red;">div</span>&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
                 </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                <div id="model5" class="exo-4-cell">
+    <label for="btn1">Button</label>
+
+    <input id="btn1" type="button" value="Home"/>
+
+    <label for="btn2">Button with icon</label>
+    <input id="btn2" type="button" class="exo-icon exo-dark-blue-bg exo-dark-red exo-icon-home" value="Home"/>
+
+    <label for="cb1">Checkbox</label>
+    <input type="checkbox" id="cb1" class="exo-dark-green-bg"/>
+
+    <label for="toggle_normal">
+        Checkbox rendered as a toggle
+    </label>
+    <label class="exo-dummy-label">
+        <span class="exo-toggle">
+                <input type="checkbox" id="toggle_normal"/>
+                <span class="exo-toggle-slide exo-light-red-fg exo-dark-green-bg"></span>
+        </span>
+    </label>
+
+    <label for="num">Number</label>
+    <input id="num" type="number" value="10" max="20" min="0" class="exo-cell-left">
+
+    <label for="slider">Slider:
+        <output id="result" for="slider">10</output>
+    </label>
+
+    <div style="display:flex;">
+        0<input id="slider" type="range" value="10" max="20" min="0"
+                oninput="result.value=slider.value" style="display:inline;">20
     </div>
-    <div id="model5" class="exo-4-cell">
-        <label for="btn1">Button</label>
 
-        <input id="btn1" type="button" value="Home"/>
+    <label for="dd">
+        Select control (drop down)
+    </label>
+    <select id="dd" class="exo-dark-orange-bg exo-white-fg exo-cell-left">
+        <option value="o1" class="exo-icon exo-icon-home">option 1</option>
+        <option value="o2" class="exo-icon exo-icon-home">option 2</option>
+    </select>
 
-        <label for="btn2">Button with icon</label>
-        <input id="btn2" type="button" class="exo-icon exo-dark-blue-bg exo-dark-red exo-icon-home" value="Home"/>
-
-        <label for="cb1">Checkbox</label>
-        <input type="checkbox" id="cb1" class="exo-dark-green-bg"/>
-
-        <label for="toggle_normal">
-            Checkbox rendered as a toggle
+    <label for="rbs">Radio Buttons</label>
+    <div id="rbs">
+        <label for="b1" style="display:inline-block;">
+                    <span class="label-body">
+                        Apples
+                    </span>
         </label>
-        <label class="exo-dummy-label">
-            <span class="exo-toggle">
-                    <input type="checkbox" id="toggle_normal"/>
-                    <span class="exo-toggle-slide exo-light-red-fg exo-dark-green-bg"></span>
-            </span>
+        <input id="b1" type="radio" name="fruit"
+               value="apples"
+               class="exo-dark-green-bg" checked="">
+        <label for="b2" style="display:inline-block;">
+                    <span class="label-body">
+                        Oranges
+                    </span>
         </label>
-
-        <label for="num">Number</label>
-        <input id="num" type="number" value="10" max="20" min="0" class="exo-cell-left">
-
-        <label for="slider">Slider:
-            <output id="result" for="slider">10</output>
+        <input id="b2" type="radio" name="fruit"
+               value="oranges" class="exo-dark-orange-bg">
+        <label for="b3" style="display:inline-block;">
+                    <span class="label-body">
+                        Grapes
+                    </span>
         </label>
-
-        <div style="display:flex;">
-            0<input id="slider" type="range" value="10" max="20" min="0"
-                    oninput="result.value=slider.value" style="display:inline;">20
-        </div>
-
-        <label for="dd">
-            Select control (drop down)
-        </label>
-        <select id="dd" class="exo-dark-orange-bg exo-white-fg exo-cell-left">
-            <option value="o1" class="exo-icon exo-icon-home">option 1</option>
-            <option value="o2" class="exo-icon exo-icon-home">option 2</option>
-        </select>
-
-        <label for="rbs">Radio Buttons</label>
-        <div id="rbs">
-            <label for="b1" style="display:inline-block;">
-                        <span class="label-body">
-                            Apples
-                        </span>
-            </label>
-            <input id="b1" type="radio" name="fruit"
-                   value="apples"
-                   class="exo-dark-green-bg" checked="">
-            <label for="b2" style="display:inline-block;">
-                        <span class="label-body">
-                            Oranges
-                        </span>
-            </label>
-            <input id="b2" type="radio" name="fruit"
-                   value="oranges" class="exo-dark-orange-bg">
-            <label for="b3" style="display:inline-block;">
-                        <span class="label-body">
-                            Grapes
-                        </span>
-            </label>
-            <input id="b3" type="radio" name="fruit"
-                   value="grapes" class="exo-dark-purple-bg">
-            <label for="dl">Download Button</label>
-            <div>
-                <div class="exo-button exo-dark-blue-fg exo-light-blue-bg">
-                    <a id="dl" download="download.txt" href="data:text/plain;base64,RG93bmxvYWQgQ29udGVudCE=">Download</a>
-                </div>
+        <input id="b3" type="radio" name="fruit"
+               value="grapes" class="exo-dark-purple-bg">
+        <label for="dl">Download Button</label>
+        <div>
+            <div class="exo-button exo-dark-blue-fg exo-light-blue-bg">
+                <a id="dl" download="download.txt" href="data:text/plain;base64,RG93bmxvYWQgQ29udGVudCE=">Download</a>
             </div>
         </div>
     </div>
 </div>
-
+            </div>
+    </div>
+    
 
 <h2 id="tooltips">Tooltips</h2>
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view10">
+
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">span</span> <span style="color:blue;">aria-describedby</span>=<span style="color:purple;">"tooltip-example"</span>&gt;
+    Lorem ipsum
+&lt;/<span style="color:red;">span</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-inline exo-icon-help exo-help-tooltip"</span>
+     <span style="color:blue;">tabindex</span>=<span style="color:purple;">"0"</span>&gt;
+    &lt;<span style="color:red;">div</span> <span style="color:blue;">id</span>=<span style="color:purple;">"tooltip-example"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-help-content exo-light-brown-bg exo-border exo-dark-red-border"</span>
+         <span style="color:blue;">role</span>=<span style="color:purple;">"tooltip"</span>&gt;
+        Hovering over (or focusing on) the help button reveals some helpful text
+        explaining more...
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
                 </code></pre>
-    </div>
-    <div id="model10" class="exo-4-cell">
-        <span aria-describedby="tooltip-example">Lorem ipsum</span>
-        <div class="exo-icon exo-icon-inline exo-icon-help exo-help-tooltip" tabindex="0">
-            <div id="tooltip-example" class="exo-help-content exo-light-brown-bg exo-border exo-dark-red-border" role="tooltip">
-                Hovering over (or focusing on) the help button reveals some helpful text
-                explaining more...
             </div>
+            <div class="exo-4-cell">
+                
+    <span aria-describedby="tooltip-example">Lorem ipsum</span>
+    <div class="exo-icon exo-icon-inline exo-icon-help exo-help-tooltip" tabindex="0">
+        <div id="tooltip-example" class="exo-help-content exo-light-brown-bg exo-border exo-dark-red-border" role="tooltip">
+            Hovering over (or focusing on) the help button reveals some helpful text
+            explaining more...
         </div>
     </div>
-</div>
+
+            </div>
+    </div>
+    
 
 <h2 id="progress">Progress Bars</h2>
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view11">
+
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span>&gt;
+    &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"prog1"</span>&gt;
+        Loading:
+        &lt;<span style="color:red;">span</span>&gt;
+            30%
+        &lt;/<span style="color:red;">span</span>&gt;
+    &lt;/<span style="color:red;">label</span>&gt;
+    &lt;<span style="color:red;">progress</span> <span style="color:blue;">id</span>=<span style="color:purple;">"prog1"</span> <span style="color:blue;">value</span>=<span style="color:purple;">"30"</span> <span style="color:blue;">max</span>=<span style="color:purple;">"100"</span>/&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">p</span>&gt;
+    &lt;<span style="color:red;">div</span>&gt;
+        &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"prog2"</span>&gt;
+            Computing:
+            &lt;<span style="color:red;">span</span>&gt;
+                65%
+            &lt;/<span style="color:red;">span</span>&gt;
+        &lt;/<span style="color:red;">label</span>&gt;
+        &lt;<span style="color:red;">progress</span> <span style="color:blue;">id</span>=<span style="color:purple;">"prog2"</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-orange-bg"</span>
+             <span style="color:blue;">value</span>=<span style="color:purple;">"65"</span> <span style="color:blue;">max</span>=<span style="color:purple;">"100"</span>/&gt;
+    &lt;/<span style="color:red;">div</span>&gt;
+&lt;/<span style="color:red;">p</span>&gt;
                 </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <div>
+        <label for="prog1">Loading: <span>30%</span></label>
+        <progress id="prog1" value="30" max="100"></progress>
     </div>
-    <div id="model11" class="exo-4-cell">
-        <div>
-            <label for="prog1">Loading: <span>30%</span></label>
-            <progress id="prog1" value="30" max="100"></progress>
-        </div>
-        <p>
-        <div>
-            <label for="prog2">Computing: <span>65%</span></label>
-            <progress id="prog2" class="exo-dark-orange-bg"  value="65" max="100"></progress>
-        </div>
+    <p>
+    <div>
+        <label for="prog2">Computing: <span>65%</span></label>
+        <progress id="prog2" class="exo-dark-orange-bg"  value="65" max="100"></progress>
     </div>
-</div>
+
+            </div>
+    </div>
+    
 
 <h2 id="spinner">Spinner</h2>
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view12">
+
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-large exo-vmargin exo-icon-spinner"</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-icon exo-icon-large exo-vmargin exo-dark-purple exo-icon-spinner"</span>&gt;
+&lt;/<span style="color:red;">div</span>&gt;
                 </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <div class="exo-icon exo-icon-large exo-vmargin exo-icon-spinner"></div>
+    <div class="exo-icon exo-icon-large exo-vmargin exo-dark-purple exo-icon-spinner"></div>
+
+            </div>
     </div>
-    <div id="model12" class="exo-4-cell exo-padding">
-        <div class="exo-icon exo-icon-large exo-vmargin exo-icon-spinner"></div>
-        <div class="exo-icon exo-icon-large exo-vmargin exo-dark-purple exo-icon-spinner"></div>
-    </div>
-</div>
+    
 
 <h2 id="table">Tables</h2>
-<div class="exo-row">
-    <div class="exo-4-cell model-view">
-                <pre><code id="view13">
-                </code></pre>
-    </div>
-    <div id="model13" class="exo-4-cell">
-        <table class="exo-dark-blue-bg exo-white-fg exo-striped exo-rounded exo-large-padding exo-border exo-dark-red-border">
-            <thead>
-            <tr>
-                <th>Enable</th>
-                <th>Name</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <label for="cb_row_0"></label><input type="checkbox" id="cb_row_0" class="exo-dark-green-bg">
-                </td>
-                <td>
-                    Lorem ipsum dolor sit amet.
-                </td>
-                <td>
-                    Aenean euismod, leo sed imperdiet ullamcorper.
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="cb_row_1"></label><input type="checkbox" id="cb_row_1" class="exo-dark-green-bg">
-                </td>
-                <td>
-                    Lorem ipsum dolor sit amet.
-                </td>
-                <td>
-                    Aenean euismod, leo sed imperdiet ullamcorper.
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="cb_row_1"></label><input type="checkbox" id="cb_row_2" class="exo-dark-green-bg">
-                </td>
-                <td>
-                    Lorem ipsum dolor sit amet.
-                </td>
-                <td>
-                    Aenean euismod, leo sed imperdiet ullamcorper.
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
 
+
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">table</span> <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-blue-bg exo-white-fg exo-striped exo-rounded exo-large-padding exo-border exo-dark-red-border"</span>&gt;
+    &lt;<span style="color:red;">thead</span>&gt;
+        &lt;<span style="color:red;">tr</span>&gt;
+            &lt;<span style="color:red;">th</span>&gt;
+                Enable
+            &lt;/<span style="color:red;">th</span>&gt;
+            &lt;<span style="color:red;">th</span>&gt;
+                Name
+            &lt;/<span style="color:red;">th</span>&gt;
+            &lt;<span style="color:red;">th</span>&gt;
+                Description
+            &lt;/<span style="color:red;">th</span>&gt;
+        &lt;/<span style="color:red;">tr</span>&gt;
+    &lt;/<span style="color:red;">thead</span>&gt;
+    &lt;<span style="color:red;">tbody</span>&gt;
+        &lt;<span style="color:red;">tr</span>&gt;
+            &lt;<span style="color:red;">td</span>&gt;
+                &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cb_row_0"</span>/&gt;
+                &lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cb_row_0"</span>
+                     <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-green-bg"</span>&gt;
+            &lt;/<span style="color:red;">td</span>&gt;
+            &lt;<span style="color:red;">td</span>&gt;
+                Lorem ipsum dolor sit amet.
+            &lt;/<span style="color:red;">td</span>&gt;
+            &lt;<span style="color:red;">td</span>&gt;
+                Aenean euismod, leo sed imperdiet ullamcorper.
+            &lt;/<span style="color:red;">td</span>&gt;
+        &lt;/<span style="color:red;">tr</span>&gt;
+        &lt;<span style="color:red;">tr</span>&gt;
+            &lt;<span style="color:red;">td</span>&gt;
+                &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cb_row_1"</span>/&gt;
+                &lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cb_row_1"</span>
+                     <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-green-bg"</span>&gt;
+            &lt;/<span style="color:red;">td</span>&gt;
+            &lt;<span style="color:red;">td</span>&gt;
+                Lorem ipsum dolor sit amet.
+            &lt;/<span style="color:red;">td</span>&gt;
+            &lt;<span style="color:red;">td</span>&gt;
+                Aenean euismod, leo sed imperdiet ullamcorper.
+            &lt;/<span style="color:red;">td</span>&gt;
+        &lt;/<span style="color:red;">tr</span>&gt;
+        &lt;<span style="color:red;">tr</span>&gt;
+            &lt;<span style="color:red;">td</span>&gt;
+                &lt;<span style="color:red;">label</span> <span style="color:blue;">for</span>=<span style="color:purple;">"cb_row_1"</span>/&gt;
+                &lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"checkbox"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"cb_row_2"</span>
+                     <span style="color:blue;">class</span>=<span style="color:purple;">"exo-dark-green-bg"</span>&gt;
+            &lt;/<span style="color:red;">td</span>&gt;
+            &lt;<span style="color:red;">td</span>&gt;
+                Lorem ipsum dolor sit amet.
+            &lt;/<span style="color:red;">td</span>&gt;
+            &lt;<span style="color:red;">td</span>&gt;
+                Aenean euismod, leo sed imperdiet ullamcorper.
+            &lt;/<span style="color:red;">td</span>&gt;
+        &lt;/<span style="color:red;">tr</span>&gt;
+    &lt;/<span style="color:red;">tbody</span>&gt;
+&lt;/<span style="color:red;">table</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <table class="exo-dark-blue-bg exo-white-fg exo-striped exo-rounded exo-large-padding exo-border exo-dark-red-border">
+        <thead>
+        <tr>
+            <th>Enable</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <label for="cb_row_0"></label><input type="checkbox" id="cb_row_0" class="exo-dark-green-bg">
+            </td>
+            <td>
+                Lorem ipsum dolor sit amet.
+            </td>
+            <td>
+                Aenean euismod, leo sed imperdiet ullamcorper.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="cb_row_1"></label><input type="checkbox" id="cb_row_1" class="exo-dark-green-bg">
+            </td>
+            <td>
+                Lorem ipsum dolor sit amet.
+            </td>
+            <td>
+                Aenean euismod, leo sed imperdiet ullamcorper.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="cb_row_1"></label><input type="checkbox" id="cb_row_2" class="exo-dark-green-bg">
+            </td>
+            <td>
+                Lorem ipsum dolor sit amet.
+            </td>
+            <td>
+                Aenean euismod, leo sed imperdiet ullamcorper.
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+            </div>
+    </div>
+    
 
 </body>
 </html>

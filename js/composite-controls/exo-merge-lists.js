@@ -161,10 +161,6 @@ class CustomExoMergeLists extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoSelect.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('options1','options2','value');

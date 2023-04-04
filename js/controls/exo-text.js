@@ -26,10 +26,6 @@ class CustomExoText extends CustomExoControl {
         }
     }
 
-    exoGetAttributeNames() {
-        return CustomExoText.observedAttributes;
-    }
-
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push('value');
