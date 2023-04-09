@@ -941,6 +941,7 @@ class CustomExoSelect extends CustomExoControl {
             ExoUtils.removeAllChildren(this.exoGetInputElement());
         }
         this.exo_option_labels = {};
+        this.exo_options = [];
     }
 
     exoAddOption(value,label,disabled) {
