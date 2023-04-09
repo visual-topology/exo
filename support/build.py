@@ -1,8 +1,9 @@
 import os
 import base64
 import re
+import sys
 
-current_version = "0.0.2"
+current_version = sys.argv[1]
 
 colours1 = ["orange", "red", "blue", "green", "brown", "purple", "gray", "pink", "yellow"]
 colours2 = ["black", "dark-orange", "dark-red", "dark-blue",
@@ -114,7 +115,7 @@ class Output:
 
 print("Building: exo.js")
 
-with Output("versions/latest/exo.js") as of:
+with Output("versions/"+current_version+"/exo.js") as of:
     of.add("js/exo-common.js")
     of.add("js/controls/exo-button.js")
     of.add("js/controls/exo-checkbox.js")
@@ -162,7 +163,7 @@ with Output("versions/latest/exo.css") as of:
 
 print("Building: exo-icons.css")
 
-with IconOutput("versions/latest/exo.css", "versions/latest/exo-icons.css") as of:
+with IconOutput("versions/"+current_version+"/exo.css", "versions/"+current_version+"/exo-icons.css") as of:
     svg_path = os.path.join(repo_dir, "svg", "material_icons")
     for fname in os.listdir(svg_path):
         if fname.endswith(".svg"):
@@ -314,7 +315,7 @@ class IconHTMLOutput:
 
 print("Building: exo-icons.html")
 
-icon_html = IconHTMLOutput("versions/latest/exo-icons.css", "versions/latest/exo-icons.html")
+icon_html = IconHTMLOutput("versions/"+current_version+"/exo-icons.css", "versions/"+current_version+"/exo-icons.html")
 icon_html.process()
 
 from htmlfive.html5_parser import Html5Parser
@@ -371,7 +372,6 @@ INCLUDE_ESCAPED
 
         with open(input_path) as f:
             contents = f.read()
-            contents = contents.replace("{EXO-VERSION}", current_version)
             for (cell_width, pattern, template) in [
                 (None, self.pat, HtmlProcessor.INCLUDE_HTML_TEMPLATE),
                 (4, self.pat4, HtmlProcessor.INCLUDE_TEMPLATE),
@@ -413,6 +413,7 @@ INCLUDE_ESCAPED
                             contents = contents[:span[0]] + expansion + contents[span[1]:]
                     else:
                         break
+            contents = contents.replace("{EXO-VERSION}", current_version)
         with open(output_path, "w") as of:
             of.write(contents)
 
@@ -420,7 +421,7 @@ INCLUDE_ESCAPED
         pass
 
 
-with HtmlProcessor("versions/latest") as p:
+with HtmlProcessor("versions/"+current_version) as p:
     p.process("html/custom-layouts/exo-custom-layout.html")
     p.process("html/custom-composite-controls/exo-custom-composite.html")
     p.process("html/custom-input-controls/exo-custom-input.html")

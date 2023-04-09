@@ -1,8 +1,16 @@
 # exo
 
-A minimal CSS framework to support building web apps 
+A minimal CSS (optional JS) framework to support building web apps 
 
-For documentation on exo, go to https://visualtopology.github.io/exo/versions/latest
+## Releases
+
+For installation, documentation and examples, see:
+
+| Version   | Status | URL                                                 |
+| --------- |------- |-----------------------------------------------------|
+| 0.0.2     | alpha  | https://visualtopology.github.io/exo/versions/0.0.2 |
+
+Current (in -development) version: https://visualtopology.github.io/exo/versions/latest
 
 ## Acknowledgements
 
