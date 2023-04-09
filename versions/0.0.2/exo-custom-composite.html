@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Exo 0.0.2 Custom Composite Example</title>
+    <script src="../../versions/latest/exo.js" ></script>
+    <link rel="stylesheet" href="../../versions/latest/exo.css">
+    <link rel="stylesheet" href="../../versions/latest/exo-icons.css">
+</head>
+<body class="exo-container">
+    <h1>Exo - Custom Elements - Composite Controls</h1>
+    <p>
+        Custom HTML elements described here wrap some useful structures for building UIs with exo
+    </p>
+
+    <h2>Merge Lists</h2>
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-merge-lists</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_merge"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"Test"</span>
+     <span style="color:blue;">value</span>=<span style="color:purple;">'[["aaa","ccc"]]'</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span>
+     <span style="color:blue;">size</span>=<span style="color:purple;">"5"</span> <span style="color:blue;">options1</span>=<span style="color:purple;">'[["aaa","AAA"],["bbb","BBB"]]'</span>
+     <span style="color:blue;">options2</span>=<span style="color:purple;">'[["ccc","CCC"],["ddd","DDD"]]'</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    var btn = document.getElementById("test_merge");
+    btn.addEventListener("exo-value",e => { console.log(e.detail); })
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <exo-merge-lists id="test_merge" label='Test' value='[["aaa","ccc"]]' tooltip="Help!!!" size="5" options1='[["aaa","AAA"],["bbb","BBB"]]' options2='[["ccc","CCC"],["ddd","DDD"]]'>
+    </exo-merge-lists>
+    <script>
+        var btn = document.getElementById("test_merge");
+        btn.addEventListener("exo-value",e => { console.log(e.detail); })
+    </script>
+
+            </div>
+    </div>
+    
+
+    <h2>Table Control</h2>
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-table-control</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_tc"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"Test"</span>
+     <span style="color:blue;">value</span>=<span style="color:purple;">'{
+                "columns":[
+                    {"name":"orig", "label":"Original Name", "type":"string", "editable":false},
+                    {"name":"include", "label":"Include Column", "type":"boolean", "editable":true},
+                    {"name":"renamed", "label":"Rename Column", "type":"string", "editable":true}
+                ],
+                "rows":[
+                    {"orig":"CityName","include":true,"renamed":"City Name"},{"orig":"PopSz","include":true,"renamed":"Population Size"}] }'</span>
+     <span style="color:blue;">,
+</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    var btn = document.getElementById("test_tc");
+    btn.addEventListener("exo-value",e => { console.log(e.detail); })
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+  <exo-table-control id="test_tc" label='Test' value='{
+                "columns":[
+                    {"name":"orig", "label":"Original Name", "type":"string", "editable":false},
+                    {"name":"include", "label":"Include Column", "type":"boolean", "editable":true},
+                    {"name":"renamed", "label":"Rename Column", "type":"string", "editable":true}
+                ],
+                "rows":[
+                    {"orig":"CityName","include":true,"renamed":"City Name"},{"orig":"PopSz","include":true,"renamed":"Population Size"}] }',
+                tooltip="Help!!!">
+  </exo-table-control>
+  <script>
+          var btn = document.getElementById("test_tc");
+          btn.addEventListener("exo-value",e => { console.log(e.detail); })
+  </script>
+
+            </div>
+    </div>
+    
+
+</body>
+</html>
