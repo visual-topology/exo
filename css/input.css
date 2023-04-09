@@ -13,7 +13,7 @@ input, select, summary, div.exo-button, textarea {
     margin-right: auto;
 }
 
-input:invalid, textarea:invalid {
+input:invalid, textarea:invalid, select:invalid {
   outline: 5px dashed var(--exo-invalid);
 }
 
@@ -40,8 +40,9 @@ input[type="button"], div.exo-button {
 }
 
 input[type="button"]:active:not(:disabled), div.exo-button:active:not(:disabled) {
-     transform: scale(0.95);
+    transform: scale(0.95);
 }
+
 
 /* icons in input[type=button] - use 4px between image and text */
 

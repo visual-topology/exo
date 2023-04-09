@@ -195,7 +195,7 @@
             <div class="exo-4-cell model-view">
                 <pre><code>
 &lt;<span style="color:red;">exo-select</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_select"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span>
-     <span style="color:blue;">value</span>=<span style="color:purple;">"aaa"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span> <span style="color:blue;">options</span>=<span style="color:purple;">'[["aaa","AAA"],["bbb","BBB"]]'</span>
+     <span style="color:blue;">value</span>=<span style="color:purple;">"ccc"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span> <span style="color:blue;">options</span>=<span style="color:purple;">'[["aaa","AAA"],["bbb","BBB"]]'</span>
      <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-green"</span>/&gt;
 &lt;<span style="color:red;">script</span>&gt;
     var btn = document.getElementById("test_select");
@@ -205,7 +205,7 @@
             </div>
             <div class="exo-4-cell">
                 
-    <exo-select id="test_select" label="test" value="aaa" tooltip="Help!!!" options='[["aaa","AAA"],["bbb","BBB"]]' fg-color="dark-green">
+    <exo-select id="test_select" label="test" value="ccc" tooltip="Help!!!" options='[["aaa","AAA"],["bbb","BBB"]]' fg-color="dark-green">
     </exo-select>
     <script>
         var btn = document.getElementById("test_select");
@@ -215,6 +215,36 @@
             </div>
     </div>
     
+
+    <h2>Select Size=5</h2>
+
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-select</span> <span style="color:blue;">size</span>=<span style="color:purple;">"5"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_select_size"</span>
+     <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span> <span style="color:blue;">value</span>=<span style="color:purple;">"aaa"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span>
+     <span style="color:blue;">options</span>=<span style="color:purple;">'[["aaa","AAA"],["bbb","BBB"],["ccc","CCC"],["ddd","DDD"],["eee","EEE"],["fff","FFF"]]'</span>
+     <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-green"</span>/&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    var btn = document.getElementById("test_select_size");
+    btn.addEventListener("change",e => { console.log(e.target.value); })
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <exo-select size="5" id="test_select_size" label="test" value='aaa' tooltip="Help!!!" options='[["aaa","AAA"],["bbb","BBB"],["ccc","CCC"],["ddd","DDD"],["eee","EEE"],["fff","FFF"]]' fg-color="dark-green">
+    </exo-select>
+    <script>
+        var btn = document.getElementById("test_select_size");
+        btn.addEventListener("change",e => { console.log(e.target.value); })
+    </script>
+
+            </div>
+    </div>
+    
+
 
     <h2>Radio Buttons</h2>
 

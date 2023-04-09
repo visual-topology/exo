@@ -6,27 +6,21 @@ class CustomExoSelect extends CustomExoControl {
     constructor() {
         super();
         this.exo_option_labels = {};
+        this.exo_current_value = "";
+        this.exo_current_label = "";
+        this.exo_options = [];
     }
 
     exoBuild(parameters) {
         super.exoBuildCommon("select", parameters);
-        this.multiple = parameters.multiple;
         this.exoGetInputElement().setAttribute("class", "select");
-        this.options = [];
+        this.exo_options = [];
         var that = this;
 
         var v = null;
         this.exoGetInputElement().addEventListener("input", evt => {
-            if (this.multiple) {
-                v = [];
-                for (var i = 0; i < this.options.length; i++) {
-                    if (this.options[i].element.selected) {
-                        v.push(this.options[i].value);
-                    }
-                }
-            } else {
-                v = that.exoGetInputElement().value;
-            }
+            v = that.exoGetInputElement().value;
+            this.exoManageValidity(v);
             that.exoSetControlValue(v);
             evt.stopPropagation();
         });
@@ -38,20 +32,35 @@ class CustomExoSelect extends CustomExoControl {
         switch (name) {
             case "value":
                 this.exoGetInputElement().value = value;
+                this.exoSetControlValue(value);
+                this.exoManageValidity(value);
                 break;
             case "size":
                 this.exoGetInputElement().setAttribute("size",value);
                 break;
             case "options":
                 let options = JSON.parse(value);
+                let current_value = this.exoGetControlValue();
+                let current_label = this.exo_option_labels[current_value] || current_value;
                 this.exoClearOptions();
                 options.map((item) => this.exoAddOption(item[0],item[1]));
-                if (!(this.value in this.exo_option_labels)) {
-                    this.exoSetControlValue(null);
+                if (!(current_value in this.exo_option_labels)) {
+                    this.exoAddOption(current_value, current_label, true);
                 }
+                this.exoManageValidity(current_value);
+                this.exoGetInputElement().value = current_value;
                 break;
             default:
                 super.exoUpdate(name, value);
+        }
+    }
+
+    exoManageValidity(v) {
+        if (v in this.exo_option_labels) {
+            this.exoGetInputElement().setCustomValidity("");
+            this.exoRemoveDisabledOptions();
+        } else {
+            this.exoGetInputElement().setCustomValidity(CustomExoSelect.INVALID_ERROR);
         }
     }
 
@@ -62,17 +71,28 @@ class CustomExoSelect extends CustomExoControl {
         this.exo_option_labels = {};
     }
 
-    exoAddOption(value,label) {
+    exoAddOption(value,label,disabled) {
         var option = document.createElement("option");
         option.appendChild(document.createTextNode(label));
         option.setAttribute("value", value);
+        if (disabled) {
+            option.setAttribute("disabled", "disabled");
+        } else {
+            this.exo_option_labels[value] = label;
+        }
         this.exoGetInputElement().appendChild(option);
-        this.options.push({"element": option, "value": value});
-        this.exo_option_labels[value] = label;
+        this.exo_options.push({"element": option, "value": value});
     }
 
-    exoGetLabel(value) {
-        return this.exo_option_labels[value];
+    exoRemoveDisabledOptions() {
+        this.exo_options = this.exo_options.filter((item) => {
+            if (item.element.hasAttribute("disabled") ) {
+                item.element.parentNode.removeChild(item.element);
+                return false;
+            } else {
+                return true;
+            }
+        });
     }
 
     static get observedAttributes() {
@@ -81,7 +101,8 @@ class CustomExoSelect extends CustomExoControl {
         return attrs;
     }
 
-
 }
+
+CustomExoSelect.INVALID_ERROR = "Invalid";
 
 customElements.define("exo-select", CustomExoSelect);
