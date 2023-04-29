@@ -8,9 +8,9 @@ For installation, documentation and examples, see:
 
 | Version   | Status | URL                                                 |
 | --------- |------- |-----------------------------------------------------|
-| 0.0.2     | alpha  | https://visualtopology.github.io/exo/versions/0.0.2 |
+| 0.0.2     | alpha  | [https://visualtopology.github.io/exo/versions/0.0.2](https://visualtopology.github.io/exo/versions/0.0.2) |
 
-Current (in -development) version: https://visualtopology.github.io/exo/versions/latest
+Current (in -development) version: [https://visualtopology.github.io/exo/versions/latest](https://visualtopology.github.io/exo/versions/latest)
 
 ## Acknowledgements
 
