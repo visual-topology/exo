@@ -1,6 +1,6 @@
 # exo
 
-A minimal CSS (optional JS) framework to support building web apps 
+A minimal CSS (optional JS) framework to support building web apps [(link to repo)](https://github.com/visualtopology/exo)
 
 ## Releases
 
