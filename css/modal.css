@@ -91,7 +91,6 @@ div.exo-modal-window-content.exo-light-yellow-bg {
     background-color: var(--exo-light-yellow);
 }
 
-
 div.exo-modal-window-content > label:hover {
     outline: 0px solid var(--exo-hover);
 }
@@ -154,4 +153,8 @@ div.exo-modal-window-content > label:hover {
     background-repeat: no-repeat;
     display: block;
     background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTE5IDYuNDFMMTcuNTkgNSAxMiAxMC41OSA2LjQxIDUgNSA2LjQxIDEwLjU5IDEyIDUgMTcuNTkgNi40MSAxOSAxMiAxMy40MSAxNy41OSAxOSAxOSAxNy41OSAxMy40MSAxMnoiLz48L3N2Zz4=');
+}
+
+.exo-modal-window-content > label {
+    height: auto;
 }

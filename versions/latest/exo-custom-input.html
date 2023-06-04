@@ -351,7 +351,8 @@
     <div class="exo-row">
             <div class="exo-4-cell model-view">
                 <pre><code>
-&lt;<span style="color:red;">exo-file</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_file"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span>
+&lt;<span style="color:red;">exo-file</span> <span style="color:blue;">id</span>=<span style="color:purple;">"test_file"</span> <span style="color:blue;">label</span>=<span style="color:purple;">"test"</span> <span style="color:blue;">filename</span>=<span style="color:purple;">"?"</span>
+     <span style="color:blue;">button-text</span>=<span style="color:purple;">"Choose A File"</span> <span style="color:blue;">tooltip</span>=<span style="color:purple;">"Help!!!"</span>
      <span style="color:blue;">fg-color</span>=<span style="color:purple;">"dark-purple"</span>/&gt;
 &lt;<span style="color:red;">script</span>&gt;
     var btn = document.getElementById("test_file");
@@ -361,7 +362,7 @@
             </div>
             <div class="exo-4-cell">
                 
-    <exo-file id="test_file" label="test" tooltip="Help!!!" fg-color="dark-purple">
+    <exo-file id="test_file" label="test" filename="?" button-text="Choose A File" tooltip="Help!!!" fg-color="dark-purple">
     </exo-file>
     <script>
         var btn = document.getElementById("test_file");

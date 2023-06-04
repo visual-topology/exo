@@ -91,15 +91,15 @@
     </div>
     
 
-    <h2>Modal</h2>
+    <h2>Modal (Button)</h2>
     
     <div class="exo-row">
             <div class="exo-4-cell model-view">
                 <pre><code>
-&lt;<span style="color:red;">div</span> <span style="color:blue;">is</span>=<span style="color:purple;">"exo-modal"</span> <span style="color:blue;">button-text</span>=<span style="color:purple;">"Open Modal"</span>
-     <span style="color:blue;">fg-color</span>=<span style="color:purple;">"light-red"</span> <span style="color:blue;">bg-color</span>=<span style="color:purple;">"dark-red"</span>
-     <span style="color:blue;">close-button-color</span>=<span style="color:purple;">"white"</span> <span style="color:blue;">button-fg-color</span>=<span style="color:purple;">"light-green"</span>
-     <span style="color:blue;">button-bg-color</span>=<span style="color:purple;">"dark-purple"</span>&gt;
+&lt;<span style="color:red;">div</span> <span style="color:blue;">is</span>=<span style="color:purple;">"exo-modal"</span> <span style="color:blue;">rounded</span>=<span style="color:purple;">"large"</span> <span style="color:blue;">border-color</span>=<span style="color:purple;">"dark-gray"</span>
+     <span style="color:blue;">button-text</span>=<span style="color:purple;">"Open Modal"</span> <span style="color:blue;">fg-color</span>=<span style="color:purple;">"light-red"</span>
+     <span style="color:blue;">bg-color</span>=<span style="color:purple;">"dark-red"</span> <span style="color:blue;">close-button-color</span>=<span style="color:purple;">"white"</span>
+     <span style="color:blue;">button-fg-color</span>=<span style="color:purple;">"light-green"</span> <span style="color:blue;">button-bg-color</span>=<span style="color:purple;">"dark-purple"</span>&gt;
     Lorem ipsum dolor
     sit amet,
     consectetur
@@ -108,12 +108,58 @@
                 </code></pre>
             </div>
             <div class="exo-4-cell">
-                <div is="exo-modal" button-text="Open Modal" fg-color="light-red" bg-color="dark-red" close-button-color="white" button-fg-color="light-green" button-bg-color="dark-purple">
+                <div is="exo-modal" rounded="large" border-color="dark-gray" button-text="Open Modal" fg-color="light-red" bg-color="dark-red" close-button-color="white" button-fg-color="light-green" button-bg-color="dark-purple">
     Lorem ipsum dolor
     sit amet,
     consectetur
     adipiscing elit.
 </div>
+            </div>
+    </div>
+    
+
+    <h2>Modal (Splash)</h2>
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">div</span> <span style="color:blue;">id</span>=<span style="color:purple;">"splash-test"</span> <span style="color:blue;">is</span>=<span style="color:purple;">"exo-modal"</span> <span style="color:blue;">display</span>=<span style="color:purple;">"true"</span>
+     <span style="color:blue;">bg-color</span>=<span style="color:purple;">"light-gray"</span> <span style="color:blue;">border-color</span>=<span style="color:purple;">"dark-purple"</span>&gt;
+    &lt;<span style="color:red;">h4</span>&gt;
+        Splash!
+    &lt;/<span style="color:red;">h4</span>&gt;
+    Lorem ipsum dolor
+    sit amet,
+    consectetur
+    adipiscing elit.
+&lt;/<span style="color:red;">div</span>&gt;
+&lt;<span style="color:red;">script</span>&gt;
+    window.addEventListener("load", (evt) => {
+    setTimeout(() => {
+    document.getElementById("splash-test").setAttribute("display","false");
+    },2000);
+    });
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    A splash message will displayed when this page is loaded and close after 2 seconds.
+    <div id="splash-test" is="exo-modal" display="true" bg-color="light-gray" border-color="dark-purple" >
+    <h4>Splash!</h4>
+        Lorem ipsum dolor
+    sit amet,
+    consectetur
+    adipiscing elit.
+    </div>
+    <script>
+        window.addEventListener("load", (evt) => {
+            setTimeout(() => {
+                document.getElementById("splash-test").setAttribute("display","false");
+            },2000);
+        });
+    </script>
+
             </div>
     </div>
     

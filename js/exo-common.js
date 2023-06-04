@@ -21,6 +21,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+let colors = ["red","orange","blue","green","purple","brown","gray","pink","yellow"];
+let dark_colors = colors.map((name) => "dark-"+name);
+let light_colors = colors.map((name) => "light-"+name);
+
+let all_colors = ["black","white"]+colors+dark_colors+light_colors;
+
+let sizes = ["no","tiny","small","medium","large","huge"];
+
 class ExoUtils {
 
     static createElement(tag, attrs) {
@@ -64,7 +72,17 @@ class ExoUtils {
             let resolved = cls.match(pattern);
             if (resolved != null) {
                 this.removeClass(element, cls);
-            }});
+            }
+        });
+    }
+
+    static removeClassesFromList(element, classname_list) {
+        var classes = ExoUtils.getClasses(element);
+        classes.forEach(cls => {
+            if (classname_list.includes(cls)) {
+                this.removeClass(element, cls);
+            }
+        });
     }
 
     static addStyle(element, name, value) {
@@ -103,6 +121,37 @@ class ExoUtils {
     static removeAllChildren(elt) {
         while (elt.firstChild) {
             elt.removeChild(elt.firstChild);
+        }
+    }
+
+    static applyColor(elt, name, value) {
+        let to_remove = colors.map((color_name) => "exo-"+color_name+"-"+name);
+        ExoUtils.removeClassesFromList(elt, to_remove);
+        ExoUtils.addClass(elt,"exo-"+value+"-"+name);
+    }
+
+    static applySizedDimension(elt, name,value) {
+        if (value == undefined) {
+            return;
+        }
+        if (value == "") {
+            value = "medium";
+        }
+        let to_remove = sizes.map((size_name) => "exo-"+size_name+"-"+name);
+        ExoUtils.removeClassesFromList(elt, to_remove);
+        if (value) {
+            switch (value) {
+                case "no":
+                case "tiny":
+                case "small":
+                case "medium":
+                case "large":
+                case "huge":
+                    ExoUtils.addClass(elt, "exo-" + value + "-" + name);
+                    break;
+                default:
+                    console.log("Exo: Invalid " + name + " value: " + value + ", valid values are no,tiny,small,medium,large,huge");
+            }
         }
     }
 }
@@ -212,16 +261,13 @@ class CustomExoControl extends HTMLElement {
         }
         switch(name) {
             case "fg-color":
-                ExoUtils.removeClasses( this.exoGetInputElement(), /exo-(.*)-fg/);
-                ExoUtils.addClass(this.exoGetInputElement(),"exo-"+value+"-fg");
+                this.applyColor("fgr",value);
                 break;
             case "bg-color":
-                ExoUtils.removeClasses(this.exoGetInputElement(), /exo-(.*)-bg/);
-                ExoUtils.addClass(this.exoGetInputElement(),"exo-"+value+"-bg");
+                this.applyColor("bg",value);
                 break;
             case "border-color":
-                ExoUtils.removeClasses(this.exoGetInputElement(), /exo-(.*)-border/);
-                ExoUtils.addClass(this.exoGetInputElement(),"exo-"+value+"-border");
+                this.applyColor("border",value);
                 break;
             case "border":
             case "margin":
@@ -284,27 +330,12 @@ class CustomExoControl extends HTMLElement {
     }
 
     applySizedDimension(name,value) {
-        if (value == undefined) {
-            return;
-        }
-        if (value == "") {
-            value = "medium";
-        }
-        ExoUtils.removeClasses(this.exoGetInputElement(), new RegExp("(exo-)(.*)(-"+name+")"));
-        if (value) {
-            switch (value) {
-                case "no":
-                case "small":
-                case "medium":
-                case "large":
-                    ExoUtils.addClass(this.exoGetRootElement(), "exo-" + value + "-" + name);
-                    break;
-                default:
-                    console.log("Exo: Invalid " + name + " value: " + value + ", valid values are no,small,medium,large");
-            }
-        }
+        ExoUtils.applySizedDimension(this.exoGetInputElement(),name,value);
     }
 
+    applyColor(name,value) {
+        ExoUtils.applyColor(this.exoGetInputElement(),name,value);
+    }
 
     exoDefineOutput() {
         if (!this.exo_br) {

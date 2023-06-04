@@ -23,6 +23,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+let colors = ["red","orange","blue","green","purple","brown","gray","pink","yellow"];
+let dark_colors = colors.map((name) => "dark-"+name);
+let light_colors = colors.map((name) => "light-"+name);
+
+let all_colors = ["black","white"]+colors+dark_colors+light_colors;
+
+let sizes = ["no","tiny","small","medium","large","huge"];
+
 class ExoUtils {
 
     static createElement(tag, attrs) {
@@ -66,7 +74,17 @@ class ExoUtils {
             let resolved = cls.match(pattern);
             if (resolved != null) {
                 this.removeClass(element, cls);
-            }});
+            }
+        });
+    }
+
+    static removeClassesFromList(element, classname_list) {
+        var classes = ExoUtils.getClasses(element);
+        classes.forEach(cls => {
+            if (classname_list.includes(cls)) {
+                this.removeClass(element, cls);
+            }
+        });
     }
 
     static addStyle(element, name, value) {
@@ -105,6 +123,37 @@ class ExoUtils {
     static removeAllChildren(elt) {
         while (elt.firstChild) {
             elt.removeChild(elt.firstChild);
+        }
+    }
+
+    static applyColor(elt, name, value) {
+        let to_remove = colors.map((color_name) => "exo-"+color_name+"-"+name);
+        ExoUtils.removeClassesFromList(elt, to_remove);
+        ExoUtils.addClass(elt,"exo-"+value+"-"+name);
+    }
+
+    static applySizedDimension(elt, name,value) {
+        if (value == undefined) {
+            return;
+        }
+        if (value == "") {
+            value = "medium";
+        }
+        let to_remove = sizes.map((size_name) => "exo-"+size_name+"-"+name);
+        ExoUtils.removeClassesFromList(elt, to_remove);
+        if (value) {
+            switch (value) {
+                case "no":
+                case "tiny":
+                case "small":
+                case "medium":
+                case "large":
+                case "huge":
+                    ExoUtils.addClass(elt, "exo-" + value + "-" + name);
+                    break;
+                default:
+                    console.log("Exo: Invalid " + name + " value: " + value + ", valid values are no,tiny,small,medium,large,huge");
+            }
         }
     }
 }
@@ -214,16 +263,13 @@ class CustomExoControl extends HTMLElement {
         }
         switch(name) {
             case "fg-color":
-                ExoUtils.removeClasses( this.exoGetInputElement(), /exo-(.*)-fg/);
-                ExoUtils.addClass(this.exoGetInputElement(),"exo-"+value+"-fg");
+                this.applyColor("fgr",value);
                 break;
             case "bg-color":
-                ExoUtils.removeClasses(this.exoGetInputElement(), /exo-(.*)-bg/);
-                ExoUtils.addClass(this.exoGetInputElement(),"exo-"+value+"-bg");
+                this.applyColor("bg",value);
                 break;
             case "border-color":
-                ExoUtils.removeClasses(this.exoGetInputElement(), /exo-(.*)-border/);
-                ExoUtils.addClass(this.exoGetInputElement(),"exo-"+value+"-border");
+                this.applyColor("border",value);
                 break;
             case "border":
             case "margin":
@@ -286,27 +332,12 @@ class CustomExoControl extends HTMLElement {
     }
 
     applySizedDimension(name,value) {
-        if (value == undefined) {
-            return;
-        }
-        if (value == "") {
-            value = "medium";
-        }
-        ExoUtils.removeClasses(this.exoGetInputElement(), new RegExp("(exo-)(.*)(-"+name+")"));
-        if (value) {
-            switch (value) {
-                case "no":
-                case "small":
-                case "medium":
-                case "large":
-                    ExoUtils.addClass(this.exoGetRootElement(), "exo-" + value + "-" + name);
-                    break;
-                default:
-                    console.log("Exo: Invalid " + name + " value: " + value + ", valid values are no,small,medium,large");
-            }
-        }
+        ExoUtils.applySizedDimension(this.exoGetInputElement(),name,value);
     }
 
+    applyColor(name,value) {
+        ExoUtils.applyColor(this.exoGetInputElement(),name,value);
+    }
 
     exoDefineOutput() {
         if (!this.exo_br) {
@@ -606,11 +637,26 @@ class CustomExoFile extends CustomExoControl {
 
     constructor() {
         super();
+        this.filename_span = null;
     }
 
     exoBuild(parameters) {
         super.exoBuildCommon("input", parameters);
         this.exoGetInputElement().setAttribute("type","file");
+        this.exoGetInputElement().setAttribute("id","file_test");
+
+        ExoUtils.addStyle(this.exoGetInputElement(),"display","none");
+        this.label = document.createElement("label");
+        this.label.setAttribute("class","exo-button");
+        this.label.setAttribute("for","file_test");
+
+        this.filename_span = document.createElement("span");
+        this.filename_span.setAttribute("style","margin-left:10px;")
+        this.filename_span.appendChild(document.createTextNode("filename.txt"));
+
+        this.exoGetRootElement().appendChild(this.label);
+        this.exoGetRootElement().appendChild(this.filename_span);
+
         var that = this;
 
         this.exoGetInputElement().oninput = function (evt) {
@@ -619,6 +665,8 @@ class CustomExoFile extends CustomExoControl {
             for(var idx=0; idx<filelist.length;idx++) {
                 var file = filelist[idx];
                 files[file.name] = file;
+                ExoUtils.removeAllChildren(that.filename_span);
+                that.filename_span.appendChild(document.createTextNode(file.name));
             }
             that.dispatchEvent(new CustomEvent("exo-file-changed",{detail:files}));
         }
@@ -627,12 +675,22 @@ class CustomExoFile extends CustomExoControl {
 
     exoUpdate(name,value) {
         switch(name) {
+            case "button-text":
+                 ExoUtils.removeAllChildren(this.label);
+                 this.label.appendChild(document.createTextNode(value));
+                 break;
+            case "filename":
+                ExoUtils.removeAllChildren(this.filename_span);
+                this.filename_span.appendChild(document.createTextNode(value));
+                break;
             default:
                 super.exoUpdate(name,value);
         }
     }
 
     static get observedAttributes() {
+        var attrs = CustomExoControl.observedAttributes;
+        attrs.push("filename","button-text");
         return CustomExoControl.observedAttributes;
     }
 /*
@@ -1727,10 +1785,13 @@ class ExoModal extends HTMLDivElement {
         this.setAttribute("class","exo-modal-window-content");
         var w = ExoUtils.createElement("div",{"class":"exo-modal-window"});
         var m = ExoUtils.createElement("div", {"class":"exo-modal"});
-        var i = ExoUtils.createElement("input",{"type":"checkbox","id":this.modal_id});
-        var l = ExoUtils.createElement("label",{"class":"exo-button","for":this.modal_id});
-        m.appendChild(i);
-        m.appendChild(l);
+        this.checkbox = ExoUtils.createElement("input",{"type":"checkbox","id":this.modal_id});
+        if (this.hasAttribute("display")) {
+            this.checkbox.checked = (this.getAttribute("display") == "true") ? true : false;
+        }
+        this.label = ExoUtils.createElement("label",{"class":"exo-button","for":this.modal_id, "style":"display:none;"});
+        m.appendChild(this.checkbox);
+        m.appendChild(this.label);
         m.appendChild(w);
         var cl = ExoUtils.createElement("label",{"for":this.modal_id});
         this.close_button = ExoUtils.createElement("span",{"tabindex":"-1","class":"exo-icon exo-modal-close"});
@@ -1739,7 +1800,6 @@ class ExoModal extends HTMLDivElement {
         w.appendChild(this);
         this.appendChild(cl);
         p_elt.appendChild(m);
-        this.label = l;
 
         ExoModal.observedAttributes.map((attr) => {
             if (this.hasAttribute(attr)) {
@@ -1749,38 +1809,50 @@ class ExoModal extends HTMLDivElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if (this.label) {
+        if (this.close_button) {
             switch(name) {
                 case "button-text":
                     ExoUtils.removeAllChildren(this.label);
                     this.label.appendChild(document.createTextNode(newValue));
+                    if (newValue) {
+                        this.label.setAttribute("style","display:inline;");
+                    } else {
+                        this.label.setAttribute("style","display:none;");
+                    }
                     break;
                 case "button-fg-color":
-                    ExoUtils.removeClasses( this.label, /exo-(.*)-fg/);
-                    ExoUtils.addClass(this.label,"exo-"+newValue+"-fg");
+                   ExoUtils.applyColor(this.label,"fg",newValue);
                     break;
                 case "button-bg-color":
-                    ExoUtils.removeClasses( this.label, /exo-(.*)-bg/);
-                    ExoUtils.addClass(this.label,"exo-"+newValue+"-bg");
+                    ExoUtils.applyColor(this.label,"bg",newValue);
                     break;
                 case "fg-color":
-                    ExoUtils.removeClasses( this, /exo-(.*)-fg/);
-                    ExoUtils.addClass(this,"exo-"+newValue+"-fg");
+                   ExoUtils.applyColor(this,"fg",newValue);
                     break;
                 case "bg-color":
-                    ExoUtils.removeClasses( this, /exo-(.*)-bg/);
-                    ExoUtils.addClass(this,"exo-"+newValue+"-bg");
+                    ExoUtils.applyColor(this,"bg",newValue);
                     break;
                 case "close-button-color":
                     ExoUtils.addClass(this.close_button,"exo-"+newValue);
                     break;
-
+                case "border-color":
+                    ExoUtils.applyColor(this, "border", newValue);
+                    ExoUtils.addClass(this,"exo-border");
+                    break;
+                case "display":
+                    this.checkbox.checked = (newValue == "true") ? true : false;
+                    break;
+                case "border":
+                case "rounded":
+                    ExoUtils.applySizedDimension(this,name,newValue);
+                    break;
             }
         }
     }
 
     static get observedAttributes() {
-        return ["button-text", "button-fg-color", "button-bg-color", "fg-color", "bg-color", "close-button-color"];
+        return ["button-text", "button-fg-color", "button-bg-color", "fg-color", "bg-color", "close-button-color",
+            "display", "border-color","border","margin","rounded","padding"];
     }
 }
 

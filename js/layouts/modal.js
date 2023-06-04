@@ -18,10 +18,13 @@ class ExoModal extends HTMLDivElement {
         this.setAttribute("class","exo-modal-window-content");
         var w = ExoUtils.createElement("div",{"class":"exo-modal-window"});
         var m = ExoUtils.createElement("div", {"class":"exo-modal"});
-        var i = ExoUtils.createElement("input",{"type":"checkbox","id":this.modal_id});
-        var l = ExoUtils.createElement("label",{"class":"exo-button","for":this.modal_id});
-        m.appendChild(i);
-        m.appendChild(l);
+        this.checkbox = ExoUtils.createElement("input",{"type":"checkbox","id":this.modal_id});
+        if (this.hasAttribute("display")) {
+            this.checkbox.checked = (this.getAttribute("display") == "true") ? true : false;
+        }
+        this.label = ExoUtils.createElement("label",{"class":"exo-button","for":this.modal_id, "style":"display:none;"});
+        m.appendChild(this.checkbox);
+        m.appendChild(this.label);
         m.appendChild(w);
         var cl = ExoUtils.createElement("label",{"for":this.modal_id});
         this.close_button = ExoUtils.createElement("span",{"tabindex":"-1","class":"exo-icon exo-modal-close"});
@@ -30,7 +33,6 @@ class ExoModal extends HTMLDivElement {
         w.appendChild(this);
         this.appendChild(cl);
         p_elt.appendChild(m);
-        this.label = l;
 
         ExoModal.observedAttributes.map((attr) => {
             if (this.hasAttribute(attr)) {
@@ -40,38 +42,50 @@ class ExoModal extends HTMLDivElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if (this.label) {
+        if (this.close_button) {
             switch(name) {
                 case "button-text":
                     ExoUtils.removeAllChildren(this.label);
                     this.label.appendChild(document.createTextNode(newValue));
+                    if (newValue) {
+                        this.label.setAttribute("style","display:inline;");
+                    } else {
+                        this.label.setAttribute("style","display:none;");
+                    }
                     break;
                 case "button-fg-color":
-                    ExoUtils.removeClasses( this.label, /exo-(.*)-fg/);
-                    ExoUtils.addClass(this.label,"exo-"+newValue+"-fg");
+                   ExoUtils.applyColor(this.label,"fg",newValue);
                     break;
                 case "button-bg-color":
-                    ExoUtils.removeClasses( this.label, /exo-(.*)-bg/);
-                    ExoUtils.addClass(this.label,"exo-"+newValue+"-bg");
+                    ExoUtils.applyColor(this.label,"bg",newValue);
                     break;
                 case "fg-color":
-                    ExoUtils.removeClasses( this, /exo-(.*)-fg/);
-                    ExoUtils.addClass(this,"exo-"+newValue+"-fg");
+                   ExoUtils.applyColor(this,"fg",newValue);
                     break;
                 case "bg-color":
-                    ExoUtils.removeClasses( this, /exo-(.*)-bg/);
-                    ExoUtils.addClass(this,"exo-"+newValue+"-bg");
+                    ExoUtils.applyColor(this,"bg",newValue);
                     break;
                 case "close-button-color":
                     ExoUtils.addClass(this.close_button,"exo-"+newValue);
                     break;
-
+                case "border-color":
+                    ExoUtils.applyColor(this, "border", newValue);
+                    ExoUtils.addClass(this,"exo-border");
+                    break;
+                case "display":
+                    this.checkbox.checked = (newValue == "true") ? true : false;
+                    break;
+                case "border":
+                case "rounded":
+                    ExoUtils.applySizedDimension(this,name,newValue);
+                    break;
             }
         }
     }
 
     static get observedAttributes() {
-        return ["button-text", "button-fg-color", "button-bg-color", "fg-color", "bg-color", "close-button-color"];
+        return ["button-text", "button-fg-color", "button-bg-color", "fg-color", "bg-color", "close-button-color",
+            "display", "border-color","border","margin","rounded","padding"];
     }
 }
 
