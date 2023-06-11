@@ -18,6 +18,7 @@ class CustomExoDateTimeBase extends CustomExoControl {
         switch(name) {
             case "value":
                 this.exoGetInputElement().value = value;
+                this.exoSetControlValue(value);
                 break;
             case "min":
                 this.exoGetInputElement().setAttribute("min", value);

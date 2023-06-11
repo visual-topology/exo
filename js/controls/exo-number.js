@@ -11,14 +11,18 @@ class CustomExoNumber extends CustomExoControl {
 
         this.exoGetInputElement().setAttribute("type","number");
 
+         this.exoGetInputElement().addEventListener("change", evt => {
+            let v = evt.target.value;
+            this.exoSetControlValue(v);
+            this.dispatchEvent(new CustomEvent("change"));
+            evt.stopPropagation();
+        });
+
         super.exoBuildComplete(parameters);
     }
 
     exoUpdate(name,value) {
         switch(name) {
-            case "value":
-                this.exoGetInputElement().value = value;
-                break;
             case "min":
                 this.exoGetInputElement().setAttribute("min", value);
                 break;
@@ -27,6 +31,10 @@ class CustomExoNumber extends CustomExoControl {
                 break;
             case "step":
                 this.exoGetInputElement().setAttribute("step", value);
+                break;
+            case "value":
+                this.exoGetInputElement().value = value;
+                this.exoSetControlValue(value);
                 break;
             default:
                 super.exoUpdate(name,value);

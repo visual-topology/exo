@@ -1,6 +1,7 @@
 <div>
     <exo-toggle id="test_toggle" label="test" true-text="ON" false-text="OFF" value="false" tooltip="Help!!!" fg-color="light-gray" bg-color="dark-red"></exo-toggle>
     <script>
-        document.getElementById("test_toggle").addEventListener("change",e => { console.log(e.target.checked); } );
+        document.getElementById("test_toggle")
+            .addEventListener("change",e => { console.log(e.target.checked); } );
     </script>
 </div>

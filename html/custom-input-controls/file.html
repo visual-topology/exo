@@ -2,7 +2,7 @@
     <exo-file id="test_file" label="test" filename="?" button-text="Choose A File" tooltip="Help!!!" fg-color="dark-purple">
     </exo-file>
     <script>
-        var btn = document.getElementById("test_file");
-        btn.addEventListener("exo-file-changed",e => { console.log(JSON.stringify(e.detail)); })
+        document.getElementById("test_file")
+            .addEventListener("exo-file-changed",e => { console.log(JSON.stringify(e.detail)); })
     </script>
 </div>

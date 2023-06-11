@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="exo-icons.css">
 </head>
 <body class="exo-container">
-    <h1>Exo - Custom Elements - Controls</h1>
+    <p>
+        <a href="index.html">Exo</a> -> <a href="exo-custom.html">Exo Custom Elements</a> -> <em>Exo Custom Input Controls</em>
+    </p>
+    <hr>
+    <h1>Exo - Custom Input Controls</h1>
     <p>
         Custom HTML elements described here wrap some useful structures for building UIs with exo
     </p>
@@ -22,7 +26,7 @@
 
     <pre><code>
             &lt;!-- js file is optional, include if you use exo custom HTML elements --&gt;
-            &lt;script src="exo.js" type="text/javascript">&lt;/script>
+            &lt;script src="https://visualtopology.github.io/exo/versions/{EXO-VERSION}/exo.js" type="text/javascript"&gt;&lt;/script&gt;
     </code></pre>
 
     <h2>Common attributes</h2>
@@ -102,14 +106,24 @@
 
     <h2>Select</h2>
 
+    <p>The <code>options</code> attribute of  <code>exo-select</code> should be assigned a JSON encoded array, where each element is an array containing 2 items: ["value","LABEL"].</p>
+
     INCLUDE_EXAMPLE(select.html)
 
     <h2>Select Size=5</h2>
 
     INCLUDE_EXAMPLE(select-size.html)
 
+    <h2>Select Size=5, Multiple</h2>
+
+    <p>If the <code>multiple</code> attribute is specified, the <code>value</code> attribute should be assigned a JSON encoded array containing zero or more values.</p>
+
+    INCLUDE_EXAMPLE(select-multiple.html)
 
     <h2>Radio Buttons</h2>
+
+    <p>The <code>options</code> attribute of  <code>exo-radio</code> should be assigned a JSON encoded array, where each element is an array containing 2 items: ["value","LABEL"].</p>
+
 
     INCLUDE_EXAMPLE(radio.html)
 

@@ -1,0 +1,17 @@
+<div>
+    A splash message will displayed when this page is loaded and close after 2 seconds.
+    <div id="splash-test" is="exo-modal" display="true" bg-color="light-gray" border-color="dark-purple" >
+    <h4>Splash!</h4>
+        Lorem ipsum dolor
+    sit amet,
+    consectetur
+    adipiscing elit.
+    </div>
+    <script>
+        window.addEventListener("load", (evt) => {
+            setTimeout(() => {
+                document.getElementById("splash-test").setAttribute("display","false");
+            },2000);
+        });
+    </script>
+</div>

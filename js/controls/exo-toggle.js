@@ -28,14 +28,24 @@ class CustomExoToggle extends CustomExoControl {
 
         this.slider_span = span;
 
+        this.exoGetInputElement().addEventListener("change", evt => {
+            let v = evt.target.checked;
+            this.exoSetControlValue(v?"true":"false");
+            this.checked = v;
+            this.dispatchEvent(new CustomEvent("change"));
+            evt.stopPropagation();
+        });
+
         super.exoBuildComplete(parameters);
     }
 
     exoUpdate(name,value) {
         switch(name) {
             case "value":
-                this.exoGetInputElement().checked = (value == "true") ? true : false;
+                const bvalue = (value == "true") ? true : false;
+                this.exoGetInputElement().checked = bvalue;
                 this.exoSetControlValue(value);
+                this.checked = bvalue;
                 break;
             case "true-text":
                 if (!this.tt_span) {

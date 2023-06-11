@@ -2,7 +2,7 @@
     <exo-select id="test_select" label="test" value="ccc" tooltip="Help!!!" options='[["aaa","AAA"],["bbb","BBB"]]' fg-color="dark-green">
     </exo-select>
     <script>
-        var btn = document.getElementById("test_select");
-        btn.addEventListener("change",e => { console.log(e.target.value); })
+        document.getElementById("test_select")
+            .addEventListener("change",e => { console.log(e.target.value); })
     </script>
 </div>

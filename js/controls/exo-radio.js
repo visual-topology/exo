@@ -20,6 +20,7 @@ class CustomExoRadio extends CustomExoControl {
             case "value":
                 this.exoSetControlValue(value);
                 this.exoSetButtonStates();
+                this.exoGetInputElement().value = value;
                 break;
             case "options":
                 let options = JSON.parse(value);

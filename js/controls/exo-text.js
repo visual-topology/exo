@@ -12,6 +12,12 @@ class CustomExoText extends CustomExoControl {
         this.exoGetInputElement().setAttribute("type","text");
         this.exoGetInputElement().value = parameters["value"] || "";
 
+        this.exoGetInputElement().addEventListener("change", evt => {
+            let v = evt.target.value;
+            this.exoSetControlValue(v);
+            this.dispatchEvent(new CustomEvent("change"));
+            evt.stopPropagation();
+        });
 
         super.exoBuildComplete(parameters);
     }
@@ -20,6 +26,7 @@ class CustomExoText extends CustomExoControl {
         switch(name) {
             case "value":
                 this.exoGetInputElement().value = value;
+                this.exoSetControlValue(value);
                 break;
             default:
                 super.exoUpdate(name,value);

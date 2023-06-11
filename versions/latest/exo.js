@@ -164,16 +164,16 @@ class CustomExoControl extends HTMLElement {
 
     constructor() {
         super();
-        this.exo_control_value = undefined;
+        this.value = undefined;
         this.exo_label = null;
         this.exo_tooltip_div = null;
         this.exo_tooltip_content = null;
         this.exo_br = null;
         this.exo_output = null;
         this.exo_id = "s"+exo_counter;
+        this.value = undefined;
         exo_counter += 1;
         this.exo_built = false;
-        this.pending_event_listeners = [];
     }
 
     exoGetId() {
@@ -196,30 +196,6 @@ class CustomExoControl extends HTMLElement {
             "vmargin","hmargin","label","tooltip","disabled","class","aria-label", "visible"];
     }
 
-    addEventListener(type, listener, options) {
-        if (!this.exo_built) {
-            this.pending_event_listeners.push([type, listener, options]);
-        } else {
-            this.exoAttachEventListener(type, listener, options);
-        }
-    }
-
-    exoAttachEventListener(type, listener, options) {
-        if (!type.startsWith("exo")) {
-            return this.exoGetInputElement().addEventListener(type, listener, options);
-        } else {
-            return super.addEventListener(type, listener, options);
-        }
-    }
-
-    removeEventListener(type, listener, options) {
-        if (!type.startsWith("exo")) {
-            return this.exoGetInputElement().addRemoveEventListener(type, listener, options);
-        } else {
-            return super.addEventListener(type,listener,options);
-        }
-    }
-
     exoBuildCommon(tag, parameters) {
 
         this.exo_element = document.createElement(tag);
@@ -239,10 +215,6 @@ class CustomExoControl extends HTMLElement {
             this.exoUpdate(parameter_name,parameters[parameter_name]);
         }
         this.appendChild(this.exoGetRootElement());
-        for(var idx=0; idx<this.pending_event_listeners.length; idx++) {
-            var pending = this.pending_event_listeners[idx];
-            this.exoAttachEventListener(pending[0],pending[1],pending[2]);
-        }
     }
 
     exoGetParameters() {
@@ -262,6 +234,9 @@ class CustomExoControl extends HTMLElement {
             return;
         }
         switch(name) {
+            case "value":
+                this.exoSetControlValue(value);
+                break;
             case "fg-color":
                 this.applyColor("fgr",value);
                 break;
@@ -356,14 +331,12 @@ class CustomExoControl extends HTMLElement {
         this.exo_output.appendChild(document.createTextNode(value));
     }
 
-
     exoSetControlValue(value) {
-        this.exo_control_value = value;
         this.value = value;
     }
 
     exoGetControlValue() {
-        return this.exo_control_value;
+        return this.value;
     }
 
     exoGetRootElement() {
@@ -507,6 +480,13 @@ class CustomExoCheckbox extends CustomExoControl {
         super.exoBuildCommon("input", parameters);
 
         this.exoGetInputElement().setAttribute("type","checkbox");
+        this.exoGetInputElement().addEventListener("change", evt => {
+            let v = evt.target.checked;
+            this.exoSetControlValue(v?"true":"false");
+            this.checked = v;
+            this.dispatchEvent(new CustomEvent("change"));
+            evt.stopPropagation();
+        });
 
         super.exoBuildComplete(parameters);
     }
@@ -514,8 +494,10 @@ class CustomExoCheckbox extends CustomExoControl {
     exoUpdate(name,value) {
         switch(name) {
             case "value":
-                this.exoGetInputElement().checked = (value == "true") ? true : false;
+                const bvalue = (value == "true") ? true : false;
+                this.exoGetInputElement().checked = bvalue;
                 this.exoSetControlValue(value);
+                this.checked = bvalue;
                 break;
             default:
                 super.exoUpdate(name,value);
@@ -553,6 +535,7 @@ class CustomExoDateTimeBase extends CustomExoControl {
         switch(name) {
             case "value":
                 this.exoGetInputElement().value = value;
+                this.exoSetControlValue(value);
                 break;
             case "min":
                 this.exoGetInputElement().setAttribute("min", value);
@@ -728,14 +711,18 @@ class CustomExoNumber extends CustomExoControl {
 
         this.exoGetInputElement().setAttribute("type","number");
 
+         this.exoGetInputElement().addEventListener("change", evt => {
+            let v = evt.target.value;
+            this.exoSetControlValue(v);
+            this.dispatchEvent(new CustomEvent("change"));
+            evt.stopPropagation();
+        });
+
         super.exoBuildComplete(parameters);
     }
 
     exoUpdate(name,value) {
         switch(name) {
-            case "value":
-                this.exoGetInputElement().value = value;
-                break;
             case "min":
                 this.exoGetInputElement().setAttribute("min", value);
                 break;
@@ -744,6 +731,10 @@ class CustomExoNumber extends CustomExoControl {
                 break;
             case "step":
                 this.exoGetInputElement().setAttribute("step", value);
+                break;
+            case "value":
+                this.exoGetInputElement().value = value;
+                this.exoSetControlValue(value);
                 break;
             default:
                 super.exoUpdate(name,value);
@@ -783,6 +774,7 @@ class CustomExoRadio extends CustomExoControl {
             case "value":
                 this.exoSetControlValue(value);
                 this.exoSetButtonStates();
+                this.exoGetInputElement().value = value;
                 break;
             case "options":
                 let options = JSON.parse(value);
@@ -879,15 +871,13 @@ class CustomExoRange extends CustomExoControl {
         }
         this.exoGetInputElement().value = parameters["value"];
 
-        var that = this;
-
-        this.exoGetInputElement().oninput = function (evt) {
-            const updated_value = that.exoGetInputElement().value;
-            that.exoSetOutputValue(updated_value);
-            var v = Number.parseFloat(updated_value);
-            that.dispatchEvent(new CustomEvent("exo-value",{detail:v}));
+        this.exoGetInputElement().addEventListener("change", evt => {
+            let v = evt.target.value;
+            this.exoSetControlValue(v);
+            this.exoSetOutputValue(v);
+            this.dispatchEvent(new CustomEvent("change"));
             evt.stopPropagation();
-        }
+        });
 
         let elt = this.exoGetInputElement();
         elt.parentNode.insertBefore(document.createTextNode(parameters["min"]),elt);
@@ -902,6 +892,8 @@ class CustomExoRange extends CustomExoControl {
         switch(name) {
             case "value":
                 this.exoGetInputElement().value = value;
+                this.exoSetControlValue(value);
+                this.exoSetOutputValue(value);
                 break;
             case "min":
                 this.exoGetInputElement().setAttribute("min", value);
@@ -935,71 +927,112 @@ class CustomExoSelect extends CustomExoControl {
 
     constructor() {
         super();
-        this.exo_option_labels = {};
-        this.exo_current_value = "";
-        this.exo_current_label = "";
-        this.exo_options = [];
+        this.exo_value_label_map = {};
+        this.exo_is_multiple = false;
     }
 
     exoBuild(parameters) {
+
         super.exoBuildCommon("select", parameters);
         this.exoGetInputElement().setAttribute("class", "select");
-        this.exo_options = [];
-        var that = this;
 
-        var v = null;
-        this.exoGetInputElement().addEventListener("input", evt => {
-            v = that.exoGetInputElement().value;
-            this.exoManageValidity(v);
-            that.exoSetControlValue(v);
+        this.exoGetInputElement().addEventListener("change", evt => {
+            let v = undefined;
+            if (this.exo_is_multiple) {
+                var selected_values = [];
+                var options = this.exoGetInputElement().querySelectorAll("option");
+                for (var i=0; i<options.length; i++) {
+                    let opt = options[i];
+                    if (opt.selected) {
+                        selected_values.push(opt.value);
+                    }
+                }
+                v = JSON.stringify(selected_values);
+            } else {
+                v = this.exoGetInputElement().value;
+            }
+            this.exoSetControlValue(v);
+            this.dispatchEvent(new CustomEvent("change"));
             evt.stopPropagation();
         });
         this.appendChild(this.exoGetRootElement());
+
+        if ("multiple" in parameters) {
+            this.exo_is_multiple = true;
+            delete parameters["multiple"];
+            this.exoGetInputElement().setAttribute("multiple","multiple");
+        }
+        if ("options" in parameters) {
+            this.exoSetOptions(parameters["options"]);
+            delete parameters["options"];
+        }
         super.exoBuildComplete(parameters);
     }
 
     exoUpdate(name, value) {
         switch (name) {
             case "value":
-                this.exoGetInputElement().value = value;
-                this.exoSetControlValue(value);
-                this.exoManageValidity(value);
+                if (this.exo_is_multiple) {
+                    let value_arr = [];
+                    if (value) {
+                        value_arr = JSON.parse(value);
+                    }
+                    let options = this.exoGetInputElement().querySelectorAll("option");
+                    for (var i=0; i<options.length; i++) {
+                        let opt = options[i];
+                        if (value_arr.includes(opt.value)) {
+                            opt.selected = true;
+                        } else {
+                            opt.selected = false;
+                        }
+                    }
+                    this.exoSetControlValue(value);
+                } else {
+                    this.exoGetInputElement().value = value;
+                    this.exoSetControlValue(value);
+                }
                 break;
             case "size":
                 this.exoGetInputElement().setAttribute("size",value);
                 break;
             case "options":
-                let options = JSON.parse(value);
-                let current_value = this.exoGetControlValue();
-                let current_label = this.exo_option_labels[current_value] || current_value;
-                this.exoClearOptions();
-                options.map((item) => this.exoAddOption(item[0],item[1]));
-                if (!(current_value in this.exo_option_labels)) {
-                    this.exoAddOption(current_value, current_label, true);
-                }
-                this.exoManageValidity(current_value);
-                this.exoGetInputElement().value = current_value;
+                this.exoSetOptions(value);
                 break;
             default:
                 super.exoUpdate(name, value);
         }
     }
 
-    exoManageValidity(v) {
-        if (v in this.exo_option_labels) {
-            this.exoGetInputElement().setCustomValidity("");
-            this.exoRemoveDisabledOptions();
+    exoSetOptions(value) {
+        let options = JSON.parse(value);
+        let current_value = this.exoGetControlValue();
+        this.exoClearOptions();
+        options.map((item) => this.exoAddOption(item[0],item[1]));
+        let updated_value = undefined;
+        if (!this.exo_is_multiple) {
+            if (current_value in this.exo_value_label_map) {
+                updated_value = current_value;
+            }
         } else {
-            this.exoGetInputElement().setCustomValidity(CustomExoSelect.INVALID_ERROR);
+            if (current_value) {
+                let current_values = JSON.parse(current_value);
+                let updated_values = [];
+                current_values.forEach(value => {
+                    if (value in this.exo_value_label_map) {
+                        updated_values.push(value);
+                    }
+                });
+                updated_value = JSON.stringify(updated_values);
+            }
         }
+        this.exoUpdate("value",updated_value);
     }
 
     exoClearOptions() {
         if (this.exoGetInputElement()) {
             ExoUtils.removeAllChildren(this.exoGetInputElement());
         }
-        this.exo_option_labels = {};
-        this.exo_options = [];
+        this.exo_value_label_map = {};
     }
 
     exoAddOption(value,label,disabled) {
@@ -1009,26 +1042,14 @@ class CustomExoSelect extends CustomExoControl {
         if (disabled) {
             option.setAttribute("disabled", "disabled");
         } else {
-            this.exo_option_labels[value] = label;
+            this.exo_value_label_map[value] = label;
         }
         this.exoGetInputElement().appendChild(option);
-        this.exo_options.push({"element": option, "value": value});
-    }
-
-    exoRemoveDisabledOptions() {
-        this.exo_options = this.exo_options.filter((item) => {
-            if (item.element.hasAttribute("disabled") ) {
-                item.element.parentNode.removeChild(item.element);
-                return false;
-            } else {
-                return true;
-            }
-        });
     }
 
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
-        attrs.push('options','value');
+        attrs.push('options','multiple','value');
         return attrs;
     }
 
@@ -1053,6 +1074,12 @@ class CustomExoText extends CustomExoControl {
         this.exoGetInputElement().setAttribute("type","text");
         this.exoGetInputElement().value = parameters["value"] || "";
 
+        this.exoGetInputElement().addEventListener("change", evt => {
+            let v = evt.target.value;
+            this.exoSetControlValue(v);
+            this.dispatchEvent(new CustomEvent("change"));
+            evt.stopPropagation();
+        });
 
         super.exoBuildComplete(parameters);
     }
@@ -1061,6 +1088,7 @@ class CustomExoText extends CustomExoControl {
         switch(name) {
             case "value":
                 this.exoGetInputElement().value = value;
+                this.exoSetControlValue(value);
                 break;
             default:
                 super.exoUpdate(name,value);
@@ -1091,11 +1119,12 @@ class CustomExoTextArea extends CustomExoControl {
 
         var that = this;
 
-        this.exoGetInputElement().onchange = function (evt) {
-            var v = that.exoGetInputElement().value;
-            that.dispatchEvent(new CustomEvent("exo-value",{detail:v}));
+        this.exoGetInputElement().addEventListener("change", evt => {
+            let v = evt.target.value;
+            this.exoSetControlValue(v);
+            this.dispatchEvent(new CustomEvent("change"));
             evt.stopPropagation();
-        }
+        });
 
         super.exoBuildComplete(parameters);
     }
@@ -1104,6 +1133,7 @@ class CustomExoTextArea extends CustomExoControl {
         switch(name) {
             case "value":
                 this.exoGetInputElement().value = value;
+                this.exoSetControlValue(value);
                 break;
             case "rows":
             case "cols":
@@ -1155,14 +1185,24 @@ class CustomExoToggle extends CustomExoControl {
 
         this.slider_span = span;
 
+        this.exoGetInputElement().addEventListener("change", evt => {
+            let v = evt.target.checked;
+            this.exoSetControlValue(v?"true":"false");
+            this.checked = v;
+            this.dispatchEvent(new CustomEvent("change"));
+            evt.stopPropagation();
+        });
+
         super.exoBuildComplete(parameters);
     }
 
     exoUpdate(name,value) {
         switch(name) {
             case "value":
-                this.exoGetInputElement().checked = (value == "true") ? true : false;
+                const bvalue = (value == "true") ? true : false;
+                this.exoGetInputElement().checked = bvalue;
                 this.exoSetControlValue(value);
+                this.checked = bvalue;
                 break;
             case "true-text":
                 if (!this.tt_span) {

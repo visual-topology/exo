@@ -22,15 +22,13 @@ class CustomExoRange extends CustomExoControl {
         }
         this.exoGetInputElement().value = parameters["value"];
 
-        var that = this;
-
-        this.exoGetInputElement().oninput = function (evt) {
-            const updated_value = that.exoGetInputElement().value;
-            that.exoSetOutputValue(updated_value);
-            var v = Number.parseFloat(updated_value);
-            that.dispatchEvent(new CustomEvent("exo-value",{detail:v}));
+        this.exoGetInputElement().addEventListener("change", evt => {
+            let v = evt.target.value;
+            this.exoSetControlValue(v);
+            this.exoSetOutputValue(v);
+            this.dispatchEvent(new CustomEvent("change"));
             evt.stopPropagation();
-        }
+        });
 
         let elt = this.exoGetInputElement();
         elt.parentNode.insertBefore(document.createTextNode(parameters["min"]),elt);
@@ -45,6 +43,8 @@ class CustomExoRange extends CustomExoControl {
         switch(name) {
             case "value":
                 this.exoGetInputElement().value = value;
+                this.exoSetControlValue(value);
+                this.exoSetOutputValue(value);
                 break;
             case "min":
                 this.exoGetInputElement().setAttribute("min", value);

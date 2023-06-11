@@ -11,11 +11,12 @@ class CustomExoTextArea extends CustomExoControl {
 
         var that = this;
 
-        this.exoGetInputElement().onchange = function (evt) {
-            var v = that.exoGetInputElement().value;
-            that.dispatchEvent(new CustomEvent("exo-value",{detail:v}));
+        this.exoGetInputElement().addEventListener("change", evt => {
+            let v = evt.target.value;
+            this.exoSetControlValue(v);
+            this.dispatchEvent(new CustomEvent("change"));
             evt.stopPropagation();
-        }
+        });
 
         super.exoBuildComplete(parameters);
     }
@@ -24,6 +25,7 @@ class CustomExoTextArea extends CustomExoControl {
         switch(name) {
             case "value":
                 this.exoGetInputElement().value = value;
+                this.exoSetControlValue(value);
                 break;
             case "rows":
             case "cols":

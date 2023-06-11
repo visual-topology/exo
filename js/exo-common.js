@@ -162,16 +162,16 @@ class CustomExoControl extends HTMLElement {
 
     constructor() {
         super();
-        this.exo_control_value = undefined;
+        this.value = undefined;
         this.exo_label = null;
         this.exo_tooltip_div = null;
         this.exo_tooltip_content = null;
         this.exo_br = null;
         this.exo_output = null;
         this.exo_id = "s"+exo_counter;
+        this.value = undefined;
         exo_counter += 1;
         this.exo_built = false;
-        this.pending_event_listeners = [];
     }
 
     exoGetId() {
@@ -194,30 +194,6 @@ class CustomExoControl extends HTMLElement {
             "vmargin","hmargin","label","tooltip","disabled","class","aria-label", "visible"];
     }
 
-    addEventListener(type, listener, options) {
-        if (!this.exo_built) {
-            this.pending_event_listeners.push([type, listener, options]);
-        } else {
-            this.exoAttachEventListener(type, listener, options);
-        }
-    }
-
-    exoAttachEventListener(type, listener, options) {
-        if (!type.startsWith("exo")) {
-            return this.exoGetInputElement().addEventListener(type, listener, options);
-        } else {
-            return super.addEventListener(type, listener, options);
-        }
-    }
-
-    removeEventListener(type, listener, options) {
-        if (!type.startsWith("exo")) {
-            return this.exoGetInputElement().addRemoveEventListener(type, listener, options);
-        } else {
-            return super.addEventListener(type,listener,options);
-        }
-    }
-
     exoBuildCommon(tag, parameters) {
 
         this.exo_element = document.createElement(tag);
@@ -237,10 +213,6 @@ class CustomExoControl extends HTMLElement {
             this.exoUpdate(parameter_name,parameters[parameter_name]);
         }
         this.appendChild(this.exoGetRootElement());
-        for(var idx=0; idx<this.pending_event_listeners.length; idx++) {
-            var pending = this.pending_event_listeners[idx];
-            this.exoAttachEventListener(pending[0],pending[1],pending[2]);
-        }
     }
 
     exoGetParameters() {
@@ -260,6 +232,9 @@ class CustomExoControl extends HTMLElement {
             return;
         }
         switch(name) {
+            case "value":
+                this.exoSetControlValue(value);
+                break;
             case "fg-color":
                 this.applyColor("fgr",value);
                 break;
@@ -354,14 +329,12 @@ class CustomExoControl extends HTMLElement {
         this.exo_output.appendChild(document.createTextNode(value));
     }
 
-
     exoSetControlValue(value) {
-        this.exo_control_value = value;
         this.value = value;
     }
 
     exoGetControlValue() {
-        return this.exo_control_value;
+        return this.value;
     }
 
     exoGetRootElement() {
