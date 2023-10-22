@@ -58,7 +58,7 @@ class CustomExoFile extends CustomExoControl {
     static get observedAttributes() {
         var attrs = CustomExoControl.observedAttributes;
         attrs.push("filename","button-text");
-        return CustomExoControl.observedAttributes;
+        return attrs;
     }
 /*
     async upload(filelist, callback) {
