@@ -3,14 +3,19 @@ import base64
 import re
 import sys
 
-current_version = sys.argv[1]
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--version", help="specify the version number", default="latest")
+parser.add_argument("--to-folder", nargs="*", help="also output built files to these extra destination folders", default=[])
+args = parser.parse_args()
+
+current_version = args.version
 
 colours1 = ["orange", "red", "blue", "green", "brown", "purple", "gray", "pink", "yellow"]
 colours2 = ["black", "dark-orange", "dark-red", "dark-blue",
             "dark-green", "dark-brown", "dark-purple", "dark-gray", "dark-pink", "dark-yellow"]
 colours3 = ["white", "light-orange", "light-red",
             "light-blue", "light-green", "light-brown", "light-purple", "light-gray", "light-pink", "light-yellow"]
-
 
 class IconOutput:
     FILTER_TEMPLATE = \
@@ -49,7 +54,7 @@ class IconOutput:
     def read_colors(self):
         lines = open(self.input_css_path).readlines()
 
-        regexp_color = re.compile("\s*--exo-([a-z-]*):\s*(#......)")
+        regexp_color = re.compile(r"\s*--exo-([a-z-]*):\s*(#......)")
 
         for line in lines:
             color_match = regexp_color.match(line.strip())
@@ -112,65 +117,80 @@ class Output:
         self.of.close()
         self.of = None
 
+build_folder = os.path.join(repo_dir,"versions",current_version)
+os.makedirs(build_folder,exist_ok=True)
 
-print("Building: exo.js")
 
-with Output("versions/"+current_version+"/exo.js") as of:
-    of.add("js/exo-common.js")
-    of.add("js/controls/exo-button.js")
-    of.add("js/controls/exo-checkbox.js")
-    of.add("js/controls/exo-date.js")
-    of.add("js/controls/exo-file.js")
-    of.add("js/controls/exo-number.js")
-    of.add("js/controls/exo-radio.js")
-    of.add("js/controls/exo-range.js")
-    of.add("js/controls/exo-select.js")
-    of.add("js/controls/exo-text.js")
-    of.add("js/controls/exo-textarea.js")
-    of.add("js/controls/exo-toggle.js")
-    of.add("js/controls/exo-download.js")
-    of.add("js/composite-controls/exo-merge-lists.js")
-    of.add("js/composite-controls/exo-table-control.js")
-    of.add("js/layouts/tree.js")
-    of.add("js/layouts/tabs.js")
-    of.add("js/layouts/modal.js")
-    of.add("js/layouts/autocell.js")
 
-print("Building: exo.css")
+# build the main files exo.css, exo-icons.css and exo.js
+build_folders = [build_folder] + args.to_folder
 
-with Output("versions/latest/exo.css") as of:
-    of.add("css/header.css")
-    of.add("css/typography.css")
-    of.add("css/colors.css")
-    of.add("css/table.css")
-    of.add("css/tooltips.css")
-    of.add("css/layouts.css")
-    of.add("css/cards.css")
-    of.add("css/input.css")
-    of.add("css/checkbox.css")
-    of.add("css/radio.css")
-    of.add("css/toggle.css")
-    of.add("css/file.css")
-    of.add("css/progress.css")
-    of.add("css/summary.css")
-    of.add("css/modal.css")
-    of.add("css/conditional.css")
-    of.add("css/tree.css")
-    of.add("css/carousel.css")
-    of.add("css/button.css")
-    of.add("css/tabs.css")
-    of.add("css/icons.css")
+for dest_folder in build_folders:
+    exo_js_path = os.path.join(dest_folder,"exo.js")
+    print(f"Building: {exo_js_path}")
 
-print("Building: exo-icons.css")
+    with Output(exo_js_path) as of:
+        of.add("js/exo-common.js")
+        of.add("js/controls/exo-button.js")
+        of.add("js/controls/exo-checkbox.js")
+        of.add("js/controls/exo-date.js")
+        of.add("js/controls/exo-file.js")
+        of.add("js/controls/exo-number.js")
+        of.add("js/controls/exo-radio.js")
+        of.add("js/controls/exo-range.js")
+        of.add("js/controls/exo-select.js")
+        of.add("js/controls/exo-text.js")
+        of.add("js/controls/exo-textarea.js")
+        of.add("js/controls/exo-toggle.js")
+        of.add("js/controls/exo-download.js")
+        of.add("js/composite-controls/exo-merge-lists.js")
+        of.add("js/composite-controls/exo-table-control.js")
+        of.add("js/layouts/tree.js")
+        of.add("js/layouts/tabs.js")
+        of.add("js/layouts/modal.js")
+        of.add("js/layouts/autocell.js")
+        of.add("js/property_sheet/property_sheet.js")
 
-with IconOutput("versions/"+current_version+"/exo.css", "versions/"+current_version+"/exo-icons.css") as of:
-    svg_path = os.path.join(repo_dir, "svg", "material_icons")
-    for fname in os.listdir(svg_path):
-        if fname.endswith(".svg"):
-            icon_name = os.path.splitext(fname)[0]
-            output_name = "exo-icon-" + icon_name
-            of.add_icon("material_icons/" + icon_name, output_name, os.path.join(svg_path, fname))
+    exo_css_path = os.path.join(dest_folder, "exo.css")
 
+    print(f"Building: {exo_css_path}")
+
+    with Output(exo_css_path) as of:
+        of.add("css/header.css")
+        of.add("css/typography.css")
+        of.add("css/colors.css")
+        of.add("css/table.css")
+        of.add("css/tooltips.css")
+        of.add("css/layouts.css")
+        of.add("css/cards.css")
+        of.add("css/input.css")
+        of.add("css/checkbox.css")
+        of.add("css/radio.css")
+        of.add("css/toggle.css")
+        of.add("css/file.css")
+        of.add("css/progress.css")
+        of.add("css/summary.css")
+        of.add("css/modal.css")
+        of.add("css/conditional.css")
+        of.add("css/tree.css")
+        of.add("css/carousel.css")
+        of.add("css/button.css")
+        of.add("css/tabs.css")
+        of.add("css/icons.css")
+
+    exo_icons_css_path = os.path.join(dest_folder, "exo-icons.css")
+
+    print(f"Building: {exo_icons_css_path}")
+
+    with IconOutput(exo_css_path, exo_icons_css_path) as of:
+        svg_path = os.path.join(repo_dir, "svg", "material_icons")
+        for fname in os.listdir(svg_path):
+            if fname.endswith(".svg"):
+                icon_name = os.path.splitext(fname)[0]
+                output_name = "exo-icon-" + icon_name
+                of.add_icon("material_icons/" + icon_name, output_name, os.path.join(svg_path, fname))
+
+# now build the HTML documentation files
 
 class IconHTMLOutput:
     document_template = \
@@ -294,7 +314,7 @@ class IconHTMLOutput:
 
         import re
 
-        regexp_icon = re.compile("\.exo-icon-([^\s]+).*")
+        regexp_icon = re.compile(r"\.exo-icon-([^\s]+).*")
 
         rows1 = ""
         rows2 = ""
@@ -318,6 +338,7 @@ class IconHTMLOutput:
 
 
 print("Building: exo-icons.html")
+
 
 icon_html = IconHTMLOutput("versions/"+current_version+"/exo-icons.css", "versions/"+current_version+"/exo-icons.html")
 icon_html.process()
@@ -356,10 +377,10 @@ INCLUDE_ESCAPED
 
     def __init__(self, output_folder):
         self.output_folder = os.path.join(repo_dir, output_folder)
-        self.pat = re.compile("INCLUDE_HTML\(([^\)]*)\)")
-        self.pat4 = re.compile("INCLUDE_EXAMPLE\(([^\)]*)\)")
-        self.pat6 = re.compile("INCLUDE_EXAMPLE6\(([^\)]*)\)")
-        self.pat8 = re.compile("INCLUDE_EXAMPLE8\(([^\)]*)\)")
+        self.pat = re.compile(r"INCLUDE_HTML\(([^\)]*)\)")
+        self.pat4 = re.compile(r"INCLUDE_EXAMPLE\(([^\)]*)\)")
+        self.pat6 = re.compile(r"INCLUDE_EXAMPLE6\(([^\)]*)\)")
+        self.pat8 = re.compile(r"INCLUDE_EXAMPLE8\(([^\)]*)\)")
         self.line_limit = 40
 
     def __enter__(self):
@@ -373,6 +394,8 @@ INCLUDE_ESCAPED
             output_path = os.path.join(self.output_folder, subfolder, filename)
         else:
             output_path = os.path.join(self.output_folder, filename)
+
+        os.makedirs(os.path.split(output_path)[0],exist_ok=True)
 
         with open(input_path) as f:
             contents = f.read()
@@ -403,7 +426,6 @@ INCLUDE_ESCAPED
                                         escaped_fragment += formatter.format(node)
                             else:
                                 escaped_fragment = formatter.format(doc.documentElement)
-
 
                             if fragment.startswith("<div>") and fragment.endswith("</div>"):
                                 fragment = fragment[5:-6]
