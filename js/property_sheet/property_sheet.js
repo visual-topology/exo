@@ -1,6 +1,6 @@
 /* MIT License - Exo - Copyright (C) 2022-2023 Visual Topology */
 
-class ExoPropertySheetElement {
+class ExoPropertySheetInput {
 
     constructor(elt, parameters) {
         this.elt = elt;
@@ -20,12 +20,36 @@ class ExoPropertySheetElement {
         return this.value;
     }
 
+    set_error(message) {
+        this.elt.setCustomValidity(message);
+    }
+
     add_property_change_handler(handler) {
         if (this.elt.addEventListener) {
             this.elt.addEventListener("input", (evt) => {
                 handler(evt.target.value);
             });
         }
+    }
+}
+
+class ExoPropertySheetElement extends ExoPropertySheetInput {
+
+    set_property_value(value) {
+        this.value = value;
+        this.elt.setAttribute("value", value);
+    }
+
+    add_property_change_handler(handler) {
+        if (this.elt.addEventListener) {
+            this.elt.addEventListener("change", (evt) => {
+                handler(this.elt.value);
+            });
+        }
+    }
+
+    set_error(message) {
+        this.elt.setAttribute("invalid",message);
     }
 }
 
@@ -76,23 +100,10 @@ class ExoPropertySheetRadio extends ExoPropertySheetElement {
             });
         }
     }
+
 }
 
-class ExoPropertySheetText extends ExoPropertySheetElement {
 
-    set_property_value(value) {
-        this.value = value;
-        this.elt.setAttribute("value", value);
-    }
-
-    add_property_change_handler(handler) {
-        if (this.elt.addEventListener) {
-            this.elt.addEventListener("change", (evt) => {
-                handler(this.elt.value);
-            });
-        }
-    }
-}
 
 class ExoPropertySheetNumber extends ExoPropertySheetElement {
 
@@ -123,13 +134,13 @@ class ExoPropertySheetCheckbox extends ExoPropertySheetElement {
 
     set_property_value(value) {
         this.value = value;
-        this.elt.setAttribute("value", value);
+        this.elt.setAttribute("value", String(value));
     }
 
     add_property_change_handler(handler) {
         if (this.elt.addEventListener) {
             this.elt.addEventListener("change", (evt) => {
-                handler(this.elt.value);
+                handler(this.elt.value === "true");
             });
         }
     }
@@ -191,6 +202,10 @@ class ExoPropertySheetTable extends ExoPropertySheetElement {
 
         this.elt.appendChild(tr);
     }
+
+    set_error(message) {
+        // TODO
+    }
 }
 
 function ExoPropertySheetElementFactory(element_id, parameters) {
@@ -202,15 +217,18 @@ function ExoPropertySheetElementFactory(element_id, parameters) {
             return new ExoPropertySheetRadio(elt, parameters);
         case "EXO-TEXTAREA":
         case "EXO-TEXT":
-            return new ExoPropertySheetText(elt, parameters);
+        case "EXO-DATE":
+            return new ExoPropertySheetElement(elt, parameters);
         case "EXO-NUMBER":
+        case "EXO-RANGE":
             return new ExoPropertySheetNumber(elt, parameters);
+        case "EXO-TOGGLE":
         case "EXO-CHECKBOX":
             return new ExoPropertySheetCheckbox(elt, parameters);
         case "TBODY":
             return new ExoPropertySheetTable(elt, parameters);
         default:
-            return new ExoPropertySheetElement(elt, parameters);
+            return new ExoPropertySheetInput(elt, parameters);
     }
 }
 
@@ -222,6 +240,7 @@ class ExoPropertySheetManager {
         this.reset_btn = reset_btn_id ? document.getElementById(reset_btn_id): null;
         this.elements = {};
         this.reset_properties = {};
+        this.property_constraints = [];
 
         if (this.apply_btn) {
             this.apply_btn.addEventListener("click",(evt) => {
@@ -250,13 +269,41 @@ class ExoPropertySheetManager {
     }
 
     disable_apply_reset() {
-        if (this.apply_btn) { this.apply_btn.setAttribute("disabled", "true"); }
-        if (this.reset_btn) { this.reset_btn.setAttribute("disabled", "true"); }
+        if (this.apply_btn) { this.apply_btn.disabled = true; }
+        if (this.reset_btn) { this.reset_btn.disabled = true; }
+    }
+
+    check_constraints() {
+        let passes_constraints = true;
+        if (this.property_constraints.length > 0) {
+            for(let element_id in this.elements) {
+                this.elements[element_id].set_error("");
+            }
+            let properties = this.get_properties();
+            for(let idx=0; idx<this.property_constraints.length; idx++) {
+                let errors = this.property_constraints[idx](properties);
+                if (errors) {
+                    for(let element_id in errors) {
+                        passes_constraints = false;
+                        this.elements[element_id].set_error(errors[element_id]);
+                    }
+                }
+            }
+        }
+        return passes_constraints;
     }
 
     enable_apply_reset() {
-        if (this.apply_btn) { this.apply_btn.setAttribute("disabled", "false"); }
-        if (this.reset_btn) { this.reset_btn.setAttribute("disabled", "false"); }
+        let passes_constraints = this.check_constraints();
+        if (this.apply_btn) {
+            if (passes_constraints) {
+                this.apply_btn.disabled = false;
+            } else {
+                this.apply_btn.disabled = true;
+            }
+        }
+
+        if (this.reset_btn) { this.reset_btn.disabled = false; }
     }
 
     add_element(element_id, parameters) {
@@ -306,5 +353,9 @@ class ExoPropertySheetManager {
 
     add_property_change_handler(element_id, handler) {
         this.elements[element_id].add_property_change_handler(handler);
+    }
+
+    add_property_constraint(constraint_check) {
+        this.property_constraints.push(constraint_check);
     }
 }

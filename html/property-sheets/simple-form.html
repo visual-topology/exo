@@ -1,0 +1,18 @@
+<div>
+    <exo-text id="input_text"></exo-text>
+    <exo-checkbox id="input_checkbox"></exo-checkbox>
+    <input type="button" id="apply" value="Apply Changes"/>
+    <input type="button" id="reset" value="Reset Changes"/>
+    <script>
+       let mgr = new ExoPropertySheetManager((updates) => {
+           alert(JSON.stringify(updates,undefined,4));
+       },"apply","reset");
+       mgr.add_element("input_text").add_element("input_checkbox");
+       mgr.set_properties({"input_text":"Hello World", "input_checkbox":true});
+       mgr.add_property_constraint((properties) => {
+           if (properties["input_text"] === "") {
+              return { "input_text": "empty values not allowed" };
+           }
+       });
+    </script>
+</div>

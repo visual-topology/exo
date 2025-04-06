@@ -191,7 +191,7 @@ class CustomExoControl extends HTMLElement {
 
     static get observedAttributes() {
         return ["fg-color", "bg-color", "border-color", "border","margin","padding","rounded",
-            "vmargin","hmargin","label","tooltip","disabled","class","aria-label", "visible"];
+            "vmargin","hmargin","label","tooltip","disabled","class","aria-label", "visible", "invalid"];
     }
 
     exoBuildCommon(tag, parameters) {
@@ -203,6 +203,8 @@ class CustomExoControl extends HTMLElement {
         }
 
         this.exo_root_element = document.createElement("div");
+        // this.exo_root_element.setAttribute("style","width:fit-content;height:fit-content;");
+
         this.exo_root_element.appendChild(this.exo_element);
 
         this.exo_built = true;
@@ -268,6 +270,10 @@ class CustomExoControl extends HTMLElement {
                 break;
             case "id":
                 // ignore
+                break;
+            case "invalid":
+                this.exoGetInputElement().setCustomValidity(value);
+                this.exoGetInputElement().reportValidity();
                 break;
             case "class":
                 ExoUtils.addClass(this.exoGetInputElement(),value);

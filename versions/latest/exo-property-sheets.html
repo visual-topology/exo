@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Exo latest Property Sheets</title>
+    <script src="../../versions/latest/exo.js" ></script>
+    <link rel="stylesheet" href="../../versions/latest/exo.css">
+    <link rel="stylesheet" href="../../versions/latest/exo-icons.css">
+</head>
+<body class="exo-container">
+    <p>
+        <a href="index.html">Exo</a> -> <em>Exo Property Sheets</em>
+    </p>
+    <hr>
+    <h1>Exo - Property Sheets</h1>
+    <p>
+        Property Sheets define a Javascript API for managing form-like sets of exo custom controls
+    </p>
+    <p>
+        Property sets are specified using javascript objects where keys are the ids of exo custom controls.  An apply and reset button is automatically added.  Constraints can also be specified.
+    </p>
+    <h2>Simple Example</h2>
+    
+    <div class="exo-row">
+            <div class="exo-4-cell model-view">
+                <pre><code>
+&lt;<span style="color:red;">exo-text</span> <span style="color:blue;">id</span>=<span style="color:purple;">"input_text"</span>&gt;&lt;/<span style="color:red;">exo-text</span>&gt;
+&lt;<span style="color:red;">exo-checkbox</span> <span style="color:blue;">id</span>=<span style="color:purple;">"input_checkbox"</span>&gt;&lt;/<span style="color:red;">exo-checkbox</span>&gt;
+&lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"button"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"apply"</span> <span style="color:blue;">value</span>=<span style="color:purple;">"Apply Changes"</span>&gt;
+&lt;<span style="color:red;">input</span> <span style="color:blue;">type</span>=<span style="color:purple;">"button"</span> <span style="color:blue;">id</span>=<span style="color:purple;">"reset"</span> <span style="color:blue;">value</span>=<span style="color:purple;">"Reset Changes"</span>&gt;
+&lt;<span style="color:red;">script</span>&gt;
+       <span style="font-weight:bold; color:blue;">let</span> mgr = <span style="font-weight:bold; color:blue;">new</span> ExoPropertySheetManager((updates) <span style="font-weight:bold; color:blue;">=></span> {
+           <span style="font-weight:bold; color:blue;">alert</span>(JSON.string<span style="font-weight:bold; color:blue;">if</span>y(updates,undefined,4));
+       },"apply","reset");
+       mgr.add_element("input_text").add_element("input_checkbox");
+       mgr.set_properties({"input_text":"Hello World", "input_checkbox":true});
+       mgr.add_property_constraint((properties) <span style="font-weight:bold; color:blue;">=></span> {
+           <span style="font-weight:bold; color:blue;">if</span> (properties["input_text"] <span style="font-weight:bold; color:blue;">===</span> "") {
+              return { "input_text": "empty values not allowed" };
+           }
+       });
+    
+&lt;/<span style="color:red;">script</span>&gt;
+                </code></pre>
+            </div>
+            <div class="exo-4-cell">
+                
+    <exo-text id="input_text"></exo-text>
+    <exo-checkbox id="input_checkbox"></exo-checkbox>
+    <input type="button" id="apply" value="Apply Changes"/>
+    <input type="button" id="reset" value="Reset Changes"/>
+    <script>
+       let mgr = new ExoPropertySheetManager((updates) => {
+           alert(JSON.stringify(updates,undefined,4));
+       },"apply","reset");
+       mgr.add_element("input_text").add_element("input_checkbox");
+       mgr.set_properties({"input_text":"Hello World", "input_checkbox":true});
+       mgr.add_property_constraint((properties) => {
+           if (properties["input_text"] === "") {
+              return { "input_text": "empty values not allowed" };
+           }
+       });
+    </script>
+
+            </div>
+    </div>
+    
+
+
+</body>
+</html>

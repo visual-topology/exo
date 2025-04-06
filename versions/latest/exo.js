@@ -193,7 +193,7 @@ class CustomExoControl extends HTMLElement {
 
     static get observedAttributes() {
         return ["fg-color", "bg-color", "border-color", "border","margin","padding","rounded",
-            "vmargin","hmargin","label","tooltip","disabled","class","aria-label", "visible"];
+            "vmargin","hmargin","label","tooltip","disabled","class","aria-label", "visible", "invalid"];
     }
 
     exoBuildCommon(tag, parameters) {
@@ -205,6 +205,8 @@ class CustomExoControl extends HTMLElement {
         }
 
         this.exo_root_element = document.createElement("div");
+        // this.exo_root_element.setAttribute("style","width:fit-content;height:fit-content;");
+
         this.exo_root_element.appendChild(this.exo_element);
 
         this.exo_built = true;
@@ -270,6 +272,10 @@ class CustomExoControl extends HTMLElement {
                 break;
             case "id":
                 // ignore
+                break;
+            case "invalid":
+                this.exoGetInputElement().setCustomValidity(value);
+                this.exoGetInputElement().reportValidity();
                 break;
             case "class":
                 ExoUtils.addClass(this.exoGetInputElement(),value);
@@ -421,50 +427,6 @@ class CustomExoControl extends HTMLElement {
 }
 
 
-
-
-
-/* js/controls/exo-button.js */
-
-
-
-class CustomExoButton extends CustomExoControl {
-    constructor() {
-        super();
-    }
-
-    exoBuild(parameters) {
-        super.exoBuildCommon("input", parameters);
-        this.exoGetInputElement().setAttribute("type","button");
-        if (parameters["text"]) {
-            this.exoGetInputElement().setAttribute("value", parameters["text"]);
-        }
-        if (parameters["icon"]) {
-            ExoUtils.addClass(this.exoGetInputElement(),"exo-icon exo-icon-" + parameters["icon"]);
-        }
-        super.exoBuildComplete(parameters);
-    }
-
-    exoUpdate(name,value) {
-        switch(name) {
-            case "text":
-                if (this.exoGetInputElement()) {
-                    this.exoGetInputElement().setAttribute("value", value);
-                }
-                break;
-            default:
-                super.exoUpdate(name,value);
-        }
-    }
-
-    static get observedAttributes() {
-        var attrs = CustomExoControl.observedAttributes;
-        attrs.push('text');
-        return attrs;
-    }
-}
-
-customElements.define("exo-button", CustomExoButton);
 
 
 
@@ -1336,334 +1298,6 @@ class CustomExoDownload extends CustomExoControl {
 
 customElements.define("exo-download", CustomExoDownload);
 
-/* js/composite-controls/exo-merge-lists.js */
-
-
-class CustomExoMergeLists extends CustomExoControl {
-
-    constructor() {
-        super();
-        this.merged = [];
-        this.exo_key_map = {};
-        this.options1 = null;
-        this.options2 = null;
-        this.addb = null;
-        this.subb = null;
-        this.sel1 = null;
-        this.sel2 = null;
-        this.sel3 = null;
-        const value_s = JSON.stringify(this.merged);
-        this.exoSetControlValue(value_s);
-    }
-
-    exoBuild(parameters) {
-        super.exoBuildCommon("div", parameters);
-
-        let r = document.createElement("div");
-        r.setAttribute("class","exo-row");
-        let cell1 = document.createElement("div");
-        cell1.setAttribute("class","exo-cell");
-        this.sel1 = document.createElement("exo-select");
-        this.sel2 = document.createElement("exo-select");
-
-        this.sel1.addEventListener("change", (evt) => this.exoUpdateButtons());
-        this.sel2.addEventListener("change", (evt) => this.exoUpdateButtons());
-
-        let cell2 = document.createElement("div");
-        cell2.setAttribute("class","exo-cell exo-cell-centered");
-        this.addb = document.createElement("exo-button");
-        this.addb.setAttribute("icon","arrow-right");
-        this.addb.setAttribute("disabled","true");
-        this.addb.setAttribute("aria-label","Add Combination");
-        this.addb.addEventListener("click", (evt) => {
-            const v1 = this.sel1.value;
-            const v2 = this.sel2.value;
-            if (v1 && v2) {
-                this.sel1.exoSetControlValue(null);
-                this.sel2.exoSetControlValue(null);
-                this.exoAddMerge(v1, v2);
-                this.exoUpdateMerged();
-                this.exoUpdateButtons();
-                this.exoDispatch();
-            }
-        });
-        this.subb = document.createElement("exo-button");
-        this.subb.setAttribute("icon","arrow-left");
-        this.subb.setAttribute("disabled","true");
-        this.subb.setAttribute("aria-label","Remove Combination");
-        this.subb.addEventListener("click", (evt) => {
-            const k = this.sel3.value;
-            const v = this.exo_key_map[k];
-            this.exoRemoveMerge(v[0],v[1]);
-            delete this.exo_key_map[k];
-            this.exoUpdateMerged();
-            this.exoUpdateButtons();
-            this.exoDispatch();
-        });
-        cell2.appendChild(this.addb);
-        cell2.appendChild(this.subb);
-
-        let cell3 = document.createElement("div");
-        cell3.setAttribute("class","exo-cell");
-        this.sel3 = document.createElement("exo-select");
-        this.sel3.addEventListener("change", (evt) => this.exoUpdateButtons());
-        cell3.appendChild(this.sel3);
-
-        r.appendChild(cell1);
-        r.appendChild(cell2);
-        r.appendChild(cell3);
-        cell1.appendChild(this.sel1);
-        cell1.appendChild(this.sel2);
-        this.exoGetInputElement().appendChild(r);
-        super.exoBuildComplete(parameters);
-    }
-
-    exoAddMerge(v1,v2) {
-        for(let idx=0; idx<this.merged.length; idx++) {
-            if (this.merged[idx][0] == v1 && this.merged[idx][1] == v2) {
-                return;
-            }
-        }
-        this.merged.push([v1,v2]);
-    }
-
-    exoRemoveMerge(v1,v2) {
-        this.merged = this.merged.filter((item) => item[0] != v1 || item[1] != v2);
-    }
-
-    exoUpdateMerged() {
-        this.sel3.exoClearOptions();
-        const options = [];
-        this.exo_key_map = {};
-        for (let idx = 0; idx < this.merged.length; idx++) {
-            let v1 = this.merged[idx][0];
-            let v2 = this.merged[idx][1];
-            let key = v1 + "+" + v2;
-            let label = this.options1[v1] + "+" + this.options2[v2];
-            this.exo_key_map[key] = [v1, v2];
-            options.push([key, label]);
-        }
-        const options_s = JSON.stringify(options);
-        const value_s = JSON.stringify(this.merged);
-        this.sel3.setAttribute("options", options_s);
-        this.exoSetControlValue(value_s);
-    }
-
-    exoUpdateButtons() {
-        if (this.sel3.value) {
-            this.subb.setAttribute("disabled","false");
-        } else {
-            this.subb.setAttribute("disabled","true");
-        }
-        if (this.sel1.value && this.sel2.value) {
-            this.addb.setAttribute("disabled","false");
-        } else {
-            this.addb.setAttribute("disabled","true");
-        }
-    }
-
-    exoDispatch() {
-        const value_s = JSON.stringify(this.merged);
-        this.dispatchEvent(new CustomEvent("exo-value", {detail: value_s}));
-    }
-
-    exoUpdate(name, value) {
-        switch (name) {
-            case "value":
-                this.merged = JSON.parse(value);
-                if (this.options1  && this.options2) {
-                    this.exoUpdateMerged();
-                }
-                break;
-            case "options1":
-                this.sel1.setAttribute("options",value);
-                this.options1 = {};
-                JSON.parse(value).map((item) => this.options1[item[0]] = item[1]);
-                if (this.options2) {
-                    this.exoUpdateMerged();
-                }
-                break;
-            case "options2":
-                this.sel2.setAttribute("options",value);
-                this.options2 = {};
-                JSON.parse(value).map((item) => this.options2[item[0]] = item[1]);
-                if (this.options1) {
-                    this.exoUpdateMerged();
-                }
-                break;
-            case "size":
-                this.sel1.setAttribute("size",value);
-                this.sel2.setAttribute("size",value);
-                this.sel3.setAttribute("size",""+2*Number.parseInt(value));
-                break;
-            default:
-                super.exoUpdate(name, value);
-        }
-    }
-
-    static get observedAttributes() {
-        var attrs = CustomExoControl.observedAttributes;
-        attrs.push('options1','options2','value');
-        return attrs;
-    }
-
-
-}
-
-customElements.define("exo-merge-lists", CustomExoMergeLists);
-
-/* js/composite-controls/exo-table-control.js */
-
-
-/*
-    The value of this control is a data structure as below
-    {
-        "columns": [{
-               "name": "col1"
-               "label": "Column 1"
-               "type": "string" | "boolean"
-               "editable": true|false
-            }],
-        "rows": [
-            {
-               "col1": "aaa"
-            }
-        ]
-    }
- */
-
-class CustomExoTableControl extends CustomExoControl {
-
-    constructor() {
-        super();
-        this.exo_tbl_elt = null;
-        this.exo_table_definition = {};
-        this.exo_column_names = [];
-        this.exo_columns_by_name = {};
-        const value_s = JSON.stringify(this.exo_table_definition);
-        this.exoSetControlValue(value_s);
-    }
-
-    exoBuild(parameters) {
-        super.exoBuildCommon("table", parameters);
-        this.exo_tbl_elt = this.exoGetInputElement();
-        ExoUtils.addClass(this.exo_tbl_elt,"exo-border");
-        super.exoBuildComplete(parameters);
-    }
-
-    exoRefresh() {
-        ExoUtils.removeAllChildren(this.exo_tbl_elt);
-        this.exo_visible_column_names = [];
-        if (this.exo_table_definition.columns) {
-            let tr_elt = document.createElement("tr");
-            this.exo_table_definition.columns.map((column_definition) => {
-                let th_elt = document.createElement("th");
-                th_elt.appendChild(document.createTextNode(column_definition.label));
-                tr_elt.appendChild(th_elt);
-                this.exo_column_names.push(column_definition.name);
-                this.exo_columns_by_name[column_definition.name] = column_definition;
-            });
-            this.exo_tbl_elt.appendChild(tr_elt);
-        }
-        if (this.exo_table_definition.rows) {
-
-            this.exo_table_definition.rows.map((row,row_index) => {
-                let tr_elt = document.createElement("tr");
-                this.exo_column_names.map((name) => {
-                    let td_elt = document.createElement("td");
-                    let col_def = this.exo_columns_by_name[name];
-                    let value = row[name];
-                    if (col_def.type == "boolean") {
-                        let ctrl = document.createElement("exo-checkbox");
-                        ctrl.setAttribute("value",""+value);
-                        if (!col_def.editable) {
-                            ctrl.setAttribute("disabled","true");
-                        } else {
-                            ctrl.addEventListener("change", (evt) => {
-                                this.exoUpdateCell(name, row_index, evt.target.checked);
-                            });
-                        }
-                        td_elt.appendChild(ctrl);
-                    } else {
-                        if (!col_def.editable) {
-                            td_elt.appendChild(document.createTextNode("" + value));
-                        } else {
-
-                            let enable = document.createElement("exo-checkbox");
-
-
-                            enable.setAttribute("class", "exo-inline");
-
-                            td_elt.appendChild(enable);
-
-                            let ctrl = document.createElement("exo-text");
-
-                            ctrl.addEventListener("change", (evt) => {
-                                this.exoUpdateCell(name, row_index, evt.target.value);
-                            });
-
-                            if (value == undefined) {
-                                enable.setAttribute("value", "false");
-                                value = "";
-                                ctrl.setAttribute("visible","false");
-                            } else {
-                                enable.setAttribute("value", "true");
-                            }
-
-                            ctrl.setAttribute("value", value);
-
-                            enable.addEventListener("change", (evt) => {
-                                ctrl.setAttribute("visible", evt.target.checked ? "true" : "false");
-                                if (!evt.target.checked) {
-                                    this.exoUpdateCell(name, row_index, undefined);
-                                } else {
-                                    let v = ctrl.exoGetInputElement().value;
-                                    this.exoUpdateCell(name, row_index, v);
-                                }
-                            });
-
-                            td_elt.appendChild(ctrl);
-                        }
-                    }
-                    tr_elt.appendChild(td_elt);
-                });
-                this.exo_tbl_elt.appendChild(tr_elt);
-            });
-        }
-    }
-
-    exoUpdateCell(column_name, row_index, new_value) {
-        if (new_value !== undefined) {
-            this.exo_table_definition.rows[row_index][column_name] = new_value;
-        } else {
-            delete this.exo_table_definition.rows[row_index][column_name];
-        }
-        const value_s = JSON.stringify(this.exo_table_definition);
-        this.exoSetControlValue(value_s);
-        this.dispatchEvent(new CustomEvent("exo-value", {detail: value_s}));
-    }
-
-    exoUpdate(name, value) {
-        switch (name) {
-            case "value":
-                this.exo_table_definition = JSON.parse(value);
-                this.exoRefresh();
-                break;
-            default:
-                super.exoUpdate(name, value);
-        }
-    }
-
-    static get observedAttributes() {
-        var attrs = CustomExoControl.observedAttributes;
-        attrs.push('value');
-        return attrs;
-    }
-
-}
-
-customElements.define("exo-table-control", CustomExoTableControl);
-
 /* js/layouts/tree.js */
 
 
@@ -1952,7 +1586,7 @@ function exo_autocell_snap2grid() {
 /* js/property_sheet/property_sheet.js */
 
 
-class ExoPropertySheetElement {
+class ExoPropertySheetInput {
 
     constructor(elt, parameters) {
         this.elt = elt;
@@ -1972,12 +1606,36 @@ class ExoPropertySheetElement {
         return this.value;
     }
 
+    set_error(message) {
+        this.elt.setCustomValidity(message);
+    }
+
     add_property_change_handler(handler) {
         if (this.elt.addEventListener) {
             this.elt.addEventListener("input", (evt) => {
                 handler(evt.target.value);
             });
         }
+    }
+}
+
+class ExoPropertySheetElement extends ExoPropertySheetInput {
+
+    set_property_value(value) {
+        this.value = value;
+        this.elt.setAttribute("value", value);
+    }
+
+    add_property_change_handler(handler) {
+        if (this.elt.addEventListener) {
+            this.elt.addEventListener("change", (evt) => {
+                handler(this.elt.value);
+            });
+        }
+    }
+
+    set_error(message) {
+        this.elt.setAttribute("invalid",message);
     }
 }
 
@@ -2028,23 +1686,10 @@ class ExoPropertySheetRadio extends ExoPropertySheetElement {
             });
         }
     }
+
 }
 
-class ExoPropertySheetText extends ExoPropertySheetElement {
 
-    set_property_value(value) {
-        this.value = value;
-        this.elt.setAttribute("value", value);
-    }
-
-    add_property_change_handler(handler) {
-        if (this.elt.addEventListener) {
-            this.elt.addEventListener("change", (evt) => {
-                handler(this.elt.value);
-            });
-        }
-    }
-}
 
 class ExoPropertySheetNumber extends ExoPropertySheetElement {
 
@@ -2075,13 +1720,13 @@ class ExoPropertySheetCheckbox extends ExoPropertySheetElement {
 
     set_property_value(value) {
         this.value = value;
-        this.elt.setAttribute("value", value);
+        this.elt.setAttribute("value", String(value));
     }
 
     add_property_change_handler(handler) {
         if (this.elt.addEventListener) {
             this.elt.addEventListener("change", (evt) => {
-                handler(this.elt.value);
+                handler(this.elt.value === "true");
             });
         }
     }
@@ -2143,6 +1788,10 @@ class ExoPropertySheetTable extends ExoPropertySheetElement {
 
         this.elt.appendChild(tr);
     }
+
+    set_error(message) {
+        // TODO
+    }
 }
 
 function ExoPropertySheetElementFactory(element_id, parameters) {
@@ -2154,15 +1803,18 @@ function ExoPropertySheetElementFactory(element_id, parameters) {
             return new ExoPropertySheetRadio(elt, parameters);
         case "EXO-TEXTAREA":
         case "EXO-TEXT":
-            return new ExoPropertySheetText(elt, parameters);
+        case "EXO-DATE":
+            return new ExoPropertySheetElement(elt, parameters);
         case "EXO-NUMBER":
+        case "EXO-RANGE":
             return new ExoPropertySheetNumber(elt, parameters);
+        case "EXO-TOGGLE":
         case "EXO-CHECKBOX":
             return new ExoPropertySheetCheckbox(elt, parameters);
         case "TBODY":
             return new ExoPropertySheetTable(elt, parameters);
         default:
-            return new ExoPropertySheetElement(elt, parameters);
+            return new ExoPropertySheetInput(elt, parameters);
     }
 }
 
@@ -2174,6 +1826,7 @@ class ExoPropertySheetManager {
         this.reset_btn = reset_btn_id ? document.getElementById(reset_btn_id): null;
         this.elements = {};
         this.reset_properties = {};
+        this.property_constraints = [];
 
         if (this.apply_btn) {
             this.apply_btn.addEventListener("click",(evt) => {
@@ -2202,13 +1855,41 @@ class ExoPropertySheetManager {
     }
 
     disable_apply_reset() {
-        if (this.apply_btn) { this.apply_btn.setAttribute("disabled", "true"); }
-        if (this.reset_btn) { this.reset_btn.setAttribute("disabled", "true"); }
+        if (this.apply_btn) { this.apply_btn.disabled = true; }
+        if (this.reset_btn) { this.reset_btn.disabled = true; }
+    }
+
+    check_constraints() {
+        let passes_constraints = true;
+        if (this.property_constraints.length > 0) {
+            for(let element_id in this.elements) {
+                this.elements[element_id].set_error("");
+            }
+            let properties = this.get_properties();
+            for(let idx=0; idx<this.property_constraints.length; idx++) {
+                let errors = this.property_constraints[idx](properties);
+                if (errors) {
+                    for(let element_id in errors) {
+                        passes_constraints = false;
+                        this.elements[element_id].set_error(errors[element_id]);
+                    }
+                }
+            }
+        }
+        return passes_constraints;
     }
 
     enable_apply_reset() {
-        if (this.apply_btn) { this.apply_btn.setAttribute("disabled", "false"); }
-        if (this.reset_btn) { this.reset_btn.setAttribute("disabled", "false"); }
+        let passes_constraints = this.check_constraints();
+        if (this.apply_btn) {
+            if (passes_constraints) {
+                this.apply_btn.disabled = false;
+            } else {
+                this.apply_btn.disabled = true;
+            }
+        }
+
+        if (this.reset_btn) { this.reset_btn.disabled = false; }
     }
 
     add_element(element_id, parameters) {
@@ -2258,6 +1939,10 @@ class ExoPropertySheetManager {
 
     add_property_change_handler(element_id, handler) {
         this.elements[element_id].add_property_change_handler(handler);
+    }
+
+    add_property_constraint(constraint_check) {
+        this.property_constraints.push(constraint_check);
     }
 }
 

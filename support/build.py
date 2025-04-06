@@ -131,7 +131,6 @@ for dest_folder in build_folders:
 
     with Output(exo_js_path) as of:
         of.add("js/exo-common.js")
-        of.add("js/controls/exo-button.js")
         of.add("js/controls/exo-checkbox.js")
         of.add("js/controls/exo-date.js")
         of.add("js/controls/exo-file.js")
@@ -143,8 +142,6 @@ for dest_folder in build_folders:
         of.add("js/controls/exo-textarea.js")
         of.add("js/controls/exo-toggle.js")
         of.add("js/controls/exo-download.js")
-        of.add("js/composite-controls/exo-merge-lists.js")
-        of.add("js/composite-controls/exo-table-control.js")
         of.add("js/layouts/tree.js")
         of.add("js/layouts/tabs.js")
         of.add("js/layouts/modal.js")
@@ -382,6 +379,13 @@ INCLUDE_ESCAPED
         self.pat6 = re.compile(r"INCLUDE_EXAMPLE6\(([^\)]*)\)")
         self.pat8 = re.compile(r"INCLUDE_EXAMPLE8\(([^\)]*)\)")
         self.line_limit = 40
+        # tell htmlfive that exo custom HTML tags require a closing end-tag
+        from htmlfive.html5_common import require_end_tags
+        for tag in ["exo-text","exo-checkbox","exo-button","exo-select","exo-radio","exo-date","exo-download",
+                    "exo-file","exo-number","exo-radio","exo-range","exo-textarea","exo-toggle"]:
+            require_end_tags.append(tag)
+
+
 
     def __enter__(self):
         return self
@@ -417,6 +421,7 @@ INCLUDE_ESCAPED
                             parser = Html5Parser()
                             doc = parser.parse(fragment)
                             formatter = Html5Formatter(line_limit=100 if not cell_width else 40)
+
                             escaped_fragment = ""
                             if doc.documentElement.tagName == "div" and len(doc.documentElement.attributes) == 0:
                                 for node in doc.documentElement.childNodes:
@@ -449,7 +454,7 @@ INCLUDE_ESCAPED
 
 with HtmlProcessor("versions/"+current_version) as p:
     p.process("html/custom-layouts/exo-custom-layout.html")
-    p.process("html/custom-composite-controls/exo-custom-composite.html")
+    p.process("html/property-sheets/exo-property-sheets.html")
     p.process("html/custom-input-controls/exo-custom-input.html")
     p.process("html/index/index.html")
     p.process("html/example-layouts/layout.html")
